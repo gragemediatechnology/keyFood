@@ -120,7 +120,16 @@ Route::view('/home', 'home')->name('home');
 
 // ROUTE SELLER PAGE
 Route::prefix('seller')->name('seller.')->group(function () {
-    Route::resource('products', ProductController::class)->middleware('role:seller');
+    // Route::resource('products', ProductController::class)->middleware('role:seller');
+    Route::post('/products/index', [ProductController::class, 'index'])->name('products.index')->middleware('role:seller');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
+    Route::post('/products/create', [ProductController::class, 'create'])->name('products.create')->middleware('role:seller');
+
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
     Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
 
     Route::resource('products_orders', ProductOrderController::class);
