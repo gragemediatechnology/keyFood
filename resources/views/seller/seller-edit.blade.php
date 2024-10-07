@@ -111,7 +111,7 @@
                                                         </button>
                                                         <form method="POST"
                                                             {{-- action="{{ route('seller.toko.delete', ['product' => $p]) }}"> --}}
-                                                            action="/seller/products/destroy/{{ ['product' => $p] }}">
+                                                            action="/seller/products/destroy/{{ $p -> product }}">
                                                             @csrf
                                                             @method('DELETE')
                                                                 <button type="submit"
