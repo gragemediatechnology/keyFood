@@ -17,7 +17,8 @@
         @endif
 
         {{-- Product creation form --}}
-        <form method="POST" action="{{ route('seller.products.store') }}" enctype="multipart/form-data">
+        {{-- <form method="POST" action="{{ route('seller.products.store') }}" enctype="multipart/form-data"> --}}
+        <form method="POST" action="/seller/products/store" enctype="multipart/form-data">
             @csrf
 
             <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
