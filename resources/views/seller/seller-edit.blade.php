@@ -45,7 +45,7 @@
                         @else
                             @foreach ($product as $p)
                                 <div class="product-box">
-                                    <img alt="pack" src="{{ asset($p->photo) }}">
+                                    <img alt="pack" src="{{ $p->photo }}">
                                     <strong>{{ $p->name }}</strong>
                                     <span class="category">{{ $p->category->name }}</span>
                                     <span class="quantity">Jumlah: {{ $p->quantity }}</span>
