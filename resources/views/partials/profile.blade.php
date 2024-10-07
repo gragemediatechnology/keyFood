@@ -3,7 +3,7 @@
     <button
         class="fixed-button flex h-12 w-12 items-center justify-center rounded-lg bg-slate-900 text-slate-100 ring-slate-100 transition hover:shadow-md hover:ring-2 overflow-hidden"
         @click="isOpen = !isOpen">
-        <img class="w-full object-cover" src="{{ (Auth::user()->img ?? './img/client-1.png') }}" alt="Profile">
+        <img class="w-full object-cover" src="{{ (Auth::user()->img ?? 'https://lapakkbk.online/img/client-1.png') }}" alt="Profile">
     </button>
 
     <!-- Dropdown Menu -->
