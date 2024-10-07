@@ -16,10 +16,8 @@
     <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/css/app.css">
 
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-    @livewireStyles
-    <script src="https://unpkg.com/@livewire/livewire@2.10.2/dist/livewire.js" defer></script>
+    {{-- @livewireStyles --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/livewire-turbolinks@latest/dist/livewire-turbolinks.css">
 </head>
 
 <body class="font-sans antialiased">
@@ -46,6 +44,9 @@
     </span>
 
 
+     <!-- Livewire Scripts -->
+     <script src="https://cdn.jsdelivr.net/npm/livewire-turbolinks@latest/dist/livewire-turbolinks.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/livewire@latest/dist/livewire.js"></script>
     <script src="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/js/app.js"></script>
 
 </body>
