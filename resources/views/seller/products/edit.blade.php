@@ -20,7 +20,8 @@
                 </div>
                 @endif
 
-                <form method="POST" action="{{ route('seller.products.update', $product) }}" enctype="multipart/form-data">
+                {{-- <form method="POST" action="{{ route('seller.products.update', $product) }}" enctype="multipart/form-data"> --}}
+                <form method="POST" action="/seller/product/update/{{ $product -> id }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <h1 class="text-indigo-950 text-3xl font-bold">Edit Product</h1>
