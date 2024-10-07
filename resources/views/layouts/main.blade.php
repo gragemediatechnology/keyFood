@@ -98,6 +98,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
+<script defer src="https://rawcdn.githack.com/jipyy/keyFood/14b09b6228e4db3eb2b97332c342350e45aac37c/resources/js/app.js"></script>
 <script defer src="https://rawcdn.githack.com/jipyy/keyFood/14b09b6228e4db3eb2b97332c342350e45aac37c/public/js/app.js"></script>
 <script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js"></script>
 <script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/checkout.js"></script>
