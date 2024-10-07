@@ -114,7 +114,7 @@
                                     </a>
                                     <img alt="pack" src="https://lapakkbk.online/{{ $p->photo }}">
                                     <strong>{{ $p->name }}</strong>
-                                    <span class="category">{{ $p->category->name }}</span>
+                                    <span class="category">Kategori: {{ $p->category->name }}</span>
                                     <span class="quantity">Jumlah: {{ $p->quantity }}</span>
                                     <span class="price">Harga: Rp.{{ $p->price }}</span>
                                     <!--cart-btn------->
