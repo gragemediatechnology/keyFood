@@ -15,7 +15,7 @@
                 <div class="flex gap-3 items-center">
                     <div
                         class="flex items-center justify-center rounded-lg h-12 w-12 overflow-hidden border-2 border-slate-600">
-                        <img class="w-full object-cover" src="{{ (Auth::user()->img ?? './img/client-1.png') }}"
+                        <img class="w-full object-cover" src="https://lapakkbk.online/{{ (Auth::user()->img ?? '/img/client-1.png') }}"
                             alt="Profile">
                     </div>
                     <div style="width: 100%">
