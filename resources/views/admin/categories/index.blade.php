@@ -54,7 +54,7 @@
                                         <div class="flex items-center text-sm">
                                             <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                 <img class="object-cover w-full h-full rounded-full"
-                                                    src="{{ https://lapakkbk.online/($category->icon) }}" alt="{{ $category->name }}"
+                                                    src="https://lapakkbk.online/{{ $category->icon}}" alt="{{ $category->name }}"
                                                     loading="lazy" />
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                                 </div>
