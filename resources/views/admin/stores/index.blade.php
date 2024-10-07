@@ -11,7 +11,7 @@
                 @forelse($stores as $store)
                     <div class="card-profile">
                         <p><strong>ID:</strong> {{ $store->id_toko }}</p>
-                        <img src="{{ $store->foto_profile_toko }}" alt="Profile Picture">
+                        <img src="https://lapakkbk.online/{{ $store->foto_profile_toko }}" alt="Profile Picture">
                         <h2>{{ $store->nama_toko }}</h2>
 
                         <div class="info">
@@ -92,7 +92,7 @@
                                                 <!-- Avatar with inset shadow -->
                                                 <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                     <img class="object-cover w-full h-full rounded-full"
-                                                        src="{{ url($store->foto_profile_toko) }}"
+                                                        src="https://lapakkbk.online/{{ $store->foto_profile_toko }}"
                                                         alt="{{ $store->nama_toko }}" loading="lazy" />
                                                     <div class="absolute inset-0 rounded-full shadow-inner"
                                                         aria-hidden="true"></div>
