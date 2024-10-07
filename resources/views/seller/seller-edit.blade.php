@@ -52,7 +52,7 @@
                                     <span class="price">Harga: Rp.{{ $p->price }}</span>
                                     <!--cart-btn------->
                                     {{-- <a href="{{ route('seller.products.edit', $p) }}" class="cart-btn"> --}}
-                                    <a href="/seller/products/edit/{{ $p -> product }}" class="cart-btn">
+                                    <a href="/seller/products/edit/{{ $p -> id}}" class="cart-btn">
                                         <i class="fas fa-edit"></i> Edit Produk
                                     </a>
                                     {{-- trigger delete --}}
