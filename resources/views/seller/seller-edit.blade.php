@@ -5,7 +5,7 @@
             @if (Auth::user()->hasRole('seller'))
                 <div class="store-header">
                     <div class="store-info">
-                        <img src="{{ 'store_image/' . $toko->foto_profile_toko }}" alt="logo toko" class="store-logo">
+                        <img src="https://lapakkbk.online/store_image/{{ $toko->foto_profile_toko }}" alt="logo toko" class="store-logo">
                         <div class="store-text">
                             <h1>{{ $toko->nama_toko }}</h1>
                             <h2>{{ $toko->alamat_toko }}</h2>
