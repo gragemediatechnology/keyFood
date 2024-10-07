@@ -45,18 +45,6 @@
                         @else
                             @foreach ($product as $p)
                                 <div class="product-box">
-                                    <img alt="pack" src="https://lapakkbk.online/{{ $p->photo }}">
-                                    <strong>{{ $p->name }}</strong>
-                                    <span class="category">{{ $p->category->name }}</span>
-                                    <span class="quantity">Jumlah: {{ $p->quantity }}</span>
-                                    <span class="price">Harga: Rp.{{ $p->price }}</span>
-                                    <!--cart-btn------->
-                                    {{-- <a href="{{ route('seller.products.edit', $p) }}" class="cart-btn"> --}}
-                                    <a href="/seller/products/edit/{{ $p -> id}}" class="cart-btn">
-                                        <i class="fas fa-edit"></i> Edit Produk
-                                    </a>
-                                    {{-- trigger delete --}}
-                                    {{-- <a class="view-btn"> --}}
                                     <a class="">
                                         <button id="deleteButton{{ $p->id }}" data-modal-target="deleteModal{{ $p->id }}"
                                             data-modal-toggle="deleteModal{{ $p->id }}"
@@ -125,6 +113,19 @@
                                             </div>
                                         </div>
                                     </a>
+                                    <img alt="pack" src="https://lapakkbk.online/{{ $p->photo }}">
+                                    <strong>{{ $p->name }}</strong>
+                                    <span class="category">{{ $p->category->name }}</span>
+                                    <span class="quantity">Jumlah: {{ $p->quantity }}</span>
+                                    <span class="price">Harga: Rp.{{ $p->price }}</span>
+                                    <!--cart-btn------->
+                                    {{-- <a href="{{ route('seller.products.edit', $p) }}" class="cart-btn"> --}}
+                                    <a href="/seller/products/edit/{{ $p -> id}}" class="cart-btn">
+                                        <i class="fas fa-edit"></i> Edit Produk
+                                    </a>
+                                    {{-- trigger delete --}}
+                                    {{-- <a class="view-btn"> --}}
+                                 
                                 </div>
                             @endforeach
                         @endif
