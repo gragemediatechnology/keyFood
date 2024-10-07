@@ -7,13 +7,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'KeyFood') }}</title>
-
+    <!-- CDN Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/css/app.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/css/app.css">
 
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     {{-- @livewireStyles --}}
@@ -44,10 +46,12 @@
     </span>
 
 
-     <!-- Livewire Scripts -->
-     <script src="https://cdn.jsdelivr.net/npm/livewire-turbolinks@latest/dist/livewire-turbolinks.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/livewire@latest/dist/livewire.js"></script>
-    <script src="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/js/app.js"></script>
+    <!-- Livewire Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/livewire-turbolinks@latest/dist/livewire-turbolinks.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/livewire@latest/dist/livewire.js"></script>
+    <script
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/js/app.js">
+    </script>
 
 </body>
 
