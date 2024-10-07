@@ -334,7 +334,7 @@
                             aria-haspopup="true">
                             @if (Auth::check())
                                 <img class="object-cover w-8 h-8 rounded-full"
-                                    src="{{ Auth::user()->img ?? './img/client-1.jpg' }}" alt=""
+                                    src="https://lapakkbk.online/{{ Auth::user()->img ?? '/img/client-1.jpg' }}" alt=""
                                     aria-hidden="true" />
                         </button>
                         <template x-if="isProfileMenuOpen">
@@ -348,7 +348,7 @@
                                     <div
                                         class="flex items-center justify-center rounded-lg h-12 w-12 overflow-hidden ">
                                         <img class="object-cover w-8 h-8 rounded-full"
-                                            src="{{ Auth::user()->img ?? './img/client-1.jpg' }}"
+                                            src="https://lapakkbk.online/{{ Auth::user()->img ?? '/img/client-1.jpg' }}"
                                             alt="Profile">
                                     </div>
                                     <div style="width: 100%" class="ml-2">
