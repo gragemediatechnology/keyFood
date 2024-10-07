@@ -350,4 +350,5 @@ class ProductController extends Controller
 
     return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
 }
+
 }
