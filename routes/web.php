@@ -136,7 +136,6 @@ Route::prefix('seller')->name('seller.')->group(function () {
     Route::put('/edit_toko/update/{id}', [TokoController::class, 'update'])->name('toko.update')->middleware('permission:edit-toko');
     Route::get('/edit_toko/{id}', [TokoController::class, 'edit'])->name('toko.edit')->middleware('permission:edit-toko');
     Route::resource('/seller/seller-edit', ProductController::class);
-    // Route::delete('/seller-edit/{product}', [ProductController::class, 'destroy'])->name('toko.delete')->middleware('role:seller');
 });
 
 // ROUTE ADMIN  PAGE
