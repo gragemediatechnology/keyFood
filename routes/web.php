@@ -123,11 +123,11 @@ Route::prefix('seller')->name('seller.')->group(function () {
     // Route::resource('products', ProductController::class)->middleware('role:seller');
     Route::post('/products/index', [ProductController::class, 'index'])->name('products.index')->middleware('role:seller');
     Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
-    Route::post('/products/create', [ProductController::class, 'create'])->name('products.create')->middleware('role:seller');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create')->middleware('role:seller');
+    Route::get('/products/edit', [ProductController::class, 'edit'])->name('products.edit')->middleware('role:seller');
+    Route::post('/products/update', [ProductController::class, 'update'])->name('products.update')->middleware('role:seller');
+    Route::delete('/products/destroy', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('role:seller');
 
-    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
-    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
-    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
     Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
     Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
     Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
@@ -136,7 +136,7 @@ Route::prefix('seller')->name('seller.')->group(function () {
     Route::put('/edit_toko/update/{id}', [TokoController::class, 'update'])->name('toko.update')->middleware('permission:edit-toko');
     Route::get('/edit_toko/{id}', [TokoController::class, 'edit'])->name('toko.edit')->middleware('permission:edit-toko');
     Route::resource('/seller/seller-edit', ProductController::class);
-    Route::delete('/seller-edit/{product}', [ProductController::class, 'destroy'])->name('toko.delete')->middleware('role:seller');
+    // Route::delete('/seller-edit/{product}', [ProductController::class, 'destroy'])->name('toko.delete')->middleware('role:seller');
 });
 
 // ROUTE ADMIN  PAGE
