@@ -45,7 +45,7 @@
                         @else
                             @foreach ($product as $p)
                                 <div class="product-box">
-                                    <img alt="pack" src="https://lapakkbk.online/store_image/{{ $p->photo }}">
+                                    <img alt="pack" src="https://lapakkbk.online/{{ $p->photo }}">
                                     <strong>{{ $p->name }}</strong>
                                     <span class="category">{{ $p->category->name }}</span>
                                     <span class="quantity">Jumlah: {{ $p->quantity }}</span>
