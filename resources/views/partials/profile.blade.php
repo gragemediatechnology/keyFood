@@ -116,7 +116,7 @@
             <i class="fa-solid fa-arrow-left back"></i>
         </button>
         <div class="profile-pic">
-        <img src="{{ (Auth::user()->img ?? './img/client-1.png') }}" alt="user avatar">
+        <img src="https://lapakkbk.online/{{ (Auth::user()->img ?? '/img/client-1.png') }}" alt="user avatar">
         </div>
         <div class="profile-details">
             <div class="intro">
