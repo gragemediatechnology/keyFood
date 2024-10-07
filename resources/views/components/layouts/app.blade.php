@@ -16,7 +16,10 @@
     <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/css/app.css">
 
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     @livewireStyles
+    <script src="https://unpkg.com/@livewire/livewire@2.10.2/dist/livewire.js" defer></script>
 </head>
 
 <body class="font-sans antialiased">
