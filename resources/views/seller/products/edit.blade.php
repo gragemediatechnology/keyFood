@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('content')
+@section('container')
     <div class="container py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm p-10 sm:rounded-lg">
