@@ -45,7 +45,7 @@
                         @else
                             @foreach ($product as $p)
                                 <div class="product-box">
-                                    <img alt="pack" src="{{ $p->photo }}">
+                                    <img alt="pack" src="https://lapakkbk.online/{{ $p->photo }}">
                                     <strong>{{ $p->name }}</strong>
                                     <span class="category">{{ $p->category->name }}</span>
                                     <span class="quantity">Jumlah: {{ $p->quantity }}</span>
@@ -111,7 +111,7 @@
                                                         </button>
                                                         <form method="POST"
                                                             {{-- action="{{ route('seller.toko.delete', ['product' => $p]) }}"> --}}
-                                                            action="/seller/products/destroy/{{ $p -> id }}">
+                                                            action="/seller/products/destroy/{{ $p -> product }}">
                                                             @csrf
                                                             @method('DELETE')
                                                                 <button type="submit"
