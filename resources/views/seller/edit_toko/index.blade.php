@@ -20,7 +20,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('seller.toko.update', $toko->id_toko) }}" method="POST" enctype="multipart/form-data">
+                <form action="/seller/edit_toko/update/{{ $toko->id_toko }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <h1 class="text-indigo-950 text-3xl font-bold">Edit Toko</h1>
