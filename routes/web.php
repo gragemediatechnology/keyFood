@@ -124,7 +124,7 @@ Route::prefix('seller')->name('seller.')->group(function () {
     Route::post('/products/index', [ProductController::class, 'index'])->name('products.index')->middleware('role:seller');
     Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create')->middleware('role:seller');
-    Route::get('/products/edit', [ProductController::class, 'edit'])->name('products.edit')->middleware('role:seller');
+    Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('products.edit')->middleware('role:seller');
     Route::post('/products/update', [ProductController::class, 'update'])->name('products.update')->middleware('role:seller');
     Route::delete('/products/destroy', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('role:seller');
 
