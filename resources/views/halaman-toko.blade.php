@@ -51,6 +51,9 @@
 
 
                     <div class="product-box">
+                         <span hidden>{{ $product->id }}</span>
+                        <span hidden>{{ $product->store_id }}</span>
+                        <span hidden>{{ $product->slug }}</span>
                         <img alt="pack" src="{{ $product->photo }}">
                         <strong>{{ $product->name }}</strong>
                         <strong>{{ $product->toko->nama_toko }}</strong>
@@ -88,9 +91,12 @@
                                 <p>Belum Ada Rating</p>
                             @endif
                         </div>
+                        <span class="quantity"></span>
                         <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                         <!--cart-btn------->
-                        <a href="#" class="cart-btn">
+                        <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                            data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
+                            data-slug="{{ $product->slug }}" class="cart-btn">
                             <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                         </a>
 
