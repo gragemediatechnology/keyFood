@@ -9,14 +9,19 @@
             <div class="product-container">
                 @foreach ($products as $product)
                     @php
-                        // Menghitung nilai rating dari $product
+                        // Ambil nilai rating dan rated_by
                         $rating = $product->rating ?? 0;
-                        $rated_by = json_decode($product->rated_by, true) ?? 1;
+                        $rated_by = is_array($product->rated_by)
+                            ? count(json_decode($product->rated_by, true))
+                            : json_decode($product->rated_by, true) ?? 1;
+
+                        // Hitung rata-rata rating jika rated_by lebih dari 0
                         $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
                         $fullStars = floor($average_rating); // Bintang penuh
                         $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
                         $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
                     @endphp
+
 
                     <div class="product-box">
                         <span hidden>{{ $product->id }}</span>
