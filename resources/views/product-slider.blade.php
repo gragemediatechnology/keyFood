@@ -14,7 +14,7 @@
 
                         // Debug: tampilkan $product->rated_by untuk memastikan apa isinya
                         $rated_by_raw = $product->rated_by;
-                        dump($rated_by_raw); // Cek isinya
+                       
 
                         // Jika rated_by adalah JSON, decode jadi array dan hitung elemennya, jika tidak, gunakan langsung
                         if (is_string($rated_by_raw)) {
@@ -26,7 +26,7 @@
 
                         // Hitung rata-rata rating jika rated_by lebih dari 0
                         $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
-                        dump($average_rating); // Debug untuk mengecek rata-rata yang dihitung
+                      
 
                         $fullStars = floor($average_rating); // Bintang penuh
                         $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
