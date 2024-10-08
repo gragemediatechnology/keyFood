@@ -71,9 +71,9 @@
                             @endfor
 
                             @if ($average_rating > 1)
-                                <p>( {{ $average_rating }} / 5)</p>
+                                <p>( {{ $average_rating }} / 5 )</p>
                             @else
-                                <h5><p>Belum Ada Rating</p></h5>
+                                <p>( 0 / 0 )</p>
                             @endif
                         </div>
                         <span class="quantity"></span>
