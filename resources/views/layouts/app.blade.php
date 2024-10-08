@@ -15,7 +15,7 @@
         <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
 
         <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/css/app.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@livewire/livewire@2.x/livewire.css">
+
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
