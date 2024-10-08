@@ -3,7 +3,8 @@
     <button
         class="fixed-button flex h-12 w-12 items-center justify-center rounded-lg bg-slate-900 text-slate-100 ring-slate-100 transition hover:shadow-md hover:ring-2 overflow-hidden"
         @click="isOpen = !isOpen">
-        <img class="w-full object-cover" src="{{ (Auth::user()->img ?? 'https://lapakkbk.online/img/client-1.png') }}" alt="Profile">
+        <img class="w-full object-cover" src="{{ Auth::user()->img ?? 'https://lapakkbk.online/img/client-1.png' }}"
+            alt="Profile">
     </button>
 
     <!-- Dropdown Menu -->
@@ -15,7 +16,8 @@
                 <div class="flex gap-3 items-center">
                     <div
                         class="flex items-center justify-center rounded-lg h-12 w-12 overflow-hidden border-2 border-slate-600">
-                        <img class="w-full object-cover" src="https://lapakkbk.online/{{ (Auth::user()->img ?? '/img/client-1.png') }}"
+                        <img class="w-full object-cover"
+                            src="https://lapakkbk.online/{{ Auth::user()->img ?? '/img/client-1.png' }}"
                             alt="Profile">
                     </div>
                     <div style="width: 100%">
@@ -84,7 +86,7 @@
                             <span>Riwayat Belanja</span>
                         </a>
                     @endif
-            </div>
+                </div>
                 <form method="POST" action="/logout" style="display: flex">
                     @csrf
                     <button id="logout"
@@ -116,7 +118,7 @@
             <i class="fa-solid fa-arrow-left back"></i>
         </button>
         <div class="profile-pic">
-        <img src="https://lapakkbk.online/{{ (Auth::user()->img ?? '/img/client-1.png') }}" alt="user avatar">
+            <img src="https://lapakkbk.online/{{ Auth::user()->img ?? '/img/client-1.png' }}" alt="user avatar">
         </div>
         <div class="profile-details">
             <div class="intro">
@@ -133,7 +135,8 @@
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                                 <input type="hidden" name="requested_role" value="seller">
-                                <button type="submit" class="btn btn-primary">Mengajukan Permintaan Menjadi Penjual</button>
+                                <button type="submit" class="btn btn-primary">Mengajukan Permintaan Menjadi
+                                    Penjual</button>
                             </form>
                         @else
                             <p>User is not authenticated.</p>
@@ -141,9 +144,9 @@
                     @endif
                 @endif
             </div>
-            
-        
-            
+
+
+
             <div class="contact-info">
                 <div class="row">
                     <div class="icon">
@@ -205,7 +208,8 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
-                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin menghapus permanen akun anda?</h3>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin
+                                ingin menghapus permanen akun anda?</h3>
                             <form action="/edit-profile/destroy" method="POST" class="mt-6">
                                 @csrf
                                 @method('DELETE')
@@ -215,7 +219,7 @@
                                 </button>
                             </form>
                             <button data-modal-hide="popup-modal" type="button"
-                                class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No,
+                                class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                 batal</button>
                         </div>
                     </div>
@@ -225,4 +229,3 @@
         </div>
     </div>
 </div>
-
