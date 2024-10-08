@@ -165,13 +165,14 @@
                     success: function (data) {
                         $('#product-list').empty(); // Kosongkan daftar produk sebelumnya
 
-                        const products = data.data || []; // Pastikan data yang diterima adalah array produk
-                        console.log(products);
-                        if (Array.isArray(products) && products.length > 0) {
+                        // Cek apakah data produk diterima dengan benar
+                        const products = data.data || [];
+                        if (products.length > 0) {
                             $.each(products, function (index, product) {
+                                // Buat HTML untuk setiap produk
                                 var productHtml = `
-                        <div class="product-box" data-category="${product.category_id ? product.category.name : 'gaada id'}">
-                            <img alt="${product.name}" src="{{ ('') }}${product.photo}">
+                        <div class="product-box" data-category="${product.category ? product.category.name : 'Unknown'}">
+                            <img alt="${product.name}" src="{{ asset('') }}${product.photo}">
                             <strong>${product.name}</strong>
                             <span class="quantity">Store: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
                             <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
@@ -182,16 +183,18 @@
                                 <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                             </a>
                         </div>`;
-                                $('#product-list').append(productHtml); // Tambahkan produk ke daftar
+                                $('#product-list').append(productHtml); // Tambahkan HTML produk ke daftar
                             });
                         } else {
-                            $('#product-list').append('<p class="text-gray-500">Produk Kosong</p>'); // Tampilkan pesan jika tidak ada produk
+                            $('#product-list').append('<p class="text-gray-500">Tidak ada produk yang ditemukan</p>');
                         }
                     },
                     error: function (xhr, status, error) {
-                        console.log("Error: " + error); // Debugging jika terjadi kesalahan
+                        console.log("Error: " + error); // Debugging jika terjadi error
                     }
                 });
             }
+
+        }
 
     </script>
