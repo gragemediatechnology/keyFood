@@ -39,7 +39,7 @@
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
-                <div class="product-container">
+                <div class="product-container" id="product-list">
                 @foreach ($products as $product)
                     @php
                         // Ambil nilai rating dan rated_by
@@ -66,7 +66,7 @@
 
 
 
-                    <div class="product-box" id="product-list">
+                    <div class="product-box">
                         <span hidden>{{ $product->id }}</span>
                         <span hidden>{{ $product->store_id }}</span>
                         <span hidden>{{ $product->slug }}</span>
