@@ -18,7 +18,6 @@ class UserProfileController extends Controller
 
     public function update(Request $request)
     {
-        dd($request);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
@@ -27,8 +26,10 @@ class UserProfileController extends Controller
             'last_name' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
+        ], [
+            'password.confirmed' => 'Password dan konfirmasi password harus sama.'
         ]);
-
+    
         $user = Auth::user();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
@@ -36,31 +37,25 @@ class UserProfileController extends Controller
         $user->last_name = $request->input('last_name');
         $user->phone = $request->input('phone');
         $user->location = $request->input('location');
-        $user->img = $request->input('img');
-
     
         if ($request->filled('password')) {
             $user->password = Hash::make($request->input('password'));
         }
-
     
-
         if ($request->hasFile('img')) {
             $file = $request->file('img');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('img'), $filename);
             $user->img = 'img/' . $filename;
         } elseif (!$request->hasFile('img') && $user->img) {
-            // Jika tidak ada file baru diupload dan user sudah memiliki gambar, pertahankan gambar yang ada
             $user->img = $user->img;
         } else {
-            // Jika tidak ada file baru diupload dan user tidak memiliki gambar, set img menjadi null
             $user->img = null;
         }
-
+    
         $user->save();
-
-        return redirect('/home')->with('success', 'Profile updated successfully.');
+    
+        return redirect('/home')->with('success', 'Profil berhasil diperbarui.');
     }
 
     public function destroy()
