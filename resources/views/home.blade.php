@@ -45,7 +45,7 @@
             <div class="content">
                 <section class="section__container header__container" id="home">
                     <div class="header__image">
-                        <img src="{{ $company->gambar_home_1 }}" alt="header " class="header-img" />
+                        <img src="{{ $company->gambar_home_1 }}" alt="header " class="header-img" width="400px" height="400px" />
                     </div>
                     <div class="header__content">
                         <h1>Beli, Makan & Nikmati <span>Makanan Terbaik</span>.</h1>
