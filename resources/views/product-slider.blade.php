@@ -73,7 +73,7 @@
                             @if ($average_rating > 1)
                                 <p class="mx-2">( {{ $average_rating }} / 5 )</p>
                             @else
-                                <p>( 0 / 0 )</p>
+                                <p class="mx-2">( 0 / 0 )</p>
                             @endif
                         </div>
                         <span class="quantity"></span>
