@@ -14,8 +14,7 @@ class CartController extends Controller
 {
     // CartController.php
     // CartController.php
-    public function data()
-    {
+    public function data(){
         $data = session()->get('cart');
         return response()->json([
             'data' => $data
@@ -51,12 +50,12 @@ class CartController extends Controller
         $cart = session()->get('cart');
 
         if (isset($cart[$productId])) {
-            if ($cart[$productId]['quantity'] == 1) {
+            if($cart[$productId]['quantity'] == 1) {
                 unset($cart[$productId]);
             } else {
                 $cart[$productId]['quantity'] -= 1;
             }
-        }
+        } 
         session()->put('cart', $cart);
 
         return redirect()->back()->with('success', 'Product success reduced!');
@@ -74,32 +73,19 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Product removed from cart!');
     }
-    // Validasi data yang diterima dari permintaan
-    public function saveCart(Request $request)
-    {
-        \Log::info('Received cart data: ' . json_encode($request->all()));
-
-        $cartItems = $request->cartItems;
-        $userId = auth()->id();
-
-        $dataToInsertOrUpdate = [];
-        foreach ($cartItems as $item) {
-            $dataToInsertOrUpdate[] = [
-                'user_id' => $userId,
-                'product_id' => $item['product_id'],
-                'store_id' => $item['store_id'],
-                'category_id' => $item['category_id'],
-                'quantity' => $item['quantity'],
-                'photo' => $item['photo'],
-                'updated_at' => now(),
-                'created_at' => now() // Or handle only `updated_at` depending on your use case
-            ];
+        // Validasi data yang diterima dari permintaan
+        public function saveCart(Request $request)
+        {
+            \Log::info('Received cart data: ' . json_encode($request->all()));
+    
+            foreach ($request->cartItems as $item) {
+                // Simpan data ke tabel carts
+                Cart::updateOrCreate(
+                    ['user_id' => auth()->id(), 'product_id' => $item['product_id'], 'store_id' => $item['store_id'], 'category_id' => $item['category_id'],],
+                    ['quantity' => $item['quantity'], 'photo' => $item['photo']]
+                );
+            }
+    
+            return redirect()->route('checkout.details')->withErrors('success', 'Cart successfully added.');
         }
-
-        // Batch Insert (or Update if necessary)
-        Cart::upsert($dataToInsertOrUpdate, ['user_id', 'product_id', 'store_id', 'category_id'], ['quantity', 'photo']);
-
-        return redirect()->route('checkout.details')->with('success', 'Cart successfully added.');
-    }
-
 }
