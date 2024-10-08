@@ -170,7 +170,7 @@ $(function() {
     getData();
 });
 
-$(document).ready(function() {
+
     // cart buttons
     $(document).on('click', '.cart-btn', function() {
         let productId = $(this).data('product-id');
@@ -243,7 +243,7 @@ $(document).ready(function() {
         localStorage.setItem('cart', JSON.stringify(cart));
         getData();
     });
-});
+
 
 
 document.getElementById('logout').addEventListener('click', function(event) {
