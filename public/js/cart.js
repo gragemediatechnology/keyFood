@@ -158,7 +158,7 @@ function sendCartDataToServer() {
     .then(response => {
         console.log(response.data);
         with('Cart items saved successfully');
-        window.location.replace("/checkout");
+        window.location.href = "/checkout"
     })
     .catch(error => {
         console.log(error.response.data);
