@@ -156,9 +156,9 @@ function sendCartDataToServer() {
         cartItems: cart
     })
     .then(response => {
-        console.log(response.data);
-        with('Cart items saved successfully');
-        window.location.replace("/checkout");
+        // console.log(response.data);
+        alert('Cart items saved successfully');
+        window.location.href = "/checkout"; // Redirect to checkout page
     })
     .catch(error => {
         console.log(error.response.data);
@@ -254,5 +254,5 @@ document.getElementById('logout').addEventListener('click', function(event) {
     }
     
     clearCartData();
-    window.location.replace('/logout');
+    window.location.href = '/logout';
 });

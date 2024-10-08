@@ -74,7 +74,7 @@ Route::get('/checkout', function () {
 
 Route::get('/edit-profile', function () {
     return view('edit-profile');
-});
+})->name('profile.edit');
 
 Route::get('/seller/seller-edit', [SellerEditController::class, 'index'])->name('seller-edit');
 
