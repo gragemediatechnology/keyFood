@@ -169,7 +169,9 @@
                         if (Array.isArray(products) && products.length > 0) {
                             $.each(products, function (index, product) {
                                 console.log(product);
-                                var rating = product.rating || 0;
+                                console.log(product.rating);
+
+                                var rating = product.rating;
                                 var rated_by = product.rated_by ? (Array.isArray(product.rated_by) ? product.rated_by.length : product.rated_by) : 1;
                                 var average_rating = rated_by > 0 ? rating / rated_by : 0;
                                 var fullStars = Math.floor(average_rating); // Bintang penuh
