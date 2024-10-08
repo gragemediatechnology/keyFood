@@ -218,7 +218,7 @@
     </svg>`;
                                 }
 
-                                console.log(starsHtml); // Output or use this HTML in your DOM
+                               
 
 
                                 var productHtml = `
