@@ -176,8 +176,11 @@
                 </a>
             </div> --}}
         </div>
+        @include('partials.cart')
+        <div class="pagination">
+            {{ $products->links() }}
+        </div>
     </section>
 
 </section>
 @endsection
-
