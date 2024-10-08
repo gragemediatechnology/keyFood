@@ -11,27 +11,27 @@
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Contact</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Kontak</h2>
                     <ul class="text-gray-500 font-medium">
                         <li class="mb-4">
-                            <a href="/contact-us" class="hover:underline">Contact Us</a>
+                            <a href="/contact-us" class="hover:underline">Hubungi Kami</a>
                         </li>
                         <li class="mb-4">
-                            <a href="/live-chat/1" class="hover:underline">Customer Service</a>
+                            <a href="/live-chat/1" class="hover:underline">Chat Admin</a>
                         </li>
                         <li class="mb-4">
-                            <a href="/faq" class="hover:underline">FAQ</a>
+                            <a href="/faq" class="hover:underline">Pertanyaan Umum</a>
                         </li>
                         <li class="mb-4">
                             <a href="/tutorial" class="hover:underline">Tutorial</a>
                         </li>
                         <li>
-                            <a href="/term-condition" class="hover:underline">Terms &amp; Conditions</a>
+                            <a href="/term-condition" class="hover:underline">Persetujuan Pengguna</a>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Our Company</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Lapak KBK</h2>
                     <ul class="text-gray-500 font-medium">
                         <li class="mb-4">
                             <a href="https://maps.app.goo.gl/jPYA3x3XgB3pXWSYA" class="hover:underline ">{{$company->company_name}}
