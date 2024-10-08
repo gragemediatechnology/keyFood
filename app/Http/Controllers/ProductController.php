@@ -251,33 +251,42 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $category = $request->input('category');
+        $categoryName = $request->input('category');
 
-        $products = Product::with('toko') // Pastikan toko dan kategori juga diambil
-            ->when($query, function ($q) use ($query) {
-                return $q->where('name', 'like', '%' . $query . '%');
-            })
-            ->when($category, function ($q) use ($category) {
-                return $q->whereHas('category', function ($c) use ($category) {
-                    $c->where('name', $category);
-                });
-            })
-            ->get();
+        // Start the query builder
+        $productQuery = Product::with(['category', 'toko']);
 
-        return response()->json(['data' => $products]);
+        // Filter by search query
+        if ($query) {
+            $productQuery->where('name', 'LIKE', "%{$query}%");
+        }
+
+        // Filter by category if provided
+        if ($categoryName) {
+            // Assuming category name is unique and you want to filter by category name
+            $productQuery->whereHas('category', function ($q) use ($categoryName) {
+                $q->where('name', $categoryName);
+            });
+        }
+
+        // Paginate the results
+        $products = $productQuery->paginate(10);
+        $category = Category::all();
+
+        // Return the paginated products as JSON
+        return response()->json($products);
     }
-
 
     // public function rateProduct(Request $request, $id)
     // {
     //     $user = Auth::user();
     //     $product = Product::findOrFail($id);
-
+    
     //     // Validasi rating
     //     $request->validate([
     //         'rating' => 'required|numeric|min:1|max:100',
     //     ]);
-
+    
     //     // Ambil list user yang sudah memberikan rating
     //     $ratedBy = $product->rated_by ? json_decode($product->rated_by, true) : [];
     //     dd($request);
@@ -285,61 +294,61 @@ class ProductController extends Controller
     //     if (in_array($user->id, $ratedBy)) {
     //         return redirect()->back()->with('error', 'Anda sudah memberikan rating untuk produk ini.');
     //     }
-
+    
     //     // Tambah user ID ke list yang sudah memberi rating
     //     $ratedBy[] = $user->id;
-
+    
     //     // Hitung rating baru dengan rata-rata berdasarkan jumlah user yang memberi rating
     //     $totalRated = count($ratedBy); // Hitung jumlah user yang sudah memberi rating
     //     $existingRating = $product->rating ?? 0; // Ambil rating yang ada
     //     $newRating = (($existingRating * ($totalRated - 1)) + $request->rating) / $totalRated; // Hitung rating rata-rata
-
+    
     //     // Update rating produk
     //     $product->update([
     //         'rating' => $newRating,
     //         'rated_by' => json_encode($ratedBy),
     //     ]);
-
+    
     //     return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
     // }    
 
     public function rateProduct(Request $request, $id)
-    {
-        $user = Auth::user();
-        $product = Product::findOrFail($id);
+{
+    $user = Auth::user();
+    $product = Product::findOrFail($id);
 
-        // Validasi rating
-        $request->validate([
-            'rating' => 'required|numeric|min:1|max:5',
-        ]);
+    // Validasi rating
+    $request->validate([
+        'rating' => 'required|numeric|min:1|max:5',
+    ]);
 
-        // Cari order detail terbaru untuk produk ini yang belum diberi rating
-        $latestOrderDetail = Orders::where('id_user', $user->id)
-            ->where('product_id', $product->id)
-            ->whereNull('rating')
-            ->orderBy('created_at', 'desc')
-            ->first();
+    // Cari order detail terbaru untuk produk ini yang belum diberi rating
+    $latestOrderDetail = Orders::where('id_user', $user->id)
+        ->where('product_id', $product->id)
+        ->whereNull('rating')
+        ->orderBy('created_at', 'desc')
+        ->first();
 
-        if (!$latestOrderDetail) {
-            return redirect()->back()->with('error', 'Anda tidak memiliki pembelian yang belum diberi rating untuk produk ini.');
-        }
-
-        // Simpan rating ke order detail
-        $latestOrderDetail->update([
-            'rating' => $request->rating
-        ]);
-
-        // Hitung ulang rata-rata rating produk
-        $averageRating = Orders::where('product_id', $product->id)
-            ->whereNotNull('rating')
-            ->avg('rating');
-
-        // Update rating produk
-        $product->update([
-            'rating' => $averageRating
-        ]);
-
-        return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
+    if (!$latestOrderDetail) {
+        return redirect()->back()->with('error', 'Anda tidak memiliki pembelian yang belum diberi rating untuk produk ini.');
     }
+
+    // Simpan rating ke order detail
+    $latestOrderDetail->update([
+        'rating' => $request->rating
+    ]);
+
+    // Hitung ulang rata-rata rating produk
+    $averageRating = Orders::where('product_id', $product->id)
+        ->whereNotNull('rating')
+        ->avg('rating');
+
+    // Update rating produk
+    $product->update([
+        'rating' => $averageRating
+    ]);
+
+    return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
+}
 
 }
