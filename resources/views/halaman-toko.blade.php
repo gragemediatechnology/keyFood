@@ -53,6 +53,7 @@
                     <div class="product-box">
                         <img alt="pack" src="{{ $product->photo }}">
                         <strong>{{ $product->name }}</strong>
+                        <strong>{{ $product->toko->nama_toko }}</strong>
                         <div class="flex">
                             {{-- Tampilkan bintang penuh --}}
                             @for ($i = 1; $i <= $fullStars; $i++)
@@ -81,7 +82,11 @@
                                 </svg>
                             @endfor
 
-                            <p>( {{ $average_rating }} / 5)</p>
+                            @if ($average_rating < 1)
+                                <p>( {{ $average_rating }} / 5)</p>
+                            @else
+                                <p>Belum Ada Rating</p>
+                            @endif
                         </div>
                         <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                         <!--cart-btn------->
