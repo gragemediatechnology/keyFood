@@ -233,7 +233,8 @@
                     <div class="product-box">
                         <img alt="${product.name}" src="{{ '' }}${product.photo}">
                         <strong>${product.name}</strong>
-                        <span class="quantity">Store: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
                         <div class="flex">
                             ${starsHtml}
                             <p>(${average_rating.toFixed(1)} / 5)</p>

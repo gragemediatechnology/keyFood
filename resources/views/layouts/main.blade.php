@@ -15,34 +15,101 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
-    </script>
-    {{-- <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> --}}
+        </script>
+    {{--
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> --}}
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script
+        src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
+    {{--
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
 
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/profile.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/style.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/home.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/load.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/app.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/clock.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/halaman-toko.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/product-slider.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/stores.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/home-container.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/categories.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/checkout.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/cart.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/history.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/nav.css">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/profile.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/style.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/home.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/load.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/app.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/clock.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/halaman-toko.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/product-slider.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/stores.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/home-container.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/categories.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/checkout.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/cart.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/history.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/nav.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Menambahkan fallback untuk browser yang tidak mendukung preload -->
+    <noscript>
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/profile.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/style.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/home.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/load.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/app.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/clock.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/halaman-toko.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/product-slider.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/stores.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/home-container.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/categories.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/checkout.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/cart.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/history.css">
+        <link rel="stylesheet"
+            href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/nav.css">
+    </noscript>
 
 
 
@@ -71,8 +138,7 @@
     @endphp
     <div id="preloader">
         <dotlottie-player src="https://lottie.host/cfd42497-424b-4328-8abd-fddc7a43046c/RORTJFVPEA.json"
-            background="transparent" speed="1" style="width: 300px; height: 300px;" loop
-            autoplay></dotlottie-player>
+            background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
     </div>
     @include('partials.navbar')
 
@@ -98,16 +164,26 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js"></script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/checkout.js"></script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/stores.js"></script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/categories.js"></script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home.js"></script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/load.js"></script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/clock.js"></script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/product.js"></script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home-container.js"></script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/nav.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/checkout.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/stores.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/categories.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/load.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/clock.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/product.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home-container.js"></script>
+<script defer
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/nav.js"></script>
 
 
 
@@ -152,9 +228,9 @@
 
 <!-- SweetAlert Integration -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         @if ($errors->any())
-            setTimeout(function() {
+            setTimeout(function () {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -166,7 +242,7 @@
         @endif
 
         @if (session('success'))
-            setTimeout(function() {
+            setTimeout(function () {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
@@ -179,28 +255,28 @@
     });
 </script>
 
-     <!-- Sweet Alert Script -->
-     <script>
-        @if (session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: '{{ session('success') }}',
-                timer: 300000,
-                showConfirmButton: true,
-            });
-        @endif
-    
-        @if (session('error'))
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal!',
-                text: '{{ session('error') }}',
-                timer: 300000,
-                showConfirmButton: true,
-            });
-        @endif
-    </script>
+<!-- Sweet Alert Script -->
+<script>
+    @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            timer: 300000,
+            showConfirmButton: true,
+        });
+    @endif
+
+    @if (session('error'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: '{{ session('error') }}',
+            timer: 300000,
+            showConfirmButton: true,
+        });
+    @endif
+</script>
 
 
 </html>
