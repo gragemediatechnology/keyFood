@@ -4,7 +4,7 @@
         <div class="store-header">
             @foreach ($storeDetails as $detail)
                 <div class="store-info">
-                    <img src="{{ 'store_image/'. $detail->foto_profile_toko }}" alt="logo toko" class="store-logo">
+                    <img src="{{ 'store_image/' . $detail->foto_profile_toko }}" alt="logo toko" class="store-logo">
                     <div class="store-text">
                         <h1>{{ $detail->nama_toko }}</h1>
                         <h2>{{ $detail->alamat_toko }}</h2>
@@ -26,19 +26,68 @@
             <div class="product-container">
                 <!--box---------->
                 @foreach ($products as $product)
+                    @php
+                        // Ambil nilai rating dan rated_by
+                        $rating = $product->rating ?? 0;
+
+                        // Debug: tampilkan $product->rated_by untuk memastikan apa isinya
+                        $rated_by_raw = $product->rated_by;
+
+                        // Jika rated_by adalah JSON, decode jadi array dan hitung elemennya, jika tidak, gunakan langsung
+                        if (is_string($rated_by_raw)) {
+                            $rated_by = json_decode($rated_by_raw, true);
+                            $rated_by = is_array($rated_by) ? count($rated_by) : $rated_by; // Jika array, hitung jumlahnya
+                        } else {
+                            $rated_by = $rated_by_raw ?? 1; // Gunakan 1 sebagai default jika kosong
+                        }
+
+                        // Hitung rata-rata rating jika rated_by lebih dari 0
+                        $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
+
+                        $fullStars = floor($average_rating); // Bintang penuh
+                        $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
+                        $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
+                    @endphp
+
                     <div class="product-box">
                         <img alt="pack" src="{{ $product->photo }}">
                         <strong>{{ $product->name }}</strong>
-                        <span class="quantity">Lemone, Tamato, Patato,+4</span>
+                        <div class="flex">
+                            {{-- Tampilkan bintang penuh --}}
+                            @for ($i = 1; $i <= $fullStars; $i++)
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                            @endfor
+
+                            {{-- Tampilkan setengah bintang jika ada --}}
+                            @if ($halfStar)
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z" />
+                                </svg>
+                            @endif
+
+                            {{-- Tampilkan bintang kosong --}}
+                            @for ($i = 1; $i <= $emptyStars; $i++)
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                            @endfor
+
+                            <p>( {{ $average_rating }} / 5)</p>
+                        </div>
                         <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                         <!--cart-btn------->
                         <a href="#" class="cart-btn">
                             <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                         </a>
-                        <!--view-btn------->
-                        <a href="#" class="view-btn">
-                            <i class="far fa-eye"></i>
-                        </a>
+
                     </div>
                 @endforeach
                 {{-- <!--box---------->

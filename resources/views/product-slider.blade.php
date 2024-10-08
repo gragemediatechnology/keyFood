@@ -68,7 +68,7 @@
                                 </svg>
                             @endfor
                             
-                            <p>($average_rating / 5)</p>
+                            <p>( {{ $average_rating }} / 5)</p>
                         </div>
                         <span class="quantity"></span>
                         <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
