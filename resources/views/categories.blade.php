@@ -66,7 +66,7 @@
 
 
 
-                    <div class="product-box">
+                    <div class="product-box" id="product-list">
                         <span hidden>{{ $product->id }}</span>
                         <span hidden>{{ $product->store_id }}</span>
                         <span hidden>{{ $product->slug }}</span>
