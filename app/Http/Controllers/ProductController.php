@@ -252,55 +252,30 @@ class ProductController extends Controller
     {
         $query = $request->input('query');
         $categoryName = $request->input('category');
-    
-        // Debug untuk memastikan input diterima dengan benar
-        // dd($query, $categoryName);
-    
-        // Mulai query builder untuk produk
+
+        // Start the query builder
         $productQuery = Product::with(['category', 'toko']);
-    
-        // Filter berdasarkan query pencarian (nama produk)
+
+        // Filter by search query
         if ($query) {
             $productQuery->where('name', 'LIKE', "%{$query}%");
         }
-    
-        // Filter berdasarkan kategori jika disediakan
+
+        // Filter by category if provided
         if ($categoryName) {
-            // Menggunakan `whereHas` untuk filter berdasarkan nama kategori
+            // Assuming category name is unique and you want to filter by category name
             $productQuery->whereHas('category', function ($q) use ($categoryName) {
                 $q->where('name', $categoryName);
             });
         }
-    
-        // Ambil data produk dengan pagination
+
+        // Paginate the results
         $products = $productQuery->paginate(10);
-    
-        // Debug hasil query untuk melihat apakah data produk benar-benar diambil
-        // dd($products);
-    
-        // Transformasi data produk untuk menambahkan perhitungan rating
-        $products->getCollection()->transform(function ($product) {
-            $rating = $product->rating ?? 0;
-    
-            // Default ke 1 jika tidak ada rated_by atau rated_by tidak berbentuk array
-            if (is_string($product->rated_by)) {
-                $rated_by = json_decode($product->rated_by, true);
-                $rated_by = is_array($rated_by) ? count($rated_by) : 1;
-            } else {
-                $rated_by = $product->rated_by ?? 1;
-            }
-    
-            // Hitung rata-rata rating
-            $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
-            $product->average_rating = number_format($average_rating, 1);
-    
-            return $product;
-        });
-    
-        // Kembalikan data produk dalam bentuk JSON
+        $category = Category::all();
+
+        // Return the paginated products as JSON
         return response()->json($products);
     }
-    
 
     // public function rateProduct(Request $request, $id)
     // {
