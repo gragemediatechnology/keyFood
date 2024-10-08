@@ -158,7 +158,7 @@ function sendCartDataToServer() {
     .then(response => {
         console.log(response.data);
         with('Cart items saved successfully');
-        window.location = "/checkout"
+        window.location.replace("/checkout");
     })
     .catch(error => {
         console.log(error.response.data);
@@ -254,5 +254,5 @@ document.getElementById('logout').addEventListener('click', function(event) {
     }
     
     clearCartData();
-    window.location.href = '/logout';
+    window.location.replace('/logout');
 });
