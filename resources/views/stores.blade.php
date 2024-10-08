@@ -35,7 +35,7 @@
                             <img src="{{ 'store_image/'. $store->foto_profile_toko }}" class="user-icon-s">
                             <div class="user-info-s">
                                 <div class="user-name-s">{{ $store->nama_toko }}</div>
-                                <div class="user-description-s">{{ $store->alamat_toko }}</div>
+                                <div class="user-description-s">Alamat : {{ $store->alamat_toko }}</div>
                             </div>
                         </div>
                     </div>
