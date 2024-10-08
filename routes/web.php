@@ -217,11 +217,10 @@ Route::get('/test-session', function () {
     session(['test' => 'value']);
     return session('test');
 });
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user-edit-profile', [UserProfileController::class, 'edit'])->name('coba.edit');
-    Route::get('/edit-profile', [UserProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/edit-profile', [UserProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/edit-profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/edit-profile/update', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/edit-profile/destroy', [UserProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
