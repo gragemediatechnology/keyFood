@@ -73,7 +73,7 @@
                             @if ($average_rating > 1)
                                 <p>( {{ $average_rating }} / 5)</p>
                             @else
-                                <p>Belum Ada Rating</p>
+                                <h5><p>Belum Ada Rating</p></h5>
                             @endif
                         </div>
                         <span class="quantity"></span>
