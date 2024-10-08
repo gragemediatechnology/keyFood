@@ -93,7 +93,6 @@
                         </div>
                         <span class="quantity"></span>
                         <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                        <!--cart-btn------->
                         <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
                             data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
                             data-slug="{{ $product->slug }}" class="cart-btn">
