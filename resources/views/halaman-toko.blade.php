@@ -82,7 +82,7 @@
                                 </svg>
                             @endfor
 
-                            @if ($average_rating < 1)
+                            @if ($average_rating > 1)
                                 <p>( {{ $average_rating }} / 5)</p>
                             @else
                                 <p>Belum Ada Rating</p>
