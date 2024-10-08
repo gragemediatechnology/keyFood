@@ -39,7 +39,8 @@
                         <span hidden>{{ $product->slug }}</span>
                         <img alt="{{ $product->name }}" src="{{ $product->photo }}">
                         <strong>{{ $product->name }}</strong>
-                        <strong>{{ $product->toko->nama_toko }}</strong>
+                        {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
+                        <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
                         <div class="flex">
                             {{-- Tampilkan bintang penuh --}}
                             @for ($i = 1; $i <= $fullStars; $i++)
