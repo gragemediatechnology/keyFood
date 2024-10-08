@@ -152,17 +152,14 @@ function getData() {
 function sendCartDataToServer() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     console.log('Sending cart data to server:', cart);
-    axios.post('/save-cart', {
-        cartItems: cart
-    })
+    axios.post('/save-cart', { cartItems: cart })
     .then(response => {
-        // console.log(response.data);
         alert('Cart items saved successfully');
-        window.location.href = "/checkout"; // Redirect to checkout page
+        window.location.href = "/checkout";
     })
     .catch(error => {
-        console.log(error.response.data);
-    });
+        console.error(error.response.data);
+    })
 }
 
 
