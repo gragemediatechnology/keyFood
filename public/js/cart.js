@@ -151,21 +151,19 @@ function getData() {
 
 function sendCartDataToServer() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Kompres data menggunakan JSON.stringify dan Base64
-    const compressedCart = btoa(JSON.stringify(cart));
-
-    axios.post('/save-cart', { cartItems: compressedCart })
-        .then(response => {
-            console.log(response.data);
-            alert('Cart items saved successfully');
-            window.location.href = "/checkout"; // Redirect to checkout page
-        })
-        .catch(error => {
-            console.log(error.response.data);
-        });
+    console.log('Sending cart data to server:', cart);
+    axios.post('/save-cart', {
+        cartItems: cart
+    })
+    .then(response => {
+        console.log(response.data);
+        alert('Cart items saved successfully');
+        window.location.href = "/checkout"; // Redirect to checkout page
+    })
+    .catch(error => {
+        console.log(error.response.data);
+    });
 }
-
 
 
 $(function() {
