@@ -157,8 +157,8 @@ function sendCartDataToServer() {
     })
     .then(response => {
         console.log(response.data);
-        with('Cart items saved successfully');
-        window.location = "/checkout"
+        alert('Cart items saved successfully');
+        window.location.href = "/checkout"; // Redirect to checkout page
     })
     .catch(error => {
         console.log(error.response.data);
