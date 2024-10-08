@@ -253,40 +253,62 @@ class ProductController extends Controller
         $query = $request->input('query');
         $categoryName = $request->input('category');
 
-        // Start the query builder
+        // Mulai query builder
         $productQuery = Product::with(['category', 'toko']);
 
-        // Filter by search query
+        // Filter berdasarkan query pencarian (nama produk)
         if ($query) {
             $productQuery->where('name', 'LIKE', "%{$query}%");
         }
 
-        // Filter by category if provided
+        // Filter berdasarkan kategori jika disediakan
         if ($categoryName) {
-            // Assuming category name is unique and you want to filter by category name
+            // Menggunakan `whereHas` untuk filter berdasarkan nama kategori
             $productQuery->whereHas('category', function ($q) use ($categoryName) {
                 $q->where('name', $categoryName);
             });
         }
 
-        // Paginate the results
+        // Ambil data produk dengan pagination
         $products = $productQuery->paginate(10);
-        $category = Category::all();
 
-        // Return the paginated products as JSON
+        // Manipulasi data produk untuk menambahkan perhitungan rating
+        $products->getCollection()->transform(function ($product) {
+            // Ambil nilai rating dan rated_by
+            $rating = $product->rating ?? 0;
+
+            // Jika rated_by adalah JSON, decode jadi array dan hitung elemennya
+            if (is_string($product->rated_by)) {
+                $rated_by = json_decode($product->rated_by, true);
+                $rated_by = is_array($rated_by) ? count($rated_by) : 1; // Hitung jumlah elemen jika array, gunakan default 1
+            } else {
+                $rated_by = $product->rated_by ?? 1; // Default ke 1 jika tidak ada rated_by
+            }
+
+            // Hitung rata-rata rating
+            $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
+
+            // Batasi hingga satu angka di belakang koma
+            $product->average_rating = number_format($average_rating, 1);
+
+            return $product;
+        });
+
+        // Kembalikan produk dengan informasi pagination
         return response()->json($products);
     }
+
 
     // public function rateProduct(Request $request, $id)
     // {
     //     $user = Auth::user();
     //     $product = Product::findOrFail($id);
-    
+
     //     // Validasi rating
     //     $request->validate([
     //         'rating' => 'required|numeric|min:1|max:100',
     //     ]);
-    
+
     //     // Ambil list user yang sudah memberikan rating
     //     $ratedBy = $product->rated_by ? json_decode($product->rated_by, true) : [];
     //     dd($request);
@@ -294,61 +316,61 @@ class ProductController extends Controller
     //     if (in_array($user->id, $ratedBy)) {
     //         return redirect()->back()->with('error', 'Anda sudah memberikan rating untuk produk ini.');
     //     }
-    
+
     //     // Tambah user ID ke list yang sudah memberi rating
     //     $ratedBy[] = $user->id;
-    
+
     //     // Hitung rating baru dengan rata-rata berdasarkan jumlah user yang memberi rating
     //     $totalRated = count($ratedBy); // Hitung jumlah user yang sudah memberi rating
     //     $existingRating = $product->rating ?? 0; // Ambil rating yang ada
     //     $newRating = (($existingRating * ($totalRated - 1)) + $request->rating) / $totalRated; // Hitung rating rata-rata
-    
+
     //     // Update rating produk
     //     $product->update([
     //         'rating' => $newRating,
     //         'rated_by' => json_encode($ratedBy),
     //     ]);
-    
+
     //     return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
     // }    
 
     public function rateProduct(Request $request, $id)
-{
-    $user = Auth::user();
-    $product = Product::findOrFail($id);
+    {
+        $user = Auth::user();
+        $product = Product::findOrFail($id);
 
-    // Validasi rating
-    $request->validate([
-        'rating' => 'required|numeric|min:1|max:5',
-    ]);
+        // Validasi rating
+        $request->validate([
+            'rating' => 'required|numeric|min:1|max:5',
+        ]);
 
-    // Cari order detail terbaru untuk produk ini yang belum diberi rating
-    $latestOrderDetail = Orders::where('id_user', $user->id)
-        ->where('product_id', $product->id)
-        ->whereNull('rating')
-        ->orderBy('created_at', 'desc')
-        ->first();
+        // Cari order detail terbaru untuk produk ini yang belum diberi rating
+        $latestOrderDetail = Orders::where('id_user', $user->id)
+            ->where('product_id', $product->id)
+            ->whereNull('rating')
+            ->orderBy('created_at', 'desc')
+            ->first();
 
-    if (!$latestOrderDetail) {
-        return redirect()->back()->with('error', 'Anda tidak memiliki pembelian yang belum diberi rating untuk produk ini.');
+        if (!$latestOrderDetail) {
+            return redirect()->back()->with('error', 'Anda tidak memiliki pembelian yang belum diberi rating untuk produk ini.');
+        }
+
+        // Simpan rating ke order detail
+        $latestOrderDetail->update([
+            'rating' => $request->rating
+        ]);
+
+        // Hitung ulang rata-rata rating produk
+        $averageRating = Orders::where('product_id', $product->id)
+            ->whereNotNull('rating')
+            ->avg('rating');
+
+        // Update rating produk
+        $product->update([
+            'rating' => $averageRating
+        ]);
+
+        return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
     }
-
-    // Simpan rating ke order detail
-    $latestOrderDetail->update([
-        'rating' => $request->rating
-    ]);
-
-    // Hitung ulang rata-rata rating produk
-    $averageRating = Orders::where('product_id', $product->id)
-        ->whereNotNull('rating')
-        ->avg('rating');
-
-    // Update rating produk
-    $product->update([
-        'rating' => $averageRating
-    ]);
-
-    return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
-}
 
 }
