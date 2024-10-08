@@ -12,26 +12,25 @@
                         // Ambil nilai rating dan rated_by
                         $rating = $product->rating ?? 0;
 
-                        // Debug: tampilkan $product->rated_by untuk memastikan apa isinya
-                        $rated_by_raw = $product->rated_by;
-                       
-
                         // Jika rated_by adalah JSON, decode jadi array dan hitung elemennya, jika tidak, gunakan langsung
-                        if (is_string($rated_by_raw)) {
-                            $rated_by = json_decode($rated_by_raw, true);
+                        if (is_string($product->rated_by)) {
+                            $rated_by = json_decode($product->rated_by, true);
                             $rated_by = is_array($rated_by) ? count($rated_by) : $rated_by; // Jika array, hitung jumlahnya
                         } else {
-                            $rated_by = $rated_by_raw ?? 1; // Gunakan 1 sebagai default jika kosong
+                            $rated_by = $product->rated_by ?? 1; // Gunakan 1 sebagai default jika kosong
                         }
 
                         // Hitung rata-rata rating jika rated_by lebih dari 0
                         $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
-                      
+
+                        // Batasi rata-rata rating menjadi satu angka di belakang koma
+                        $average_rating = number_format($average_rating, 1);
 
                         $fullStars = floor($average_rating); // Bintang penuh
                         $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
                         $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
                     @endphp
+
 
 
                     <div class="product-box">
@@ -67,7 +66,7 @@
                                         d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
                             @endfor
-                            
+
                             <p>( {{ $average_rating }} / 5)</p>
                         </div>
                         <span class="quantity"></span>
