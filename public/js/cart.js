@@ -156,7 +156,7 @@ function sendCartDataToServer() {
         cartItems: cart
     })
     .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         alert('Cart items saved successfully');
         window.location.href = "/checkout"; // Redirect to checkout page
     })
