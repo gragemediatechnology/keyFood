@@ -120,10 +120,10 @@
             $query->where('name', 'admin');
         })->get();
     @endphp
-    <!-- <div id="preloader">
+    <div id="preloader">
         <dotlottie-player src="https://lottie.host/cfd42497-424b-4328-8abd-fddc7a43046c/RORTJFVPEA.json"
             background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
-    </div> -->
+    </div>
     @include('partials.navbar')
 
     <div class="container md:mt-10" id="container">
