@@ -34,11 +34,11 @@
                 </div>
 
                 <h3 class="mt-2 text-center text-sm font-semibold leading-6 text-gray-600 dark:text-gray-300">
-                    Marketing Exec. at Denva Corp
+                   Hai Admin :)
                 </h3>
 
                 <p class="mt-2 text-center text-sm leading-6 text-gray-500 dark:text-gray-400">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, placeat!
+                    Jangan lupa makan
                 </p>
                 @endif
                 <div class="flex justify-center mt-4">
