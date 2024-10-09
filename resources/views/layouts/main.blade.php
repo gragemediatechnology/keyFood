@@ -73,12 +73,22 @@
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/nav.css"> -->
 
-    @if(Route::currentRouteName() == 'home' || Route::currentRouteName() == '/' )
+    @if(Route::currentRouteName() == 'home' || Route::currentRouteName() == '/')
         <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
         <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
         <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
         <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
         <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
+        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/nav.css">
+
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
+
+
+
+
     @endif
 
 
@@ -142,10 +152,9 @@
     integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
     </script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
 
-
+<!-- 
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
@@ -155,7 +164,7 @@
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
+<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script> -->
 
 
 <!-- <script defer
