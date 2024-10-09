@@ -128,7 +128,7 @@
 <script defer
     src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/load.js"></script>
 <script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/clock.js"></script>
+    src="https://rawcdn.githack.com/gragemediatechnology/keyFood/45230aaeec967f9c0996de2cd293413f1ea49105/public/js/clock.js"></script>
 <script defer
     src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/product.js"></script>
 <script defer

@@ -41,11 +41,9 @@ const initializeClock = () => {
         }
 
         if (hh == 0) { hh = 12; }
-
         if (hh < 10) { hh = `0${hh}`; }
 
         textHour.innerHTML = `${hh}:`;
-
         if (mm < 10) { mm = `0${mm}`; }
 
         textMinutes.innerHTML = mm;
@@ -54,14 +52,13 @@ const initializeClock = () => {
         // Nama bulan dalam bahasa Indonesia
         let months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-        // Tanggal dalam bahasa Indonesia
+        // Tampilkan hari, bulan, dan tahun saat ini
         dateDay.innerHTML = day;
-        dateMonth.innerHTML = `${months},`;
+        dateMonth.innerHTML = `${months[month]}`; // Hanya bulan saat ini
         dateYear.innerHTML = year;
     };
     setInterval(clockText, 1000); // 1000 = 1s
 };
-
 
 // Function to handle theme toggle
 const initializeTheme = () => {
