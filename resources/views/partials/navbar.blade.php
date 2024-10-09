@@ -36,7 +36,7 @@
                     </li>
                     <li class="list">
                         <a href="/history"
-                            class="{{ Request::is('history') ? 'nav__link active' : 'nav__link' }}">History</a>
+                            class="{{ Request::is('history') ? 'nav__link active' : 'nav__link' }}">Histori</a>
                     </li>
                 </ul>
             </div>
