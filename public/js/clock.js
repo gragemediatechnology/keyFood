@@ -50,7 +50,7 @@ const initializeClock = () => {
         textMinutes.innerHTML = mm;
         textAmPm.innerHTML = ampm;
 
-        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        let months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
         dateDay.innerHTML = day;
         dateMonth.innerHTML = `${months[month]},`;
