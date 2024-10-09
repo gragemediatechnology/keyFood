@@ -126,7 +126,7 @@
                             </div>
                             <div class="special__footer">
                                 <p class="price">$15.50</p>
-                                <!-- <button class="btn">Add to Cart</button> -->
+                                <button class="btn">Add to Cart</button>
                             </div>
                         </div>
                     </div>
