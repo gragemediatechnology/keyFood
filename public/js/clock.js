@@ -54,7 +54,7 @@ const initializeClock = () => {
 
         // Tampilkan hari, bulan, dan tahun saat ini
         dateDay.innerHTML = day;
-        dateMonth.innerHTML = `${month},`; // Hanya bulan saat ini
+        dateMonth.innerHTML = `1,`; // Hanya bulan saat ini
         dateYear.innerHTML = year;
     };
     setInterval(clockText, 1000); // 1000 = 1s
