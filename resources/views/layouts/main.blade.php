@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='preconnect'>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="preconnect" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="preconnect" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
 
     {{--
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> --}}
@@ -20,27 +20,27 @@
     {{--
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
 
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="preconnect" href="https://rsms.me/inter/inter.css">
 
 
 
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/app.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css">
-    <link rel="stylesheet"
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/app.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css">
+    <link rel="preconnect"
         href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/stores.css">
-    <link rel="stylesheet"
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/stores.css">
+    <link rel="preconnect"
         href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/checkout.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/nav.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/checkout.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css">
+    <link rel="preconnect" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/nav.css">
 
     <!-- <link rel="stylesheet"
         href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/profile.css">
