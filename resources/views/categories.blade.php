@@ -15,7 +15,7 @@
                     <i class="fas fa-search"></i>
                     <input type="text" id="search" class="search-inputs" placeholder="Cari makanan yang anda mau"
                         name="search">
-                    <input type="submit" class="search-btns" value="Search">
+                    {{-- <input type="submit" class="search-btns" value="Search"> --}}
                 </form>
             </div>
         </section>
