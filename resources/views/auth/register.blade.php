@@ -1,4 +1,3 @@
-<!-- Form Register -->
 <form method="POST" action="/register" class="sign-up-form">
     @csrf
     <h2 class="title">
@@ -8,51 +7,57 @@
         <i class="fas fa-user"></i>
         <input type="text" id="name" placeholder="Username" name="name" value="{{ old('name') }}"
             style="background: transparent" required />
+        {{-- <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" /> --}}
     </div>
+
+    {{-- email --}}
+
+    {{-- <div class="input-field">
+      <i class="fas fa-envelope"></i>
+      <input type="email" id="email" placeholder="Email" name="email" value="{{ old('email') }}" style="background: transparent" required />
+      <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+    </div> --}}
+
+
     <div class="input-field">
         <i class="fas fa-phone"></i>
         <input type="number" id="phone" placeholder="No. HP" name="phone" value="{{ old('phone') }}"
             style="background: transparent" required />
+
     </div>
+
     <div class="input-field">
         <i class="fas fa-lock"></i>
+
         <input type="password" id="password" placeholder="Password" name="password" style="background: transparent"
             required />
-        <ion-icon class="toggle-password" name="eye-outline"></ion-icon>
+
+        <!-- Icon show/hide password berada di dalam input -->
+        <ion-icon id="show-eye" name="eye-outline" style="display: inline;"></ion-icon>
+        <ion-icon id="hide-eye" name="eye-off-outline" style="display: none;"></ion-icon>
     </div>
+
     <div class="input-field">
         <i class="fas fa-lock"></i>
+
         <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" name="password_confirmation"
             style="background: transparent" required />
-        <ion-icon class="toggle-password" name="eye-outline"></ion-icon>
+
+        <!-- Icon show/hide password berada di dalam input -->
+        <ion-icon id="show-eye" name="eye-outline" style="display: inline;"></ion-icon>
+        <ion-icon id="hide-eye" name="eye-off-outline" style="display: none;"></ion-icon>
     </div>
     <input type="submit" class="btn" value="Sign up" />
     <p class="social-text">Atau Daftar Dengan Google</p>
     <div class="social-media">
+
+        {{-- <a href="{{ url('auth/google') }}" class="social-icon"> --}}
         <a href="auth/google" class="social-icon">
             <i class="fab fa-google"></i>
         </a>
+
     </div>
 </form>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const togglePasswordIcons = document.querySelectorAll('.toggle-password');
-        
-        togglePasswordIcons.forEach(icon => {
-            icon.addEventListener('click', function() {
-                const input = this.previousElementSibling;
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    this.setAttribute('name', 'eye-off-outline');
-                } else {
-                    input.type = 'password';
-                    this.setAttribute('name', 'eye-outline');
-                }
-            });
-        });
-    });
-    </script>
 
 
 
