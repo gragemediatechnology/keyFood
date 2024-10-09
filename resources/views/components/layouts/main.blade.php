@@ -66,6 +66,7 @@
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
     {{-- <title>KeyFood | {{ $title }} </title> --}}
     {{-- ini diatas, disebelah dikasih title statis --}}
+    @livewireStyles
 </head>
 
 <body>
@@ -84,6 +85,7 @@
     @include('partials.footer')
     @include('partials.bot-bar')
 </body>
+<script src="https://cdn.jsdelivr.net/npm/livewire@0.6.1/lib/compiler.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.x.x/dist/alpine.min.js" defer></script>
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
