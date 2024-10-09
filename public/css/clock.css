@@ -122,6 +122,7 @@ a {
 }
 
 .clock__content {
+  margin-bottom: 80px;
   position: relative;
   align-self: center;
   row-gap: 3.5rem;
@@ -281,7 +282,7 @@ body.dark .clock__date {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 15px;
   color: gray;
 }
 
