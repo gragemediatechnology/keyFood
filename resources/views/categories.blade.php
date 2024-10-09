@@ -102,7 +102,7 @@
                                 </svg>
                             @endfor
 
-                            @if ($average_rating > 1)
+                            @if ($average_rating >= 1)
                                 <p class="mx-2">( {{ $average_rating }} / 5 )</p>
                             @else
                                 <p class="mx-2">( 0 / 0 )</p>
