@@ -73,7 +73,7 @@
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/nav.css"> -->
 
-    @if(Route::currentRouteName() == '/')
+    @if(Route::currentRouteName() == 'home')
         <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
         <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
         <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
