@@ -65,9 +65,10 @@
 
 
                 <section class="section__container special__container" id="special">
-                    <h2 class="section__header">Menu Terbaik Untukmu</h2>
+                    <h2 class="section__header">Our Special Dish</h2>
                     <p class="section__description">
-                        Ayo Sejahtrakan UMKM Bersama Lapak KBK 
+                        Each dish promises an unforgettable dining experience, blending
+                        innovation with tradition to delight your senses.
                     </p>
                     <div class="special__grid">
                         <div class="special__card">
@@ -142,11 +143,11 @@
                             menyehatkan. Jelajahi menu yang dirancang khusus untuk menyeimbangkan rasa dan nutrisi,
                             memastikan setiap suapan memuaskan sekaligus menyehatkan.
                         </p>
-                        {{-- <div class="explore__btn">
+                        <div class="explore__btn">
                             <button class="btn">
                                 Explore Story <span><i class="ri-arrow-right-line"></i></span>
                             </button>
-                        </div> --}}
+                        </div>
                     </div>
                 </section>
 
@@ -158,10 +159,10 @@
                             Pesan makanan jadi lebih mudah! Cukup beberapa klik, santapan favoritmu siap diantar. Nikmati
                             praktisnya pilih menu beragam dari kami, semuanya lezat!
                         </p>
-                        {{-- <a href="#">
+                        <a href="#">
                             Read more
                             <span><i class="ri-arrow-right-line"></i></span>
-                        </a> --}}
+                        </a>
                     </div>
                     <div class="banner__card">
                         <span class="banner__icon"><i class="ri-truck-fill"></i></span>
@@ -171,10 +172,10 @@
                             seleramu! Kami punya banyak pilihan
                             yang pasti bikin kamu puas.
                         </p>
-                        {{-- <a href="#">
+                        <a href="#">
                             Read more
                             <span><i class="ri-arrow-right-line"></i></span>
-                        </a> --}}
+                        </a>
                     </div>
                     <div class="banner__card">
                         <span class="banner__icon"><i class="ri-star-smile-fill"></i></span>
@@ -183,10 +184,10 @@
                             Setelah pesan, tinggal duduk manis, deh! Biarkan kami siapkan pesananmu dengan sepenuh hati.
                             Cicipi setiap suapan kelezatannya, karena kepuasanmu adalah prioritas kami.
                         </p>
-                        {{-- <a href="#">
+                        <a href="#">
                             Read more
                             <span><i class="ri-arrow-right-line"></i></span>
-                        </a> --}}
+                        </a>
                     </div>
                 </section>
 

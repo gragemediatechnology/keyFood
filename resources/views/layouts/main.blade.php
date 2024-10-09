@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
 
     {{--
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> --}}
@@ -22,11 +23,11 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
 
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
+
+    <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
-<!-- 
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/app.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css">
@@ -72,6 +73,26 @@
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/nav.css"> -->
 
+    @if(Route::currentRouteName() == 'home' || Route::currentRouteName() == '/')
+        <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
+        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
+        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
+        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css"> -->
+        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/nav.css">
+        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
+        <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css"> -->
+
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
+
+
+
+
+
+    @endif
 
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
@@ -79,7 +100,7 @@
     {{-- ini diatas, disebelah dikasih title statis --}}
 
     <!-- SweetAlert CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
+
 
     <style>
         /* Hide spinner for Chrome, Safari, and newer versions of Edge */
@@ -134,10 +155,9 @@
     integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
     </script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
 
-
+<!-- 
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
@@ -147,7 +167,7 @@
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
+<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script> -->
 
 
 <!-- <script defer
