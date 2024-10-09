@@ -146,7 +146,7 @@
         @include('partials.live-chat')
     </div>
     @include('partials.footer')
-    <!-- @include('partials.bot-bar') -->
+    @include('partials.bot-bar')
 
 
     <!-- SweetAlert JS -->
