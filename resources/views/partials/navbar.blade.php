@@ -1,4 +1,4 @@
-<div class="header-nav">
+<header class="header-nav">
     <nav class="nav container-nav">
         <div class="nav__data">
             <a href="#" class="nav__logo">
@@ -45,4 +45,4 @@
             </div>
         </div>
     </nav>
-</div>
+</header>
