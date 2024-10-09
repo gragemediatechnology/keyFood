@@ -30,7 +30,7 @@
                     <div class="clock__date">
                         <!-- <span id="date-day-week"></span> -->
                         <span id="date-day"></span>
-                        <span id="date-month"></span>
+                        <span id="date-monthZASDAAS"></span>
                         <span id="date-year"></span>
                         <p>haha</p>
                     </div>
