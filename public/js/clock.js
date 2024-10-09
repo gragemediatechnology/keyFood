@@ -4,6 +4,7 @@ const initializeClock = () => {
         minutes = document.getElementById('clock-minutes'),
         seconds = document.getElementById('clock-seconds');
 
+    // Use requestAnimationFrame for smoother animations
     const clock = () => {
         let date = new Date();
         let hh = date.getHours() * 30,
@@ -13,8 +14,11 @@ const initializeClock = () => {
         hour.style.transform = `rotateZ(${hh + mm / 12}deg)`;
         minutes.style.transform = `rotateZ(${mm}deg)`;
         seconds.style.transform = `rotateZ(${ss}deg)`;
+
+        // Request the next frame
+        requestAnimationFrame(clock);
     };
-    setInterval(clock, 1000); // 1000 = 1s
+    requestAnimationFrame(clock);
 
     const textHour = document.getElementById('text-hour'),
         textMinutes = document.getElementById('text-minutes'),
@@ -22,6 +26,12 @@ const initializeClock = () => {
         dateDay = document.getElementById('date-day'),
         dateMonth = document.getElementById('date-month'),
         dateYear = document.getElementById('date-year');
+
+    const updateText = (element, newValue) => {
+        if (element.innerHTML !== newValue) {
+            element.innerHTML = newValue;
+        }
+    };
 
     const clockText = () => {
         let date = new Date();
@@ -43,21 +53,19 @@ const initializeClock = () => {
         if (hh == 0) { hh = 12; }
         if (hh < 10) { hh = `0${hh}`; }
 
-        textHour.innerHTML = `${hh}:`;
-        if (mm < 10) { mm = `0${mm}`; }
-
-        textMinutes.innerHTML = mm;
-        textAmPm.innerHTML = ampm;
-
         // Nama bulan dalam bahasa Indonesia
         let months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-        // Tampilkan hari, bulan, dan tahun saat ini
-        dateDay.innerHTML = day;
-        dateMonth.innerHTML = `${months[month]},`; // Hanya bulan saat ini
-        dateYear.innerHTML = year;
+        updateText(textHour, `${hh}:`);
+        if (mm < 10) { mm = `0${mm}`; }
+        updateText(textMinutes, mm);
+        updateText(textAmPm, ampm);
+        updateText(dateDay, day);
+        updateText(dateMonth, `${months[month]},`);
+        updateText(dateYear, year);
     };
-    setInterval(clockText, 1000); // 1000 = 1s
+
+    setInterval(clockText, 1000); // Update every second
 };
 
 // Function to handle theme toggle
