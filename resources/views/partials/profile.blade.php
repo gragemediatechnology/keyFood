@@ -153,7 +153,7 @@
                         <i class="fa fa-phone" style="color:var(--dark-magenta)"></i>
                     </div>
                     <div class="content">
-                        <span>Phone</span>
+                        <span>No. HP</span>
                         <h5>{{ Auth::check() && (Auth::user()->phone === '0000000000' || Auth::user()->phone === null) ? 'Guest' : (Auth::check() ? Auth::user()->phone : 'Guest') }}
 
                         </h5>
@@ -174,7 +174,7 @@
                         <i class="fa fa-map-marker" style="color:var(--light-purple)"></i>
                     </div>
                     <div class="content">
-                        <span>Location</span>
+                        <span>Lokasi</span>
                         <h5>{{ Auth::user()->location ?? 'Guest' }}</h5>
                         <!-- Assuming there is a location attribute -->
                     </div>
