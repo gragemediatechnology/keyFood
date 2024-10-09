@@ -1,15 +1,15 @@
 // Function to handle clock display
 const initializeClock = () => {
     const hour = document.getElementById('clock-hour'),
-          minutes = document.getElementById('clock-minutes'),
-          seconds = document.getElementById('clock-seconds');
+        minutes = document.getElementById('clock-minutes'),
+        seconds = document.getElementById('clock-seconds');
 
     const clock = () => {
         let date = new Date();
         let hh = date.getHours() * 30,
             mm = date.getMinutes() * 6,
             ss = date.getSeconds() * 6;
-            
+
         hour.style.transform = `rotateZ(${hh + mm / 12}deg)`;
         minutes.style.transform = `rotateZ(${mm}deg)`;
         seconds.style.transform = `rotateZ(${ss}deg)`;
@@ -17,11 +17,11 @@ const initializeClock = () => {
     setInterval(clock, 1000); // 1000 = 1s
 
     const textHour = document.getElementById('text-hour'),
-          textMinutes = document.getElementById('text-minutes'),
-          textAmPm = document.getElementById('text-ampm'),
-          dateDay = document.getElementById('date-day'),
-          dateMonth = document.getElementById('date-month'),
-          dateYear = document.getElementById('date-year');
+        textMinutes = document.getElementById('text-minutes'),
+        textAmPm = document.getElementById('text-ampm'),
+        dateDay = document.getElementById('date-day'),
+        dateMonth = document.getElementById('date-month'),
+        dateYear = document.getElementById('date-year');
 
     const clockText = () => {
         let date = new Date();
@@ -32,6 +32,7 @@ const initializeClock = () => {
             month = date.getMonth(),
             year = date.getFullYear();
 
+        // AM/PM logic
         if (hh >= 12) {
             hh = hh - 12;
             ampm = 'PM';
@@ -40,20 +41,20 @@ const initializeClock = () => {
         }
 
         if (hh == 0) { hh = 12; }
-
         if (hh < 10) { hh = `0${hh}`; }
 
         textHour.innerHTML = `${hh}:`;
-
         if (mm < 10) { mm = `0${mm}`; }
 
         textMinutes.innerHTML = mm;
         textAmPm.innerHTML = ampm;
 
+        // Nama bulan dalam bahasa Indonesia
         let months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
+        // Tampilkan hari, bulan, dan tahun saat ini
         dateDay.innerHTML = day;
-        dateMonth.innerHTML = `${months[month]},`;
+        dateMonth.innerHTML = `${months[month]}`; // Hanya bulan saat ini
         dateYear.innerHTML = year;
     };
     setInterval(clockText, 1000); // 1000 = 1s
