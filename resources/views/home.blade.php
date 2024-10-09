@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="special__card">
-                            <img src="../img/special-2.png" alt="special" class="header-img" />
+                            <img src="../img/special-2.png" alt="special" class="header-img" loading="lazy"/>
                             <h4>Chicken Veg Stir-Fry</h4>
                             <p>
                                 Tender chicken strips wok-tossed with a colorful array of fresh
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                         <div class="special__card">
-                            <img src="../img/special-3.png" alt="special" class="header-img" />
+                            <img src="../img/special-3.png" alt="special" class="header-img" loading="lazy" />
                             <h4>Chicken Veg Pasta</h4>
                             <p>
                                 Al dente pasta tossed with chicken strips and a mix of vibrant
@@ -134,7 +134,7 @@
 
                 <section class="section__container explore__container">
                     <div class="explore__image">
-                        <img src="{{ $company->gambar_home_2 }}" alt="explore" class="header-img" />
+                        <img src="{{ $company->gambar_home_2 }}" alt="explore" class="header-img" loading="lazy"/>
                     </div>
                     <div class="explore__content">
                         <h1 class="section__header">Nikmati Lezatnya Hidup Sehat!</h1>
