@@ -85,6 +85,8 @@
         <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
         <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
         <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
+        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
+
 
 
 
