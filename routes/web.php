@@ -34,7 +34,7 @@ Route::post('/clear-chats', [ChatController::class, 'clearChats'])->name('clear.
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('/');
 
 
 Route::get('/tutorial', [TutorialController::class, 'index'])->name('tutorial.index');
