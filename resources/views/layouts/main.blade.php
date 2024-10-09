@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
 
     {{--
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> --}}
@@ -72,6 +73,9 @@
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/nav.css"> -->
 
+    @if(Route::currentRouteName() == '/')
+        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css">
+    @endif
 
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
@@ -79,7 +83,7 @@
     {{-- ini diatas, disebelah dikasih title statis --}}
 
     <!-- SweetAlert CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
+
 
     <style>
         /* Hide spinner for Chrome, Safari, and newer versions of Edge */
