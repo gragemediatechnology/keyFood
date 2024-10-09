@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
     @yield('css')
+    <link rel="stylesheet"
+    href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/nav.css">
 
     <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
