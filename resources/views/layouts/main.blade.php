@@ -156,7 +156,7 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
 
-<!-- 
+
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
@@ -166,7 +166,7 @@
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script> -->
+<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
 
 
 <!-- <script defer
