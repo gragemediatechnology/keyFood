@@ -22,7 +22,7 @@
                         <div
                             class="fixed top-4 left-0 px-10 right-0 mx-auto flex items-center p-2 mb-4 border rounded-lg shadow-md bg-gray-100 z-50 w-[90%] max-w-sm md:max-w-md lg:max-w-lg">
                             <div class="w-12 h-12 mr-4">
-                                <img src="{{ $secondUser->img ?? 'img/client-1.jpg' }}" alt="User Avatar"
+                                <img src="https://lapakkbk.online/{{ $secondUser->img ?? 'img/client-1.jpg' }}" alt="User Avatar"
                                     class="w-full h-full rounded-full">
                             </div>
                             <div>
@@ -46,7 +46,7 @@
                                     <div class="chat-image avatar">
                                         <div class="w-10 rounded-full">
                                             <img alt="User Avatar"
-                                                src="{{ $message->fromUser->img ?? 'img/client-1.jpg' }}" />
+                                                src="https://lapakkbk.online/{{ $message->fromUser->img ?? 'img/client-1.jpg' }}" />
                                         </div>
                                     </div>
                                     <div class="chat-header text-gray-950">
