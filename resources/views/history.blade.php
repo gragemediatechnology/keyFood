@@ -62,10 +62,10 @@
                             </div>
 
                             <div class="flex items-center gap-3 mt-2">
-                                <button
+                                {{-- <button
                                     class="rounded-full px-7 py-3 bg-indigo-600 shadow-sm shadow-transparent text-white font-semibold text-sm transition-all duration-500 hover:shadow-indigo-400 hover:bg-indigo-700">
                                     Beli Lagi
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
                         <svg class="my-9 w-full" xmlns="http://www.w3.org/2000/svg" width="1216" height="2"

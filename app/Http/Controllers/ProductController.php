@@ -330,7 +330,7 @@ class ProductController extends Controller
         ->first();
 
     if (!$latestOrderDetail) {
-        return redirect()->back()->with('error', 'Anda tidak memiliki pembelian yang belum diberi rating untuk produk ini.');
+        return redirect()->back()->with('error', 'Anda sudah memberikan ratting pada pembelian di produk ini.');
     }
 
     // Simpan rating ke order detail
