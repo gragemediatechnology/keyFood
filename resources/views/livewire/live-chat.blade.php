@@ -39,7 +39,7 @@
                     @endif
 
 
-                    <div wire:poll>
+                    {{-- <div wire:poll>
                         @if (isset($messages) && $messages->isNotEmpty())
                             @foreach ($messages as $message)
                                 <div class="chat @if ($message->from_user_id == auth()->id()) chat-end @else chat-start @endif">
@@ -65,6 +65,38 @@
                                             <p class="mb-2">{{ $message->message }}</p>
                                         @endif
 
+                                    </div>
+                                    <div class="chat-footer opacity-50 text-gray-900">Delivered</div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div> --}}
+
+                    <div wire:poll>
+                        @if (isset($messages) && $messages->isNotEmpty())
+                            @foreach ($messages as $message)
+                                <div class="chat @if ($message->from_user_id == auth()->id()) chat-end @else chat-start @endif">
+                                    <div class="chat-image avatar">
+                                        <div class="w-10 rounded-full">
+                                            <img alt="User Avatar"
+                                                src="{{ $message->fromUser->img ?? 'img/client-1.jpg' }}" />
+                                        </div>
+                                    </div>
+                                    <div class="chat-header text-gray-950">
+                                        {{ $message->fromUser->name }}
+                                        <time
+                                            class="text-xs opacity-50 text-gray">{{ $message->created_at->diffForHumans() }}</time>
+                                    </div>
+                                    <div class="chat-bubble sm:max-w-xs lg:max-w-lg p-2 break-words shadow-md">
+                                        @if ($message->image)
+                                            <img src="{{ asset('storage/' . $message->image) }}" alt="Image"
+                                                class="max-w-24 h-auto rounded-lg mt-2 cursor-pointer" id="chatImage"
+                                                onclick="openModal('{{ asset('storage/' . $message->image) }}')">
+                                        @endif
+
+                                        @if ($message->message)
+                                            <p class="mb-2">{{ $message->message }}</p>
+                                        @endif
                                     </div>
                                     <div class="chat-footer opacity-50 text-gray-900">Delivered</div>
                                 </div>

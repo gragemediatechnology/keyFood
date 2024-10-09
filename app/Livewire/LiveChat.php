@@ -18,21 +18,33 @@ class LiveChat extends Component
 
     public function render()
     {
-        $messages = ModelsLiveChat::where(function (Builder $query) {
+        $messages = ModelsLiveChat::with(['fromUser', 'toUser'])
+        ->where(function ($query) {
             $query->where('from_user_id', auth()->id())
                 ->where('to_user_id', $this->user->id);
         })
-        ->orWhere(function (Builder $query) {
+        ->orWhere(function ($query) {
             $query->where('from_user_id', $this->user->id)
                 ->where('to_user_id', auth()->id());
         })
         ->orderBy('created_at', 'asc')
         ->get();
 
+        // $messages = ModelsLiveChat::where(function (Builder $query) {
+        //     $query->where('from_user_id', auth()->id())
+        //         ->where('to_user_id', $this->user->id);
+        // })
+        //     ->orWhere(function (Builder $query) {
+        //         $query->where('from_user_id', $this->user->id)
+        //             ->where('to_user_id', auth()->id());
+        //     })
+        //     ->orderBy('created_at', 'asc')
+        //     ->get();
+
         // Mark messages as read
         $messages->where('from_user_id', $this->user->id)
-                 ->where('is_read', false)
-                 ->each->markAsRead();
+            ->where('is_read', false)
+            ->each->markAsRead();
 
         return view('livewire.live-chat', [
             'messages' => $messages,
@@ -42,7 +54,7 @@ class LiveChat extends Component
     public function SendMessage()
     {
 
-        dd($this);
+    
         $path = null;
 
         $this->validate([
@@ -62,5 +74,8 @@ class LiveChat extends Component
 
         $this->message = '';
         $this->image = null;
+
+        // Dispatch event untuk update real-time
+        $this->dispatch('messageAdded');
     }
 }
