@@ -83,16 +83,15 @@
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/app.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css">
-    <link rel="stylesheet"
-        href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/stores.css">
+    <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css"> -->
+    <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css"> -->
+    <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/stores.css"> -->
     <link rel="stylesheet"
         href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/checkout.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css">
+    <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css"> -->
+    <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/checkout.css"> -->
+    <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css"> -->
+    <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css"> -->
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/nav.css">
 
     @endif
