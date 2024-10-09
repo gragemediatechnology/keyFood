@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         // Pastikan parameter closure adalah instance dari Illuminate\View\View
-        View::composer(['layouts.main', 'admin.layouts.main-admin', 'home'], function (ViewInstance $view) {
+        View::composer(['layouts.main', 'admin.layouts.main-admin', 'home', 'navigation'], function (ViewInstance $view) {
             $cms = Cms::all();
             $view->with('cms', $cms);
         });
