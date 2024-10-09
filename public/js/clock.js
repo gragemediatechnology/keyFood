@@ -56,6 +56,7 @@ const initializeClock = () => {
         dateDay.innerHTML = day;
         dateMonth.innerHTML = `${months[month]},`;
         dateYear.innerHTML = year;
+        console.log(month);
     };
     setInterval(clockText, 1000); // 1000 = 1s
 };
