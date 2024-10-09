@@ -28,7 +28,7 @@
 </style>
 
 
-{{-- <form method="POST" action="/login" class="sign-in-form">
+<form method="POST" action="/login" class="sign-in-form">
     @csrf
     <h2 class="title">
         <img src="img/login.svg" style="width: 150px; align-items: center;" alt="">
@@ -59,54 +59,9 @@
             <i class="fab fa-google"></i>
         </a>
     </div>
-</form> --}}
-
-<!-- Form Login -->
-<form method="POST" action="/login" class="sign-in-form">
-    @csrf
-    <h2 class="title">
-        <img src="img/login.svg" style="width: 150px; align-items: center;" alt="">
-    </h2>
-
-    <div class="input-field">
-        <i class="fas fa-phone"></i>
-        <input type="number" id="phone" placeholder="No. HP" name="phone" value="{{ old('phone') }}"
-            style="background: transparent" required />
-    </div>
-    <div class="input-field">
-        <i class="fas fa-lock"></i>
-        <input type="password" id="password" placeholder="Password" name="password" required />
-        <ion-icon class="toggle-password" name="eye-outline"></ion-icon>
-    </div>
-    <input type="submit" value="Login" class="btn solid" />
-    <a href="/forgot-password" style="text-decoration: none;"
-        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200">
-        <p class="social-text">Lupa Password</p>
-    </a>
-    <p class="social-text">Atau Login Dengan Google</p>
-    <div class="social-media">
-        <a href="/auth/google" class="social-icon">
-            <i class="fab fa-google"></i>
-        </a>
-    </div>
 </form>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const togglePasswordIcon = document.querySelector('.toggle-password');
-        
-        togglePasswordIcon.addEventListener('click', function() {
-            const input = this.previousElementSibling;
-            if (input.type === 'password') {
-                input.type = 'text';
-                this.setAttribute('name', 'eye-off-outline');
-            } else {
-                input.type = 'password';
-                this.setAttribute('name', 'eye-outline');
-            }
-        });
-    });
-    </script>
+
 
 <!-- SweetAlert Integration -->
 @if ($errors->any())
