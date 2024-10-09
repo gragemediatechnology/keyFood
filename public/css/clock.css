@@ -180,8 +180,6 @@ a {
   justify-content: center;
   will-change: transform;
   transition: transform 0.5s ease-in-out;
-  width: 100px; /* pre-set ukuran untuk mencegah perubahan tata letak */
-  height: 100px; /* pre-set ukuran */
 }
 
 .clock__hour {
