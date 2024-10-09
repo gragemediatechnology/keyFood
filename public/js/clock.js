@@ -56,7 +56,7 @@ const initializeClock = () => {
 
         // Tanggal dalam bahasa Indonesia
         dateDay.innerHTML = day;
-        dateMonth.innerHTML = `${months[month]}`;
+        dateMonth.innerHTML = `${months},`;
         dateYear.innerHTML = year;
     };
     setInterval(clockText, 1000); // 1000 = 1s
