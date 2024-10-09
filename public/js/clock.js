@@ -54,9 +54,9 @@ const initializeClock = () => {
         let months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
         dateDay.innerHTML = day;
-        dateMonth.innerHTML = `${months[month]},`;
+        // dateMonth.innerHTML = `${months[month]},`;
+        dateMonth.innerHTML = `Oktober,`;
         dateYear.innerHTML = year;
-        console.log(month);
     };
     setInterval(clockText, 1000); // 1000 = 1s
 };
