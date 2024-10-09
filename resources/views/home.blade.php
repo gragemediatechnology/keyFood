@@ -126,7 +126,7 @@
                             </div>
                             <div class="special__footer">
                                 <p class="price">$15.50</p>
-                                <button class="btn">Add to Cart</button>
+                                <!-- <button class="btn">Add to Cart</button> -->
                             </div>
                         </div>
                     </div>
@@ -144,9 +144,9 @@
                             memastikan setiap suapan memuaskan sekaligus menyehatkan.
                         </p>
                         <div class="explore__btn">
-                            <button class="btn">
+                            <!-- <button class="btn">
                                 Explore Story <span><i class="ri-arrow-right-line"></i></span>
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </section>
@@ -159,10 +159,10 @@
                             Pesan makanan jadi lebih mudah! Cukup beberapa klik, santapan favoritmu siap diantar. Nikmati
                             praktisnya pilih menu beragam dari kami, semuanya lezat!
                         </p>
-                        <a href="#">
+                        <!-- <a href="#">
                             Read more
                             <span><i class="ri-arrow-right-line"></i></span>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="banner__card">
                         <span class="banner__icon"><i class="ri-truck-fill"></i></span>
@@ -172,10 +172,10 @@
                             seleramu! Kami punya banyak pilihan
                             yang pasti bikin kamu puas.
                         </p>
-                        <a href="#">
+                        <!-- <a href="#">
                             Read more
                             <span><i class="ri-arrow-right-line"></i></span>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="banner__card">
                         <span class="banner__icon"><i class="ri-star-smile-fill"></i></span>
@@ -184,10 +184,10 @@
                             Setelah pesan, tinggal duduk manis, deh! Biarkan kami siapkan pesananmu dengan sepenuh hati.
                             Cicipi setiap suapan kelezatannya, karena kepuasanmu adalah prioritas kami.
                         </p>
-                        <a href="#">
+                        <!-- <a href="#">
                             Read more
                             <span><i class="ri-arrow-right-line"></i></span>
-                        </a>
+                        </a> -->
                     </div>
                 </section>
 
