@@ -14,7 +14,7 @@ class LiveChat extends Component
 
     public User $user;
     public $message = '';
-    public $image = null;
+    public $image;
 
     public function render()
     {
