@@ -157,7 +157,7 @@
                                                     <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span><br>
                                                     <form action="/detailed-store" method="POST">
                                                         @csrf
-                                                        <input type="hidden" value="{{ $product->store->nama_toko }}" name="nama_toko">
+                                                        <input type="hidden" value="{{ $product->toko->nama_toko }}" name="nama_toko">
                                                         <button class="btn">Add to Cart</button>
                                                     </form>
                                                 </div>
