@@ -363,8 +363,8 @@ if ($product) {
         $vipProducts = Product::where('is_vip', true)->count();
         if ($vipProducts < 3) {
             $product->update(['is_vip' => true]);
-            return redirect()->back()->with('success', 'Produk berhasil dijadikan produk VIP.');
-            // return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dijadikan produk VIP.');
+            // return redirect()->back()->with('success', 'Produk berhasil dijadikan produk VIP.');
+            return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dijadikan produAk VIP.');
         } else {
             return redirect()->back()->with('error', 'Tidak dapat menambahkan produk VIP karena sudah mencapai batas.');
         }
