@@ -96,7 +96,7 @@
                                             @endphp
 
 
-                                            <div class="special__card">
+                                            <div class="special__card flex flex-col">
                                                 <img src="{{ $product->photo }}" alt="special" class="header-img" />
                                                 <h4>{{ $product->name }}</h4>
                                                 <!-- <p>
