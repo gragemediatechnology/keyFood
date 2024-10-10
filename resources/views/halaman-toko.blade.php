@@ -96,6 +96,7 @@
                                     @endif
                                 </div>
                                 <span class="quantity"></span>
+                                <br>
                                 <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                                 <form action="admin/vip-product" method="POST" style="display:inline;">
                                     @csrf
