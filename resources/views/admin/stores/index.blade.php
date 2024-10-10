@@ -79,7 +79,7 @@
                                 <form action="/detailed-store" method="POST">
                                     @csrf
                                     <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko">
-                                    <button type="submit">
+                                    <button type="submit">sasa</button>
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         {{-- ID Toko --}}
                                         <td class="px-4 py-3">
@@ -114,9 +114,6 @@
                                         <td class="px-4 py-3 text-sm">
                                             {{ $store->alamat_toko }}
                                         </td>
-
-                                        </button>
-                                </form>
 
                                         {{-- Tanggal Join --}}
                                         <td class="px-4 py-3 text-sm">
