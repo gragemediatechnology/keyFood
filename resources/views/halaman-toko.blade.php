@@ -61,7 +61,7 @@
                                 <span class="quantity">Kategori:
                                     {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                                 <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
-                                <div class="flex">
+                                <div class="flex justify-center">
                                     {{-- Tampilkan bintang penuh --}}
                                     @for ($i = 1; $i <= $fullStars; $i++)
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
