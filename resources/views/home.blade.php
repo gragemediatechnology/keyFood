@@ -101,9 +101,9 @@
                                                 <img src="{{$product->photo}}" alt="special" class="header-img" />
                                                 <h4>{{$product->name}}</h4>
                                                 <!-- <p>
-                                                                                                                    Diced chicken simmered in aromatic curry sauce with mixed veggies
-                                                                                                                    like potatoes, cauliflower, and beans for a hearty, flavorful dish.
-                                                                                                                </p> -->
+                                                                                                                                                                    Diced chicken simmered in aromatic curry sauce with mixed veggies
+                                                                                                                                                                    like potatoes, cauliflower, and beans for a hearty, flavorful dish.
+                                                                                                                                                                </p> -->
                                                 <p>
                                                     <span class="quantity">Kategori:
                                                         {{ $product->category ? $product->category->name : 'Unknown' }}</span>
@@ -147,58 +147,62 @@
                                                     @endif
                                                 </div>
                                                 <!-- <div class="special__ratings">
-                                                                                                    <span><i class="ri-star-fill"></i></span>
-                                                                                                    <span><i class="ri-star-fill"></i></span>
-                                                                                                    <span><i class="ri-star-fill"></i></span>
-                                                                                                    <span><i class="ri-star-fill"></i></span>
-                                                                                                    <span><i class="ri-star-fill"></i></span>
-                                                                                                </div> -->
+                                                                                                                                                    <span><i class="ri-star-fill"></i></span>
+                                                                                                                                                    <span><i class="ri-star-fill"></i></span>
+                                                                                                                                                    <span><i class="ri-star-fill"></i></span>
+                                                                                                                                                    <span><i class="ri-star-fill"></i></span>
+                                                                                                                                                    <span><i class="ri-star-fill"></i></span>
+                                                                                                                                                </div> -->
                                                 <div class="special__footer">
                                                     <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span><br>
-                                                    <button class="btn">Add to Cart</button>
+                                                    <form action="/detailed-store" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $product->toko->nama_toko }}" name="nama_toko">
+                                                        <button class="btn">Add to Cart</button>
+                                                    </form>
                                                 </div>
                                             </div>
 
                             @endforeach
                             <!-- <div class="special__card">
-                                                                    <img src="../img/special-2.png" alt="special" class="header-img" loading="lazy"/>
-                                                                    <h4>Chicken Veg Stir-Fry</h4>
-                                                                    <p>
-                                                                        Tender chicken strips wok-tossed with a colorful array of fresh
-                                                                        vegetables in a flavorful blend of spices and sauces.
-                                                                    </p>
-                                                                    <div class="special__ratings">
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                    </div>
-                                                                    <div class="special__footer">
-                                                                        <p class="price">$18.50</p>
-                                                                        <button class="btn">Add to Cart</button>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="special__card">
-                                                                    <img src="../img/special-3.png" alt="special" class="header-img" loading="lazy" />
-                                                                    <h4>Chicken Veg Pasta</h4>
-                                                                    <p>
-                                                                        Al dente pasta tossed with chicken strips and a mix of vibrant
-                                                                        vegetables in a creamy garlic herb sauce, offering a delightful
-                                                                        pasta experience.
-                                                                    </p>
-                                                                    <div class="special__ratings">
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                        <span><i class="ri-star-fill"></i></span>
-                                                                    </div>
-                                                                    <div class="special__footer">
-                                                                        <p class="price">$15.50</p>
-                                                                        <button class="btn">Add to Cart</button>
-                                                                    </div>
-                                                                </div> -->
+                                                                                    <img src="../img/special-2.png" alt="special" class="header-img" loading="lazy"/>
+                                                                                    <h4>Chicken Veg Stir-Fry</h4>
+                                                                                    <p>
+                                                                                        Tender chicken strips wok-tossed with a colorful array of fresh
+                                                                                        vegetables in a flavorful blend of spices and sauces.
+                                                                                    </p>
+                                                                                    <div class="special__ratings">
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                    </div>
+                                                                                    <div class="special__footer">
+                                                                                        <p class="price">$18.50</p>
+                                                                                        <button class="btn">Add to Cart</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="special__card">
+                                                                                    <img src="../img/special-3.png" alt="special" class="header-img" loading="lazy" />
+                                                                                    <h4>Chicken Veg Pasta</h4>
+                                                                                    <p>
+                                                                                        Al dente pasta tossed with chicken strips and a mix of vibrant
+                                                                                        vegetables in a creamy garlic herb sauce, offering a delightful
+                                                                                        pasta experience.
+                                                                                    </p>
+                                                                                    <div class="special__ratings">
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                        <span><i class="ri-star-fill"></i></span>
+                                                                                    </div>
+                                                                                    <div class="special__footer">
+                                                                                        <p class="price">$15.50</p>
+                                                                                        <button class="btn">Add to Cart</button>
+                                                                                    </div>
+                                                                                </div> -->
                         </div>
                     </section>
 
@@ -215,8 +219,8 @@
                             </p>
                             <div class="explore__btn">
                                 <!-- <button class="btn">
-                                                                        Explore Story <span><i class="ri-arrow-right-line"></i></span>
-                                                                    </button> -->
+                                                                                        Explore Story <span><i class="ri-arrow-right-line"></i></span>
+                                                                                    </button> -->
                             </div>
                         </div>
                     </section>
@@ -230,9 +234,9 @@
                                 praktisnya pilih menu beragam dari kami, semuanya lezat!
                             </p>
                             <!-- <a href="#">
-                                                                    Read more
-                                                                    <span><i class="ri-arrow-right-line"></i></span>
-                                                                </a> -->
+                                                                                    Read more
+                                                                                    <span><i class="ri-arrow-right-line"></i></span>
+                                                                                </a> -->
                         </div>
                         <div class="banner__card">
                             <span class="banner__icon"><i class="ri-truck-fill"></i></span>
@@ -243,9 +247,9 @@
                                 yang pasti bikin kamu puas.
                             </p>
                             <!-- <a href="#">
-                                                                    Read more
-                                                                    <span><i class="ri-arrow-right-line"></i></span>
-                                                                </a> -->
+                                                                                    Read more
+                                                                                    <span><i class="ri-arrow-right-line"></i></span>
+                                                                                </a> -->
                         </div>
                         <div class="banner__card">
                             <span class="banner__icon"><i class="ri-star-smile-fill"></i></span>
@@ -255,9 +259,9 @@
                                 Cicipi setiap suapan kelezatannya, karena kepuasanmu adalah prioritas kami.
                             </p>
                             <!-- <a href="#">
-                                                                    Read more
-                                                                    <span><i class="ri-arrow-right-line"></i></span>
-                                                                </a> -->
+                                                                                    Read more
+                                                                                    <span><i class="ri-arrow-right-line"></i></span>
+                                                                                </a> -->
                         </div>
                     </section>
 
