@@ -1,5 +1,3 @@
-<link rel="icon" type="image/x-icon" href="../img/logos.svg">
-<title>Lapak KBK || {{ Route::currentRouteName() }} </title>
 <div id="messageContainer" class="overflow-y-auto h-screen">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -24,7 +22,7 @@
                         <div
                             class="fixed top-4 left-0 px-10 right-0 mx-auto flex items-center p-2 mb-4 border rounded-lg shadow-md bg-gray-100 z-50 w-[90%] max-w-sm md:max-w-md lg:max-w-lg">
                             <div class="w-12 h-12 mr-4">
-                                <img src="https://lapakkbk.online/{{ $secondUser->img ?? 'img/client-1.jpg' }}" alt="User Avatar"
+                                <img src="{{ $secondUser->img ?? 'img/client-1.jpg' }}" alt="User Avatar"
                                     class="w-full h-full rounded-full">
                             </div>
                             <div>
@@ -41,14 +39,14 @@
                     @endif
 
 
-                    <div wire:poll.2s>
+                    <div wire:poll>
                         @if (isset($messages) && $messages->isNotEmpty())
                             @foreach ($messages as $message)
                                 <div class="chat @if ($message->from_user_id == auth()->id()) chat-end @else chat-start @endif">
                                     <div class="chat-image avatar">
                                         <div class="w-10 rounded-full">
                                             <img alt="User Avatar"
-                                                src="https://lapakkbk.online/{{ $message->fromUser->img ?? 'img/client-1.jpg' }}" />
+                                                src="{{ $message->fromUser->img ?? 'img/client-1.jpg' }}" />
                                         </div>
                                     </div>
                                     <div class="chat-header text-gray-950">
@@ -58,9 +56,7 @@
                                     </div>
                                     <div class="chat-bubble sm:max-w-xs lg:max-w-lg p-2 break-words shadow-md">
                                         @if ($message->image)
-                                            {{-- <img src="{{ 'storage/' . $message->image }}" alt="Image" --}}
-                                            <img src="{{ asset('storage/' . $message->image) }}" alt="Image" class="max-w-24 h-auto rounded-lg mt-2 cursor-pointer">
-
+                                            <img src="{{ 'storage/' . $message->image }}" alt="Image"
                                                 class="max-w-24 h-auto rounded-lg mt-2 cursor-pointer" id="chatImage"
                                                 onclick="openModal('{{ ('storage/' . $message->image) }}')">
                                         @endif
