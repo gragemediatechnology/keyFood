@@ -36,6 +36,10 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/home', function () {
+    return view('home');
+})->name('Home');
+
 
 Route::get('/tutorial', [TutorialController::class, 'index'])->name('tutorial.index');
 
@@ -113,8 +117,6 @@ Route::post('/send-whatsapp', [RegisteredUserController::class, 'sendMessage'])-
 Route::get('/whatsapp-form', function () {
     return view('auth/send_whatsapp');
 });
-
-Route::view('/home', 'home')->name('home');
 
 
 // ROUTE SELLER PAGE
