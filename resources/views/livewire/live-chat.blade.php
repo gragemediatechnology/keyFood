@@ -206,7 +206,7 @@
                     chooseFileButton.style.display = 'none';
                 };
 
-                console.log(reader.readAsDataURL(file));
+                reader.readAsDataURL(file);
             } else {
                 imagePreview.innerHTML = '';
                 chooseFileButton.style.display = 'inline-block';
