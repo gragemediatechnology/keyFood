@@ -149,7 +149,7 @@
                                                                             <span><i class="ri-star-fill"></i></span>
                                                                         </div> -->
                                                 <div class="special__footer">
-                                                    <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                                                    <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span><br>
                                                     <button class="btn">Add to Cart</button>
                                                 </div>
                                             </div>
