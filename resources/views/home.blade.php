@@ -71,9 +71,12 @@
                         innovation with tradition to delight your senses.
                     </p>
                     <div class="special__grid">
+                        @foreach ($products as $product )
+                        
+                        
                         <div class="special__card">
                             <img src="../img/special-1.png" alt="special" class="header-img" />
-                            <h4>Chicken Veg Curry</h4>
+                            <h4>{{$product->name}}</h4>
                             <p>
                                 Diced chicken simmered in aromatic curry sauce with mixed veggies
                                 like potatoes, cauliflower, and beans for a hearty, flavorful dish.
@@ -86,11 +89,13 @@
                                 <span><i class="ri-star-fill"></i></span>
                             </div>
                             <div class="special__footer">
-                                <p class="price">$12.50</p>
+                                <p class="price">{{ $product->price}}</p>
                                 <button class="btn">Add to Cart</button>
                             </div>
                         </div>
-                        <div class="special__card">
+
+                        @endforeach
+                        <!-- <div class="special__card">
                             <img src="../img/special-2.png" alt="special" class="header-img" loading="lazy"/>
                             <h4>Chicken Veg Stir-Fry</h4>
                             <p>
@@ -128,7 +133,7 @@
                                 <p class="price">$15.50</p>
                                 <button class="btn">Add to Cart</button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </section>
 
