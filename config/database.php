@@ -58,7 +58,7 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
             'dump' => [
-                'dump_binary_path' => 'C:/laragon/bin/mysql/mysql-8.0.30-winx64/bin/', // Path ke mysqldump
+                'dump_binary_path' => '/usr/bin/', // Path ke mysqldump
                 'use_single_transaction' => true, // Menjalankan dump dalam satu transaksi
                 'timeout' => 60 * 5, // Timeout 5 menit
                 'exclude_tables' => [''], // Jika ada tabel yang ingin dikecualikan
