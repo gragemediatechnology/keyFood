@@ -97,11 +97,11 @@
                                 </div>
                                 <span class="quantity"></span>
                                 <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                                <form action="/vip-product" method="POST" style="display:inline;">
+                                <form action="admin/vip-product" method="POST" style="display:inline;">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
-                                    <button type="submit" class="cart-btn">
+                                    <button type="submit" class="">
                                         <i class="fa-solid fa-star"></i> Jadikan Teratas
                                     </button>
                                 </form>
