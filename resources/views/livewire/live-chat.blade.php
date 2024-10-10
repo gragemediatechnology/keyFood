@@ -66,7 +66,7 @@
                                         @endif
 
                                         @if ($message->message)
-                                            <p class="mb-2">{{ $message->message }}</p>
+                                            <p class="mb-2">{{ $message->image }}</p>
                                         @endif
 
                                     </div>
@@ -231,8 +231,6 @@
             const value = messageTextarea.value.trim();
             console.log(`Pesan yang dicek: "${value}"`); // Log isi pesan untuk debugging
             return value.length > 0 || imageInput.files.length > 0;
-            console.log(imageInput);
-
         }
 
         // Tambahkan event listener untuk menangani tombol yang ditekan
