@@ -219,6 +219,7 @@
             imagePreview.innerHTML = '';
             chooseFileButton.style.display = 'inline-block';
             imageInput.value = ''; // Hapus input file
+            console.log('testing le');
         });
 
         // Flag untuk menghindari pengiriman pesan kosong saat delay
