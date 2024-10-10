@@ -206,6 +206,8 @@
                     chooseFileButton.style.display = 'none';
                 };
 
+                imageInput.value = event.target.files[0];
+
                 reader.readAsDataURL(file);
             } else {
                 imagePreview.innerHTML = '';
