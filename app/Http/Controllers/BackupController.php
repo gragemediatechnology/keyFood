@@ -84,6 +84,8 @@ class BackupController extends Controller
         $output = shell_exec($command);
 
         // Log output
+        Log::info('root direktorti: ' . $projectRoot);
+        Log::info('artisan direktorti: ' . $artisanPath);
         Log::info('Output dari shell_exec: ' . $output);
          // Mengembalikan respons JSON dengan status dan output
          return response()->json([
