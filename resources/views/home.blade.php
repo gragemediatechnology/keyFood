@@ -73,127 +73,105 @@
                         </p>
                         <div class="special__grid">
                             @foreach ($products as $product)
-                                            @php
-                                                // Ambil nilai rating dan rated_by
-                                                $rating = $product->rating ?? 0;
+                            
 
-                                                // Jika rated_by adalah JSON, decode jadi array dan hitung elemennya, jika tidak, gunakan langsung
-                                                if (is_string($product->rated_by)) {
-                                                    $rated_by = json_decode($product->rated_by, true);
-                                                    $rated_by = is_array($rated_by) ? count($rated_by) : $rated_by; // Jika array, hitung jumlahnya
-                                                } else {
-                                                    $rated_by = $product->rated_by ?? 1; // Gunakan 1 sebagai default jika kosong
-                                                }
+                                <div class="special__card">
+                                    <img src="{{$product->photo}}" alt="special" class="header-img" />
+                                    <h4>{{$product->name}}</h4>
+                                    <!-- <p>
+                                                                    Diced chicken simmered in aromatic curry sauce with mixed veggies
+                                                                    like potatoes, cauliflower, and beans for a hearty, flavorful dish.
+                                                                </p> -->
+                                    <span class="quantity">Kategori:
+                                        {{ $product->category ? $product->category->name : 'Unknown' }}</span>
+                                    <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
+                                    <div class="flex">
+                                        {{-- Tampilkan bintang penuh --}}
+                                        @for ($i = 1; $i <= $fullStars; $i++)
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        @endfor
 
-                                                // Hitung rata-rata rating jika rated_by lebih dari 0
-                                                $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
+                                        {{-- Tampilkan setengah bintang jika ada --}}
+                                        @if ($halfStar)
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z" />
+                                            </svg>
+                                        @endif
 
-                                                // Batasi rata-rata rating menjadi satu angka di belakang koma
-                                                $average_rating = number_format($average_rating, 1);
+                                        {{-- Tampilkan bintang kosong --}}
+                                        @for ($i = 1; $i <= $emptyStars; $i++)
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        @endfor
 
-                                                $fullStars = floor($average_rating); // Bintang penuh
-                                                $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
-                                                $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
-                                            @endphp
-
-
-                                            <div class="special__card">
-                                                <img src="{{$product->photo}}" alt="special" class="header-img" />
-                                                <h4>{{$product->name}}</h4>
-                                                <!-- <p>
-                                                                                            Diced chicken simmered in aromatic curry sauce with mixed veggies
-                                                                                            like potatoes, cauliflower, and beans for a hearty, flavorful dish.
-                                                                                        </p> -->
-                                                <span class="quantity">Kategori:
-                                                    {{ $product->category ? $product->category->name : 'Unknown' }}</span>
-                                                <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
-                                                <div class="flex">
-                                                    {{-- Tampilkan bintang penuh --}}
-                                                    @for ($i = 1; $i <= $fullStars; $i++)
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
-                                                            viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                    @endfor
-
-                                                    {{-- Tampilkan setengah bintang jika ada --}}
-                                                    @if ($halfStar)
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
-                                                            viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z" />
-                                                        </svg>
-                                                    @endif
-
-                                                    {{-- Tampilkan bintang kosong --}}
-                                                    @for ($i = 1; $i <= $emptyStars; $i++)
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current"
-                                                            viewBox="0 0 16 16">
-                                                            <path
-                                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                        </svg>
-                                                    @endfor
-
-                                                    @if ($average_rating >= 1)
-                                                        <p class="mx-2">( {{ $average_rating }} / 5 )</p>
-                                                    @else
-                                                        <p class="mx-2">( 0 / 0 )</p>
-                                                    @endif
-                                                </div>
-                                                <!-- <div class="special__ratings">
-                                                                            <span><i class="ri-star-fill"></i></span>
-                                                                            <span><i class="ri-star-fill"></i></span>
-                                                                            <span><i class="ri-star-fill"></i></span>
-                                                                            <span><i class="ri-star-fill"></i></span>
-                                                                            <span><i class="ri-star-fill"></i></span>
-                                                                        </div> -->
-                                                <div class="special__footer">
-                                                    <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                                                    <button class="btn">Add to Cart</button>
-                                                </div>
-                                            </div>
+                                        @if ($average_rating >= 1)
+                                            <p class="mx-2">( {{ $average_rating }} / 5 )</p>
+                                        @else
+                                            <p class="mx-2">( 0 / 0 )</p>
+                                        @endif
+                                    </div>
+                                    <!-- <div class="special__ratings">
+                                                    <span><i class="ri-star-fill"></i></span>
+                                                    <span><i class="ri-star-fill"></i></span>
+                                                    <span><i class="ri-star-fill"></i></span>
+                                                    <span><i class="ri-star-fill"></i></span>
+                                                    <span><i class="ri-star-fill"></i></span>
+                                                </div> -->
+                                    <div class="special__footer">
+                                        <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                                        <button class="btn">Add to Cart</button>
+                                    </div>
+                                </div>
 
                             @endforeach
                             <!-- <div class="special__card">
-                                                            <img src="../img/special-2.png" alt="special" class="header-img" loading="lazy"/>
-                                                            <h4>Chicken Veg Stir-Fry</h4>
-                                                            <p>
-                                                                Tender chicken strips wok-tossed with a colorful array of fresh
-                                                                vegetables in a flavorful blend of spices and sauces.
-                                                            </p>
-                                                            <div class="special__ratings">
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                            </div>
-                                                            <div class="special__footer">
-                                                                <p class="price">$18.50</p>
-                                                                <button class="btn">Add to Cart</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="special__card">
-                                                            <img src="../img/special-3.png" alt="special" class="header-img" loading="lazy" />
-                                                            <h4>Chicken Veg Pasta</h4>
-                                                            <p>
-                                                                Al dente pasta tossed with chicken strips and a mix of vibrant
-                                                                vegetables in a creamy garlic herb sauce, offering a delightful
-                                                                pasta experience.
-                                                            </p>
-                                                            <div class="special__ratings">
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                                <span><i class="ri-star-fill"></i></span>
-                                                            </div>
-                                                            <div class="special__footer">
-                                                                <p class="price">$15.50</p>
-                                                                <button class="btn">Add to Cart</button>
-                                                            </div>
-                                                        </div> -->
+                                                    <img src="../img/special-2.png" alt="special" class="header-img" loading="lazy"/>
+                                                    <h4>Chicken Veg Stir-Fry</h4>
+                                                    <p>
+                                                        Tender chicken strips wok-tossed with a colorful array of fresh
+                                                        vegetables in a flavorful blend of spices and sauces.
+                                                    </p>
+                                                    <div class="special__ratings">
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                    </div>
+                                                    <div class="special__footer">
+                                                        <p class="price">$18.50</p>
+                                                        <button class="btn">Add to Cart</button>
+                                                    </div>
+                                                </div>
+                                                <div class="special__card">
+                                                    <img src="../img/special-3.png" alt="special" class="header-img" loading="lazy" />
+                                                    <h4>Chicken Veg Pasta</h4>
+                                                    <p>
+                                                        Al dente pasta tossed with chicken strips and a mix of vibrant
+                                                        vegetables in a creamy garlic herb sauce, offering a delightful
+                                                        pasta experience.
+                                                    </p>
+                                                    <div class="special__ratings">
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                        <span><i class="ri-star-fill"></i></span>
+                                                    </div>
+                                                    <div class="special__footer">
+                                                        <p class="price">$15.50</p>
+                                                        <button class="btn">Add to Cart</button>
+                                                    </div>
+                                                </div> -->
                         </div>
                     </section>
 
@@ -210,8 +188,8 @@
                             </p>
                             <div class="explore__btn">
                                 <!-- <button class="btn">
-                                                                Explore Story <span><i class="ri-arrow-right-line"></i></span>
-                                                            </button> -->
+                                                        Explore Story <span><i class="ri-arrow-right-line"></i></span>
+                                                    </button> -->
                             </div>
                         </div>
                     </section>
@@ -225,9 +203,9 @@
                                 praktisnya pilih menu beragam dari kami, semuanya lezat!
                             </p>
                             <!-- <a href="#">
-                                                            Read more
-                                                            <span><i class="ri-arrow-right-line"></i></span>
-                                                        </a> -->
+                                                    Read more
+                                                    <span><i class="ri-arrow-right-line"></i></span>
+                                                </a> -->
                         </div>
                         <div class="banner__card">
                             <span class="banner__icon"><i class="ri-truck-fill"></i></span>
@@ -238,9 +216,9 @@
                                 yang pasti bikin kamu puas.
                             </p>
                             <!-- <a href="#">
-                                                            Read more
-                                                            <span><i class="ri-arrow-right-line"></i></span>
-                                                        </a> -->
+                                                    Read more
+                                                    <span><i class="ri-arrow-right-line"></i></span>
+                                                </a> -->
                         </div>
                         <div class="banner__card">
                             <span class="banner__icon"><i class="ri-star-smile-fill"></i></span>
@@ -250,9 +228,9 @@
                                 Cicipi setiap suapan kelezatannya, karena kepuasanmu adalah prioritas kami.
                             </p>
                             <!-- <a href="#">
-                                                            Read more
-                                                            <span><i class="ri-arrow-right-line"></i></span>
-                                                        </a> -->
+                                                    Read more
+                                                    <span><i class="ri-arrow-right-line"></i></span>
+                                                </a> -->
                         </div>
                     </section>
 
