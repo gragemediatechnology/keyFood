@@ -76,15 +76,16 @@
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                             @foreach ($stores as $store)
-                                <form action="/detailed-store" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko">
-                                    <button type="submit">
-                                       
+                               
                                  
 
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     {{-- ID Toko --}}
+                                    <form action="/detailed-store" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko">
+                                    <button type="submit">
+                                       
                                     <td class="px-4 py-3">
                                         <div class="flex items-center text-sm">
                                             <div>
