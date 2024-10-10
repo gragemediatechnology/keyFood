@@ -351,4 +351,16 @@ class ProductController extends Controller
     return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
 }
 
+
+public function vipProduct (Request $request){
+    // dd($request->all());
+$product = Product::find($request->product_id);
+if ($product) {
+    $product->update(['is_vip' => true]);
+    return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dijadikan produk VIP.');
+} else {
+    return redirect()->back()->with('error', 'Produk tidak ditemukan.');
+}
+}
+
 }

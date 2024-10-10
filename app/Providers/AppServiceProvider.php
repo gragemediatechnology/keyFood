@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Cms;
+use App\Models\Product;
 use Illuminate\Support\Facades\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
@@ -28,9 +29,10 @@ class AppServiceProvider extends ServiceProvider
 
 
         // Pastikan parameter closure adalah instance dari Illuminate\View\View
-        View::composer(['layouts.main', 'admin.layouts.main-admin', 'home'], function (ViewInstance $view) {
+        View::composer(['layouts.main', 'admin.layouts.main-admin', 'home', 'layouts.navigation'], function (ViewInstance $view) {
             $cms = Cms::all();
-            $view->with('cms', $cms);
+            $products = Product::where('is_vip', true)->with('toko','category')->get();
+            $view->with(['cms' => $cms, 'products' => $products]);
         });
     }
 }

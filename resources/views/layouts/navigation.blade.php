@@ -3,16 +3,17 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
+            @foreach ($cms as $company )
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     {{-- <a href="{{ route('home') }}"> --}}
                     <a href="/home">
-                    <img src="img/logos.svg" class="h-8 me-2" alt="KeyFood Logo" />
+                    <img src="https://lapakkbk.online/{{$company->logo}}" class="h-8 me-2" alt="KeyFood Logo" />
 
                         {{-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" /> --}}
                     </a>
                 </div>
-
+@endforeach
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="/home" :active="request()->routeIs('home')">
