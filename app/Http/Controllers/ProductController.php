@@ -351,4 +351,9 @@ class ProductController extends Controller
     return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
 }
 
+
+public function vipProduct (Request $request){
+    dd($request->all());
+}
+
 }

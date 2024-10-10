@@ -97,7 +97,7 @@
                                 </div>
                                 <span class="quantity"></span>
                                 <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                                <form action="/" method="POST" style="display:inline;">
+                                <form action="/vip-product" method="POST" style="display:inline;">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
