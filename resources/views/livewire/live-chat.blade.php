@@ -219,7 +219,7 @@
         messageForm.addEventListener('submit', function() {
             imagePreview.innerHTML = '';
             chooseFileButton.style.display = 'inline-block';
-            imageInput.value = ''; // Hapus input file
+            // imageInput.value = ''; // Hapus input file
         });
 
         // Flag untuk menghindari pengiriman pesan kosong saat delay
