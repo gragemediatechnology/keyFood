@@ -150,6 +150,13 @@
         }
 
         // Event listener untuk input password
+        document.getElementById('show-eye-password-login').addEventListener('click', function() {
+            togglePassword('password-login', 'show-eye-password-login', 'hide-eye-password-login');
+        });
+        document.getElementById('hide-eye-password-login').addEventListener('click', function() {
+            togglePassword('password-login', 'show-eye-password-login', 'hide-eye-password-login');
+        });
+
         document.getElementById('show-eye-password').addEventListener('click', function() {
             togglePassword('password', 'show-eye-password', 'hide-eye-password');
         });
