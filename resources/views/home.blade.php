@@ -70,34 +70,44 @@
                         <p class="section__description">
                             Majukan UMKM Bersama Lapak KBK
                         </p>
-                        <div
-                            class="special__grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center items-center p-4">
+                        <div class="special__grid">
                             @foreach ($products as $product)
                                             @php
+                                                // Ambil nilai rating dan rated_by
                                                 $rating = $product->rating ?? 0;
+
+                                                // Jika rated_by adalah JSON, decode jadi array dan hitung elemennya, jika tidak, gunakan langsung
                                                 if (is_string($product->rated_by)) {
                                                     $rated_by = json_decode($product->rated_by, true);
-                                                    $rated_by = is_array($rated_by) ? count($rated_by) : $rated_by;
+                                                    $rated_by = is_array($rated_by) ? count($rated_by) : $rated_by; // Jika array, hitung jumlahnya
                                                 } else {
-                                                    $rated_by = $product->rated_by ?? 1;
+                                                    $rated_by = $product->rated_by ?? 1; // Gunakan 1 sebagai default jika kosong
                                                 }
+
+                                                // Hitung rata-rata rating jika rated_by lebih dari 0
                                                 $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
+
+                                                // Batasi rata-rata rating menjadi satu angka di belakang koma
                                                 $average_rating = number_format($average_rating, 1);
-                                                $fullStars = floor($average_rating);
-                                                $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0;
-                                                $emptyStars = 5 - ($fullStars + $halfStar);
+
+                                                $fullStars = floor($average_rating); // Bintang penuh
+                                                $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
+                                                $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
                                             @endphp
 
-                                            <div
-                                                class="special__card flex flex-col justify-center items-center p-4 bg-white shadow-md rounded-lg">
-                                                <img src="{{ $product->photo }}" alt="special"
-                                                    class="header-img w-full h-auto object-cover rounded-t-lg" />
-                                                <h4 class="text-lg font-semibold mt-4">{{ $product->name }}</h4>
-                                                <span class="quantity text-gray-600 mt-2">Kategori:
-                                                    {{ $product->category ? $product->category->name : 'Unknown' }}</span>
-                                                <p class="text-gray-600">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</p>
 
-                                                <div class="flex items-center mt-2">
+                                            <div class="special__card">
+                                                <img src="{{ $product->photo }}" alt="special" class="header-img" />
+                                                <h4>{{ $product->name }}</h4>
+                                                <span class="quantity">Kategori:
+                                                    {{ $product->category ? $product->category->name : 'Unknown' }}</span>
+                                                </p>
+                                                <p>
+                                                    <span class="quantity">Toko:
+                                                        {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
+                                                </p>
+                                                <div class="flex">
+                                                    {{-- Tampilkan bintang penuh --}}
                                                     @for ($i = 1; $i <= $fullStars; $i++)
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
                                                             viewBox="0 0 16 16">
@@ -106,6 +116,7 @@
                                                         </svg>
                                                     @endfor
 
+                                                    {{-- Tampilkan setengah bintang jika ada --}}
                                                     @if ($halfStar)
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
                                                             viewBox="0 0 16 16">
@@ -114,6 +125,7 @@
                                                         </svg>
                                                     @endif
 
+                                                    {{-- Tampilkan bintang kosong --}}
                                                     @for ($i = 1; $i <= $emptyStars; $i++)
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current"
                                                             viewBox="0 0 16 16">
@@ -122,21 +134,25 @@
                                                         </svg>
                                                     @endfor
 
-                                                    <p class="mx-2">({{ $average_rating }} / 5)</p>
-                                                </div>
-
-                                                <div class="special__footer mt-4">
-                                                    <span class="price text-lg font-bold">Rp
-                                                        {{ number_format($product->price, 0, ',', '.') }}</span><br>
-                                                    <form action="/detailed-store" method="POST" class="mt-2">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $product->toko->nama_toko }}" name="nama_toko">
-                                                        <button class="btn bg-blue-500 text-white py-2 px-4 rounded">Lihat Produk</button>
-                                                    </form>
+                                                    @if ($average_rating >= 1)
+                                                        <p class="mx-2">( {{ $average_rating }} / 5 )</p>
+                                                    @else
+                                                        <p class="mx-2">( 0 / 0 )</p>
+                                                    @endif
                                                 </div>
                                             </div>
+                                            <div class="special__footer">
+                                                <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span><br>
+                                                <form action="/detailed-store" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $product->toko->nama_toko }}" name="nama_toko">
+                                                    <button class="btn">Lihat Produk</button>
+                                                </form>
+                                            </div>
+                                        </div>
                             @endforeach
-                        </div>
+                            
+
                 </div>
         </section>
 
@@ -167,9 +183,9 @@
                     praktisnya pilih menu beragam dari kami, semuanya lezat!
                 </p>
                 <!-- <a href="#">
-                                                                                                                                        Read more
-                                                                                                                                        <span><i class="ri-arrow-right-line"></i></span>
-                                                                                                                                    </a> -->
+                                                                                                                Read more
+                                                                                                                <span><i class="ri-arrow-right-line"></i></span>
+                                                                                                            </a> -->
             </div>
             <div class="banner__card">
                 <span class="banner__icon"><i class="ri-truck-fill"></i></span>
@@ -181,9 +197,9 @@
                     yang pasti bikin kamu puas.
                 </p>
                 <!-- <a href="#">
-                                                                                                                                        Read more
-                                                                                                                                        <span><i class="ri-arrow-right-line"></i></span>
-                                                                                                                                    </a> -->
+                                                                                                                Read more
+                                                                                                                <span><i class="ri-arrow-right-line"></i></span>
+                                                                                                            </a> -->
             </div>
             <div class="banner__card">
                 <span class="banner__icon"><i class="ri-star-smile-fill"></i></span>
@@ -193,9 +209,9 @@
                     Cicipi setiap suapan kelezatannya, karena kepuasanmu adalah prioritas kami.
                 </p>
                 <!-- <a href="#">
-                                                                                                                                        Read more
-                                                                                                                                        <span><i class="ri-arrow-right-line"></i></span>
-                                                                                                                                    </a> -->
+                                                                                                                Read more
+                                                                                                                <span><i class="ri-arrow-right-line"></i></span>
+                                                                                                            </a> -->
             </div>
         </section>
 
