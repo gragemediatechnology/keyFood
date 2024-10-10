@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/terms.css">
     <script src="https://kit.fontawesome.com/3ef3559250.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <title>KeyFood || {{ Route::currentRouteName() }} </title>
 </head>
 
 <body>

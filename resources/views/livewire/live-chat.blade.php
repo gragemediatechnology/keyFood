@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="../img/logos.svg">
+<title>KeyFood || {{ Route::currentRouteName() }} </title>
 <div id="messageContainer" class="overflow-y-auto h-screen">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
