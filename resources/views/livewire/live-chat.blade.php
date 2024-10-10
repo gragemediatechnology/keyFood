@@ -39,7 +39,7 @@
                     @endif
 
 
-                    <div wire:poll>
+                    <div wire:poll.2s>
                         @if (isset($messages) && $messages->isNotEmpty())
                             @foreach ($messages as $message)
                                 <div class="chat @if ($message->from_user_id == auth()->id()) chat-end @else chat-start @endif">
