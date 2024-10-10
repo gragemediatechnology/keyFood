@@ -154,6 +154,7 @@
 
         Livewire.on('messageAdded', () => {
             const chatContainer = document.getElementById('chat-container');
+            console.log(imageInput);
             if (chatContainer) {
                 chatContainer.scrollTop = chatContainer.scrollHeight;
             }
@@ -219,6 +220,7 @@
             imagePreview.innerHTML = '';
             chooseFileButton.style.display = 'inline-block';
             imageInput.value = ''; // Hapus input file
+            console.log('testing le');
         });
 
         // Flag untuk menghindari pengiriman pesan kosong saat delay
@@ -229,8 +231,6 @@
             const value = messageTextarea.value.trim();
             console.log(`Pesan yang dicek: "${value}"`); // Log isi pesan untuk debugging
             return value.length > 0 || imageInput.files.length > 0;
-            console.log(imageInput);
-
         }
 
         // Tambahkan event listener untuk menangani tombol yang ditekan
