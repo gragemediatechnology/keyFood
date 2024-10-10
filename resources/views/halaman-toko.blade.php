@@ -61,7 +61,7 @@
                                 <span class="quantity">Kategori:
                                     {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                                 <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
-                                <div class="flex">
+                                <div class="flex justify-center">
                                     {{-- Tampilkan bintang penuh --}}
                                     @for ($i = 1; $i <= $fullStars; $i++)
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
@@ -96,12 +96,13 @@
                                     @endif
                                 </div>
                                 <span class="quantity"></span>
+                                <br>
                                 <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                                 <form action="admin/vip-product" method="POST" style="display:inline;">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
-                                    @if ($product->is_vip == 0 && $product->toko->products()->where('is_vip', true)->count() > 3)
+                                    @if ($product->is_vip == 0 && $product->toko->products()->where('is_vip', true)->count() >= 3)
                                     <button type="submit" class="">
                                         <i class="fa-solid fa-star"></i> Jadikan Teratas
                                     </button>
