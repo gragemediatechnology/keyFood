@@ -168,9 +168,11 @@
             console.log(file);
             if (file) {
                 const reader = new FileReader();
+                console.log(reader);
 
                 reader.onload = function(e) {
                     // Buat elemen img untuk menampilkan pratinjau
+                    console.log(e);
                     const img = document.createElement('img');
                     img.src = e.target.result;
                     img.className =
