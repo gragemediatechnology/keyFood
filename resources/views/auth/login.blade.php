@@ -41,13 +41,13 @@
     </div>
     <div class="input-field">
         <i class="fas fa-lock"></i>
-
+    
         <input type="password" id="password" placeholder="Password" name="password" required />
-
+    
         <!-- Icon show/hide password berada di dalam input -->
         <ion-icon id="show-eye" name="eye-outline" style="display: inline;"></ion-icon>
         <ion-icon id="hide-eye" name="eye-off-outline" style="display: none;"></ion-icon>
-    </div>
+    </div>    
     <input type="submit" value="Login" class="btn solid" />
     <a href="/forgot-password" style="text-decoration: none;"
         class="inline-flex items-center px-4 py-2  bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200">

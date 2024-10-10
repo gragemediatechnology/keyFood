@@ -28,25 +28,25 @@
 
     <div class="input-field">
         <i class="fas fa-lock"></i>
-
-        <input type="password" id="password" placeholder="Password" name="password" style="background: transparent"
-            required />
-
+    
+        <input type="password" id="password" placeholder="Password" name="password" style="background: transparent" required />
+    
         <!-- Icon show/hide password berada di dalam input -->
-        <ion-icon id="show-eye" name="eye-outline" style="display: inline;"></ion-icon>
-        <ion-icon id="hide-eye" name="eye-off-outline" style="display: none;"></ion-icon>
+        <ion-icon id="show-eye-password" name="eye-outline" style="display: inline;"></ion-icon>
+        <ion-icon id="hide-eye-password" name="eye-off-outline" style="display: none;"></ion-icon>
     </div>
-
+    
     <div class="input-field">
         <i class="fas fa-lock"></i>
-
+    
         <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" name="password_confirmation"
             style="background: transparent" required />
-
+    
         <!-- Icon show/hide password berada di dalam input -->
-        <ion-icon id="show-eye" name="eye-outline" style="display: inline;"></ion-icon>
-        <ion-icon id="hide-eye" name="eye-off-outline" style="display: none;"></ion-icon>
+        <ion-icon id="show-eye-password-confirmation" name="eye-outline" style="display: inline;"></ion-icon>
+        <ion-icon id="hide-eye-password-confirmation" name="eye-off-outline" style="display: none;"></ion-icon>
     </div>
+    
     <input type="submit" class="btn" value="Sign up" />
     <p class="social-text">Atau Daftar Dengan Google</p>
     <div class="social-media">
