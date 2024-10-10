@@ -111,6 +111,9 @@
                                         <button type="submit" class="">
                                             <i class="fa-solid fa-star"></i> Jadikan Teratas
                                         </button>
+                                        <button type="submit" class="hidden" name="action" value="cancel">
+                                            <i class="fa-solid fa-star"></i> Batalkan Teratas
+                                        </button>
                                     @else
                                         <button type="submit" class="hidden">
                                             <i class="fa-solid fa-star"></i> Jadikan Teratas
