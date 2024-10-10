@@ -42,7 +42,7 @@ class LiveChat extends Component
     public function SendMessage()
     {
         $path = null;
-        dd($this->image);
+        dd($this->image, $this->message);
 
         // $this->validate([
         //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,mp4|max:10000',

@@ -164,8 +164,8 @@
 
         // Tangani pemilihan file dan pratinjau
         imageInput.addEventListener('change', function(event) {
-            console.log(event.target.files[0]);
             const file = event.target.files[0];
+            console.log(file);
             if (file) {
                 const reader = new FileReader();
 
@@ -206,7 +206,7 @@
                     chooseFileButton.style.display = 'none';
                 };
 
-                reader.readAsDataURL(file);
+                console.log(reader.readAsDataURL(file));
             } else {
                 imagePreview.innerHTML = '';
                 chooseFileButton.style.display = 'inline-block';
