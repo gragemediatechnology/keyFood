@@ -90,7 +90,7 @@
 
 
                     <div class="form-control">
-                        <form action="POST" id="messageForm" wire:submit.prevent="SendMessage"
+                        <form method="POST" id="messageForm" wire:submit.prevent="SendMessage"
                             enctype="multipart/form-data">
                             <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model="message"
                                 placeholder="Kirim pesan bang..." required></textarea>
