@@ -66,10 +66,9 @@
 
 
                     <section class="section__container special__container" id="special">
-                        <h2 class="section__header">Our Special Dish</h2>
+                        <h2 class="section__header">Menu Terbaik Untukmu</h2>
                         <p class="section__description">
-                            Each dish promises an unforgettable dining experience, blending
-                            innovation with tradition to delight your senses.
+                           Majukan UMKM Bersama Lapak KBK
                         </p>
                         <div class="special__grid">
                             @foreach ($products as $product)
