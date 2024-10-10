@@ -78,11 +78,11 @@
                             @foreach ($stores as $store)
                                 <form action="/detailed-store" method="POST">
                                     @csrf
+                                    <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko">
                                     <button type="submit">
                                         haha
                                     </button>
                                 </form>
-                                <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko">
 
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     {{-- ID Toko --}}
