@@ -89,7 +89,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                           
+                                        </button>
+                                        </form>
 
                                 {{-- Nama Toko --}}
                                 <td class="px-4 py-3">
@@ -120,8 +121,7 @@
                                 <td class="px-4 py-3 text-sm">
                                     {{ $store->created_at->format('d/m/Y') }}
                                 </td>
-                                </button>
-                                </form>
+                              
 
                                 {{-- Actions --}}
                                 <td class="px-4 py-3">
