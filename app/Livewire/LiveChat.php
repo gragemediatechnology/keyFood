@@ -41,15 +41,15 @@ class LiveChat extends Component
 
     public function SendMessage()
     {
-
         $path = null;
+        dd($this->image);
 
         $this->validate([
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,mp4|max:10000',
         ]);
 
         if ($this->image) {
-            $path = $this->image->storeAs('img', $this->image->getClientOriginalName(), 'public');
+            $path = $this->image->storeAs('img/chats', $this->image->getClientOriginalName(), 'public');
         }
 
         ModelsLiveChat::create([
