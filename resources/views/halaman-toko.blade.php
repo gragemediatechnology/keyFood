@@ -101,9 +101,15 @@
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
+                                    @if ($product->is_vip == 0)
                                     <button type="submit" class="">
                                         <i class="fa-solid fa-star"></i> Jadikan Teratas
                                     </button>
+                                    @else
+                                    <button type="submit" class="hidden">
+                                        <i class="fa-solid fa-star"></i> Jadikan Teratas
+                                    </button>
+                                    @endif
                                 </form>
                             </div>
                         @else
