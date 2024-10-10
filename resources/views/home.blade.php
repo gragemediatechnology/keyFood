@@ -75,7 +75,7 @@
                         
                         
                         <div class="special__card">
-                            <img src="../img/special-1.png" alt="special" class="header-img" />
+                            <img src="{{$product->photo}}" alt="special" class="header-img" />
                             <h4>{{$product->name}}</h4>
                             <p>
                                 Diced chicken simmered in aromatic curry sauce with mixed veggies
