@@ -164,8 +164,8 @@
 
         // Tangani pemilihan file dan pratinjau
         imageInput.addEventListener('change', function(event) {
-            console.log(event.target.files[0]);
             const file = event.target.files[0];
+            console.log(file);
             if (file) {
                 const reader = new FileReader();
 
@@ -206,9 +206,7 @@
                     chooseFileButton.style.display = 'none';
                 };
 
-                imageInput.value = event.target.files[0];
-
-                reader.readAsDataURL(file);
+                console.log(reader.readAsDataURL(file));
             } else {
                 imagePreview.innerHTML = '';
                 chooseFileButton.style.display = 'inline-block';
@@ -219,7 +217,7 @@
         messageForm.addEventListener('submit', function() {
             imagePreview.innerHTML = '';
             chooseFileButton.style.display = 'inline-block';
-            // imageInput.value = ''; // Hapus input file
+            imageInput.value = ''; // Hapus input file
         });
 
         // Flag untuk menghindari pengiriman pesan kosong saat delay
