@@ -60,6 +60,6 @@ class LiveChat extends Component
         ]);
 
         $this->message = '';
-        // $this->image = null;
+        $this->image = null;
     }
 }
