@@ -97,7 +97,7 @@
                                 </div>
                                 <span class="quantity"></span>
                                 <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                                <a href="#">
+                                <a href="#" class="cart-btn">
                                     <i class="fas fa-shopping-bag"></i> Jadikan Teratas
                                 </a>
                             </div>
