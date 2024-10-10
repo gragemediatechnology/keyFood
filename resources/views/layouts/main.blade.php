@@ -75,38 +75,8 @@
 
 
 
-    <!-- untuk load cdn perhalaman -->
-    <!-- @if(Route::currentRouteName() == 'home' || Route::currentRouteName() == '/')
-        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
-        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
-        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
-        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
-        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
-        <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/app.css">
-        <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css"> -->
-        <!-- <link rel="stylesheet"
-            href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css"> -->
-        <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/stores.css"> -->
-        <!-- <link rel="stylesheet"
-            href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css"> -->
-        <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css"> -->
-        <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/checkout.css"> -->
-        <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css"> -->
-        <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css"> -->
-        <!-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/nav.css">
+   
 
-        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
-        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
-        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
-        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
-        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script> -->
-
-
-
-
-
-
-    @endif -->
 
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
