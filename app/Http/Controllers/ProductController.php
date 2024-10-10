@@ -353,7 +353,7 @@ class ProductController extends Controller
 
 
 public function vipProduct (Request $request){
-    dd($request->action);
+    dd($request->name);
 $product = Product::find($request->product_id);
 if ($product) {
     if ($request->action == 'cancel') {
