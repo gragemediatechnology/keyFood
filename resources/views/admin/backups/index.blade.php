@@ -118,7 +118,7 @@
 
         $.ajax({
             // url: '{{ route('admin.backups.manual') }}',
-            url: '/admin/backups/manual',
+            url: 'admin/backups/manual',
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
