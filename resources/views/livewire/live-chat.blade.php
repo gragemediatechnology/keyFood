@@ -64,7 +64,7 @@
                                         @endif
 
                                         @if ($message->message)
-                                            <p class="mb-2">{{ $message->message }}</p>
+                                            <p class="mb-2">{{ $message->image }}</p>
                                         @endif
 
                                     </div>
@@ -154,7 +154,6 @@
 
         Livewire.on('messageAdded', () => {
             const chatContainer = document.getElementById('chat-container');
-            console.log(imageInput);
             if (chatContainer) {
                 chatContainer.scrollTop = chatContainer.scrollHeight;
             }
@@ -220,7 +219,6 @@
             imagePreview.innerHTML = '';
             chooseFileButton.style.display = 'inline-block';
             imageInput.value = ''; // Hapus input file
-            console.log('testing le');
         });
 
         // Flag untuk menghindari pengiriman pesan kosong saat delay
