@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
 
     <!-- Component Inspired design by Ildiko Gaspar from dribbble https://dribbble.com/shots/11480512-Log-In-UI-Design  -->
 

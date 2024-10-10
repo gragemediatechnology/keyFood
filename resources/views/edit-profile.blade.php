@@ -18,7 +18,8 @@
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/edit-p.css">
 
-    <title>Edit Profile</title>
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
 </head>
 
 <body>

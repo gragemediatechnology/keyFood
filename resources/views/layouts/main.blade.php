@@ -80,7 +80,7 @@
 
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
-    <title>KeyFood || {{ Route::currentRouteName() }} </title>
+    <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
     {{-- ini diatas, disebelah dikasih title statis --}}
 
     <!-- SweetAlert CSS -->
