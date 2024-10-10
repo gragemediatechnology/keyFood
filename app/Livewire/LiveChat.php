@@ -44,9 +44,9 @@ class LiveChat extends Component
         $path = null;
         dd($this->image);
 
-        // $this->validate([
-        //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,mp4|max:10000',
-        // ]);
+        $this->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,mp4|max:10000',
+        ]);
 
         if ($this->image) {
             $path = $this->image->storeAs('img/chats', $this->image->getClientOriginalName(), 'public');
@@ -60,6 +60,6 @@ class LiveChat extends Component
         ]);
 
         $this->message = '';
-        $this->image = null;
+        // $this->image = null;
     }
 }
