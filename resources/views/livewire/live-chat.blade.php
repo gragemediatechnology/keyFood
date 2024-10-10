@@ -64,7 +64,7 @@
                                         @endif
 
                                         @if ($message->message)
-                                            <p class="mb-2">{{ $message->image }}</p>
+                                            <p class="mb-2">{{ $message->message }}</p>
                                         @endif
 
                                     </div>

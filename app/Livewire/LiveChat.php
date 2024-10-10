@@ -41,7 +41,7 @@ class LiveChat extends Component
 
     public function SendMessage()
     {
-        
+
         $path = null;
 
         $this->validate([
@@ -49,7 +49,7 @@ class LiveChat extends Component
         ]);
 
         if ($this->image) {
-            $path = $this->image->storeAs('img/chats', $this->image->getClientOriginalName(), 'public');
+            $path = $this->image->storeAs('img', $this->image->getClientOriginalName(), 'public');
         }
 
         ModelsLiveChat::create([
