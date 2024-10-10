@@ -80,9 +80,8 @@
                                     @csrf
                                     <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko">
                                     <button type="submit">
-                                        haha
-                                    </button>
-                                </form>
+                                       
+                                 
 
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     {{-- ID Toko --}}
@@ -114,6 +113,8 @@
                                             </div>
                                         </div>
                                     </td>
+                                    </button>
+                                    </form>
 
                                     {{-- Alamat Toko --}}
                                     <td class="px-4 py-3 text-sm">
