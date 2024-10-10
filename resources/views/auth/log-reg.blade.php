@@ -149,7 +149,7 @@
             }
         }
 
-        // Event listener untuk input password
+        // Event listener untuk password login
         document.getElementById('show-eye-password-login').addEventListener('click', function() {
             togglePassword('password-login', 'show-eye-password-login', 'hide-eye-password-login');
         });
@@ -157,14 +157,15 @@
             togglePassword('password-login', 'show-eye-password-login', 'hide-eye-password-login');
         });
 
-        document.getElementById('show-eye-password').addEventListener('click', function() {
-            togglePassword('password', 'show-eye-password', 'hide-eye-password');
+        // Event listener untuk password register
+        document.getElementById('show-eye-password-register').addEventListener('click', function() {
+            togglePassword('password-register', 'show-eye-password-register', 'hide-eye-password-register');
         });
-        document.getElementById('hide-eye-password').addEventListener('click', function() {
-            togglePassword('password', 'show-eye-password', 'hide-eye-password');
+        document.getElementById('hide-eye-password-register').addEventListener('click', function() {
+            togglePassword('password-register', 'show-eye-password-register', 'hide-eye-password-register');
         });
 
-        // Event listener untuk input password confirmation
+        // Event listener untuk password confirmation
         document.getElementById('show-eye-password-confirmation').addEventListener('click', function() {
             togglePassword('password_confirmation', 'show-eye-password-confirmation',
                 'hide-eye-password-confirmation');
