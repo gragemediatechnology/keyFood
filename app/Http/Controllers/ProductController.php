@@ -353,14 +353,14 @@ class ProductController extends Controller
 
 
 public function vipProduct (Request $request){
-    $product = Product::find($request->product_id);
-    dd($product);
-// if ($product) {
-//     $product->update(['is_vip' => true]);
-//     return redirect()->back()->with('success', 'Produk berhasil dijadikan produk VIP.');
-// } else {
-//     return redirect()->back()->with('error', 'Produk tidak ditemukan.');
-// }
+    // dd($request->all());
+$product = Product::find($request->product_id);
+if ($product) {
+    $product->update(['is_vip' => true]);
+    return redirect()->back()->with('success', 'Produk berhasil dijadikan produk VIP.');
+} else {
+    return redirect()->back()->with('error', 'Produk tidak ditemukan.');
+}
 }
 
 }
