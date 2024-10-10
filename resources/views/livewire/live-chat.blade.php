@@ -164,7 +164,7 @@
 
         // Tangani pemilihan file dan pratinjau
         imageInput.addEventListener('change', function(event) {
-            console.log(imageInput);
+            console.log(event.target.files[0]);
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
