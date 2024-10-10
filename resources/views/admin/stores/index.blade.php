@@ -79,6 +79,7 @@
                                 <form action="/detailed-store" method="POST">
                                     @csrf
                                     <button type="submit">
+                                        haha
                                     </button>
                                 </form>
                                 <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko">
