@@ -173,7 +173,7 @@
                                             </form>
                                         @else
                                             <!-- Jika user belum login, arahkan ke halaman login dengan redirect -->
-                                            <a href="{{ route('login', ['redirect' => request()->fullUrl()]) }}" class="btn">Lihat Produk</a>
+                                            <a href="/log-reg/{{ ['redirect' => request()->fullUrl()] }}" class="btn">Lihat Produk</a>
                                         @endif
                                     </div>
                                     
