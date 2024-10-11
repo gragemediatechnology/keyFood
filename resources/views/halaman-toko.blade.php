@@ -126,7 +126,7 @@
                                 <span hidden>{{ $product->id }}</span>
                                 <span hidden>{{ $product->store_id }}</span>
                                 <span hidden>{{ $product->slug }}</span>
-                                <img alt="{{ $product->name }}" src="{{ $product->photo }}">
+                                <img alt="{{ $product->name }}" src="https://lapakkbk.online/{{ $product->photo }}">
                                 <strong>{{ $product->name }}</strong>
                                 {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
                                 <span class="quantity">Kategori:
