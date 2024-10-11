@@ -144,7 +144,7 @@ class TokoController extends Controller
         // $namaToko = $request->input('nama_toko');
 
         // // Cari toko berdasarkan id
-        $storeDetails = Toko::where('id_toko', $request->id)->first();
+        $storeDetails = Toko::where('id_toko', $request->id)->get();
 
 
         // // Ambil ID toko dari input
