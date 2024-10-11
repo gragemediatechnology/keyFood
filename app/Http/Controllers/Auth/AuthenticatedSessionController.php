@@ -39,6 +39,14 @@ class AuthenticatedSessionController extends Controller
             'password' => 'required',
         ]);
 
+         // Cek apakah ada redirect URL setelah login
+         if ($request->has('redirect')) {
+            return redirect()->intended($request->input('redirect'));
+        }
+
+        // Jika tidak ada redirect URL, arahkan ke halaman dashboard (atau halaman default lainnya)
+        return redirect()->route('Detail.Toko');
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -80,7 +88,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        
+
         $user = Auth::user();
 
         Auth::guard('web')->logout();

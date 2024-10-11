@@ -164,12 +164,19 @@
 
                                     <div class="special__footer flex flex-col justify-center items-center">
                                         <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span><br>
-                                        <form action="/detailed-store" method="POST">
-                                            @csrf
-                                            <input type="hidden" value="{{ $product->toko->nama_toko }}" name="nama_toko">
-                                            <button class="btn">Lihat Produk</button>
-                                        </form>
+                                        @if(auth()->check())
+                                            <!-- Jika user sudah login, kirim form ke detailed-store -->
+                                            <form action="/detailed-store" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{ $product->toko->nama_toko }}" name="nama_toko">
+                                                <button class="btn">Lihat Produk</button>
+                                            </form>
+                                        @else
+                                            <!-- Jika user belum login, arahkan ke halaman login dengan redirect -->
+                                            <a href="{{ route('login', ['redirect' => request()->fullUrl()]) }}" class="btn">Lihat Produk</a>
+                                        @endif
                                     </div>
+                                    
                                     
                                 </div>
                             @endforeach
