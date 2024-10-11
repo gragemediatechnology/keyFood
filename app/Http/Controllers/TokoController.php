@@ -136,7 +136,7 @@ class TokoController extends Controller
         return view('stores', compact('stores'));
     }
 
-    public function detailStore(Request $request, id $id)
+    public function detailStore(Request $request, $id)
     {
         dd($id);
 
