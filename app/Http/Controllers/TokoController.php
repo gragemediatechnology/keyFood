@@ -138,28 +138,28 @@ class TokoController extends Controller
 
     public function detailStore(Request $request)
     {
-        dd($request->id);
+        // dd($request->id);
 
         // // Ambil nama toko dari input form
         // $namaToko = $request->input('nama_toko');
 
-        // // // Cari toko berdasarkan id
-        // $store = Toko::where('id_toko', $id)->first();
+        // // Cari toko berdasarkan id
+        $storeDetails = Toko::where('id_toko', $request->id)->first();
 
 
-        // // // Ambil ID toko dari input
-        // // $storeId = $store->id_toko;
-        // // // ambil id seller dari toko
-        // // // $sellerId = $store->id_seller;
+        // // Ambil ID toko dari input
+        // $storeId = $store->id_toko;
+        // // ambil id seller dari toko
+        // // $sellerId = $store->id_seller;
 
-        // // // gunakan ID untuk mengambil detail toko
-        // // $storeDetails = Toko::where('id_toko', $storeId)->get();
+        // // gunakan ID untuk mengambil detail toko
+        // $storeDetails = Toko::where('id_toko', $storeId)->get();
 
-        // $products = Product::where('store_id', $id)->get();
-        // // dd($request->all());
+        $products = Product::where('store_id', $request->id)->get();
+        // dd($request->all());
 
 
-        // dd($store, $products);
+        dd($storeDetails, $products);
         // Tampilkan detail toko di view
         // return view('halaman-toko', compact('storeDetails', 'products'));
     }
