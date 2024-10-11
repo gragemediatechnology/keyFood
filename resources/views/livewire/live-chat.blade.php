@@ -94,7 +94,7 @@
                             enctype="multipart/form-data">
                             <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model="message"
                                 placeholder="Kirim pesan bang..." required></textarea>
-                            <input type="file" wire:model="images" id="imageInput" required />
+                            <input type="file" wire:model="images" id="imageInput" required hidden />
                             <button type="button" id="chooseFileButton" class="btn btn-primary">Choose File</button>
                             <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
                         </form>
