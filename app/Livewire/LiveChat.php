@@ -44,7 +44,7 @@ class LiveChat extends Component
     {
         $path = null;
         // dd($request->image);
-        dd($this->images, $this->message, $request->all());
+        dd($request->hasFile('images'), $this->message, $request->all());
 
         // $this->validate([
         //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,mp4|max:10000',
