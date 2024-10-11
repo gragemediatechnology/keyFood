@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Request;
 
 class LiveChat extends Component
 {
@@ -14,7 +15,7 @@ class LiveChat extends Component
 
     public User $user;
     public $message = '';
-    public $image;
+    public $images;
 
     public function render()
     {
@@ -42,14 +43,14 @@ class LiveChat extends Component
     public function SendMessage()
     {
         $path = null;
-        dd($this->image, $this->message);
+        dd($this->images, $this->message);
 
         // $this->validate([
         //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,mp4|max:10000',
         // ]);
 
-        if ($this->image) {
-            $path = $this->image->storeAs('img/chats', $this->image->getClientOriginalName(), 'public');
+        if ($this->images) {
+            $path = $this->images->storeAs('img/chats', $this->images->getClientOriginalName(), 'public');
         }
 
         ModelsLiveChat::create([
@@ -60,6 +61,6 @@ class LiveChat extends Component
         ]);
 
         $this->message = '';
-        $this->image = null;
+        $this->images = null;
     }
 }

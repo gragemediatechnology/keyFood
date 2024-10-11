@@ -90,11 +90,11 @@
 
 
                     <div class="form-control">
-                        <form action="POST" id="messageForm" wire:submit.prevent="SendMessage"
+                        <form method="POST" id="messageForm" wire:submit.prevent="SendMessage"
                             enctype="multipart/form-data">
                             <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model="message"
                                 placeholder="Kirim pesan bang..." required></textarea>
-                            <input type="file" wire:model="image" id="imageInput" />
+                            <input type="file" wire:model="images" id="imageInput" />
                             <button type="button" id="chooseFileButton" class="btn btn-primary">Choose File</button>
                             <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
                         </form>
@@ -168,9 +168,11 @@
             console.log(file);
             if (file) {
                 const reader = new FileReader();
+                console.log(reader);
 
                 reader.onload = function(e) {
                     // Buat elemen img untuk menampilkan pratinjau
+                    console.log(e);
                     const img = document.createElement('img');
                     img.src = e.target.result;
                     img.className =
@@ -206,7 +208,7 @@
                     chooseFileButton.style.display = 'none';
                 };
 
-                console.log(reader.readAsDataURL(file));
+                reader.readAsDataURL(file);
             } else {
                 imagePreview.innerHTML = '';
                 chooseFileButton.style.display = 'inline-block';
