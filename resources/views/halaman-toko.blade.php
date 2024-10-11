@@ -4,7 +4,7 @@
     <div class="store-header">
         @foreach ($storeDetails as $detail)
                 <div class="store-info">
-                    <img src="{{ $detail->foto_profile_toko ? 'store_image/' . $detail->foto_profile_toko : 'img/markets.webp' }}"
+                    <img src="{{ $detail->foto_profile_toko ? 'https://lapakkbk.online/store_image/' . $detail->foto_profile_toko : 'https://lapakkbk.online/img/markets.webp' }}"
                         alt="logo toko" class="store-logo">
                     <div class="store-text">
                         <h1>{{ $detail->nama_toko }}</h1>
@@ -56,7 +56,7 @@
                                 <span hidden>{{ $product->id }}</span>
                                 <span hidden>{{ $product->store_id }}</span>
                                 <span hidden>{{ $product->slug }}</span>
-                                <img alt="{{ $product->name }}" src="{{ $product->photo }}">
+                                <img alt="{{ $product->name }}" src="https://lapakkbk.online/{{ $product->photo }}">
                                 <strong>{{ $product->name }}</strong>
                                 <span class="quantity">Kategori:
                                     {{ $product->category ? $product->category->name : 'Unknown' }}</span>
