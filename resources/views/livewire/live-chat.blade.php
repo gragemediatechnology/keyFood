@@ -92,6 +92,7 @@
                     <div class="form-control">
                         <form method="POST" id="messageForm" wire:submit.prevent="SendMessage"
                             enctype="multipart/form-data">
+                            @csrf
                             <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model="message"
                                 placeholder="Kirim pesan bang..." required></textarea>
                             <input type="file" wire:model="images" id="imageInput" required hidden />
