@@ -165,11 +165,17 @@
                                                 <div class="special__footer flex flex-col justify-center items-center">
                                                     <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span><br>
                                                     @if(auth()->check())
-                                                        <!-- Jika user sudah login, kirim form ke detailed-store -->
-                                                        <form action="/detailed-store" method="GET">
-                                                            <input type="hidden" value="{{ $product->toko->id_toko }}" name="id">
-                                                            <button class="btn">Lihat Produk</button>
-                                                        </form>
+                                                        <!-- Jika user sudah login, ambil URL dari session storage dan arahkan ke halaman tersebut -->
+                                                        <script>
+                                                            const redirectUrl = sessionStorage.getItem('redirectUrl');
+                                                            if (redirectUrl) {
+                                                                sessionStorage.removeItem('redirectUrl'); // Hapus URL setelah digunakan
+                                                                window.location.href = redirectUrl; // Arahkan ke URL yang disimpan
+                                                            } else {
+                                                                // Jika tidak ada URL, tetap tampilkan halaman produk
+                                                                window.location.href = '/detailed-store?id={{ $product->toko->id_toko }}';
+                                                            }
+                                                        </script>
                                                     @else
                                                         <!-- Jika user belum login, simpan URL yang diminta ke session storage -->
                                                         <script>
