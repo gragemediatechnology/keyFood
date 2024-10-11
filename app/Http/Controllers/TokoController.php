@@ -159,7 +159,7 @@ class TokoController extends Controller
         // dd($request->all());
 
 
-        dd('storeDetails', 'products');
+        dd($store, $products);
         // Tampilkan detail toko di view
         // return view('halaman-toko', compact('storeDetails', 'products'));
     }
