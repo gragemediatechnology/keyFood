@@ -173,8 +173,8 @@
                                             </form>
                                         @else
                                             <!-- Jika user belum login, arahkan ke halaman login dengan redirect -->
-                                            {{-- <a href="{{ config('app.url') . '/log-reg?redirect=' . urlencode(request()->fullUrl()) }}" class="btn">Lihat Produk</a> --}}
-                                            <a href="{{ config(('app.url') .'/login?redirect=' . urlencode(request()->fullUrl())) }}" class="btn">Lihat Produk</a>
+                                            <a href="{{ config('app.url') . '/log-reg?redirect=' . urlencode(request()->fullUrl()) }}" class="btn">Lihat Produk</a>
+                                            {{-- <a href="{{ config(('app.url') .'/login?redirect=' . urlencode(request()->fullUrl())) }}" class="btn">Lihat Produk</a> --}}
 
                                         @endif
                                     </div>
