@@ -29,6 +29,59 @@ class AuthenticatedSessionController extends Controller
      */
 
 
+    // public function store2(LoginRequest $request): RedirectResponse
+    // {
+    //     $credentials = $request->only('phone', 'password');
+
+    //     // Validasi Phone dan Password
+    //     $validator = Validator::make($credentials, [
+    //         'phone' => 'required|numeric',
+    //         'password' => 'required',
+    //     ]);
+
+    //     // Cek apakah ada redirect URL setelah login
+    //     if ($request->has('redirect')) {
+    //         return redirect()->intended($request->input('redirect'));
+    //     }
+
+    //     // Jika tidak ada redirect URL, arahkan ke halaman dashboard (atau halaman default lainnya)
+    //     return redirect()->route('Detail.Toko');
+
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //     }
+
+    //     $user = User::where('phone', $credentials['phone'])->first();
+
+    //     if (!$user) {
+    //         return redirect()->back()->withErrors([
+    //             'phone' => 'Phone tidak ditemukan.',
+    //         ])->withInput();
+    //     }
+
+    //     if (!Auth::attempt($credentials)) {
+    //         return redirect()->back()->withErrors([
+    //             'password' => 'Password salah.',
+    //         ])->withInput();
+    //     }
+
+    //     // Jika login berhasil, ubah status is_online menjadi true
+    //     $user->update(['is_online' => true]);
+
+    //     $request->session()->regenerate();
+
+    //     // Redirect based on user role
+    //     if (Auth::user()->hasRole('admin')) {
+    //         return redirect()->intended(route('admin.dashboard-main'));
+    //     }
+
+    //     if (Auth::user()->hasRole('seller')) {
+    //         return redirect()->intended(route('seller-edit'));
+    //     }
+
+    //     return redirect()->intended(route('home'));
+    // }
+
     public function store(LoginRequest $request): RedirectResponse
     {
         $credentials = $request->only('phone', 'password');
@@ -62,17 +115,25 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // Redirect based on user role
+        // Manual redirect berdasarkan input 'redirect' di URL
+        if ($request->has('redirect')) {
+            return redirect($request->input('redirect'));
+        }
+
+        // Redirect berdasarkan role
         if (Auth::user()->hasRole('admin')) {
-            return redirect()->intended(route('admin.dashboard-main'));
+            return redirect()->route('admin.dashboard-main');
         }
 
         if (Auth::user()->hasRole('seller')) {
-            return redirect()->intended(route('seller-edit'));
+            return redirect()->route('seller-edit');
         }
 
-        return redirect()->intended(route('home'));
+        // Jika tidak ada redirect URL, arahkan ke halaman default
+        return redirect()->route('home');
     }
+
+
 
 
     /**
@@ -80,7 +141,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        
+
         $user = Auth::user();
 
         Auth::guard('web')->logout();
