@@ -172,7 +172,7 @@
                                                         </form>
                                                     @else
                                                         <!-- Jika user belum login, arahkan ke halaman login dengan redirect -->
-                                                        <a href="{{ '/log-reg?redirect=' . urlencode(request()->fullUrl()) }}" class="btn">
+                                                        <a href="{{ '/log-reg?redirect=' . '/detailed-store' }}" class="btn">
                                                             Lihat Produk
                                                         </a>
 
