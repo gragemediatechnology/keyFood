@@ -138,7 +138,7 @@ class TokoController extends Controller
 
     public function detailStore(Request $request, $id)
     {
-        // dd($id);
+        dd($request->id);
 
         // // Ambil nama toko dari input form
         // $namaToko = $request->input('nama_toko');
@@ -159,7 +159,7 @@ class TokoController extends Controller
         // dd($request->all());
 
 
-        dd($store, $products);
+        // dd($store, $products);
         // Tampilkan detail toko di view
         // return view('halaman-toko', compact('storeDetails', 'products'));
     }
