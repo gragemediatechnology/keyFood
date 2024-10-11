@@ -156,7 +156,7 @@ class TokoController extends Controller
         // $storeDetails = Toko::where('id_toko', $storeId)->get();
 
         // $products = Product::where('store_id', $storeId)->get();
-        dd($request->all());
+        // dd($request->all());
 
 
 
