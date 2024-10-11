@@ -28,7 +28,7 @@
     <div id="store-list">
         @foreach ($stores as $store)
             <form action="/detailed-store/{{$store->store_id}}" method="GET">
-                <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko">
+                <!-- <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko"> -->
                 <input type="hidden" value="{{ $store->store_id }}" name="id">
                 <button type="submit">
                     <div class="container-s" id="visit">
