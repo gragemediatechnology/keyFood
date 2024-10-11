@@ -167,7 +167,6 @@
                                                     @if(auth()->check())
                                                         <!-- Jika user sudah login, kirim form ke detailed-store -->
                                                         <form action="/detailed-store" method="GET">
-                                                            @csrf
                                                             <input type="hidden" value="{{ $product->toko->id_toko }}" name="id">
                                                             <button class="btn">Lihat Produk</button>
                                                         </form>
