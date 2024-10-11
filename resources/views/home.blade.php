@@ -164,7 +164,7 @@
 
                                                 <div class="special__footer flex flex-col justify-center items-center">
                                                     <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span><br>
-                                                    @if(auth()->check())
+                                                    @if(session('success'))
                                                         <!-- Jika user sudah login, ambil URL dari session storage dan arahkan ke halaman tersebut -->
                                                         <script>
                                                             const redirectUrl = sessionStorage.getItem('redirectUrl');
