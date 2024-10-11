@@ -115,23 +115,24 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // Cek apakah ada redirect URL setelah login
+        // Manual redirect berdasarkan input 'redirect' di URL
         if ($request->has('redirect')) {
-            return redirect()->intended($request->input('redirect'));
+            return redirect($request->input('redirect'));
         }
 
         // Redirect berdasarkan role
         if (Auth::user()->hasRole('admin')) {
-            return redirect()->intended(route('admin.dashboard-main'));
+            return redirect()->route('admin.dashboard-main');
         }
 
         if (Auth::user()->hasRole('seller')) {
-            return redirect()->intended(route('seller-edit'));
+            return redirect()->route('seller-edit');
         }
 
         // Jika tidak ada redirect URL, arahkan ke halaman default
-        return redirect()->intended(route('home'));
+        return redirect()->route('home');
     }
+
 
 
 
