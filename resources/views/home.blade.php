@@ -171,19 +171,14 @@
                                                             <button class="btn">Lihat Produk</button>
                                                         </form>
                                                     @else
-                                                        <!-- Jika user belum login, arahkan ke halaman login dengan redirect -->
-                                                        <a href="{{ '/log-reg?redirect=' . urlencode('/detailed-store?id=' . $product->toko->id_toko) }}"
-                                                            class="btn">
+                                                        <!-- Jika user belum login, simpan URL yang diminta ke session storage -->
+                                                        <script>
+                                                            sessionStorage.setItem('redirectUrl', '/detailed-store?id={{ $product->toko->id_toko }}');
+                                                        </script>
+                                                        <!-- Arahkan ke halaman login dengan redirect -->
+                                                        <a href="{{ '/log-reg' }}" class="btn">
                                                             Lihat Produk
                                                         </a>
-
-
-                                                        <!-- <a href="{{ config('app.url') . '/log-reg?redirect=' . urlencode(request()->fullUrl()) }}"
-                                                                                                                                                class="btn">Lihat Produk</a> -->
-                                                        {{-- <a
-                                                            href="{{ config(('app.url') .'/login?redirect=' . urlencode(request()->fullUrl())) }}"
-                                                            class="btn">Lihat Produk</a> --}}
-
                                                     @endif
                                                 </div>
 
