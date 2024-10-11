@@ -36,9 +36,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('Home');
 
 
 Route::get('/tutorial', [TutorialController::class, 'index'])->name('tutorial.index');
