@@ -138,13 +138,13 @@ class TokoController extends Controller
 
     public function detailStore(Request $request, $id)
     {
-        dd($id);
+        // dd($id);
 
         // // Ambil nama toko dari input form
         // $namaToko = $request->input('nama_toko');
 
-        // // Cari toko berdasarkan nama
-        // $store = Toko::where('nama_toko', $namaToko)->firstOrFail();
+        // // Cari toko berdasarkan id
+        $store = Toko::where('id_toko', $id)->first();
 
 
         // // Ambil ID toko dari input
@@ -155,11 +155,11 @@ class TokoController extends Controller
         // // gunakan ID untuk mengambil detail toko
         // $storeDetails = Toko::where('id_toko', $storeId)->get();
 
-        // $products = Product::where('store_id', $storeId)->get();
+        $products = Product::where('store_id', $id)->get();
         // dd($request->all());
 
 
-
+        dd('storeDetails', 'products');
         // Tampilkan detail toko di view
         // return view('halaman-toko', compact('storeDetails', 'products'));
     }
