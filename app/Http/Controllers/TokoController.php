@@ -136,9 +136,9 @@ class TokoController extends Controller
         return view('stores', compact('stores'));
     }
 
-    public function detailStore(Request $request)
+    public function detailStore(Request $request, id $id)
     {
-
+        dd($id)
 
         // // Ambil nama toko dari input form
         // $namaToko = $request->input('nama_toko');
