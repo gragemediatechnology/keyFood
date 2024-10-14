@@ -1,5 +1,3 @@
-<link rel="icon" type="image/x-icon" href="../img/logos.svg">
-<title>Lapak KBK || {{ Route::currentRouteName() }} </title>
 <style>
     .modal {
         transition: opacity 0.25s ease;
@@ -65,6 +63,8 @@
 
         <!-- Modal -->
         <div class="modal opacity-0 pointer-events-none fixed inset-0 flex items-end justify-end">
+            <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+            <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
             <div class="modal-overlay absolute inset-0 bg-black bg-opacity-50"></div>
 
             <div

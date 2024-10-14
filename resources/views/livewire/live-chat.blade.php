@@ -1,7 +1,6 @@
-
-<link rel="icon" type="image/x-icon" href="../img/logos.svg">
-<title>Lapak KBK || {{ Route::currentRouteName() }} </title>
 <div id="messageContainer" class="overflow-y-auto h-screen">
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -61,7 +60,7 @@
                                         @if ($message->image)
                                             <img src="{{ 'storage/' . $message->image }}" alt="Image"
                                                 class="max-w-24 h-auto rounded-lg mt-2 cursor-pointer" id="chatImage"
-                                                onclick="openModal('{{ ('storage/' . $message->image) }}')">
+                                                onclick="openModal('{{ 'storage/' . $message->image }}')">
                                         @endif
 
                                         @if ($message->message)
