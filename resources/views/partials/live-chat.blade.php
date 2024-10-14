@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="../img/logos.svg">
+<title>Lapak KBK || {{ Route::currentRouteName() }} </title>
 <style>
     .modal {
         transition: opacity 0.25s ease;
