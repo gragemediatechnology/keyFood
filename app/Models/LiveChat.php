@@ -9,7 +9,7 @@ class LiveChat extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['from_user_id', 'to_user_id', 'message', 'image', 'is_read'];
+    protected $fillable = ['from_user_id', 'to_user_id', 'message', 'image', 'is_read', 'ip_address'];
 
     public function fromUser()
     {
