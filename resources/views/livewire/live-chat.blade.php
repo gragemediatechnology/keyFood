@@ -90,12 +90,11 @@
 
 
                     <div class="form-control">
-                        <form method="POST" id="messageForm" wire:submit.prevent="SendMessage"
+                        <form action="POST" id="messageForm" wire:submit.prevent="SendMessage"
                             enctype="multipart/form-data">
-                            @csrf
                             <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model="message"
                                 placeholder="Kirim pesan bang..." required></textarea>
-                            <input type="file" wire:model="images" id="imageInput" required hidden />
+                            <input type="file" wire:model="image" class="hidden" id="imageInput" />
                             <button type="button" id="chooseFileButton" class="btn btn-primary">Choose File</button>
                             <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
                         </form>
@@ -166,14 +165,11 @@
         // Tangani pemilihan file dan pratinjau
         imageInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
-            console.log(file);
             if (file) {
                 const reader = new FileReader();
-                console.log(reader);
 
                 reader.onload = function(e) {
                     // Buat elemen img untuk menampilkan pratinjau
-                    console.log(e);
                     const img = document.createElement('img');
                     img.src = e.target.result;
                     img.className =
