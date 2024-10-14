@@ -1,9 +1,5 @@
 <?php
 
-// 
-
-
-
 namespace App\Livewire;
 
 use App\Models\LiveChat as ModelsLiveChat;
@@ -11,10 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
-
-
-
+use Illuminate\Http\Request;
 
 class LiveChat extends Component
 {
@@ -22,13 +15,7 @@ class LiveChat extends Component
 
     public User $user;
     public $message = '';
-    public $image;
-    public $messageSent = false;
-
-    protected $rules = [
-        'message' => 'required|string|max:255',
-        'image' => 'nullable|image|max:1024', // max 1MB
-    ];
+    public $images;
 
     public function render()
     {
@@ -53,15 +40,18 @@ class LiveChat extends Component
         ]);
     }
 
-    public function SendMessage()
+    public function SendMessage(Request $request)
     {
-        $this->validate();
-
         $path = null;
+        // dd($request->image);
+        dd($request->hasFile('images'), $this->message, $request->all());
 
-        if ($this->image) {
-            $path = $this->image->store('public/img/chats');
-            $path = Storage::url($path);
+        // $this->validate([
+        //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,mp4|max:10000',
+        // ]);
+
+        if ($this->images) {
+            $path = $this->images->storeAs('img/chats', $this->images->getClientOriginalName(), 'public');
         }
 
         ModelsLiveChat::create([
@@ -69,23 +59,10 @@ class LiveChat extends Component
             'to_user_id' => $this->user->id,
             'message' => $this->message,
             'image' => $path,
-            'ip_address' => request()->ip(),
+            'ip_address' => $request->ip(),
         ]);
 
-        $this->reset(['message', 'image']);
-        $this->messageSent = true;
-    }
-
-    public function getListeners()
-    {
-        return [
-            'echo:private-chat.' . auth()->id() . ',MessageSent' => 'refreshMessages',
-        ];
-    }
-
-    public function refreshMessages()
-    {
-        // This method will be called when a new message is received
-        // The component will re-render automatically
+        $this->message = '';
+        $this->images = null;
     }
 }
