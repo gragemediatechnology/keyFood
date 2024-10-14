@@ -59,7 +59,7 @@ class LiveChat extends Component
             'to_user_id' => $this->user->id,
             'message' => $this->message,
             'image' => $path,
-            'ip_address' => $request->ip(),
+            // 'ip_address' => $request->ip(),
         ]);
 
         $this->message = '';
