@@ -84,8 +84,7 @@
                                     </div>
                                     <div class="chat-header text-gray-950">
                                         {{ $message->fromUser->name }}
-                                        <time
-                                            class="text-xs opacity-50 text-gray">{{ $message->created_at->diffForHumans() }}</time>
+                                        <time class="text-xs opacity-50 text-gray">{{ $message->created_at->diffForHumans() }}</time>
                                     </div>
                                     <div class="chat-bubble sm:max-w-xs lg:max-w-lg p-2 break-words shadow-md">
                                         @if ($message->image)
@@ -138,29 +137,26 @@
     </div>
 </div> --}}
 
-                    <div id="imagePreview" class="mt-2 max-w-20 mb-4 mx-9 rounded-lg relative" wire:ignore></div>
+            
+<div id="imagePreview" class="mt-2 max-w-20 mb-4 mx-9 rounded-lg relative" wire:ignore></div>
 
-                    <div class="form-control">
-                        <form wire:submit.prevent="SendMessage" enctype="multipart/form-data">
-                            @csrf
-                            <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model.defer="message"
-                                placeholder="Kirim pesan bang..."></textarea>
-                            <input type="file" wire:model="image" id="imageInput" accept="image/*" hidden />
-                            <button type="button" id="chooseFileButton" class="btn btn-primary">Choose File</button>
-                            <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
-                        </form>
-                    </div>
+<div class="form-control">
+    <form wire:submit.prevent="SendMessage">
+        @csrf
+        <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model.defer="message"
+            placeholder="Kirim pesan bang..."></textarea>
+        <input type="file" wire:model="image" id="imageInput" accept="image/*" hidden />
+        <button type="button" id="chooseFileButton" class="btn btn-primary">Choose File</button>
+        <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
+    </form>
+</div>
 
-                    @error('message')
-                        <span class="error text-red-500">{{ $message }}</span>
-                    @enderror
-                    @error('image')
-                        <span class="error text-red-500">{{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-        </div>
-    </div>
+@error('message') <span class="error text-red-500">{{ $message }}</span> @enderror
+@error('image') <span class="error text-red-500">{{ $message }}</span> @enderror
+</div>
+</div>
+</div>
+</div>
 </div>
 
 {{-- 
@@ -332,6 +328,25 @@
 </script> --}}
 
 <script>
+    function openModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        modalImage.src = imageSrc;
+        modal.classList.remove('hidden');
+    }
+
+    function closeModal(event) {
+        if (event) {
+            // Prevent closing the modal if the click was inside the modal content
+            if (event.target.id === 'imageModal') {
+                const modal = document.getElementById('imageModal');
+                modal.classList.add('hidden');
+            }
+        } else {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('hidden');
+        }
+    }
     // Fungsi openModal dan closeModal tetap sama
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -340,6 +355,7 @@
         const imagePreview = document.getElementById('imagePreview');
         const messageTextarea = document.getElementById('messageTextarea');
         const messageContainer = document.getElementById('messageContainer');
+        const submitButton = document.getElementById('submitButton');
 
         // Scroll ke bawah saat halaman dimuat
         if (messageContainer) {
@@ -382,6 +398,8 @@
                         imagePreview.innerHTML = '';
                         chooseFileButton.style.display = 'inline-block';
                         imageInput.value = '';
+                        // Trigger Livewire update
+                        Livewire.find(imageInput.closest('[wire\\:id]').getAttribute('wire:id')).set('image', null);
                     });
 
                     imagePreview.innerHTML = '';
@@ -402,7 +420,7 @@
             if (event.key === 'Enter' && !event.shiftKey) {
                 event.preventDefault();
                 if (messageTextarea.value.trim() !== '' || imageInput.files.length > 0) {
-                    Livewire.emit('sendMessage');
+                    submitButton.click();
                 }
             }
         });
