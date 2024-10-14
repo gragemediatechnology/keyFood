@@ -13,6 +13,9 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
+
+
+
 class LiveChat extends Component
 {
     use WithFileUploads;
@@ -20,6 +23,7 @@ class LiveChat extends Component
     public User $user;
     public $message = '';
     public $image;
+    public $messageSent = false;
 
     protected $rules = [
         'message' => 'required|string|max:255',
@@ -69,6 +73,19 @@ class LiveChat extends Component
         ]);
 
         $this->reset(['message', 'image']);
-        $this->emit('messageSent');
+        $this->messageSent = true;
+    }
+
+    public function getListeners()
+    {
+        return [
+            'echo:private-chat.' . auth()->id() . ',MessageSent' => 'refreshMessages',
+        ];
+    }
+
+    public function refreshMessages()
+    {
+        // This method will be called when a new message is received
+        // The component will re-render automatically
     }
 }

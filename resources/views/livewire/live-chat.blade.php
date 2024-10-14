@@ -84,7 +84,8 @@
                                     </div>
                                     <div class="chat-header text-gray-950">
                                         {{ $message->fromUser->name }}
-                                        <time class="text-xs opacity-50 text-gray">{{ $message->created_at->diffForHumans() }}</time>
+                                        <time
+                                            class="text-xs opacity-50 text-gray">{{ $message->created_at->diffForHumans() }}</time>
                                     </div>
                                     <div class="chat-bubble sm:max-w-xs lg:max-w-lg p-2 break-words shadow-md">
                                         @if ($message->image)
@@ -137,26 +138,30 @@
     </div>
 </div> --}}
 
-            
-<div id="imagePreview" class="mt-2 max-w-20 mb-4 mx-9 rounded-lg relative" wire:ignore></div>
 
-<div class="form-control">
-    <form wire:submit.prevent="SendMessage">
-        @csrf
-        <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model.defer="message"
-            placeholder="Kirim pesan bang..."></textarea>
-        <input type="file" wire:model="image" id="imageInput" accept="image/*" hidden />
-        <button type="button" id="chooseFileButton" class="btn btn-primary">Choose File</button>
-        <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
-    </form>
-</div>
+                    <div id="imagePreview" class="mt-2 max-w-20 mb-4 mx-9 rounded-lg relative" wire:ignore></div>
 
-@error('message') <span class="error text-red-500">{{ $message }}</span> @enderror
-@error('image') <span class="error text-red-500">{{ $message }}</span> @enderror
-</div>
-</div>
-</div>
-</div>
+                    <div class="form-control">
+                        <form wire:submit.prevent="SendMessage">
+                            @csrf
+                            <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model.defer="message"
+                                placeholder="Kirim pesan bang..."></textarea>
+                            <input type="file" wire:model="image" id="imageInput" accept="image/*" hidden />
+                            <button type="button" id="chooseFileButton" class="btn btn-primary">Choose File</button>
+                            <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
+                        </form>
+                    </div>
+
+                    @error('message')
+                        <span class="error text-red-500">{{ $message }}</span>
+                    @enderror
+                    @error('image')
+                        <span class="error text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {{-- 
@@ -355,22 +360,24 @@
         const imagePreview = document.getElementById('imagePreview');
         const messageTextarea = document.getElementById('messageTextarea');
         const messageContainer = document.getElementById('messageContainer');
-        const submitButton = document.getElementById('submitButton');
 
         // Scroll ke bawah saat halaman dimuat
         if (messageContainer) {
             messageContainer.scrollTop = messageContainer.scrollHeight;
         }
 
-        // Menggulir ke bawah saat pesan dikirim oleh Livewire
-        Livewire.on('messageSent', () => {
-            if (messageContainer) {
-                messageContainer.scrollTop = messageContainer.scrollHeight;
+        // Menggulir ke bawah saat pesan dikirim
+        Livewire.hook('message.processed', (message, component) => {
+            if (component.messageSent) {
+                if (messageContainer) {
+                    messageContainer.scrollTop = messageContainer.scrollHeight;
+                }
+                messageTextarea.value = '';
+                imageInput.value = '';
+                imagePreview.innerHTML = '';
+                chooseFileButton.style.display = 'inline-block';
+                component.messageSent = false;
             }
-            messageTextarea.value = '';
-            imageInput.value = '';
-            imagePreview.innerHTML = '';
-            chooseFileButton.style.display = 'inline-block';
         });
 
         // Buka dialog file saat tombol "Choose File" diklik
@@ -420,7 +427,7 @@
             if (event.key === 'Enter' && !event.shiftKey) {
                 event.preventDefault();
                 if (messageTextarea.value.trim() !== '' || imageInput.files.length > 0) {
-                    submitButton.click();
+                    Livewire.find(messageTextarea.closest('[wire\\:id]').getAttribute('wire:id')).call('SendMessage');
                 }
             }
         });
