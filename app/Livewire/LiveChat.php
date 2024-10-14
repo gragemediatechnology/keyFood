@@ -1,5 +1,9 @@
 <?php
 
+// 
+
+
+
 namespace App\Livewire;
 
 use App\Models\LiveChat as ModelsLiveChat;
@@ -7,7 +11,7 @@ use App\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LiveChat extends Component
 {
@@ -15,7 +19,12 @@ class LiveChat extends Component
 
     public User $user;
     public $message = '';
-    public $images;
+    public $image;
+
+    protected $rules = [
+        'message' => 'required|string|max:255',
+        'image' => 'nullable|image|max:1024', // max 1MB
+    ];
 
     public function render()
     {
@@ -40,18 +49,15 @@ class LiveChat extends Component
         ]);
     }
 
-    public function SendMessage(Request $request)
+    public function SendMessage()
     {
+        $this->validate();
+
         $path = null;
-        // dd($request->image);
-        dd($request->hasFile('images'), $this->message, $request->all());
 
-        // $this->validate([
-        //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,mp4|max:10000',
-        // ]);
-
-        if ($this->images) {
-            $path = $this->images->storeAs('img/chats', $this->images->getClientOriginalName(), 'public');
+        if ($this->image) {
+            $path = $this->image->store('public/img/chats');
+            $path = Storage::url($path);
         }
 
         ModelsLiveChat::create([
@@ -59,10 +65,10 @@ class LiveChat extends Component
             'to_user_id' => $this->user->id,
             'message' => $this->message,
             'image' => $path,
-            'ip_address' => $request->ip(),
+            'ip_address' => request()->ip(),
         ]);
 
-        $this->message = '';
-        $this->images = null;
+        $this->reset(['message', 'image']);
+        $this->emit('messageSent');
     }
 }

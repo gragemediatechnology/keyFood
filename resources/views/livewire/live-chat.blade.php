@@ -39,7 +39,7 @@
                     @endif
 
 
-                    <div wire:poll>
+                    {{-- <div wire:poll>
                         @if (isset($messages) && $messages->isNotEmpty())
                             @foreach ($messages as $message)
                                 <div class="chat @if ($message->from_user_id == auth()->id()) chat-end @else chat-start @endif">
@@ -70,6 +70,38 @@
                                 </div>
                             @endforeach
                         @endif
+                    </div> --}}
+
+                    <div wire:poll.10s>
+                        @if (isset($messages) && $messages->isNotEmpty())
+                            @foreach ($messages as $message)
+                                <div class="chat @if ($message->from_user_id == auth()->id()) chat-end @else chat-start @endif">
+                                    <div class="chat-image avatar">
+                                        <div class="w-10 rounded-full">
+                                            <img alt="User Avatar"
+                                                src="{{ $message->fromUser->img ?? 'img/client-1.jpg' }}" />
+                                        </div>
+                                    </div>
+                                    <div class="chat-header text-gray-950">
+                                        {{ $message->fromUser->name }}
+                                        <time
+                                            class="text-xs opacity-50 text-gray">{{ $message->created_at->diffForHumans() }}</time>
+                                    </div>
+                                    <div class="chat-bubble sm:max-w-xs lg:max-w-lg p-2 break-words shadow-md">
+                                        @if ($message->image)
+                                            <img src="{{ $message->image }}" alt="Image"
+                                                class="max-w-24 h-auto rounded-lg mt-2 cursor-pointer" id="chatImage"
+                                                onclick="openModal('{{ $message->image }}')">
+                                        @endif
+
+                                        @if ($message->message)
+                                            <p class="mb-2">{{ $message->message }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="chat-footer opacity-50 text-gray-900">Delivered</div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
 
                     <div id="imageModal"
@@ -86,7 +118,7 @@
                         </div>
                     </div>
 
-                    <div id="imagePreview" class="mt-2 max-w-20 mb-4 mx-9 rounded-lg relative" wire:ignore></div>
+                    {{-- <div id="imagePreview" class="mt-2 max-w-20 mb-4 mx-9 rounded-lg relative" wire:ignore></div>
 
 
                     <div class="form-control">
@@ -104,9 +136,34 @@
             </div>
         </div>
     </div>
+</div> --}}
+
+                    <div id="imagePreview" class="mt-2 max-w-20 mb-4 mx-9 rounded-lg relative" wire:ignore></div>
+
+                    <div class="form-control">
+                        <form wire:submit.prevent="SendMessage" enctype="multipart/form-data">
+                            @csrf
+                            <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model.defer="message"
+                                placeholder="Kirim pesan bang..."></textarea>
+                            <input type="file" wire:model="image" id="imageInput" accept="image/*" hidden />
+                            <button type="button" id="chooseFileButton" class="btn btn-primary">Choose File</button>
+                            <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
+                        </form>
+                    </div>
+
+                    @error('message')
+                        <span class="error text-red-500">{{ $message }}</span>
+                    @enderror
+                    @error('image')
+                        <span class="error text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-
+{{-- 
 <script>
     function openModal(imageSrc) {
         const modal = document.getElementById('imageModal');
@@ -270,6 +327,84 @@
                 messageTextarea.value = '';
                 imageInput.value = '';
             }, 100); // Tambahkan sedikit delay agar pesan terkirim lebih dulu
+        });
+    });
+</script> --}}
+
+<script>
+    // Fungsi openModal dan closeModal tetap sama
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const chooseFileButton = document.getElementById('chooseFileButton');
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        const messageTextarea = document.getElementById('messageTextarea');
+        const messageContainer = document.getElementById('messageContainer');
+
+        // Scroll ke bawah saat halaman dimuat
+        if (messageContainer) {
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+
+        // Menggulir ke bawah saat pesan dikirim oleh Livewire
+        Livewire.on('messageSent', () => {
+            if (messageContainer) {
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+            }
+            messageTextarea.value = '';
+            imageInput.value = '';
+            imagePreview.innerHTML = '';
+            chooseFileButton.style.display = 'inline-block';
+        });
+
+        // Buka dialog file saat tombol "Choose File" diklik
+        chooseFileButton.addEventListener('click', function() {
+            imageInput.click();
+        });
+
+        // Tangani pemilihan file dan pratinjau
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'max-w-[80px] h-[80px] rounded-lg';
+
+                    const closeButton = document.createElement('button');
+                    closeButton.innerHTML = '&times;';
+                    closeButton.className = 'absolute top-0 right-0 text-white bg-red-500 rounded-full w-6 h-6 flex items-center justify-center';
+                    closeButton.style.cursor = 'pointer';
+
+                    closeButton.addEventListener('click', function() {
+                        imagePreview.innerHTML = '';
+                        chooseFileButton.style.display = 'inline-block';
+                        imageInput.value = '';
+                    });
+
+                    imagePreview.innerHTML = '';
+                    imagePreview.appendChild(img);
+                    imagePreview.appendChild(closeButton);
+                    chooseFileButton.style.display = 'none';
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.innerHTML = '';
+                chooseFileButton.style.display = 'inline-block';
+            }
+        });
+
+        // Tambahkan event listener untuk menangani pengiriman pesan dengan Enter
+        messageTextarea.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                if (messageTextarea.value.trim() !== '' || imageInput.files.length > 0) {
+                    Livewire.emit('sendMessage');
+                }
+            }
         });
     });
 </script>
