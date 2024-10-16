@@ -115,14 +115,27 @@
                                 <div class="flex justify-center my-4">
                                     <div class="flex justify-end gap-4">
                                         <!-- Star rating form -->
-
-                                        <!-- {{-- <form action="{{ route('rate.product', $orderDetail->product_id) }}" method="POST" -->
-                                        {{-- <form action="/rate-product/{{$orderDetail->product_id }}" method="POST"
-                                            id="ratingForm">
-                                            @csrf
-                                            <input type="hidden" name="rating" id="ratingInput">
+                                        @if ($orderDetail->rating === null)
+                                            <form action="/rate-product/{{ $orderDetail->product_id }}" method="POST"
+                                                id="ratingForm">
+                                                @csrf
+                                                <input type="hidden" name="rating" id="ratingInput">
+                                                <div class="flex">
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="text-yellow-500 w-5 h-auto fill-current cursor-pointer"
+                                                            data-rating="{{ $i }}"
+                                                            onclick="submitRating({{ $i }})"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                                        </svg>
+                                                    @endfor
+                                                </div>
+                                            </form>
+                                        @else
                                             <div class="flex">
-                                                @for ($i = 1; $i <= 5; $i++)
+                                                @for ($i = 1; $i <= $orderDetail->products->rating; $i++)
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="text-yellow-500 w-5 h-auto fill-current cursor-pointer"
                                                         data-rating="{{ $i }}"
@@ -132,76 +145,57 @@
                                                     </svg>
                                                 @endfor
                                             </div>
-                                        </form> --}}
+                                            <p>Anda sudah memberikan rating {{ $orderDetail->rating }} untuk pembelian ini.
+                                            </p>
+                                        @endif
 
-                                            @if ($orderDetail->rating === null)
-    <!-- <form action="{{ route('rate.product', $orderDetail->product_id) }}" method="POST" id="ratingForm"> -->
-                                        <form action="/rate-product/{{ $orderDetail->product_id }}" method="POST"
-                                            id="ratingForm">
-                                            @csrf
-                                            <input type="hidden" name="rating" id="ratingInput">
-                                            <div class="flex">
-                                                @for ($i = 1; $i <= 5; $i++)
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="text-yellow-500 w-5 h-auto fill-current cursor-pointer"
-                                                        data-rating="{{ $i }}"
-                                                        onclick="submitRating({{ $i }})" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                                    </svg>
-                                                @endfor
-                                            </div>
-                                        </form>
-                                    @else
-                                        <p>Anda sudah memberikan rating {{ $orderDetail->rating }} untuk pembelian ini.</p>
-                            @endif
+                                        <!-- Display average rating -->
+                                        <span class="text-slate-400 font-medium">
+                                            {{ isset($orderDetail->products) ? number_format($orderDetail->products->rating / max(count(json_decode($orderDetail->products->rated_by ?? '[]')), 1), 1) : 'N/A' }}
+                                            out of 5 stars
+                                        </span>
+                                    </div>
+                                </div>
+                                <svg class="mt-9 w-full" xmlns="http://www.w3.org/2000/svg" width="1216" height="2"
+                                    viewBox="0 0 1216 2" fill="none">
+                                    <path d="M0 1H1216" stroke="#D1D5DB" />
+                                </svg>
+                            @endforeach
+                        @endif
 
-                            <!-- Display average rating -->
-                            <span class="text-slate-400 font-medium">
-                                {{ isset($orderDetail->products) ? number_format($orderDetail->products->rating / max(count(json_decode($orderDetail->products->rated_by ?? '[]')), 1), 1) : 'N/A' }}
-                                out of 5 stars
-                            </span>
+                        <div class="px-3 md:px-11 flex items-center justify-between flex-col-reverse sm:flex-row">
+                            <div class="flex flex-col sm:flex-row items-center">
+                                <!-- <form action="{{ route('orders.destroy', $order->id) }}" method="POST" onsubmit="return confirm('Kamu yakin menghapus orderan ini?');"> -->
+                                <form action="/orders/{{ $order->id }}" method="POST"
+                                    onsubmit="return confirm('Kamu yakin menghapus orderan ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="flex items-center gap-3 py-10 pr-8 sm:border-r border-gray-300 font-normal text-xl leading-8 text-gray-500 dark:text-gray-300 group transition-all duration-500 hover:text-red-600">
+                                        <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                class="stroke-gray-600 dark:stroke-gray-300 transition-all duration-500 group-hover:stroke-red-600"
+                                                d="M14.0261 14.7259L25.5755 26.2753M14.0261 26.2753L25.5755 14.7259"
+                                                stroke="" stroke-width="1.8" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                        Hapus Riwayat
+                                    </button>
+                                </form>
+
+                                <p class="complete font-normal text-xl leading-8 text-gray-500 sm:pl-8">Pembelian Berhasil!
+                                </p>
+                            </div>
+                            <p class="font-medium text-xl leading-8 text-black">
+                                <span class="text-gray-500">Total Harga: </span> &nbsp;Rp.
+                                {{ number_format($order->orderDetails->sum(function ($detail) {return $detail->unit_price * $detail->quantity;}),0,',','.') }}
+                            </p>
+                        </div>
                     </div>
-                    </div>
-                    <svg class="mt-9 w-full" xmlns="http://www.w3.org/2000/svg" width="1216" height="2"
-                        viewBox="0 0 1216 2" fill="none">
-                        <path d="M0 1H1216" stroke="#D1D5DB" />
-                    </svg>
                 @endforeach
+            </section>
         @endif
-
-        <div class="px-3 md:px-11 flex items-center justify-between flex-col-reverse sm:flex-row">
-            <div class="flex flex-col sm:flex-row items-center">
-                <!-- <form action="{{ route('orders.destroy', $order->id) }}" method="POST" onsubmit="return confirm('Kamu yakin menghapus orderan ini?');"> -->
-                <form action="/orders/{{ $order->id }}" method="POST"
-                    onsubmit="return confirm('Kamu yakin menghapus orderan ini?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                        class="flex items-center gap-3 py-10 pr-8 sm:border-r border-gray-300 font-normal text-xl leading-8 text-gray-500 dark:text-gray-300 group transition-all duration-500 hover:text-red-600">
-                        <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                class="stroke-gray-600 dark:stroke-gray-300 transition-all duration-500 group-hover:stroke-red-600"
-                                d="M14.0261 14.7259L25.5755 26.2753M14.0261 26.2753L25.5755 14.7259" stroke=""
-                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        Hapus Riwayat
-                    </button>
-                </form>
-
-                <p class="complete font-normal text-xl leading-8 text-gray-500 sm:pl-8">Pembelian Berhasil!
-                </p>
-            </div>
-            <p class="font-medium text-xl leading-8 text-black">
-                <span class="text-gray-500">Total Harga: </span> &nbsp;Rp.
-                {{ number_format($order->orderDetails->sum(function ($detail) {return $detail->unit_price * $detail->quantity;}),0,',','.') }}
-            </p>
-        </div>
-        </div>
-        @endforeach
-    </section>
-    @endif
     </section>
 
     <script>
