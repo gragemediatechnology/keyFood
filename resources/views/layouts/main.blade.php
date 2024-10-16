@@ -104,7 +104,8 @@
     @endphp
     <div id="preloader">
         <dotlottie-player src="https://lottie.host/cfd42497-424b-4328-8abd-fddc7a43046c/RORTJFVPEA.json"
-            background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+            background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+            autoplay></dotlottie-player>
     </div>
     @include('partials.navbar')
 
@@ -137,7 +138,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
     integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
-    </script>
+</script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
 
@@ -154,26 +155,30 @@
 <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
 
 
-<!-- <script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js"></script>
+<!-- <script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js">
+</script>
 <script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/checkout.js"></script>
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/checkout.js">
+</script>
 <script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/stores.js"></script>
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/stores.js">
+</script>
 <script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/categories.js"></script>
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/categories.js">
+</script>
+<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home.js">
+</script>
+<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/load.js">
+</script>
+<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
 <script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home.js"></script>
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/product.js">
+</script>
 <script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/load.js"></script>
-<script defer
-    src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
-<script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/product.js"></script>
-<script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home-container.js"></script>
-<script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/nav.js"></script> -->
+    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home-container.js">
+</script>
+<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/nav.js">
+</script> -->
 
 
 
@@ -188,7 +193,7 @@
 
     function logoutUser() {
         // Mengirim permintaan logout menggunakan AJAX
-        fetch('/logout', {
+        fetch('{{ route('logout') }}', {
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -216,29 +221,11 @@
     window.addEventListener('scroll', resetTimer, true);
 </script>
 
-<script>
-    document.getElementById('logout').addEventListener('click', function(event) {
-        event.preventDefault();
-
-        // Fungsi untuk menghapus data keranjang dari localStorage
-        function clearCartData() {
-            localStorage.removeItem('cart');
-            console.log('Cart data cleared.');
-        }
-
-        // Panggil fungsi untuk membersihkan data keranjang
-        clearCartData();
-
-        // Redirect ke route yang menangani logout di Laravel
-        window.location.href = "/logout";
-    });
-</script>
-
 <!-- SweetAlert Integration -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         @if ($errors->any())
-            setTimeout(function () {
+            setTimeout(function() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -250,7 +237,7 @@
         @endif
 
         @if (session('success'))
-            setTimeout(function () {
+            setTimeout(function() {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
