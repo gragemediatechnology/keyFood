@@ -117,15 +117,40 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }
 
-    public function destroy(User $user)
+    // public function destroy2(User $user)
+    // {
+
+    //     // Hapus gambar jika ada
+    //     if ($user->img && File::exists(public_path('images/users/' . $user->img))) {
+    //         File::delete(public_path('images/users/' . $user->img));
+    //     }
+
+    //     $user->delete();
+    //     return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
+    // }
+
+    public function destroy($id)
     {
-       
+        $user = User::findOrFail($id);
+
         // Hapus gambar jika ada
         if ($user->img && File::exists(public_path('images/users/' . $user->img))) {
             File::delete(public_path('images/users/' . $user->img));
         }
 
+        // Check if the user has the 'seller' role
+        if ($user->hasRole('seller')) {
+            // Reset roles to no roles or a default role
+            $user->syncRoles([]); // Atur ke kosong atau bisa assign role default jika ada
+
+            // Optionally, delete the user's related products and store (handled in the model)
+            $user->products()->delete();
+            $user->store()->delete();
+        }
+
+        // Delete the user
         $user->delete();
+
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
     }
 }
