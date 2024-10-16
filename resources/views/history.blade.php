@@ -117,9 +117,7 @@
                                         // $isUser = Auth::user()->id
                                         // $ratedOrders =
 
-                                        $productTry = Product::findOrFail($product->id);
-
-                                        dd($productTry);
+                                        dd($product);
                                     @endphp
 
                                     @if ($orderDetail->rating === null)
