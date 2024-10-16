@@ -12,7 +12,7 @@
                 @forelse($roleRequests as $request)
                     <div class="card-profile">
                         <p><strong>ID:</strong>{{ $request->user_id }}</p>
-                        <img src="{{ $request->img }}" alt="Profile Picture">
+                        <img src="{{ $request->img ? $request->img : 'https://lapakkbk.online/img/client-1.png' }}" alt="Profile Picture">
                         <h2>{{ $request->name }}</h2>
                         <div class="info">
                             <p><strong>No Telp</strong> {{ $request->phone }}</p>
@@ -89,7 +89,7 @@
                                             <div class="flex items-center text-sm">
                                                 <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                     <img class="object-cover w-full h-full rounded-full"
-                                                        src="{{ $request->img }}" alt="" loading="lazy" />
+                                                        src="{{ $request->img ? $request->img : 'https://lapakkbk.online/img/client-1.png' }}" alt="" loading="lazy" />
                                                     <div class="absolute inset-0 rounded-full shadow-inner"
                                                         aria-hidden="true">
                                                     </div>

@@ -323,11 +323,11 @@
                     </section>
 
                     <section class="section__container client__container" id="client">
-                        <h2 class="section__header">What Our Customers Are Saying</h2>
+                        <h2 class="section__header">Apa Kata Pelanggan Kami</h2>
                         <p class="section__description">
-                            Discover firsthand experiences and testimonials from our valued patrons.
-                            Explore the feedback and reviews that showcase our commitment to
-                            quality, service, and customer satisfaction.
+                        Temukan pengalaman langsung dan testimoni dari pelanggan setia kami.
+                        Jelajahi ulasan dan masukan yang menunjukkan komitmen kami terhadap
+                        kualitas, layanan, dan kepuasan pelanggan.
                         </p>
                         <div class="client__swiper">
                             <!-- Slider main container -->
@@ -338,12 +338,13 @@
                                     <div class="swiper-slide">
                                         <div class="client__card">
                                             <p>
-                                                FoodMan's culinary expertise never fails to impress! Every
-                                                dish is a masterpiece, bursting with flavor and freshness.
+                                            Sebagai pelanggan, pengalaman berbelanja di lapak kbk ini sangat memuaskan!
+                                             Proses pemesanan mudah, pengiriman cepat, dan produk sesuai deskripsi.
+                                              Pasti akan belanja lagi di sini!
                                             </p>
-                                            <img src="../img/client-1.jpg" alt="client" class="header-img" />
-                                            <h4>David Lee</h4>
-                                            <h5>Business Executive</h5>
+                                            <img src="../img/pelanggan.jpeg" alt="client" class="header-img" />
+                                            <h4>Andini</h4>
+                                            <h5>Pelanggan</h5>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">

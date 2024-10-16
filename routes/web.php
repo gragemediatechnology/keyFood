@@ -84,6 +84,7 @@ Route::get('/seller/seller-edit', [SellerEditController::class, 'index'])->name(
 Route::get('/stores', [TokoController::class, 'showStores'])->name('Toko');
 Route::get('/search-toko', [TokoController::class, 'search']);
 Route::get('/detailed-store', [TokoController::class, 'detailStore'])->name('Detail.Toko');
+Route::post('/detailed-store', [TokoController::class, 'detailStore']);
 
 Route::get('/profile-user', function () {
     return view('/profile-user');
