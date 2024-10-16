@@ -50,7 +50,8 @@
                     </div>
 
                     <div class="mt-5">
-                        <form method="POST" action="{{ route('reset.password') }}">
+                        {{-- <form method="POST" action="{{ route('reset.password') }}"> --}}
+                        <form method="POST" action="/reset-password">
                             @csrf
                             <div class="grid gap-y-4">
                                 <div>
