@@ -246,13 +246,13 @@ $(document).ready(function() {
 });
 
 
-document.getElementById('logout').addEventListener('click', function(event) {
-    event.preventDefault();
-    function clearCartData() {
-        localStorage.removeItem('cart');
-        console.log('Cart data cleared.');
-    }
+// document.getElementById('logout').addEventListener('click', function(event) {
+//     event.preventDefault();
+//     function clearCartData() {
+//         localStorage.removeItem('cart');
+//         console.log('Cart data cleared.');
+//     }
 
-    clearCartData();
-    window.location.href = '/logout';
-});
+//     clearCartData();
+//     window.location.href = '/logout';
+// });

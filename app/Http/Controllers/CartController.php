@@ -14,7 +14,8 @@ class CartController extends Controller
 {
     // CartController.php
     // CartController.php
-    public function data(){
+    public function data()
+    {
         $data = session()->get('cart');
         return response()->json([
             'data' => $data
@@ -50,7 +51,7 @@ class CartController extends Controller
         $cart = session()->get('cart');
 
         if (isset($cart[$productId])) {
-            if($cart[$productId]['quantity'] == 1) {
+            if ($cart[$productId]['quantity'] == 1) {
                 unset($cart[$productId]);
             } else {
                 $cart[$productId]['quantity'] -= 1;
@@ -73,11 +74,12 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Product removed from cart!');
     }
-        // Validasi data yang diterima dari permintaan
-        public function saveCart(Request $request)
-        {
-            \Log::info('Received cart data: ' . json_encode($request->all()));
+    // Validasi data yang diterima dari permintaan
+    public function saveCart(Request $request)
+    {
+        \Log::info('Received cart data: ' . json_encode($request->all()));
 
+        if (Auth::check()) {
             foreach ($request->cartItems as $item) {
                 // Simpan data ke tabel carts
                 Cart::updateOrCreate(
@@ -86,10 +88,9 @@ class CartController extends Controller
                 );
             }
 
-            if(Auth::check()){
-                return redirect()->route('checkout.details')->withErrors('success', 'Cart successfully added.');
-            }else{
-                return redirect()->route('login')->withErrors('error', 'Anda Belum Login');
-            }
+            return redirect()->route('checkout.details')->withErrors('success', 'Cart successfully added.');
+        } else {
+            return redirect()->route('login')->withErrors('error', 'Anda Belum Login');
         }
+    }
 }
