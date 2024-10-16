@@ -78,6 +78,7 @@ class CartController extends Controller
         {
             \Log::info('Received cart data: ' . json_encode($request->all()));
 
+            if(Auth::check()){
             foreach ($request->cartItems as $item) {
                 // Simpan data ke tabel carts
                 Cart::updateOrCreate(
@@ -86,7 +87,6 @@ class CartController extends Controller
                 );
             }
 
-            if(Auth::check()){
                 return redirect()->route('checkout.details')->withErrors('success', 'Cart successfully added.');
             }else{
                 return redirect()->route('login')->withErrors('error', 'Anda Belum Login');
