@@ -158,19 +158,9 @@ function sendCartDataToServer() {
     .then(response => {
         // console.log(response.data);
         
-        // Tampilkan SweetAlert
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: 'Cart items saved successfully',
-            showConfirmButton: false,
-            timer: 2000
-        }).then(() => {
-            // Redirect setelah SweetAlert selesai
-            window.location.href = "/checkout"; 
-        });
+        alert('Cart items saved successfully');
+        window.location.href = "/checkout"; // Redirect to checkout page
     })
-    
     .catch(error => {
         console.log(error.response.data);
     });
