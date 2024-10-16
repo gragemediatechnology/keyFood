@@ -120,13 +120,14 @@
                                                 id="ratingForm">
                                                 @csrf
                                                 <input type="hidden" name="rating" id="ratingInput">
-                                                <div class="flex">
+                                                <div class="flex" id="stars">
                                                     @for ($i = 1; $i <= 5; $i++)
                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                            class="text-yellow-500 w-5 h-auto fill-current cursor-pointer"
+                                                            class="w-5 h-auto text-gray-300 fill-current cursor-pointer"
                                                             data-rating="{{ $i }}"
                                                             onclick="submitRating({{ $i }})"
-                                                            viewBox="0 0 16 16">
+                                                            onmouseover="highlightStars({{ $i }})"
+                                                            onmouseout="resetStars()" viewBox="0 0 16 16">
                                                             <path
                                                                 d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                         </svg>
@@ -135,11 +136,10 @@
                                             </form>
                                         @else
                                             <div class="flex">
-                                                @for ($i = 1; $i <= $orderDetail->products->rating; $i++)
+                                                @for ($i = 1; $i <= 5; $i++)
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="text-yellow-500 w-5 h-auto fill-current cursor-pointer"
-                                                        data-rating="{{ $i }}"
-                                                        onclick="submitRating({{ $i }})" viewBox="0 0 16 16">
+                                                        class="w-5 h-auto fill-current cursor-pointer {{ $i <= $orderDetail->rating ? 'text-yellow-500' : 'text-gray-300' }}"
+                                                        viewBox="0 0 16 16">
                                                         <path
                                                             d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                                     </svg>
@@ -148,6 +148,7 @@
                                             <p>Anda sudah memberikan rating {{ $orderDetail->rating }} untuk pembelian ini.
                                             </p>
                                         @endif
+
 
                                         <!-- Display average rating -->
                                         <span class="text-slate-400 font-medium">
@@ -199,11 +200,34 @@
     </section>
 
     <script>
+        let selectedRating = 0;
+
+        function highlightStars(rating) {
+            const stars = document.querySelectorAll('#stars svg');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.replace('text-gray-300', 'text-yellow-500'); // Highlight stars
+                } else {
+                    star.classList.replace('text-yellow-500', 'text-gray-300'); // Reset unselected stars
+                }
+            });
+        }
+
+        function resetStars() {
+            const stars = document.querySelectorAll('#stars svg');
+            stars.forEach((star, index) => {
+                if (index < selectedRating) {
+                    star.classList.replace('text-gray-300', 'text-yellow-500'); // Keep selected stars highlighted
+                } else {
+                    star.classList.replace('text-yellow-500', 'text-gray-300'); // Reset unselected stars to gray
+                }
+            });
+        }
+
         function submitRating(rating) {
-            // Set the rating value to the hidden input field
-            document.getElementById('ratingInput').value = rating;
-            // Submit the form
-            document.getElementById('ratingForm').submit();
+            selectedRating = rating; // Store the selected rating
+            document.getElementById('ratingInput').value = rating; // Set the rating value to the hidden input
+            document.getElementById('ratingForm').submit(); // Submit the form
         }
     </script>
 @endsection
