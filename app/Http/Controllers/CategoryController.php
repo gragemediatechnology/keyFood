@@ -97,7 +97,7 @@ class CategoryController extends Controller
     public function showCategories()
     {
         $categories = Category::all();
-        $products = Product::paginate(10);// Mengambil semua kategori dari database
+        $products = Product::paginate(20);// Mengambil semua kategori dari database
         return view('categories', compact('categories','products'));
     
     }
