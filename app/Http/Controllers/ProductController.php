@@ -277,41 +277,6 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-    // public function rateProduct(Request $request, $id)
-    // {
-    //     $user = Auth::user();
-    //     $product = Product::findOrFail($id);
-    
-    //     // Validasi rating
-    //     $request->validate([
-    //         'rating' => 'required|numeric|min:1|max:100',
-    //     ]);
-    
-    //     // Ambil list user yang sudah memberikan rating
-    //     $ratedBy = $product->rated_by ? json_decode($product->rated_by, true) : [];
-    //     dd($request);
-    //     // Cek apakah user sudah memberi rating
-    //     if (in_array($user->id, $ratedBy)) {
-    //         return redirect()->back()->with('error', 'Anda sudah memberikan rating untuk produk ini.');
-    //     }
-    
-    //     // Tambah user ID ke list yang sudah memberi rating
-    //     $ratedBy[] = $user->id;
-    
-    //     // Hitung rating baru dengan rata-rata berdasarkan jumlah user yang memberi rating
-    //     $totalRated = count($ratedBy); // Hitung jumlah user yang sudah memberi rating
-    //     $existingRating = $product->rating ?? 0; // Ambil rating yang ada
-    //     $newRating = (($existingRating * ($totalRated - 1)) + $request->rating) / $totalRated; // Hitung rating rata-rata
-    
-    //     // Update rating produk
-    //     $product->update([
-    //         'rating' => $newRating,
-    //         'rated_by' => json_encode($ratedBy),
-    //     ]);
-    
-    //     return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
-    // }    
-
     public function rateProduct(Request $request, $id)
 {
     $user = Auth::user();

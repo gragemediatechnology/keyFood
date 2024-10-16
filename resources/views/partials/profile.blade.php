@@ -35,15 +35,18 @@
                             </span>
                         </div>
                         <div class="text-xs text-slate-400">
-                            {{ strlen(Auth::user()->email) > 16 ? substr(Auth::user()->email, 0, 16) . '...' : Auth::user()->email }}
-                            {{ Auth::user()->phone === '0000000000' ? '' : (strlen(Auth::user()->phone) > 16 ? substr(Auth::user()->phone, 0, 16) . '...' : Auth::user()->phone) }}
-                            <br>
-                            @if (Auth::check() && Auth::user()->is_online)
-                                <span class="text-green-500">Online</span>
-                            @else
-                                <span class="text-gray-500">Offline</span>
-                            @endif
+                            <span class="block space-y-1">
+                                {{ strlen(Auth::user()->email) > 16 ? substr(Auth::user()->email, 0, 16) . '...' : Auth::user()->email }}
+                            </span>
+                            <span class="block space-y-1">
+                                {{ Auth::user()->phone === '0000000000' ? '' : (strlen(Auth::user()->phone) > 16 ? substr(Auth::user()->phone, 0, 16) . '...' : Auth::user()->phone) }}
+                            </span>
+                            <span class="block {{ Auth::check() && Auth::user()->is_online ? 'text-green-500' : 'text-gray-500' }}">
+                                {{ Auth::check() && Auth::user()->is_online ? 'Online' : 'Offline' }}
+                            </span>
                         </div>
+
+
                     </div>
                 </div>
                 <div class="border-t border-slate-500/30"></div>
