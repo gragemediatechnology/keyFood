@@ -160,7 +160,7 @@ function sendCartDataToServer() {
             cartItems: cart
         })
             .then(response => {
-                alert('Cart items saved successfully');
+                alert('Sedang diproses...');
                 window.location.href = "/checkout"; // Redirect ke halaman checkout
             })
             .catch(error => {
