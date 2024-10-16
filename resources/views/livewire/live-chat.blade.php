@@ -56,9 +56,9 @@
                                     </div>
                                     <div class="chat-bubble sm:max-w-xs lg:max-w-lg p-2 break-words shadow-md">
                                         @if ($message->image)
-                                            <img src="{{ asset('storage/' . $message->image) }}" alt="Image"
+                                            <img src="{{ 'storage/' . $message->image }}" alt="Image"
                                                 class="max-w-24 h-auto rounded-lg mt-2 cursor-pointer" id="chatImage"
-                                                onclick="openModal('{{ asset('storage/' . $message->image) }}')">
+                                                onclick="openModal('{{ ('storage/' . $message->image) }}')">
                                         @endif
 
                                         @if ($message->message)
