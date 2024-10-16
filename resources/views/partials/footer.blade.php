@@ -51,12 +51,12 @@
             </div>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-        <div class="sm:flex sm:items-center sm:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center">© 2024 <a href="#"
-                    class="hover:underline">{{ $company->company_name }}™</a>. All Rights Reserved.
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4">
+            <span class="text-sm text-gray-500 text-center sm:text-left">
+                © 2024 <a href="#" class="hover:underline">{{ $company->company_name }}™</a>. All Rights Reserved.
             </span>
             <div class="flex mt-4 sm:justify-center sm:mt-0">
-                <a href="#" class="text-gray-500 hover:text-gray-500 ms-5">
+                <a href="#" class="text-gray-500 hover:text-gray-700 ms-5">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 21 16">
                         <path
@@ -64,9 +64,8 @@
                     </svg>
                     <span class="sr-only">Discord community</span>
                 </a>
-                <!-- YouTube Icon -->
                 <a href="https://youtube.com/@gragemediatechnology?si=TUzeCE_g9uFOHmda"
-                    class="text-gray-500 hover:text-gray-500">
+                    class="text-gray-500 hover:text-gray-700 ms-5">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 24 24">
                         <path fill-rule="evenodd"
@@ -75,10 +74,8 @@
                     </svg>
                     <span class="sr-only">YouTube channel</span>
                 </a>
-
-                <!-- Instagram Icon -->
                 <a href="https://www.instagram.com/pandaidigital_idn?igsh=MXM4aDBxcnprbDR1eQ=="
-                    class="text-gray-500 hover:text-gray-500">
+                    class="text-gray-500 hover:text-gray-700 ms-5">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 24 24">
                         <path fill-rule="evenodd"
@@ -87,19 +84,18 @@
                     </svg>
                     <span class="sr-only">Instagram page</span>
                 </a>
-
-                <!-- Website Icon -->
-                <a href="https://grageweb.online" class="text-gray-500 hover:text-gray-500">
+                <a href="https://grageweb.online" class="text-gray-500 hover:text-gray-700 ms-5">
                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 24 24">
                         <path fill-rule="evenodd"
-                            d="M12 2.25a9.75 9.75 0 1 0 0 19.5 9.75 9.75 0 0 0 0-19.5ZM12 3.75c.664 0 1.331.087 1.985.248a12.179 12.179 0 0 0-1.853 3.933c-.044.13-.084.257-.123.384h-2.018a12.179 12.179 0 0 0-1.853-3.933c.654-.161 1.32-.248 1.985-.248Zm3.682 1.07A8.252 8.252 0 0 1 18.403 9h-2.547a11.726 11.726 0 0 0-1.726-4.18c.521.268 1.018.603 1.552 1.001Zm-7.364 0A11.726 11.726 0 0 0 6.865 9H4.318a8.252 8.252 0 0 1 2.721-4.18c.534-.398 1.03-.733 1.552-1.001ZM12 8.25c.313 0 .626.049.935.147a9.711 9.711 0 0 0-.935 3.228 9.711 9.711 0 0 0-.935-3.228c.309-.098.622-.147.935-.147ZM9.41 9c.123.257.24.525.347.803.38 1.033.616 2.25.66 3.447H7.043c.05-1.197.279-2.414.66-3.447.106-.278.223-.546.347-.803ZM12 12.75c.315 0 .627-.022.935-.065-.322 2.035-1.122 3.766-1.87 4.79-.392-.469-.887-1.18-1.341-2.166-.509-1.091-.855-2.283-.955-3.394h2.231Zm4.943 0c-.05 1.197-.279 2.414-.66 3.447a9.717 9.717 0 0 1-.347.803c-.123-.257-.24-.525-.347-.803-.38-1.033-.616-2.25-.66-3.447h2.014ZM7.043 15h2.361c.097 1.111.446 2.303.955 3.394.454.986.949 1.697 1.341 2.166a10.1 10.1 0 0 1-1.87-4.79c-.308.043-.62.065-.935.065-.313 0-.626-.022-.935-.065Zm7.496 0h2.361a8.252 8.252 0 0 1-2.721 4.18 11.726 11.726 0 0 0 1.726-4.18Zm-4.122 4.931a12.179 12.179 0 0 1-1.853-3.933h2.018c.039.127.079.254.123.384.389 1.06.905 2.073 1.853 3.933a8.258 8.258 0 0 1-2.142-.384ZM18.403 9a8.252 8.252 0 0 1-2.721 4.18 11.726 11.726 0 0 0 1.726-4.18h2.547Zm-10.038 0A11.726 11.726 0 0 0 6.865 9h-2.547a8.252 8.252 0 0 1 2.721-4.18Z"
+                            d="M12 2.25a9.75 9.75 0 1 0 0 19.5 9.75 9.75 0 0 0 0-19.5ZM12 3.75c.664 0 1.331.087 1.985.248a12.179 12.179 0 0 0-1.853 3.933c-.044.13-.084.257-.123.384h-2.018a12.179 12.179 0 0 0-1.853-3.933c.654-.161 1.32-.248 1.985-.248Zm3.682 1.07A8.252 8.252 0 0 1 18.403 9h-2.547a11.726 11.726 0 0 0-1.726-4.18c.521.268 1.018.603 1.552 1.001Zm-7.364 0A11.726 11.726 0 0 0 6.865 9H4.318a8.252 8.252 0 0 1 2.721-4.18c.534-.398 1.03-.733 1.552-1.001ZM12 8.25c.313 0 .626.049.935.147a9.711 9.711 0 0 0-.935 3.228 9.711 9.711 0 0 0-.935-3.228c.309-.098.622-.147.935-.147ZM9.41 9c.123.257.24.525.347.803.38 1.033.616 2.25.66 3.447H7.043c.05-1.197.279-2.414.66-3.447a8.737 8.737 0 0 1 .346-.803Zm4.938 0a8.737 8.737 0 0 1 .347.803c.38 1.033.611 2.25.66 3.447H14.07c-.045-1.197-.279-2.414-.66-3.447a8.737 8.737 0 0 1-.347-.803ZM12 17.25a7.329 7.329 0 0 0 1.518-.147 10.243 10.243 0 0 1-3.034-2.957c.506.178 1.07.291 1.516.291ZM12 20.25a8.181 8.181 0 0 1-1.946-.257c.906-.545 1.772-1.247 2.517-2.08.745.833 1.611 1.535 2.517 2.08A8.181 8.181 0 0 1 12 20.25Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <span class="sr-only">Website</span>
+                    <span class="sr-only">Official Website</span>
                 </a>
             </div>
         </div>
+
     </div>
     @endforeach
 </footer>
