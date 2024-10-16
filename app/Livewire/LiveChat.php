@@ -75,7 +75,6 @@ use App\Models\User;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Http\Request;
 
 class LiveChat extends Component
 {
@@ -108,7 +107,7 @@ class LiveChat extends Component
         ]);
     }
 
-    public function SendMessage(Request $request)
+    public function SendMessage()
     {
         $path = null;
 
@@ -125,11 +124,9 @@ class LiveChat extends Component
             'to_user_id' => $this->user->id,
             'message' => $this->message,
             'image' => $path,
-            'ip_address' => $request->ip(),
         ]);
 
         $this->message = '';
         $this->image = null;
     }
 }
-

@@ -63,7 +63,6 @@
 
         <!-- Modal -->
         <div class="modal opacity-0 pointer-events-none fixed inset-0 flex items-end justify-end">
-           
             <div class="modal-overlay absolute inset-0 bg-black bg-opacity-50"></div>
 
             <div
