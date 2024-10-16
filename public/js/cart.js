@@ -43,7 +43,7 @@ const dragging = (e) => {
     updateSheetHeight(newHeight);
 }
 
-// Determines whether to hide, set to fullscreen, or set to default 
+// Determines whether to hide, set to fullscreen, or set to default
 // height based on the current height of the sheet content
 const dragStop = () => {
     isDragging = false;
@@ -66,17 +66,17 @@ showModalBtn.addEventListener("click", showBottomSheet);
     // document.addEventListener('DOMContentLoaded', function() {
     //     const cartButtons = document.querySelectorAll('.cart-btn');
     //     const iconCart = document.querySelector('.icon-cart');
-        
+
     //     cartButtons.forEach(button => {
     //         button.addEventListener('click', function(e) {
-    //             e.preventDefault(); 
+    //             e.preventDefault();
     //             const productId = this.getAttribute('data-product-id');
-                
+
     //             // Simulate adding to cart and showing the cart icon
     //             if (iconCart) {
     //                 iconCart.style.display = 'flex'; // Show the cart icon
     //             }
-                
+
     //         });
     //     });
     // });
@@ -157,7 +157,6 @@ function sendCartDataToServer() {
     })
     .then(response => {
         // console.log(response.data);
-        
         alert('Cart items saved successfully');
         window.location.href = "/checkout"; // Redirect to checkout page
     })
@@ -178,9 +177,9 @@ $(document).ready(function() {
         let storeId = $(this).data('store-id'); // Ambil store_id dari data atribut
         let categoryId = $(this).data('category-id'); // Ambil category_id dari data atribut
         let slug = $(this).data('slug'); // Ambil slug dari data atribut
-        
+
         let cart = JSON.parse(localStorage.getItem('cart')) || {};
-        
+
         if (cart[productId]) {
             cart[productId].quantity++;
         } else {
@@ -195,7 +194,7 @@ $(document).ready(function() {
                 slug:slug,
             };
         }
-        
+
         localStorage.setItem('cart', JSON.stringify(cart));
         getData();
     });
@@ -253,7 +252,7 @@ document.getElementById('logout').addEventListener('click', function(event) {
         localStorage.removeItem('cart');
         console.log('Cart data cleared.');
     }
-    
+
     clearCartData();
     window.location.href = '/logout';
 });

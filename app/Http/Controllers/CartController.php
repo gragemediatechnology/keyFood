@@ -55,7 +55,7 @@ class CartController extends Controller
             } else {
                 $cart[$productId]['quantity'] -= 1;
             }
-        } 
+        }
         session()->put('cart', $cart);
 
         return redirect()->back()->with('success', 'Product success reduced!');
@@ -77,7 +77,7 @@ class CartController extends Controller
         public function saveCart(Request $request)
         {
             \Log::info('Received cart data: ' . json_encode($request->all()));
-    
+
             foreach ($request->cartItems as $item) {
                 // Simpan data ke tabel carts
                 Cart::updateOrCreate(
@@ -85,7 +85,7 @@ class CartController extends Controller
                     ['quantity' => $item['quantity'], 'photo' => $item['photo']]
                 );
             }
-    
+
             return redirect()->route('checkout.details')->withErrors('success', 'Cart successfully added.');
         }
 }
