@@ -157,7 +157,17 @@ function sendCartDataToServer() {
     })
     .then(response => {
         // console.log(response.data);
-        alert('Cart items saved successfully');
+        
+        // alert('Cart items saved successfully');
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Cart items saved successfully',
+            showConfirmButton: false,
+            timer: 2000
+        });
+        
         window.location.href = "/checkout"; // Redirect to checkout page
     })
     .catch(error => {
