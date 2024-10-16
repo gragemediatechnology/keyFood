@@ -73,7 +73,7 @@ class TokoController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request);
-// Cari toko berdasarkan ID
+        // Cari toko berdasarkan ID
         $toko = Toko::findOrFail($id);
 
         // Pastikan toko milik seller yang login
@@ -116,15 +116,24 @@ class TokoController extends Controller
 
         // Redirect kembali ke dashboard seller dengan pesan sukses
         return redirect()->route('seller-edit')->with('success', 'Toko berhasil diperbarui.');
-
     }
 
 
 
 
+    // public function destroy2($id)
+    // {
+    //     $store = Toko::findOrFail($id);
+    //     $store->delete();
+
+    //     return redirect()->route('admin.stores.index')->with('success', 'Toko deleted successfully');
+    // }
+
     public function destroy($id)
     {
         $store = Toko::findOrFail($id);
+
+        // Deleting the toko will trigger the deletion event in the Toko model
         $store->delete();
 
         return redirect()->route('admin.stores.index')->with('success', 'Toko deleted successfully');

@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Traits\RecordsAdminHistory;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,9 +51,31 @@ class User extends Authenticatable
         ];
     }
 
-    // Di model User
+    // Relationship with Toko
     public function toko()
     {
         return $this->hasOne(Toko::class, 'id_seller', 'id');
+    }
+
+    // Relationship with Products
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'id_seller', 'id');
+    }
+
+    // Event: Handle the deletion process
+    protected static function booted()
+    {
+        static::deleting(function ($user) {
+            // Check if the user has the 'seller' role
+            if ($user->hasRole('seller')) {
+                // Delete related products and toko
+                $user->products()->delete();
+                $user->toko()->delete();
+                
+                // Optionally, reset the user's roles
+                $user->syncRoles([]); // Remove all roles or assign a default role if necessary
+            }
+        });
     }
 }
