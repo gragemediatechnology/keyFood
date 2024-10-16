@@ -76,9 +76,8 @@
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                             @foreach ($stores as $store)
-                                <form action="/detailed-store" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $store->nama_toko }}" name="nama_toko">
+                                <form action="/detailed-store" method="GET">
+                                    <input type="hidden" value="{{ $store->id_toko }}" name="id">
 
 
                                     <tr class="text-gray-700 dark:text-gray-400">
