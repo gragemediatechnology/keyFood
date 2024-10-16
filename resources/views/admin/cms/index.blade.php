@@ -49,7 +49,7 @@
                                 <td class="px-6 py-3">
                                     <div class="flex items-center text-sm">
                                         <!-- Avatar with inset shadow -->
-                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block sm:block">
                                             <img class="object-cover w-full h-full rounded-full"
                                                 src="https://lapakkbk.online/{{ $company->gambar_home_1 }}"
                                                 alt="" loading="lazy" />
@@ -63,7 +63,7 @@
                                 <td class="px-6 py-3">
                                     <div class="flex items-center text-sm">
                                         <!-- Avatar with inset shadow -->
-                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block sm:block">
                                             <img class="object-cover w-full h-full rounded-full"
                                                 src="https://lapakkbk.online/{{ $company->gambar_home_2 }}"
                                                 alt="" loading="lazy" />
@@ -76,7 +76,7 @@
                                 <td class="px-6 py-3">
                                     <div class="flex items-center text-sm">
                                         <!-- Avatar with inset shadow -->
-                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block sm:block">
                                             <img class="object-cover w-full h-full rounded-full"
                                                 src="https://lapakkbk.online/{{ $company->gambar_home_3 }}"
                                                 alt="" loading="lazy" />
@@ -91,7 +91,7 @@
                                 <td class="px-6 py-3">
                                     <div class="flex items-center text-sm">
                                         <!-- Avatar with inset shadow -->
-                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block sm:block">
                                             <img class="object-cover w-full h-full rounded-full"
                                                 src="https://lapakkbk.online/{{ $company->logo }}"
                                                 alt="" loading="lazy" />
