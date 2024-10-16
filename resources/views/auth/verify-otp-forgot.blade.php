@@ -178,7 +178,7 @@
                             confirmButtonColor: '#3085d6', // Mengubah warna tombol menjadi biru
                         }).then(() => {
                             // window.location.href = "{{ route('home') }}";//sementara
-                            window.location.href = "{{ route('reset-password-forgot') }}"; // Pastikan nama route sesuai
+                            window.location.href = "/reset-password-forgot"; // Pastikan nama route sesuai
 
                         });
                     } else {
