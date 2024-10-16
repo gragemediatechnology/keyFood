@@ -229,6 +229,7 @@
 
 
 
+
                                 var productHtml = `
                     <div class="product-box">
                         <img alt="${product.name}" src="{{ '' }}${product.photo}">
