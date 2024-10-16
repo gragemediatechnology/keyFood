@@ -111,14 +111,14 @@
                             <div class="flex justify-center my-4">
                                 <div class="flex justify-end gap-4">
 
-                                    @php
+                                    <!-- @php
                                         // $productUser = json(decode($orderDetail->rated_by))
 
                                         // $isUser = Auth::user()->id
                                         // $ratedOrders =
 
                                         dd($product);
-                                    @endphp
+                                    @endphp -->
 
                                     @if ($orderDetail->rating === null)
                                         <form action="/rate-product/{{ $orderDetail->product_id }}" method="POST" id="ratingForm">
