@@ -89,7 +89,7 @@ class CartController extends Controller
 
                 return redirect()->route('checkout.details')->withErrors('success', 'Cart successfully added.');
             }else{
-                return redirect()->route('/login')->withErrors('error', 'Anda Harus Login Terlebih Dahulu');
+                return redirect()->route('login')->withErrors('error', 'Anda Harus Login Terlebih Dahulu');
             }
         }
 }
