@@ -76,20 +76,16 @@ class CartController extends Controller
         // Validasi data yang diterima dari permintaan
         public function saveCart(Request $request)
         {
-            if(Auth::check()){
-                \Log::info('Received cart data: ' . json_encode($request->all()));
+            \Log::info('Received cart data: ' . json_encode($request->all()));
 
-                foreach ($request->cartItems as $item) {
-                    // Simpan data ke tabel carts
-                    Cart::updateOrCreate(
-                        ['user_id' => auth()->id(), 'product_id' => $item['product_id'], 'store_id' => $item['store_id'], 'category_id' => $item['category_id'],],
-                        ['quantity' => $item['quantity'], 'photo' => $item['photo']]
-                    );
-                }
-
-                return redirect()->route('checkout.details')->withErrors('success', 'Cart successfully added.');
-            }else{
-                return redirect()->route('login')->withErrors('error', 'Anda Harus Login Terlebih Dahulu');
+            foreach ($request->cartItems as $item) {
+                // Simpan data ke tabel carts
+                Cart::updateOrCreate(
+                    ['user_id' => auth()->id(), 'product_id' => $item['product_id'], 'store_id' => $item['store_id'], 'category_id' => $item['category_id'],],
+                    ['quantity' => $item['quantity'], 'photo' => $item['photo']]
+                );
             }
+
+            return redirect()->route('checkout.details')->withErrors('success', 'Cart successfully added.');
         }
 }
