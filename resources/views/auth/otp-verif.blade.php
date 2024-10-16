@@ -26,7 +26,7 @@
 
 </head>
 
-<body class="bg-cover bg-center bg-no-repeat w-full h-screen" style="background-image: url('../img/otp-bg.jpg');">
+<body class="bg-cover bg-center bg-no-repeat w-full h-screen" style="background-image: url('../img/otp-bg-2.jpg');">
     <section class="max-sm:py-64 md:py-24">
         <div
             class="max-w-md max-sm:max-w-sm max-h-lg mx-auto my-auto text-center bg-white bg-opacity-30 backdrop-blur-lg px-4 sm:px-8 py-10 rounded-xl shadow-lg">
