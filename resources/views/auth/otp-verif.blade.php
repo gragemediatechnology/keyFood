@@ -179,7 +179,7 @@
                     alert('An error occurred. Please try again.');
                 }
             });
-        });
+  
     </script>
 </body>
 
