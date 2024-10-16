@@ -35,7 +35,8 @@
                 <p class="text-[15px] text-slate-100">Enter the 6-digit verification code that was sent to your phone
                     number.</p>
             </header>
-            <form id="otp-form" method="POST" action="{{ route('verify.wa.otp') }}">
+            {{-- <form id="otp-form" method="POST" action="{{ route('verify.wa.otp') }}"> --}}
+            <form id="otp-form" method="POST" action="/verify-wa-otp">
                 @csrf
                 <div class="flex items-center justify-center gap-3">
                     @for ($i = 0; $i < 6; $i++)
@@ -165,7 +166,7 @@
                     });
                     if (response.ok) {
                         //sumber masalah
-                        window.location.href = "{{ route('home') }}";
+                        window.location.href = "/home";
                         // document.getElementById('otp-form').submit();
                     } else {
                         const errorData = await response.json();
