@@ -166,7 +166,7 @@
                     });
                     if (response.ok) {
                         //sumber masalah
-                        window.location.href = "/";
+                        window.location.href = "{{ route('home') }}";
                         // document.getElementById('otp-form').submit();
                     } else {
                         const errorData = await response.json();
