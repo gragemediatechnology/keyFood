@@ -37,13 +37,13 @@ const dragStart = (e) => {
 
 // Calculates the new height for the sheet content and call the updateSheetHeight function
 const dragging = (e) => {
-    if(!isDragging) return;
+    if (!isDragging) return;
     const delta = startY - (e.pageY || e.touches?.[0].pageY);
     const newHeight = startHeight + delta / window.innerHeight * 100;
     updateSheetHeight(newHeight);
 }
 
-// Determines whether to hide, set to fullscreen, or set to default 
+// Determines whether to hide, set to fullscreen, or set to default
 // height based on the current height of the sheet content
 const dragStop = () => {
     isDragging = false;
@@ -63,23 +63,23 @@ document.addEventListener("touchend", dragStop);
 sheetOverlay.addEventListener("click", hideBottomSheet);
 showModalBtn.addEventListener("click", showBottomSheet);
 
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     const cartButtons = document.querySelectorAll('.cart-btn');
-    //     const iconCart = document.querySelector('.icon-cart');
-        
-    //     cartButtons.forEach(button => {
-    //         button.addEventListener('click', function(e) {
-    //             e.preventDefault(); 
-    //             const productId = this.getAttribute('data-product-id');
-                
-    //             // Simulate adding to cart and showing the cart icon
-    //             if (iconCart) {
-    //                 iconCart.style.display = 'flex'; // Show the cart icon
-    //             }
-                
-    //         });
-    //     });
-    // });
+// document.addEventListener('DOMContentLoaded', function() {
+//     const cartButtons = document.querySelectorAll('.cart-btn');
+//     const iconCart = document.querySelector('.icon-cart');
+
+//     cartButtons.forEach(button => {
+//         button.addEventListener('click', function(e) {
+//             e.preventDefault();
+//             const productId = this.getAttribute('data-product-id');
+
+//             // Simulate adding to cart and showing the cart icon
+//             if (iconCart) {
+//                 iconCart.style.display = 'flex'; // Show the cart icon
+//             }
+
+//         });
+//     });
+// });
 
 //ini untuk fungsi memasukkan data product ke cart
 function getData() {
@@ -149,38 +149,46 @@ function getData() {
     }
 }
 
+var isAuthenticated = {{ Auth::check() ? 'true' : 'false' }};
 function sendCartDataToServer() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     console.log('Sending cart data to server:', cart);
-    axios.post('/save-cart', {
-        cartItems: cart
-    })
-    .then(response => {
-        // console.log(response.data);
-        
-        alert('Cart items saved successfully');
-        window.location.href = "/checkout"; // Redirect to checkout page
-    })
-    .catch(error => {
-        console.log(error.response.data);
-    });
+
+    // Cek apakah user sudah login
+    if (isAuthenticated === 'true') {
+        axios.post('/save-cart', {
+            cartItems: cart
+        })
+            .then(response => {
+                alert('Cart items saved successfully');
+                window.location.href = "/checkout"; // Redirect ke halaman checkout
+            })
+            .catch(error => {
+                console.log(error.response.data);
+            });
+    } else {
+        // Jika user belum login, redirect ke halaman login
+        alert('Please login to continue');
+        window.location.href = "/login"; // Redirect ke halaman login
+    }
 }
 
 
-$(function() {
+
+$(function () {
     getData();
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     // cart buttons
-    $(document).on('click', '.cart-btn', function() {
+    $(document).on('click', '.cart-btn', function () {
         let productId = $(this).data('product-id');
         let storeId = $(this).data('store-id'); // Ambil store_id dari data atribut
         let categoryId = $(this).data('category-id'); // Ambil category_id dari data atribut
         let slug = $(this).data('slug'); // Ambil slug dari data atribut
-        
+
         let cart = JSON.parse(localStorage.getItem('cart')) || {};
-        
+
         if (cart[productId]) {
             cart[productId].quantity++;
         } else {
@@ -192,16 +200,16 @@ $(document).ready(function() {
                 price: parseFloat($(this).siblings('.price').text().replace('Rp ', '').replace(/\./g, '')),
                 photo: $(this).siblings('img').attr('src'),
                 quantity: 1,
-                slug:slug,
+                slug: slug,
             };
         }
-        
+
         localStorage.setItem('cart', JSON.stringify(cart));
         getData();
     });
 
     // decrement buttons
-    $(document).on('click', '.decrement', function() {
+    $(document).on('click', '.decrement', function () {
         let productId = $(this).data('decrement-id');
         let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
@@ -218,7 +226,7 @@ $(document).ready(function() {
     });
 
     //  increment buttons
-    $(document).on('click', '.increment', function() {
+    $(document).on('click', '.increment', function () {
         let productId = $(this).data('increment-id');
         let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
@@ -233,7 +241,7 @@ $(document).ready(function() {
     });
 
     // remove buttons
-    $(document).on('click', '.remove', function() {
+    $(document).on('click', '.remove', function () {
         let productId = $(this).data('remove-id');
         let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
@@ -247,13 +255,13 @@ $(document).ready(function() {
 });
 
 
-document.getElementById('logout').addEventListener('click', function(event) {
+document.getElementById('logout').addEventListener('click', function (event) {
     event.preventDefault();
     function clearCartData() {
         localStorage.removeItem('cart');
         console.log('Cart data cleared.');
     }
-    
+
     clearCartData();
     window.location.href = '/logout';
 });
