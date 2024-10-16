@@ -75,7 +75,7 @@
 
 
 
-   
+
 
 
 
@@ -188,7 +188,7 @@
 
     function logoutUser() {
         // Mengirim permintaan logout menggunakan AJAX
-        fetch('{{ route('logout') }}', {
+        fetch('/logout', {
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -214,6 +214,24 @@
     window.onclick = resetTimer;
     window.onkeypress = resetTimer;
     window.addEventListener('scroll', resetTimer, true);
+</script>
+
+<script>
+    document.getElementById('logout').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        // Fungsi untuk menghapus data keranjang dari localStorage
+        function clearCartData() {
+            localStorage.removeItem('cart');
+            console.log('Cart data cleared.');
+        }
+
+        // Panggil fungsi untuk membersihkan data keranjang
+        clearCartData();
+
+        // Redirect ke route yang menangani logout di Laravel
+        window.location.href = "/logout";
+    });
 </script>
 
 <!-- SweetAlert Integration -->
