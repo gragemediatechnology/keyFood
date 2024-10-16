@@ -157,7 +157,7 @@ function sendCartDataToServer() {
     })
     .then(response => {
         // console.log(response.data);
-        alert('Cart items saved successfully');
+        alert('Sedang memproses...');
         window.location.href = "/checkout"; // Redirect to checkout page
     })
     .catch(error => {
