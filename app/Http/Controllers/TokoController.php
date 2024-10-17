@@ -72,7 +72,7 @@ class TokoController extends Controller
 
     public function update(Request $request, $id)
     {
-         dd($request);
+        //  dd($request);
         // Cari toko berdasarkan ID
         $toko = Toko::findOrFail($id);
 
