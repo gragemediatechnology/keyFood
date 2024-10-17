@@ -10,11 +10,12 @@
                         <div class="store-text">
                             <h1>{{ $toko->nama_toko }}</h1>
                             <h2>{{ $toko->alamat_toko }}</h2>
-                            <h2 class="px-1">{{ $toko->waktu_buka && $toko->waktu_tutup ? $toko->waktu_buka . ' - ' . $toko->waktu_tutup : 'belum menyetting waktu buka - tutup' }}
+                            <h2 class="px-1">
+                                {{ $toko->waktu_buka && $toko->waktu_tutup ? $toko->waktu_buka . ' - ' . $toko->waktu_tutup : 'belum menyetting waktu buka - tutup' }}
                                 @if ($toko->is_online)
-                                    <p class="text-green-500">Buka</p>
+                                    <p class="text-green-500 text-sm">Buka</p>
                                 @else
-                                    <p class="text-red-500">Tutup</p>
+                                    <p class="text-red-500 text-sm">Tutup</p>
                                 @endif
                             </h2>
                         </div>
@@ -25,6 +26,21 @@
                                     Toko
                                 </button>
                             </a>
+                            @if ($toko->is_online)
+                                <a href="/seller/edit_toko/{{ $toko->id_toko }}">
+                                    <button type="button"
+                                        class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Tutup
+                                        toko
+                                    </button>
+                                </a>
+                            @else
+                                <a href="/seller/edit_toko/{{ $toko->id_toko }}">
+                                    <button type="button"
+                                        class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Buka
+                                        toko
+                                    </button>
+                                </a>
+                            @endif
                         </div>
                     </div>
 
@@ -52,6 +68,28 @@
                             <p class="text-center text-gray-500">Belum ada produk</p>
                         @else
                             @foreach ($product as $p)
+                                @php
+                                    // Ambil nilai rating dan rated_by
+                                    $rating = $p->rating ?? 0;
+
+                                    // Jika rated_by adalah JSON, decode jadi array dan hitung elemennya, jika tidak, gunakan langsung
+                                    if (is_string($p->rated_by)) {
+                                        $rated_by = json_decode($p->rated_by, true);
+                                        $rated_by = is_array($rated_by) ? count($rated_by) : $rated_by; // Jika array, hitung jumlahnya
+                                    } else {
+                                        $rated_by = $p->rated_by ?? 1; // Gunakan 1 sebagai default jika kosong
+                                    }
+
+                                    // Hitung rata-rata rating jika rated_by lebih dari 0
+                                    $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
+
+                                    // Batasi rata-rata rating menjadi satu angka di belakang koma
+                                    $average_rating = number_format($average_rating, 1);
+
+                                    $fullStars = floor($average_rating); // Bintang penuh
+                                    $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
+                                    $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
+                                @endphp
                                 <div class="product-box">
                                     <a class="">
                                         <div class="flex justify-end">
@@ -125,13 +163,46 @@
                                     <span class="category">Kategori: {{ $p->category->name }}</span>
                                     <span class="quantity">Jumlah: {{ $p->quantity }}</span>
                                     <span class="price">Harga: Rp.{{ $p->price }}</span>
+                                    <div class="flex">
+                                        {{-- Tampilkan bintang penuh --}}
+                                        @for ($i = 1; $i <= $fullStars; $i++)
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        @endfor
+
+                                        {{-- Tampilkan setengah bintang jika ada --}}
+                                        @if ($halfStar)
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z" />
+                                            </svg>
+                                        @endif
+
+                                        {{-- Tampilkan bintang kosong --}}
+                                        @for ($i = 1; $i <= $emptyStars; $i++)
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="text-gray-300 w-5 h-auto fill-current" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                            </svg>
+                                        @endfor
+
+                                        @if ($average_rating >= 1)
+                                            <p class="mx-2">( {{ $average_rating }} / 5 )</p>
+                                        @else
+                                            <p class="mx-2">( 0 / 0 )</p>
+                                        @endif
+                                    </div>
                                     <!--cart-btn------->
                                     {{-- <a href="{{ route('seller.products.edit', $p) }}" class="cart-btn"> --}}
                                     <a href="/seller/products/edit/{{ $p->id }}" class="cart-btn">
                                         <i class="fas fa-edit"></i> Edit Produk
                                     </a>
-                                    {{-- trigger delete --}}
-                                    {{-- <a class="view-btn"> --}}
+
 
                                 </div>
                             @endforeach
@@ -139,7 +210,32 @@
                     </div>
                 </section>
             @else
-                <p class="my-24 mx-24">Anda Bukan Seller, daftar sebagai seller sekarang!</p>
+                <div
+                    class="bg-gradient-to-r from-blue-100 to-blue-200 border border-blue-400 shadow-lg rounded-lg py-6 px-8 mx-4 md:mx-16 lg:mx-24 my-12 text-center">
+                    <div class="flex items-center justify-center space-x-4">
+                        <!-- Icon -->
+                        <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 17v5H8v-5m4-5v6m-6-4h12M5 12l7-7 7 7"></path>
+                        </svg>
+                        <!-- Text -->
+                        <p class="text-xl font-bold text-blue-800">Anda Bukan Seller, daftar sebagai seller sekarang!</p>
+                    </div>
+
+                    <!-- Call to action button -->
+                    <div class="mt-6">
+                        <form action="/role-request/store" class="mb-5" method="POST">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                            <input type="hidden" name="requested_role" value="seller">
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">Mengajukan
+                                Permintaan Menjadi
+                                Penjual</button>
+                        </form>
+                    </div>
+                </div>
             @endif
         @endif
     </section>
