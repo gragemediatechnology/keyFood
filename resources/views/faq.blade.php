@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
     <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
-    <link rel="stylesheet" href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/faq.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/faq.css">
 
 </head>
 
@@ -23,7 +24,7 @@
                         {{ $loop->first ? 'checked' : '' }}>
                     <label for="faq-{{ $loop->index }}">{{ $faq->title }}</label>
                     <div class="content">
-                        <p>{{ $faq->content }}</p>
+                        <p> {!! nl2br(e($faq->content)) !!} </p>
                     </div>
                 </li>
             </ul>
