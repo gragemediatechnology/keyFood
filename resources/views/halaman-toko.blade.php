@@ -51,7 +51,8 @@
                         @endphp
 
 
-                        @if (Auth::user()->hasRole('admin'))
+                        @if (Auth::check() && Auth::user()->hasRole('admin'))
+                            {{-- Jika user adalah admin --}}
                             <div class="product-box">
                                 <input type="hidden" value="{{$product->store_id}}" name="id">
                                 <span hidden>{{ $product->id }}</span>
@@ -59,10 +60,11 @@
                                 <span hidden>{{ $product->slug }}</span>
                                 <img alt="{{ $product->name }}" src="https://lapakkbk.online/{{ $product->photo }}">
                                 <strong>{{ $product->name }}</strong>
+                                {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
                                 <span class="quantity">Kategori:
                                     {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                                 <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
-                                <div class="flex justify-center">
+                                <div class="flex">
                                     {{-- Tampilkan bintang penuh --}}
                                     @for ($i = 1; $i <= $fullStars; $i++)
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
@@ -97,21 +99,20 @@
                                     @endif
                                 </div>
                                 <span class="quantity"></span>
-                                <br>
                                 <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                                 <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
                                     data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
                                     data-slug="{{ $product->slug }}" class="cart-btn">
                                     <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                                 </a>
-                                <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
-                                    data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
-                                    data-slug="{{ $product->slug }}" class="cart-btn">
-                                    <i class="fas fa-shopping-bag"></i> Tambah Ke Teratas
+                                {{-- Tambahkan menu khusus admin --}}
+                                <a href="admin/vip-product" class="">
+                                    <i class="fas fa-cogs"></i> Admin Menu
                                 </a>
-
                             </div>
-                        @elseif(!Auth::user())
+
+                        @elseif (!Auth::check())
+                            {{-- Jika user belum login, tampilkan detail toko --}}
                             <div class="product-box">
                                 <input type="hidden" value="{{$product->store_id}}" name="id">
                                 <span hidden>{{ $product->id }}</span>
@@ -166,6 +167,7 @@
                                 </a>
                             </div>
                         @else
+                            {{-- Tampilan default jika user sudah login tapi bukan admin --}}
                             <div class="product-box">
                                 <input type="hidden" value="{{$product->store_id}}" name="id">
                                 <span hidden>{{ $product->id }}</span>
@@ -220,6 +222,7 @@
                                 </a>
                             </div>
                         @endif
+
             @endforeach
         </div>
         @include('partials.cart')
