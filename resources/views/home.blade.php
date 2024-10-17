@@ -99,7 +99,7 @@
                                 <div
                                     class="special__card flex flex-col items-center justify-center text-center p-4 bg-transparent shadow-lg rounded-lg">
                                     <img src="{{ $product->photo }}" alt="special"
-                                        class="header-img max-w-full h-auto rounded-xl" />
+                                        class="header-img w-full h-auto max-w-[300px] max-h-[300px] rounded-xl object-cover" />
                                     <h4>{{ $product->name }}</h4>
                                     <p>
                                         <span class="quantity">Kategori:
