@@ -43,6 +43,24 @@
                     @enderror
                 </div>
 
+                {{-- Waktu Buka --}}
+                <div>
+                    <label class="text-white dark:text-gray-200" for="waktu_buka">Waktu Buka</label>
+                    <input value="{{ old('waktu_buka', $toko->waktu_buka) }}" id="waktu_buka" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" type="time" name="waktu_buka" required autofocus />
+                    @error('waktu_buka')
+                        <div class="text-red-500 mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                {{-- Waktu Tutup --}}
+                <div>
+                    <label class="text-white dark:text-gray-200" for="waktu_tutup">Waktu Tutup</label>
+                    <input value="{{ old('waktu_tutup', $toko->waktu_tutup) }}" id="waktu_tutup" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" type="time" name="waktu_tutup" required autofocus />
+                    @error('waktu_tutup')
+                        <div class="text-red-500 mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 {{-- Alamat Toko --}}
                 <div>
                     <label class="text-white dark:text-gray-200" for="alamat_toko">Alamat Toko</label>
