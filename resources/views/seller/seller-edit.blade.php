@@ -5,10 +5,18 @@
             @if (Auth::user()->hasRole('seller'))
                 <div class="store-header">
                     <div class="store-info">
-                        <img src="https://lapakkbk.online/{{ $toko->foto_profile_toko ? 'store_image/'. $toko->foto_profile_toko : 'https://lapakkbk.online/img/markets.webp' }} " alt="logo toko" class="store-logo">
+                        <img src="https://lapakkbk.online/{{ $toko->foto_profile_toko ? 'store_image/' . $toko->foto_profile_toko : 'https://lapakkbk.online/img/markets.webp' }} "
+                            alt="logo toko" class="store-logo">
                         <div class="store-text">
                             <h1>{{ $toko->nama_toko }}</h1>
                             <h2>{{ $toko->alamat_toko }}</h2>
+                            <h2 class="px-1">{{ $toko->waktu_buka && $toko->waktu_tutup ? $toko->waktu_buka . ' - ' . $toko->waktu_tutup : 'belum menyetting waktu buka - tutup' }}
+                                @if ($toko->is_online)
+                                    <p class="text-green-500">Buka</p>
+                                @else
+                                    <p class="text-red-500">Tutup</p>
+                                @endif
+                            </h2>
                         </div>
                         <div class="edit-button-container">
                             <a href="/seller/edit_toko/{{ $toko->id_toko }}">
@@ -47,18 +55,23 @@
                                 <div class="product-box">
                                     <a class="">
                                         <div class="flex justify-end">
-                                            <button id="deleteButton{{ $p->id }}" data-modal-target="deleteModal{{ $p->id }}"
+                                            <button id="deleteButton{{ $p->id }}"
+                                                data-modal-target="deleteModal{{ $p->id }}"
                                                 data-modal-toggle="deleteModal{{ $p->id }}"
                                                 class="rounded-full group flex items-center justify-center focus-within:outline-red-500">
-                                                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle class="fill-red-50 transition-all duration-500 group-hover:fill-red-400" cx="17" cy="17" r="17" />
-                                                    <path class="stroke-red-500 transition-all duration-500 group-hover:stroke-white"
+                                                <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <circle
+                                                        class="fill-red-50 transition-all duration-500 group-hover:fill-red-400"
+                                                        cx="17" cy="17" r="17" />
+                                                    <path
+                                                        class="stroke-red-500 transition-all duration-500 group-hover:stroke-white"
                                                         d="M14.1673 13.5997V12.5923C14.1673 11.8968 14.7311 11.333 15.4266 11.333H18.5747C19.2702 11.333 19.834 11.8968 19.834 12.5923V13.5997M19.834 13.5997C19.834 13.5997 14.6534 13.5997 11.334 13.5997C6.90804 13.5998 27.0933 13.5998 22.6673 13.5997C21.5608 13.5997 19.834 13.5997 19.834 13.5997ZM12.4673 13.5997H21.534V18.8886C21.534 20.6695 21.534 21.5599 20.9807 22.1131C20.4275 22.6664 19.5371 22.6664 17.7562 22.6664H16.2451C14.4642 22.6664 13.5738 22.6664 13.0206 22.1131C12.4673 21.5599 12.4673 20.6695 12.4673 18.8886V13.5997Z"
                                                         stroke="#EF4444" stroke-width="1.6" stroke-linecap="round" />
                                                 </svg>
                                             </button>
                                         </div>
-                                        
+
 
 
                                         <!-- Main modal -->
@@ -86,21 +99,21 @@
                                                             d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                             clip-rule="evenodd"></path>
                                                     </svg>
-                                                    <p class="mb-4 text-gray-500 dark:text-gray-300">Apakah kamu yakin ingin menghapus produk ini?</p>
+                                                    <p class="mb-4 text-gray-500 dark:text-gray-300">Apakah kamu yakin ingin
+                                                        menghapus produk ini?</p>
                                                     <div class="flex justify-center items-center space-x-4">
                                                         <button data-modal-toggle="deleteModal" type="button"
                                                             class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                                             Batal
                                                         </button>
-                                                        <form method="POST"
-                                                            {{-- action="{{ route('seller.toko.delete', ['product' => $p]) }}"> --}}
-                                                            action="/seller/products/destroy/{{ $p -> id }}">
+                                                        <form method="POST" {{-- action="{{ route('seller.toko.delete', ['product' => $p]) }}"> --}}
+                                                            action="/seller/products/destroy/{{ $p->id }}">
                                                             @csrf
                                                             @method('DELETE')
-                                                                <button type="submit"
-                                                                        class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
-                                                                    Hapus
-                                                                </button>
+                                                            <button type="submit"
+                                                                class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                                                                Hapus
+                                                            </button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -114,12 +127,12 @@
                                     <span class="price">Harga: Rp.{{ $p->price }}</span>
                                     <!--cart-btn------->
                                     {{-- <a href="{{ route('seller.products.edit', $p) }}" class="cart-btn"> --}}
-                                    <a href="/seller/products/edit/{{ $p -> id}}" class="cart-btn">
+                                    <a href="/seller/products/edit/{{ $p->id }}" class="cart-btn">
                                         <i class="fas fa-edit"></i> Edit Produk
                                     </a>
                                     {{-- trigger delete --}}
                                     {{-- <a class="view-btn"> --}}
-                                 
+
                                 </div>
                             @endforeach
                         @endif
