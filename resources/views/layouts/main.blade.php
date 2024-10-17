@@ -276,7 +276,7 @@
                 // Do nothing, stay on the current page
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 // Redirect to the admin page when "Kembali ke Halaman Admin" is clicked
-                window.location.href = `${ config(app_url) . '/admin/stores'}`; // Replace with the actual admin page URL
+                window.location.href = 'https://lapakkbk.online/admin/stores'; // Replace with the actual admin page URL
             }
         });
 @endif
