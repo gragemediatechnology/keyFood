@@ -116,8 +116,7 @@
                                         <button type="submit" name="action" value="set_vip">
                                             <i class="fas fa-star"></i> Jadikan Teratas
                                         </button>
-                                    @endif
-                                    @if ($product->is_vip == true)
+                                    @else
                                         <button type="submit" name="action" value="cancel">
                                             <i class="fas fa-ban"></i> Batalkan Teratas
                                         </button>
