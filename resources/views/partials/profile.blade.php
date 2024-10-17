@@ -64,7 +64,7 @@
                     @if (Auth::user()->hasRole('seller'))
                         <a href="/seller/seller-edit" class="flex items-center gap-3 rounded-md py-2 px-3 but-sel">
                             <i class='bx bxs-store'></i>
-                            <span class="body.dark{color:white}">Seller Page</span>
+                            <span class="body.dark{color:white}">Halaman Penjual</span>
                         </a>
                     @else
                         <a href="/history" class="lg:hidden flex items-center gap-3 rounded-md py-2 px-3 mb-2 but-his">
