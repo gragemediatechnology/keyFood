@@ -329,7 +329,7 @@ class ProductController extends Controller
             } else if ($request->action == 'set_vip') {
                 // Handle setting as VIP
                 $vipProducts = Product::where('is_vip', true)->count();
-                if ($vipProducts < 3) {
+                if ($vipProducts <= 3) {
                     $product->update(['is_vip' => true]);
                     return redirect()->back()->with('success', 'Produk berhasil dijadikan produk VIP.');
                 } else {

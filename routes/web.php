@@ -129,13 +129,12 @@ Route::prefix('seller')->name('seller.')->group(function () {
     Route::put('/products/update/{product}', [ProductController::class, 'update'])->name('products.update')->middleware('role:seller');
     Route::delete('/products/destroy/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('role:seller');
 
-    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
-    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
-    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store')->middleware('role:seller');
+
 
     Route::resource('products_orders', ProductOrderController::class);
     Route::put('/edit_toko/update/{id}', [TokoController::class, 'update'])->name('toko.update')->middleware('permission:edit-toko');
     Route::get('/edit_toko/{id}', [TokoController::class, 'edit'])->name('toko.edit')->middleware('permission:edit-toko');
+    Route::patch('/stores/{id}/online/{online}', [TokoController::class, 'online'])->name('toko.online')->middleware('role:seller');
     Route::resource('/seller/seller-edit', ProductController::class);
 });
 
