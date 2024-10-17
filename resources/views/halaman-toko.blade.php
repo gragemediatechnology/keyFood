@@ -106,7 +106,7 @@
                                     <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                                 </a>
                                 {{-- Tambahkan menu khusus admin --}}
-                                <form action="{{ url('admin/vip-product') }}" method="POST">
+                                <form action="{{ config('app_url').'/admin/vip-product' }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
