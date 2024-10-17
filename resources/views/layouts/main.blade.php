@@ -268,12 +268,19 @@
             text: '{{ session('successVip') }}',
             timer: 300000,
             showConfirmButton: true,
-            buttons: [
-                'Tutup',
-                'Lihat Detail'
-            ]
+            showCancelButton: true,
+            confirmButtonText: 'Ok',
+            cancelButtonText: 'Kembali ke Halaman Admin'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Do nothing, stay on the current page
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Redirect to the admin page when "Kembali ke Halaman Admin" is clicked
+                window.location.href = 'https://lapakkbk.online/admin/stores'; // Replace with the actual admin page URL
+            }
         });
-    @endif
+@endif
+
 
     @if (session('error'))
         Swal.fire({
