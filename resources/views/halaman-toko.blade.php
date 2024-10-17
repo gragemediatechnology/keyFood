@@ -112,7 +112,7 @@
                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
 
                                     <!-- Option to set the product as VIP -->
-                                    @if ($product->is_vip === 0 && $product->products()->where('is_vip', true)->count() < 3)
+                                    @if ($product->is_vip === 0 && $product->toko->products()->where('is_vip', true)->count() < 3)
                                         <button type="submit" class="">
                                             <i class="fa-solid fa-star"></i> Jadikan Teratas
                                         </button>
