@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
         if (auth()->user()->can('productCRUD')) {
             // Mengambil produk milik penjual yang login
-            $products = Product::where('creator_id', Auth::id())->paginate(5);
+            $products = Product::where('creator_id', Auth::id())->paginate(20);
 
             // Mengirim data produk ke view dengan pagination
             return view('seller./seller/seller-edit', compact('products'));
@@ -97,7 +97,7 @@ class ProductController extends Controller
      */
     public function showProductSlider()
     {
-        $products = Product::inRandomOrder()->paginate(5);
+        $products = Product::inRandomOrder()->paginate(20);
         return view('product-slider', compact('products'));
     }
 
@@ -242,7 +242,7 @@ class ProductController extends Controller
     public function showProducts()
     {
         // Ambil produk dengan paginasi (atau sesuai kebutuhan)
-        $products = Product::paginate(10);
+        $products = Product::paginate(20);
 
         // Kirim data produk ke view
         return view('categories', compact('products'));
@@ -270,7 +270,7 @@ class ProductController extends Controller
         }
 
         // Paginate the results
-        $products = $productQuery->paginate(10);
+        $products = $productQuery->paginate(20);
         $category = Category::all();
 
         // Return the paginated products as JSON
@@ -318,25 +318,25 @@ class ProductController extends Controller
 
 
 public function vipProduct (Request $request){
-    // dd($request->action);
-$product = Product::find($request->product_id);
-if ($product) {
-    if ($request->action == 'cancel') {
-        $product->update(['is_vip' => false]);
-        return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dihapus dari produk VIP.');
-    } else {
-        $vipProducts = Product::where('is_vip', true)->count();
-        if ($vipProducts < 3) {
-            $product->update(['is_vip' => true]);
-            return redirect()->back()->with('success', 'Produk berhasil dijadikan produk VIP.');
-            // return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dijadikan produAk VIP.');
-        } else {
-            return redirect()->back()->with('error', 'Tidak dapat menambahkan produk VIP karena sudah mencapai batas.');
-        }
-    }
-} else {
-    return redirect()->back()->with('error', 'Produk tidak ditemukan.');
-}
+    dd($request->all());
+// $product = Product::find($request->product_id);
+// if ($product) {
+//     if ($request->action == 'cancel') {
+//         $product->update(['is_vip' => false]);
+//         return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dihapus dari produk VIP.');
+//     } else {
+//         $vipProducts = Product::where('is_vip', true)->count();
+//         if ($vipProducts < 3) {
+//             $product->update(['is_vip' => true]);
+//             return redirect()->back()->with('success', 'Produk berhasil dijadikan produk VIP.');
+//             // return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dijadikan produAk VIP.');
+//         } else {
+//             return redirect()->back()->with('error', 'Tidak dapat menambahkan produk VIP karena sudah mencapai batas.');
+//         }
+//     }
+// } else {
+//     return redirect()->back()->with('error', 'Produk tidak ditemukan.');
+// }
 }
 
 }
