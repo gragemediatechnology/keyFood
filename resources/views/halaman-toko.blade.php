@@ -104,23 +104,7 @@
                                     data-slug="{{ $product->slug }}" class="cart-btn">
                                     <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                                 </a>
-                                <form action="admin/vip-product" method="POST" style="display:inline;">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <input type="hidden" name="store_id" value="{{ $product->store_id }}">
-                                    @if ($product->is_vip == 0 && $product->toko->products()->where('is_vip', true)->count() <= 3)
-                                        <button type="submit" class="">
-                                            <i class="fa-solid fa-star"></i> Jadikan Teratas
-                                        </button>
-                                    @else
-                                        <button type="submit" class="hidden">
-                                            <i class="fa-solid fa-star"></i> Jadikan Teratas
-                                        </button>
-                                        <button type="submit" class="" name="action" value="cancel">
-                                            <i class="fa-solid fa-star"></i> Batalkan Teratas
-                                        </button>
-                                    @endif
-                                </form>
+                               
                             </div>
                         @else
                             <div class="product-box">
