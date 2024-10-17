@@ -27,7 +27,7 @@
                                 </button>
                             </a>
                             @if ($toko->is_online)
-                                <form action="/set_status/{{ $toko->id_toko }}" method="POST"
+                                <form action="/seller/set_status/{{ $toko->id_toko }}" method="POST"
                                     style="display: inline;">
                                     @csrf
                                     @method('PATCH')
