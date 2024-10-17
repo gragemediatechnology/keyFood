@@ -72,7 +72,7 @@ class TokoController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request);
+         dd($request);
         // Cari toko berdasarkan ID
         $toko = Toko::findOrFail($id);
 
@@ -86,8 +86,8 @@ class TokoController extends Controller
             'nama_toko' => 'required|string|max:255',
             'alamat_toko' => 'required|string|max:255',
             'deskripsi_toko' => 'required|string|max:255',
-            'waktu_buka' => 'nullable|required|time',
-            'waktu_tutup' => 'nullable|required|time',
+            'waktu_buka' => 'nullable|date_format:H:i',
+            'waktu_tutup' => 'nullable|date_format:H:i',
             'foto_profile_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
