@@ -9,6 +9,7 @@
                     <div class="store-text">
                         <h1>{{ $detail->nama_toko }}</h1>
                         <h2>Alamat : {{ $detail->alamat_toko }}</h2>
+                        <h2>Jam Oprasional Toko : {{ $detail->waktu_buka }} - {{ $detail->waktu_tutup }}</h2>
                     </div>
                 </div>
                 <div class="store-description">
