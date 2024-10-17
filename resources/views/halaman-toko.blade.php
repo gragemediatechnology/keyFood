@@ -105,6 +105,10 @@
                                     data-slug="{{ $product->slug }}" class="cart-btn">
                                     <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                                 </a>
+                                {{-- Tambahkan menu khusus admin --}}
+                                <a href="#" class="">
+                                    <i class="fas fa-cogs"></i> Admin Menu
+                                </a>
                             </div>
 
                         @elseif (!Auth::check())
