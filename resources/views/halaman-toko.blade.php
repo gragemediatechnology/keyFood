@@ -112,14 +112,16 @@
                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
 
                                     <!-- Option to set the product as VIP -->
-                                    <button type="submit" name="action" value="set_vip">
-                                        <i class="fas fa-star"></i> Jadikan Teratas
-                                    </button>
-
-                                    <!-- Option to cancel VIP status -->
-                                    <button type="submit" name="action" value="cancel">
-                                        <i class="fas fa-ban"></i> Batalkan Teratas
-                                    </button>
+                                    @if ($product->is_vip <= 3 && $product->is_vip = 0 )
+                                        <button type="submit" name="action" value="set_vip">
+                                            <i class="fas fa-star"></i> Jadikan Teratas
+                                        </button>
+                                    @endif
+                                    @if ($product->is_vip == true)
+                                        <button type="submit" name="action" value="cancel">
+                                            <i class="fas fa-ban"></i> Batalkan Teratas
+                                        </button>
+                                    @endif
                                 </form>
                             </div>
 
