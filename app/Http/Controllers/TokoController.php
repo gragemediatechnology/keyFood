@@ -86,11 +86,15 @@ class TokoController extends Controller
             'nama_toko' => 'required|string|max:255',
             'alamat_toko' => 'required|string|max:255',
             'deskripsi_toko' => 'required|string|max:255',
+            'waktu_buka' => 'nullable|required|time',
+            'waktu_tutup' => 'nullable|required|time',
             'foto_profile_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Update informasi toko
         $toko->nama_toko = $request->input('nama_toko');
+        $toko->waktu_buka = $request->input('waktu_buka');
+        $toko->waktu_tutup = $request->input('waktu_tutup');
         $toko->alamat_toko = $request->input('alamat_toko');
         $toko->deskripsi_toko = $request->input('deskripsi_toko');
 
