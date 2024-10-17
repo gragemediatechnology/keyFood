@@ -194,7 +194,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/company/update/{id}', [CmsController::class, 'update'])->name('company.update');
     
 
-    Route::get('/vip-product', [ProductController::class, 'vipProduct']);
+    Route::post('/vip-product', [ProductController::class, 'vipProduct']);
 });
 
 // Biarkan ini di luar prefix admin
