@@ -51,7 +51,7 @@
                         @endphp
 
 
-                        @if (Auth::user()->hasRole('admin'))
+                        <!-- @if (Auth::user()->hasRole('admin'))
                             <div class="product-box">
                                 <span hidden>{{ $product->id }}</span>
                                 <span hidden>{{ $product->store_id }}</span>
@@ -174,7 +174,7 @@
                                     <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                                 </a>
                             </div>
-                        @endif
+                        @endif -->
             @endforeach
         </div>
         @include('partials.cart')
