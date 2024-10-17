@@ -10,7 +10,7 @@
                         <div class="store-text">
                             <h1>{{ $toko->nama_toko }}</h1>
                             <h2>{{ $toko->alamat_toko }}</h2>
-                            <h2>{{ $toko->waktu_buka }} - {{ $toko->waktu_tutup }}
+                            <h2 class="px-1">{{ $toko->waktu_buka && $toko->waktu_tutup ? $toko->waktu_buka . ' - ' . $toko->waktu_tutup : 'belum menyetting waktu buka - tutup' }}
                                 @if ($toko->is_online)
                                     <p class="text-green-500">Buka</p>
                                 @else
