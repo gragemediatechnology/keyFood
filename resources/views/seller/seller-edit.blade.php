@@ -11,7 +11,7 @@
                             <h1>{{ $toko->nama_toko }}</h1>
                             <h2>{{ $toko->alamat_toko }}</h2>
                             <h2 class="px-1">
-                                {{ $toko->waktu_buka && $toko->waktu_tutup ? 'Waktu Buka : ' . $toko->waktu_buka . ' - ' . 'Waktu Tutup : ' .  $toko->waktu_tutup : 'belum menyetting waktu buka - tutup' }}
+                                {{ $toko->waktu_buka && $toko->waktu_tutup ? 'Jam Oprasional Toko : ' . $toko->waktu_buka . ' - ' .  .  $toko->waktu_tutup : 'belum menyetting waktu buka - tutup' }}
                                 @if ($toko->is_online)
                                     <p class="text-green-500 text-sm">Buka</p>
                                 @else
