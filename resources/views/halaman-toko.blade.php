@@ -107,6 +107,8 @@
                                 </a>
                                 {{-- Tambahkan menu khusus admin --}}
                                 <a href="admin/vip-product" class="">
+                                    <input type="hidden" value="{{$product->id}}">
+                                    <input type="hidden" value="{{$product->store_id}}">
                                     <i class="fas fa-cogs"></i> Admin Menu
                                 </a>
                             </div>
