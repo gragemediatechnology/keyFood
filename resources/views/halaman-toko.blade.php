@@ -112,13 +112,16 @@
                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
 
                                     <!-- Option to set the product as VIP -->
-                                    @if ($product->is_vip <= 3 && $product->is_vip = 0 )
-                                        <button type="submit" name="action" value="set_vip">
-                                            <i class="fas fa-star"></i> Jadikan Teratas
+                                    @if ($product->is_vip == 0 && $product->toko->products()->where('is_vip', true)->count() <= 3)
+                                        <button type="submit" class="">
+                                            <i class="fa-solid fa-star"></i> Jadikan Teratas
                                         </button>
                                     @else
-                                        <button type="submit" name="action" value="cancel">
-                                            <i class="fas fa-ban"></i> Batalkan Teratas
+                                        <button type="submit" class="hidden">
+                                            <i class="fa-solid fa-star"></i> Jadikan Teratas
+                                        </button>
+                                        <button type="submit" class="" name="action" value="cancel">
+                                            <i class="fa-solid fa-star"></i> Batalkan Teratas
                                         </button>
                                     @endif
                                 </form>
