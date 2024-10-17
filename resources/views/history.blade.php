@@ -38,7 +38,7 @@
                     </button>
                 </a>
                 <div class="mt-6 text-center">
-                    <a href="/faq" class="text-sm text-purple-600 hover:text-purple-800 transition duration-300">Butuh
+                    <a href="/live-chat" class="text-sm text-purple-600 hover:text-purple-800 transition duration-300">Butuh
                         Bantuan?
                         Chat Kami</a>
                 </div>
