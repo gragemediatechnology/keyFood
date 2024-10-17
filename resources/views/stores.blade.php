@@ -38,7 +38,7 @@
                                 <div class="user-info-s">
                                     <div class="user-name-s">{{ $store->nama_toko }}</div>
                                     <div class="user-description-s">Alamat : {{ $store->alamat_toko }}</div>
-                                    <div class="user-description-s">Waktu Oprasional Toko : {{ $store->waktu_buka }} - {{ $stores->waktu_tutup }}</div>
+                                    <div class="user-description-s">Waktu Oprasional Toko : {{ $store->waktu_buka }} - {{ $store->waktu_tutup }}</div>
                                     @if ($store->is_online)
                                         <p class="text-green-500">Buka</p>
                                     @else
