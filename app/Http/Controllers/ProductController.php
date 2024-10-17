@@ -331,7 +331,7 @@ class ProductController extends Controller
                 $vipProducts = Product::where('is_vip', true)->count();
                 if ($vipProducts <= 3) {
                     $product->update(['is_vip' => true]);
-                    return redirect()->back()->with('successVip', 'Produk berhasil dijadikan produk VIP.');
+                    return redirect()->back()->with('successVip', 'Produk berhasil dijadikan produk VIP1.');
                 } else {
                     return redirect()->back()->with('error', 'Tidak dapat menambahkan produk VIP karena sudah mencapai batas.');
                 }
