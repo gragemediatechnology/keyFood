@@ -108,10 +108,17 @@
                                 {{-- Tambahkan menu khusus admin --}}
                                 <form action="admin/vip-product" method="POST">
                                     @csrf
-                                    <input type="hidden" name="product_id" value="{{$product->id}}">
-                                    <input type="hidden" name="store_id" value="{{$product->store_id}}">
-                                    <button type="submit">
-                                        <i class="fas fa-cogs"></i> Admin Menu
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="store_id" value="{{ $product->store_id }}">
+
+                                    <!-- Option to set the product as VIP -->
+                                    <button type="submit" name="action" value="set_vip">
+                                        <i class="fas fa-star"></i> Jadikan Teratas
+                                    </button>
+
+                                    <!-- Option to cancel VIP status -->
+                                    <button type="submit" name="action" value="cancel">
+                                        <i class="fas fa-ban"></i> Batalkan Teratas
                                     </button>
                                 </form>
                             </div>
