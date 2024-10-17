@@ -134,7 +134,7 @@ Route::prefix('seller')->name('seller.')->group(function () {
     Route::resource('products_orders', ProductOrderController::class);
     Route::put('/edit_toko/update/{id}', [TokoController::class, 'update'])->name('toko.update')->middleware('permission:edit-toko');
     Route::get('/edit_toko/{id}', [TokoController::class, 'edit'])->name('toko.edit')->middleware('permission:edit-toko');
-    Route::patch('/stores/{id}/online/{online}', [TokoController::class, 'online'])->name('toko.online')->middleware('role:seller');
+    Route::patch('/set_status/{id}', [TokoController::class, 'toggleOnlineStatus'])->name('toko.status')->middleware('role:seller');
     Route::resource('/seller/seller-edit', ProductController::class);
 });
 
@@ -147,7 +147,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.dashboard-cms');
     })->middleware('permission:dasboard-cms');
 
-    
+
     // Route::resource('users', UserController::class)->middleware('permission:users');
     Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('permission:users');
     Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit')->middleware('permission:users');
@@ -191,7 +191,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/company', [CmsController::class, 'index'])->name('company.index');
     Route::get('/company/edit/{id}', [CmsController::class, 'edit'])->name('company.edit');
     Route::post('/company/update/{id}', [CmsController::class, 'update'])->name('company.update');
-    
+
 
     Route::post('/vip-product', [ProductController::class, 'vipProduct']);
 });
