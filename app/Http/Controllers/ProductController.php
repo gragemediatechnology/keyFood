@@ -278,65 +278,67 @@ class ProductController extends Controller
     }
 
     public function rateProduct(Request $request, $id)
-{
-    $user = Auth::user();
-    $product = Product::findOrFail($id);
+    {
+        $user = Auth::user();
+        $product = Product::findOrFail($id);
 
-    // Validasi rating
-    $request->validate([
-        'rating' => 'required|numeric|min:1|max:5',
-    ]);
+        // Validasi rating
+        $request->validate([
+            'rating' => 'required|numeric|min:1|max:5',
+        ]);
 
-    // Cari order detail terbaru untuk produk ini yang belum diberi rating
-    $latestOrderDetail = Orders::where('id_user', $user->id)
-        ->where('product_id', $product->id)
-        ->whereNull('rating')
-        ->orderBy('created_at', 'desc')
-        ->first();
+        // Cari order detail terbaru untuk produk ini yang belum diberi rating
+        $latestOrderDetail = Orders::where('id_user', $user->id)
+            ->where('product_id', $product->id)
+            ->whereNull('rating')
+            ->orderBy('created_at', 'desc')
+            ->first();
 
-    if (!$latestOrderDetail) {
-        return redirect()->back()->with('error', 'Anda sudah memberikan ratting pada pembelian di produk ini.');
+        if (!$latestOrderDetail) {
+            return redirect()->back()->with('error', 'Anda sudah memberikan ratting pada pembelian di produk ini.');
+        }
+
+        // Simpan rating ke order detail
+        $latestOrderDetail->update([
+            'rating' => $request->rating
+        ]);
+
+        // Hitung ulang rata-rata rating produk
+        $averageRating = Orders::where('product_id', $product->id)
+            ->whereNotNull('rating')
+            ->avg('rating');
+
+        // Update rating produk
+        $product->update([
+            'rating' => $averageRating
+        ]);
+
+        return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
     }
 
-    // Simpan rating ke order detail
-    $latestOrderDetail->update([
-        'rating' => $request->rating
-    ]);
 
-    // Hitung ulang rata-rata rating produk
-    $averageRating = Orders::where('product_id', $product->id)
-        ->whereNotNull('rating')
-        ->avg('rating');
-
-    // Update rating produk
-    $product->update([
-        'rating' => $averageRating
-    ]);
-
-    return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
-}
-
-
-public function vipProduct (Request $request){
-    // dd($request->action);
-$product = Product::find($request->product_id);
-if ($product) {
-    if ($request->action == 'cancel') {
-        $product->update(['is_vip' => false]);
-        return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dihapus dari produk VIP.');
-    } else {
-        $vipProducts = Product::where('is_vip', true)->count();
-        if ($vipProducts < 3) {
-            $product->update(['is_vip' => true]);
-            return redirect()->back()->with('success', 'Produk berhasil dijadikan produk VIP.');
-            // return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dijadikan produAk VIP.');
+    public function vipProduct(Request $request)
+    {
+        // dd($request->all());
+        $product = Product::find($request->product_id);
+        if ($product) {
+            if ($request->action == 'cancel') {
+                // Handle cancellation of VIP status
+                $product->update(['is_vip' => false]);
+                return redirect()->route('admin.stores.index')->with('success', 'Produk berhasil dihapus dari produk VIP.');
+            } else if ($request->action == 'set_vip') {
+                // Handle setting as VIP
+                $vipProducts = Product::where('is_vip', true)->count();
+                if ($vipProducts <= 3) {
+                    $product->update(['is_vip' => true]);
+                    return redirect()->back()->with('success', 'Produk berhasil dijadikan produk VIP.');
+                } else {
+                    return redirect()->back()->with('error', 'Tidak dapat menambahkan produk VIP karena sudah mencapai batas.');
+                }
+            }
         } else {
-            return redirect()->back()->with('error', 'Tidak dapat menambahkan produk VIP karena sudah mencapai batas.');
+            return redirect()->back()->with('error', 'Produk tidak ditemukan.');
         }
     }
-} else {
-    return redirect()->back()->with('error', 'Produk tidak ditemukan.');
-}
-}
 
 }
