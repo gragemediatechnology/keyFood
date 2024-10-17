@@ -76,7 +76,7 @@
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                             @foreach ($stores as $store)
-                                <form action="/detailed-store" method="GET">
+                                <form action="/detailed-store" method="POST">
                                     <input type="hidden" value="{{ $store->id_toko }}" name="id">
 
 
