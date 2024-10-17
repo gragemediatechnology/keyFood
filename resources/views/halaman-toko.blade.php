@@ -106,11 +106,13 @@
                                     <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                                 </a>
                                 {{-- Tambahkan menu khusus admin --}}
-                                <a href="admin/vip-product" class="">
-                                    <input type="hidden" value="{{$product->id}}">
-                                    <input type="hidden" value="{{$product->store_id}}">
-                                    <i class="fas fa-cogs"></i> Admin Menu
-                                </a>
+                                <form action="admin/vip-product" method="GET">
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <input type="hidden" name="store_id" value="{{$product->store_id}}">
+                                    <button type="submit">
+                                        <i class="fas fa-cogs"></i> Admin Menu
+                                    </button>
+                                </form>
                             </div>
 
                         @elseif (!Auth::check())
