@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
         if (auth()->user()->can('productCRUD')) {
             // Mengambil produk milik penjual yang login
-            $products = Product::where('creator_id', Auth::id())->paginate(5);
+            $products = Product::where('creator_id', Auth::id())->paginate(20);
 
             // Mengirim data produk ke view dengan pagination
             return view('seller./seller/seller-edit', compact('products'));
@@ -97,7 +97,7 @@ class ProductController extends Controller
      */
     public function showProductSlider()
     {
-        $products = Product::inRandomOrder()->paginate(5);
+        $products = Product::inRandomOrder()->paginate(20);
         return view('product-slider', compact('products'));
     }
 
@@ -242,7 +242,7 @@ class ProductController extends Controller
     public function showProducts()
     {
         // Ambil produk dengan paginasi (atau sesuai kebutuhan)
-        $products = Product::paginate(10);
+        $products = Product::paginate(20);
 
         // Kirim data produk ke view
         return view('categories', compact('products'));
@@ -270,7 +270,7 @@ class ProductController extends Controller
         }
 
         // Paginate the results
-        $products = $productQuery->paginate(10);
+        $products = $productQuery->paginate(20);
         $category = Category::all();
 
         // Return the paginated products as JSON

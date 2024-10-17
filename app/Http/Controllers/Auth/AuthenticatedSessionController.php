@@ -156,9 +156,6 @@ class AuthenticatedSessionController extends Controller
         return redirect('https://lapakkbk.online');
 
         // return redirect('/');
-
-
-
     }
 
 
