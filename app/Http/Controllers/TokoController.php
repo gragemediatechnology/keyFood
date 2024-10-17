@@ -197,6 +197,6 @@ class TokoController extends Controller
 
         // Tentukan teks status untuk pesan sukses
         $statusText = $toko->is_online ? 'online' : 'offline';
-        return redirect()->back()->with('success', 'Status toko berhasil diubah menjadi ' . $statusText);
+        return redirect()->to('/seller/seller-edit')->with('success', 'Status toko berhasil diubah menjadi ' . $statusText);
     }
 }
