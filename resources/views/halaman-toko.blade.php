@@ -113,7 +113,7 @@
 
                                     <!-- Option to set the product as VIP -->
                                     @if ($product->is_vip === 0 && $products->where('is_vip', true)->count() < 3)
-                                        <button type="submit" class="">
+                                        <button type="submit" class="" name="action" value="set_vip">
                                             <i class="fa-solid fa-star"></i> Jadikan Teratas
                                         </button>
                                     @else
