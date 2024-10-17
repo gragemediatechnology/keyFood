@@ -261,6 +261,19 @@
             showConfirmButton: true,
         });
     @endif
+    @if (session('successVip'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('successVip') }}',
+            timer: 300000,
+            showConfirmButton: true,
+            buttons: [
+                'Tutup',
+                'Lihat Detail'
+            ]
+        });
+    @endif
 
     @if (session('error'))
         Swal.fire({
