@@ -185,4 +185,23 @@ class TokoController extends Controller
             'data' => $stores
         ]);
     }
+
+     public function online($id, $online)
+    {
+        // Validasi input status harus boolean (0 atau 1)
+        if (!in_array($online, [0, 1])) {
+            return redirect()->back()->with('error', 'Status tidak valid.');
+        }
+
+        // Temukan toko berdasarkan ID
+        $toko = Toko::findOrFail($id);
+
+        // Update status is_online toko
+        $toko->is_online = $online;
+        $toko->save();
+
+        // Redirect dengan pesan sukses
+        $onlineText = $online ? 'online' : 'offline';
+        return redirect()->back()->with('success', 'Status toko berhasil diubah menjadi ' . $onlineText);
+    }
 }
