@@ -32,11 +32,16 @@ class Toko extends Model
         return $this->belongsTo(User::class, 'id_seller', 'id');
     }
 
-    // Relationship with Products
+    // public function products()
+    // {
+    //     return $this->hasMany(Product::class, 'id_seller', 'id');
+    // }
+
     public function products()
     {
-        return $this->hasMany(Product::class, 'creator_id', 'id_seller');
+        return $this->hasMany(Product::class, 'store_id', 'id_toko');
     }
+
 
 
     // Relationship with Category

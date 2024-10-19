@@ -21,7 +21,7 @@ class RoleRequestController extends Controller
         return view('admin.role-requests.index', compact('roleRequests'));
     }
 
-    public function approve($id)
+     <!-- public function approve($id)
     {
         // Temukan request berdasarkan ID
         $roleRequest = DB::table('role_change_requests')->where('user_id', $id)->first();
@@ -53,7 +53,48 @@ class RoleRequestController extends Controller
         }
 
         return redirect()->back()->with('error', 'Permintaan tidak ditemukan.');
+    } -->
+
+    public function approve($id)
+{
+    // Temukan request berdasarkan ID
+    $roleRequest = DB::table('role_change_requests')->where('user_id', $id)->first();
+
+    if ($roleRequest) {
+        // Hapus request yang ada
+        DB::table('role_change_requests')->where('user_id', $id)->delete();
+
+        // Temukan pengguna berdasarkan ID
+        $user = User::find($id);
+
+        if ($user) {
+            // Tambahkan role seller ke pengguna
+            $user->assignRole('seller');
+
+            // Cek apakah toko sudah ada, jika belum buat toko baru
+            $store = Toko::where('id_seller', $user->id)->first();
+            
+            if (!$store) {
+                // Buat toko baru
+                $store = new Toko();
+                $store->id_seller = $user->id;
+                $store->nama_toko = 'Nama Toko Baru'; // Ganti sesuai kebutuhan
+                $store->alamat_toko = 'Alamat Toko'; // Ganti sesuai kebutuhan
+                $store->foto_profile_toko = 'default.png'; // Ganti sesuai kebutuhan
+                $store->is_online = 0; // Set default offline
+                $store->save();
+            }
+
+            // Redirect dengan pesan sukses
+            return redirect()->back()->with('success', 'Role seller telah diterima dan akun toko telah dibuat.');
+        } else {
+            return redirect()->back()->with('error', 'Pengguna tidak ditemukan.');
+        }
     }
+
+    return redirect()->back()->with('error', 'Permintaan tidak ditemukan.');
+}
+
 
     public function cancel($id)
     {
