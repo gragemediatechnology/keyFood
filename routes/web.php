@@ -157,6 +157,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Route::resource('stores', TokoController::class)->middleware('permission:stores');
     Route::get('/stores', [TokoController::class, 'index'])->name('stores.index')->middleware('permission:stores');
     Route::delete('/stores/destroy/{id}', [TokoController::class, 'destroy'])->name('stores.destroy')->middleware('permission:stores');
+    
 
     Route::get('/role-requests', [RoleRequestController::class, 'index'])->name('role-requests.index')->middleware('permission:role-requests');
 

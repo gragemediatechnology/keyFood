@@ -35,8 +35,9 @@ class Toko extends Model
     // Relationship with Products
     public function products()
     {
-        return $this->hasMany(Product::class, 'id_seller', 'id');
+        return $this->hasMany(Product::class, 'creator_id', 'id_seller');
     }
+
 
     // Relationship with Category
     public function category()
@@ -56,9 +57,6 @@ class Toko extends Model
                 if ($user->hasRole('seller')) {
                     $user->syncRoles([]); // Remove all roles or set to default role
                 }
-
-                // Delete all products associated with this user
-                $user->products()->delete();
             }
         });
     }

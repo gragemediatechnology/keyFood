@@ -137,11 +137,25 @@ class TokoController extends Controller
     {
         $store = Toko::findOrFail($id);
 
-        // Deleting the toko will trigger the deletion event in the Toko model
+        // Hapus semua produk yang diunggah oleh toko ini
+        $store->products()->delete(); // Ini akan menghapus semua produk yang terhubung dengan creator_id
+
+        // Ambil user yang memiliki toko ini
+        $user = $store->user;
+
+        if ($user) {
+            // Jika user memiliki role seller, reset role-nya
+            if ($user->hasRole('seller')) {
+                $user->syncRoles([]); // Menghapus semua role
+            }
+        }
+
+        // Hapus toko
         $store->delete();
 
-        return redirect()->route('admin.stores.index')->with('success', 'Toko deleted successfully');
+        return redirect()->route('admin.stores.index')->with('success', 'Toko dan produk terkait berhasil dihapus, role pengguna direset.');
     }
+
 
     public function showStores()
     {
