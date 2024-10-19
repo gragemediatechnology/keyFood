@@ -21,7 +21,7 @@ class RoleRequestController extends Controller
         return view('admin.role-requests.index', compact('roleRequests'));
     }
 
-     <!-- public function approve($id)
+     /* public function approve($id)
     {
         // Temukan request berdasarkan ID
         $roleRequest = DB::table('role_change_requests')->where('user_id', $id)->first();
@@ -53,7 +53,7 @@ class RoleRequestController extends Controller
         }
 
         return redirect()->back()->with('error', 'Permintaan tidak ditemukan.');
-    } -->
+    } */
 
     public function approve($id)
 {
