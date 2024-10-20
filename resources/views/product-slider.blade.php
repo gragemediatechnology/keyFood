@@ -3,6 +3,16 @@
     <section id="home">
         <!-- Popular Bundle Pack Section -->
         <section id="popular-bundle-pack">
+            @if (session('status') == 'TokoTutup')
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Checkout Gagal',
+                        text: '{{ session('checkout') }}',
+                    });
+                </script>
+            @endif
+
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
@@ -40,7 +50,8 @@
                         <img alt="{{ $product->name }}" src="{{ $product->photo }}">
                         <strong>{{ $product->name }}</strong>
                         {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
-                        <span class="quantity">Kategori: {{ $product->category ? $product->category->name : 'Unknown' }}</span>
+                        <span class="quantity">Kategori:
+                            {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                         <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
                         <div class="flex">
                             {{-- Tampilkan bintang penuh --}}

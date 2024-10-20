@@ -30,122 +30,115 @@ class CheckoutController extends Controller
     /**
      * Store a newly created order in storage.
      */
-    public function storeOrder(Request $request)
-    {
-        $products = json_decode($request->products, true);
-        $totalOrderPrice = $request->input('total_price');
-
-        if ($products === null || !is_numeric($totalOrderPrice)) {
-            Log::error('Invalid input data. Products: ' . $request->input('products') . ', Total Price: ' . $totalOrderPrice);
-            return redirect()->back()->withErrors(['checkout' => 'Invalid input data. Please try again.']);
-        }
-
-        // DB::beginTransaction(); // Memulai transaksi
-
-        // Kirim pesan
-
-        try {
-            $totalOrderPrice = 0; // Untuk menyimpan total harga dari semua produk dalam satu order
-            $buyerId = auth()->id(); // Ambil ID pengguna yang sedang login
-
-            // dd($products);
-            foreach ($products as $product) {
-                $toko = Toko::where('id_toko', $product['store_id'])->with('user')->first();
-
-                // Cek apakah seller mencoba membeli produk mereka sendiri
-                if ($toko && $toko->id_seller == $buyerId) {
-                    return redirect('/seller/seller-edit')->withErrors(['checkout' => 'Anda tidak dapat membeli produk Anda sendiri.']);
-                }
 
 
-                // dd($product);
-                // dd($)
-                // dd($toko); 
 
-                // dd($request->request);
+  public function storeOrder(Request $request)
+{
+    $products = json_decode($request->products, true);
+    $totalOrderPrice = $request->input('total_price');
 
-                Http::withoutVerifying()->post('https://wakbk.grageweb.online/send-message', [
-                    'number' => $request['checkout-phone'],
-                    'message' => "Yth. Pelanggan KeyFood,\n\nIni adalah konfirmasi pesanan Anda. Anda telah membeli:\n\n* *" . $product['name'] . " sebanyak " . $product['quantity'] . " buah, dari toko " . $toko['nama_toko'] . "*.\n\nTotal pembayaran: Rp " . number_format($product['quantity'] * $product['price']) . ".\nSilahkan hubungi penjual: "  . $toko['user']['phone'] .  ".\n\nTerima kasih atas kepercayaan Anda. Tim KeyFood akan segera memproses pesanan Anda.\n\nHormat kami,\nTim KeyFood",
-                ]);
-                
-                Http::withoutVerifying()->post('https://wakbk.grageweb.online/send-message', [
-                    'number' => $toko['user']['phone'],
-                    'message' => "Yth. Penjual,\n\nKami informasikan bahwa produk Anda, *" . $product['name'] . "* (x" . $product['quantity'] . "), telah dipesan oleh *" . $request['checkout-name'] . "*. \n\nDetail pesanan:\n* *Jumlah:* " . $product['quantity'] . " buah/pcs\n* *Total harga:* Rp " . $product['quantity'] * $product['price'] . "\n* *Alamat pengiriman:* " . $request['checkout-address'] . "\n* *Nomor telepon pembeli:* " . $request['checkout-phone'] . "\n\nMohon segera proses pesanan ini dan informasikan kepada pembeli mengenai status pengiriman. Terima kasih atas kerjasama Anda.\n\nHormat kami,\nTim KeyFood",
-                ]);
-                
-                // dd('masuk');
+    // Validasi input produk dan total harga
+    if ($products === null || !is_numeric($totalOrderPrice)) {
+        Log::error('Invalid input data. Products: ' . $request->input('products') . ', Total Price: ' . $totalOrderPrice);
+        return redirect()->back()->withErrors(['checkout' => 'Invalid input data. Please try again.']);
+    }
 
-                // Check if the required keys exist in the product array
-                if (!isset($product['price'], $product['quantity'], $product['photo'], $product['product_id'], $product['category_id'], $product['store_id'])) {
-                    Log::error('Missing product data: ' . json_encode($product));
-                    return redirect()->back()->withErrors(['products' => 'Missing product data.']);
-                }
+    try {
+        $totalOrderPrice = 0; // Untuk menyimpan total harga dari semua produk dalam satu order
+        $buyerId = auth()->id(); // Ambil ID pengguna yang sedang login
 
-                // Menghitung total harga untuk produk ini
-                $unitPrice = $product['quantity'] * $product['price'];
+        foreach ($products as $product) {
+            $toko = Toko::where('id_toko', $product['store_id'])->with('user')->first();
 
-                // Simpan data ke tabel orders
-                $order = new Orders();
-
-
-                // membuat random nomor
-                $randomNumber = mt_rand(1000, 9999); // menentukan range
-
-                // Get the total number of existing orders (this will be used for the last 3 digits)
-                $totalOrders = Orders::count();
-                $transactionNumber = str_pad($totalOrders + 1, 3, '0', STR_PAD_LEFT); // Ensure it is 3 digits
-
-                // Combine to form the order number without an underscore
-                $order->no_order = '#KBK' . $randomNumber . $transactionNumber;
-
-                // $order->no_order = uniqid('no_order');
-                $order->tanggal_order = now();
-                $order->quantity = array_sum(array_column($products, 'quantity'));
-                $order->photo = $product['photo'];
-                $order->order_date = now();
-                $order->id_user = auth()->id();
-
-                // Ambil cluster dan alamat cluster dari request
-                $cluster = Cluster::find($request->input('cluster_id'));
-                $alamatCluster = AlamatCluster::find($request->input('alamat_cluster_id'));
-                $nomorBlok = NomorBlok::find($request->input('nomor_id'));
-
-                // Gabungkan nama cluster, alamat cluster, dan nomor blok untuk disimpan di location
-                $order->location = ($cluster ? $cluster->nama_cluster : 'Unknown Cluster') . ' - ' .
-                    ($alamatCluster ? $alamatCluster->alamat : 'Unknown Address') . ' ' .
-                    ($nomorBlok ? $nomorBlok->nomor : 'Unknown Number');
-
-                $order->harga = $totalOrderPrice;
-                $order->product_id = $product['product_id'];
-                $order->category_id = $product['category_id'];
-                $order->toko_id = $product['store_id'];
-                $order->save();
-
-                // Simpan data ke tabel order_details
-                $orderDetail = new OrderDetail();
-                $orderDetail->order_id = $order->id;
-                $orderDetail->product_id = $product['product_id'];
-                $orderDetail->quantity = $product['quantity'];
-                $orderDetail->unit_price = $unitPrice; // Menghitung total harga untuk setiap produk
-                $orderDetail->save();
-
-                // Tambahkan harga produk ini ke total harga order
-                $totalOrderPrice += $unitPrice;
+            // Cek apakah toko sedang tutup
+            if (!$toko->isOpen()) {
+                return redirect()->back()->withErrors([
+                    'checkout' => 'Maaf, toko ' . $toko->nama_toko . ' sedang tutup. Anda tidak bisa checkout saat ini.'
+                ])->with('status', 'TokoTutup');
             }
 
-            // Update harga di tabel orders untuk total harga dari seluruh produk
+            // Cek apakah seller mencoba membeli produk mereka sendiri
+            if ($toko && $toko->id_seller == $buyerId) {
+                return redirect('/seller/seller-edit')->withErrors(['checkout' => 'Anda tidak dapat membeli produk Anda sendiri.']);
+            }
+
+            // Kirim pesan ke pembeli dan penjual menggunakan API
+            Http::withoutVerifying()->post('https://wakbk.grageweb.online/send-message', [
+                'number' => $request['checkout-phone'],
+                'message' => "Yth. Pelanggan KeyFood,\n\nIni adalah konfirmasi pesanan Anda. Anda telah membeli:\n\n* *" . $product['name'] . " sebanyak " . $product['quantity'] . " buah, dari toko " . $toko['nama_toko'] . "*.\n\nTotal pembayaran: Rp " . number_format($product['quantity'] * $product['price']) . ".\nSilahkan hubungi penjual: " . $toko['user']['phone'] .  ".\n\nTerima kasih atas kepercayaan Anda. Tim KeyFood akan segera memproses pesanan Anda.\n\nHormat kami,\nTim KeyFood",
+            ]);
+
+            Http::withoutVerifying()->post('https://wakbk.grageweb.online/send-message', [
+                'number' => $toko['user']['phone'],
+                'message' => "Yth. Penjual,\n\nKami informasikan bahwa produk Anda, *" . $product['name'] . "* (x" . $product['quantity'] . "), telah dipesan oleh *" . $request['checkout-name'] . "*. \n\nDetail pesanan:\n* *Jumlah:* " . $product['quantity'] . " buah/pcs\n* *Total harga:* Rp " . $product['quantity'] * $product['price'] . "\n* *Alamat pengiriman:* " . $request['checkout-address'] . "\n* *Nomor telepon pembeli:* " . $request['checkout-phone'] . "\n\nMohon segera proses pesanan ini dan informasikan kepada pembeli mengenai status pengiriman. Terima kasih atas kerjasama Anda.\n\nHormat kami,\nTim KeyFood",
+            ]);
+
+            // Validasi data produk
+            if (!isset($product['price'], $product['quantity'], $product['photo'], $product['product_id'], $product['category_id'], $product['store_id'])) {
+                Log::error('Missing product data: ' . json_encode($product));
+                return redirect()->back()->withErrors(['products' => 'Missing product data.']);
+            }
+
+            // Menghitung total harga untuk produk ini
+            $unitPrice = $product['quantity'] * $product['price'];
+
+            // Simpan data ke tabel orders
+            $order = new Orders();
+
+            // Membuat random nomor pesanan
+            $randomNumber = mt_rand(1000, 9999); // Range
+            $totalOrders = Orders::count();
+            $transactionNumber = str_pad($totalOrders + 1, 3, '0', STR_PAD_LEFT); // Tiga digit terakhir
+
+            $order->no_order = '#KBK' . $randomNumber . $transactionNumber;
+            $order->tanggal_order = now();
+            $order->quantity = array_sum(array_column($products, 'quantity'));
+            $order->photo = $product['photo'];
+            $order->order_date = now();
+            $order->id_user = auth()->id();
+
+            // Ambil cluster dan alamat cluster dari request
+            $cluster = Cluster::find($request->input('cluster_id'));
+            $alamatCluster = AlamatCluster::find($request->input('alamat_cluster_id'));
+            $nomorBlok = NomorBlok::find($request->input('nomor_id'));
+
+            // Gabungkan nama cluster, alamat cluster, dan nomor blok untuk disimpan di location
+            $order->location = ($cluster ? $cluster->nama_cluster : 'Unknown Cluster') . ' - ' .
+                ($alamatCluster ? $alamatCluster->alamat : 'Unknown Address') . ' ' .
+                ($nomorBlok ? $nomorBlok->nomor : 'Unknown Number');
+
             $order->harga = $totalOrderPrice;
+            $order->product_id = $product['product_id'];
+            $order->category_id = $product['category_id'];
+            $order->toko_id = $product['store_id'];
             $order->save();
 
-            DB::commit(); // Commit transaksi jika semua berhasil
-            return redirect('/history')->with('success', 'Order created successfully!');
-        } catch (\Exception $e) {
-            DB::rollBack(); // Rollback jika terjadi kesalahan
-            Log::error('Order creation failed: ' . $e->getMessage());
-            return redirect()->back()->withErrors(['order' => 'Failed to create order.']);
+            // Simpan data ke tabel order_details
+            $orderDetail = new OrderDetail();
+            $orderDetail->order_id = $order->id;
+            $orderDetail->product_id = $product['product_id'];
+            $orderDetail->quantity = $product['quantity'];
+            $orderDetail->unit_price = $unitPrice; // Menghitung total harga untuk setiap produk
+            $orderDetail->save();
+
+            // Tambahkan harga produk ini ke total harga order
+            $totalOrderPrice += $unitPrice;
         }
+
+        // Update harga di tabel orders untuk total harga dari seluruh produk
+        $order->harga = $totalOrderPrice;
+        $order->save();
+
+        DB::commit(); // Commit transaksi jika semua berhasil
+        return redirect('/history')->with('success', 'Order created successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack(); // Rollback jika terjadi kesalahan
+        Log::error('Order creation failed: ' . $e->getMessage());
+        return redirect()->back()->withErrors(['order' => 'Failed to create order.']);
     }
+}
+
 
     public function showOrderHistory()
     {

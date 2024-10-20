@@ -65,4 +65,9 @@ class Toko extends Model
             }
         });
     }
+
+    public function isOpen()
+    {
+        return $this->is_online == 1;
+    }
 }
