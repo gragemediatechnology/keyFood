@@ -16,6 +16,7 @@
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
+
             <div class="product-container">
                 @foreach ($products as $product)
                     @php
@@ -39,20 +40,25 @@
                         $fullStars = floor($average_rating); // Bintang penuh
                         $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
                         $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
+
+                        // Cek status toko
+                        $toko = $product->toko;
+                        $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
                     @endphp
 
-
-
-                    <div class="product-box">
+                    <div class="product-box {{ $isTokoOnline ? '' : 'toko-tutup' }}">
                         <span hidden>{{ $product->id }}</span>
                         <span hidden>{{ $product->store_id }}</span>
                         <span hidden>{{ $product->slug }}</span>
                         <img alt="{{ $product->name }}" src="{{ $product->photo }}">
                         <strong>{{ $product->name }}</strong>
-                        {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
                         <span class="quantity">Kategori:
                             {{ $product->category ? $product->category->name : 'Unknown' }}</span>
-                        <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
+                        <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}
+                            @if (!$isTokoOnline)
+                                <span class="text-red-500">(Toko Tutup)</span>
+                            @endif
+                        </span>
                         <div class="flex">
                             {{-- Tampilkan bintang penuh --}}
                             @for ($i = 1; $i <= $fullStars; $i++)
@@ -87,16 +93,33 @@
                                 <p class="mx-2">( 0 / 0 )</p>
                             @endif
                         </div>
-                        <span class="quantity"></span>
                         <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                        <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
-                            data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
-                            data-slug="{{ $product->slug }}" class="cart-btn">
-                            <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
-                        </a>
+
+                        @if ($isTokoOnline)
+                            <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                                data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
+                                data-slug="{{ $product->slug }}" class="cart-btn">
+                                <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                            </a>
+                        @else
+                            <a href="javascript:void(0)" onclick="showTokoTutupAlert('{{ $toko->nama_toko }}')">
+                                <i class="fas fa-shopping-bag"></i> Toko Tutup
+                            </a>
+                        @endif
                     </div>
                 @endforeach
             </div>
+
+            <script>
+                function showTokoTutupAlert(namaToko) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Toko Sedang Tutup',
+                        text: 'Maaf, toko ' + namaToko + ' sedang tutup. Anda tidak bisa melakukan checkout.',
+                    });
+                }
+            </script>
+
 
             @include('partials.cart')
             <div class="pagination">
