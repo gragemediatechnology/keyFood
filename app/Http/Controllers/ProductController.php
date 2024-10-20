@@ -248,9 +248,9 @@ class ProductController extends Controller
         return view('categories', compact('products'));
     }
 
+   
 
-
-     public function search(Request $request)
+    public function search(Request $request)
 {
     $query = $request->get('query', '');
     $category = $request->get('category', '');
@@ -270,7 +270,6 @@ class ProductController extends Controller
         'data' => $products
     ]);
 }
-
 
 
     public function rateProduct(Request $request, $id)
@@ -336,4 +335,5 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Produk tidak ditemukan.');
         }
     }
+
 }
