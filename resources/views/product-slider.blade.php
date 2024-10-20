@@ -102,8 +102,9 @@
                                 <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                             </a>
                         @else
-                            <a href="javascript:void(0)" onclick="showTokoTutupAlert('{{ $toko->nama_toko }}')">
-                                <i class="fas fa-shopping-bag"></i> Toko Tutup
+                            <a href="javascript:void(0)" onclick="showTokoTutupAlert('{{ $toko->nama_toko }}')"
+                                style="color: red;">
+                                <i class="fas fa-shopping-bag" style="color: red;"></i> Toko Tutup
                             </a>
                         @endif
                     </div>

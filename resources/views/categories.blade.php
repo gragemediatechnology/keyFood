@@ -13,8 +13,8 @@
                 {{-- search --}}
                 <form action="" class="search-boxs" onsubmit="return false;">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="search" class="search-inputs rounded-full" placeholder="Cari makanan yang anda mau"
-                        name="search">
+                    <input type="text" id="search" class="search-inputs rounded-full"
+                        placeholder="Cari makanan yang anda mau" name="search">
                     {{-- <input type="submit" class="search-btns" value="Search"> --}}
                 </form>
             </div>
@@ -39,7 +39,8 @@
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
-            <div class="product-container" id="product-list">
+
+            <div class="product-container">
                 @foreach ($products as $product)
                     @php
                         // Ambil nilai rating dan rated_by
@@ -62,18 +63,25 @@
                         $fullStars = floor($average_rating); // Bintang penuh
                         $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
                         $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
+
+                        // Cek status toko
+                        $toko = $product->toko;
+                        $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
                     @endphp
 
-
-
-                    <div class="product-box">
+                    <div class="product-box {{ $isTokoOnline ? '' : 'toko-tutup' }}">
                         <span hidden>{{ $product->id }}</span>
                         <span hidden>{{ $product->store_id }}</span>
                         <span hidden>{{ $product->slug }}</span>
                         <img alt="{{ $product->name }}" src="{{ $product->photo }}">
                         <strong>{{ $product->name }}</strong>
-                        <span class="quantity">Kategori: {{ $product->category ? $product->category->name : 'Unknown' }}</span>
-                        <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
+                        <span class="quantity">Kategori:
+                            {{ $product->category ? $product->category->name : 'Unknown' }}</span>
+                        <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}
+                            @if (!$isTokoOnline)
+                                <span class="text-red-500">(Toko Tutup)</span>
+                            @endif
+                        </span>
                         <div class="flex">
                             {{-- Tampilkan bintang penuh --}}
                             @for ($i = 1; $i <= $fullStars; $i++)
@@ -108,16 +116,33 @@
                                 <p class="mx-2">( 0 / 0 )</p>
                             @endif
                         </div>
-                        <span class="quantity"></span>
                         <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                        <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
-                            data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
-                            data-slug="{{ $product->slug }}" class="cart-btn">
-                            <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
-                        </a>
+
+                        @if ($isTokoOnline)
+                            <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                                data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
+                                data-slug="{{ $product->slug }}" class="cart-btn">
+                                <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                            </a>
+                        @else
+                            <a href="javascript:void(0)" onclick="showTokoTutupAlert('{{ $toko->nama_toko }}')"
+                                style="color: red;">
+                                <i class="fas fa-shopping-bag" style="color: red;"></i> Toko Tutup
+                            </a>
+                        @endif
                     </div>
                 @endforeach
             </div>
+
+            <script>
+                function showTokoTutupAlert(namaToko) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Toko Sedang Tutup',
+                        text: 'Maaf, toko ' + namaToko + ' sedang tutup. Anda tidak bisa melakukan checkout.',
+                    });
+                }
+            </script>
 
             @include('partials.cart')
             <div class="pagination">
@@ -144,7 +169,7 @@
                 $('.category-box').removeClass('active');
                 $(this).addClass('active');
                 performSearch('',
-                selectedCategory); // Pencarian dilakukan hanya dalam kategori yang dipilih
+                    selectedCategory); // Pencarian dilakukan hanya dalam kategori yang dipilih
             });
 
             // Show All Products
@@ -188,20 +213,20 @@
                                     }
                                 } else {
                                     rated_by = product.rated_by ||
-                                    1; // Use 1 as the default if `rated_by` is not provided or invalid
+                                        1; // Use 1 as the default if `rated_by` is not provided or invalid
                                 }
 
                                 // Calculate average rating
                                 var average_rating = rated_by > 0 ? rating / rated_by : 0;
                                 average_rating = parseFloat(average_rating.toFixed(
-                                1)); // Limit to 1 decimal place
+                                    1)); // Limit to 1 decimal place
 
                                 // Calculate the number of full, half, and empty stars
                                 var fullStars = Math.floor(average_rating); // Full stars
                                 var halfStar = average_rating - fullStars >= 0.5 ? 1 :
-                                0; // Half star if rating has a decimal >= 0.5
+                                    0; // Half star if rating has a decimal >= 0.5
                                 var emptyStars = 5 - (fullStars +
-                                halfStar); // Remaining empty stars
+                                    halfStar); // Remaining empty stars
 
                                 var starsHtml = '';
 
@@ -245,11 +270,12 @@
                         </a>
                     </div>`;
                                 $('#product-list').append(
-                                productHtml); // Tambahkan produk ke daftar
+                                    productHtml); // Tambahkan produk ke daftar
                             });
                         } else {
                             $('#product-list').append(
-                            '<p class="text-gray-500">Produk Kosong</p>'); // Tampilkan pesan jika tidak ada produk
+                                '<p class="text-gray-500">Produk Kosong</p>'
+                            ); // Tampilkan pesan jika tidak ada produk
                         }
                     },
                     error: function(xhr, status, error) {
