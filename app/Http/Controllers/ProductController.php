@@ -250,23 +250,27 @@ class ProductController extends Controller
 
 
 
-    public function search(Request $request)
-    {
-        $query = $request->get('query', '');
-        $category = $request->get('category', '');
+     public function search(Request $request)
+{
+    $query = $request->get('query', '');
+    $category = $request->get('category', '');
 
-        $products = Product::with('toko')
-            ->whereHas('toko', function ($query) {
-                $query->where('is_online', 1); // Hanya toko yang buka
-            })
-            ->where('category', 'LIKE', "%$category%") // filter berdasarkan kategori jika ada
-            ->get();
+    $products = Product::query()
+        ->when($category, function ($queryBuilder) use ($category) {
+            return $queryBuilder->whereHas('category', function ($q) use ($category) {
+                $q->where('name', $category);
+            });
+        })
+        ->when($query, function ($queryBuilder) use ($query) {
+            return $queryBuilder->where('name', 'like', "%{$query}%");
+        })
+        ->get();
 
+    return response()->json([
+        'data' => $products
+    ]);
+}
 
-        return response()->json([
-            'data' => $products
-        ]);
-    }
 
 
     public function rateProduct(Request $request, $id)
