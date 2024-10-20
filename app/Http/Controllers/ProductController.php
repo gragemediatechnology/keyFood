@@ -248,34 +248,29 @@ class ProductController extends Controller
         return view('categories', compact('products'));
     }
 
+   
+
     public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $categoryName = $request->input('category');
+{
+    $query = $request->get('query', '');
+    $category = $request->get('category', '');
 
-        // Start the query builder
-        $productQuery = Product::with(['category', 'toko']);
-
-        // Filter by search query
-        if ($query) {
-            $productQuery->where('name', 'LIKE', "%{$query}%");
-        }
-
-        // Filter by category if provided
-        if ($categoryName) {
-            // Assuming category name is unique and you want to filter by category name
-            $productQuery->whereHas('category', function ($q) use ($categoryName) {
-                $q->where('name', $categoryName);
+    $products = Product::query()
+        ->when($category, function ($queryBuilder) use ($category) {
+            return $queryBuilder->whereHas('category', function ($q) use ($category) {
+                $q->where('name', $category);
             });
-        }
+        })
+        ->when($query, function ($queryBuilder) use ($query) {
+            return $queryBuilder->where('name', 'like', "%{$query}%");
+        })
+        ->get();
 
-        // Paginate the results
-        $products = $productQuery->paginate(20);
-        $category = Category::all();
+    return response()->json([
+        'data' => $products
+    ]);
+}
 
-        // Return the paginated products as JSON
-        return response()->json($products);
-    }
 
     public function rateProduct(Request $request, $id)
     {

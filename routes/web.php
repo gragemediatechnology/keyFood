@@ -244,7 +244,9 @@ Route::get('/cart/remove/{productId}', [CartController::class, 'remove'])->name(
 Route::get('/data', [CartController::class, 'data']);
 
 Route::get('/categories', [ProductController::class, 'showProducts'])->name('products.list');
-Route::get('/categories/search', [ProductController::class, 'search'])->name('search');
+
+Route::get('/categories/search', [ProductController::class, 'search'])->name('categories.search');
+
 
 Route::get('/categories', [CategoryController::class, 'showCategories'])->name('categories.index');
 // Route::get('/main-admin', [PaymentController::class, 'index'])->name('admin.dashboard-main');
