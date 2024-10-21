@@ -242,6 +242,7 @@
                                 <div class="product-box">
                                     <img alt="${product.name}" src="${product.photo}">
                                     <strong>${product.name}</strong>
+                                    <strong>${product.toko.is_online}</strong>
                                     <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
                                     <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
                                     <div class="flex">
