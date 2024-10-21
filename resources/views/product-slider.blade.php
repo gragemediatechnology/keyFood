@@ -162,7 +162,7 @@
                         console.log(products); // Log the products for debugging
 
                         // Append new products to the product container
-                        $.each(products, function(index, product) {
+                        $.each(products.data, function(index, product) {
                             // Calculate average rating (if needed, you can implement a separate logic here)
                             const average_rating = product.average_rating || 0; // Use default 0 if not available
 
