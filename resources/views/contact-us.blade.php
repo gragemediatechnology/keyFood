@@ -63,7 +63,7 @@
                 <div class="infoBox">
                     <div>
                         <a href="https://maps.app.goo.gl/vg5QYpGBQZFFVKHu7">
-                            <span><ion-icon name="pin"></ion-icon></span>
+                            <span><ion-icon name="map"></ion-icon></span>
                             <p>Perubahan Kota Baru Keandra, cirebon<br>Indonesia</p>
                         </a>
                     </div>
@@ -80,9 +80,9 @@
                     <ul class="sci">
                         <li><a href="https://youtube.com/@gragemediatechnology?si=TUzeCE_g9uFOHmda"><ion-icon
                                     name="logo-youtube"></ion-icon></a></li>
-                        <li><a href="https://youtube.com/@gragemediatechnology?si=TUzeCE_g9uFOHmda"><ion-icon
+                        <li><a href="https://grageweb.online"><ion-icon
                                     name="logo-globe"></ion-icon></a></li>
-                        <li><a href="https://youtube.com/@gragemediatechnology?si=TUzeCE_g9uFOHmda"><ion-icon
+                        <li><a href="https://www.instagram.com/pandaidigital_idn?igsh=MXM4aDBxcnprbDR1eQ=="><ion-icon
                                     name="logo-instagram"></ion-icon></a></li>
                     </ul>
                 </div>
