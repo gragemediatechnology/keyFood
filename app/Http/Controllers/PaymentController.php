@@ -81,7 +81,7 @@ class PaymentController extends Controller
             ->orderBy('date', 'asc')
             ->get();
 
-        return view('dashboard', compact('visits'));
+        return view('admin.dashboard-main', compact('visits'));
     }
 
 }
