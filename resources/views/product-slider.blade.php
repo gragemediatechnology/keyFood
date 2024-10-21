@@ -176,7 +176,6 @@
                                         ${product.isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
                                         <div class="flex">
                                             ${getStarsHtml(product)}
-                                            ${average_rating >= 1 ? '<p class="mx-2">( ' + average_rating +' / 5 )</p>' : '<p class="mx-2">( 0 / 0 )</p>'}
                                         </div>
                                             <span class="price">Rp ${parseInt(product.price).toLocaleString()}</span>
                                             ${product.isTokoOnline ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` :
