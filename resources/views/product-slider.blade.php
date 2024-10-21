@@ -156,9 +156,10 @@
 
                         // Increment the current page
                         currentPage++;
+                        const products = @json($products);
 
                         // Assuming the products are already passed correctly
-                        console.log(`${products}`); // Log the products for debugging
+                        console.log(products); // Log the products for debugging
 
                         // Append new products to the product container
                         $.each(products, function(index, product) {
