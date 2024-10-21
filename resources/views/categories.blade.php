@@ -196,6 +196,7 @@
                         $.each(products, function(index, product) {
                             console.log(product);
                             console.log(product.rating);
+                            console.log(product.toko);
 
                             var rating = product.rating || 0;
 
