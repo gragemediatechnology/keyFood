@@ -159,7 +159,7 @@
                         const products = @json($products);
 
                         // Assuming the products are already passed correctly
-                        console.log(products); // Log the products for debugging
+                        console.log(products.data); // Log the products for debugging
 
                         // Append new products to the product container
                         $.each(products.data, function(index, product) {
@@ -203,8 +203,8 @@
 
                     function getStarsHtml(product) {
                         let starsHtml = '';
-                        const fullStars = Math.floor(product.average_rating);
-                        const halfStar = product.average_rating % 1 !== 0;
+                        const fullStars = Math.floor(average_rating);
+                        const halfStar = average_rating % 1 !== 0;
                         const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
                         // Full stars
