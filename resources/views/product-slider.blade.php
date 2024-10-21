@@ -123,7 +123,7 @@
             <div id="loader" style="display: none;">
                 <div class="flex items-center justify-center h-full">
                     <div class="w-5 h-5 border-8 border-t-transparent border-blue-600 rounded-full animate-spin"></div>
-                  </div>
+                </div>
             </div>
 
             <script>
@@ -163,23 +163,25 @@
                                 $('#loader').hide(); // Sembunyikan loader setelah memuat
 
                                 // Append produk baru ke container produk
-                                $.each(data.data, function(index, product) {
+                                $.each(data.data, function(index, product, average_rating) {
                                     $('#product-container').append(`
-                        <div class="product-box ${product.isTokoOnline ? '' : 'toko-tutup'}">
-                            <span hidden>${product.id}</span>
-                            <span hidden>${product.store_id}</span>
-                            <span hidden>${product.slug}</span>
-                            <img alt="${product.name}" src="${product.photo}">
-                            <strong>${product.name}</strong>
-                            <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
-                            <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
-                            ${product.isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
-                            <div class="flex">
-                                ${getStarsHtml(product)}
-                                <span class="price">Rp ${parseInt(product.price).toLocaleString()}</span>
-                                ${product.isTokoOnline ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` :
-                                `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"><i class="fas fa-ban"></i> Toko Tutup</a>`}
-                        </div>
+                                    <div class="product-box ${product.isTokoOnline ? '' : 'toko-tutup'}">
+                                        <span hidden>${product.id}</span>
+                                        <span hidden>${product.store_id}</span>
+                                        <span hidden>${product.slug}</span>
+                                        <img alt="${product.name}" src="${product.photo}">
+                                        <strong>${product.name}</strong>
+                                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+                                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                                        ${product.isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
+                                        <div class="flex">
+                                            ${getStarsHtml(product)}
+                                            ${average_rating >= 1 ? `<p class="mx-2">(${average_rating} / 5)</p>` : `<p class="mx-2">(0 / 0)</p>`}
+                                        </div>
+                                            <span class="price">Rp ${parseInt(product.price).toLocaleString()}</span>
+                                            ${product.isTokoOnline ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` :
+                                            `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"><i class="fas fa-ban"></i> Toko Tutup</a>`}
+                                    </div>
                     `);
                                 });
 
