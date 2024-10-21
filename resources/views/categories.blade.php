@@ -145,7 +145,7 @@
                 // Fungsi performSearch
                 function performSearch(query = '', category = '') {
                     $.ajax({
-                        url: "{{ route('products.search') }}", // Sesuaikan endpoint dengan route pencarian Anda
+                        url: "/categories/search", // Sesuaikan endpoint dengan route pencarian Anda
                         method: 'GET',
                         data: {
                             search: query,
