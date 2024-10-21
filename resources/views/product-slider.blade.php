@@ -155,7 +155,7 @@ $(document).ready(function() {
         currentPage++;
 
         $.ajax({
-            url: '{{ url()->current() }}?page=' + currentPage,  // Meminta halaman selanjutnya
+            url: '/product-slider?page=' + currentPage, // Meminta halaman selanjutnya
             type: 'GET',
             success: function(data) {
                 $('#loader').hide(); // Sembunyikan loader setelah memuat
