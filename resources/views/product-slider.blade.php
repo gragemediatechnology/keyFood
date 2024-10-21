@@ -156,12 +156,13 @@
 
                         currentPage++;
 
-                        $.ajax({
-                            url: '/product-slider?page=' + currentPage, // Meminta halaman selanjutnya
-                            type: 'GET',
-                            success: function(data) {
-                                $('#loader').hide(); // Sembunyikan loader setelah memuat
+                        // $.ajax({
+                            // url: '/product-slider?page=' + currentPage, // Meminta halaman selanjutnya
+                            // type: 'GET',
+                            // success: function(data) {
+                            //     $('#loader').hide(); // Sembunyikan loader setelah memuat
 
+                                console.log($products);
                                 // Append produk baru ke container produk
                                 $.each($products, function(index, product, average_rating) {
                                     $('#product-container').append(`
@@ -192,7 +193,7 @@
                                 console.error('Error loading products:', xhr);
                                 $('#loader').hide();
                             }
-                        });
+                        // });
                     }
 
                     function getStarsHtml(product) {
