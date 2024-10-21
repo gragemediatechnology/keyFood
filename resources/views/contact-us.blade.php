@@ -62,12 +62,14 @@
                 <h3>Contact Info</h3>
                 <div class="infoBox">
                     <div>
-                        <span><ion-icon name="pin"></ion-icon></span>
-                        <p>Perubahan Kota Baru Keandra, cirebon<br>Indonesia</p>
+                        <a href="https://maps.app.goo.gl/vg5QYpGBQZFFVKHu7">
+                            <span><ion-icon name="pin"></ion-icon></span>
+                            <p>Perubahan Kota Baru Keandra, cirebon<br>Indonesia</p>
+                        </a>
                     </div>
                     <div>
                         <span><ion-icon name="mail"></ion-icon></span>
-                        <a href="mailto:loremipsum@gmail.com">loremipsum@gmail.com</a>
+                        <a href="mailto:gragemediatechnology@gmail.com">gragemediatechnology@gmail.com</a>
                     </div>
                     <div>
                         <span><ion-icon name="call"></ion-icon></span>
@@ -76,20 +78,20 @@
 
                     <!-- social media links -->
                     <ul class="sci">
-                        <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
-                        <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
-                        <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
-                        <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                        <li><a href="https://youtube.com/@gragemediatechnology?si=TUzeCE_g9uFOHmda"><ion-icon
+                                    name="logo-youtube"></ion-icon></a></li>
+                        <li><a href="https://youtube.com/@gragemediatechnology?si=TUzeCE_g9uFOHmda"><ion-icon
+                                    name="logo-globe"></ion-icon></a></li>
+                        <li><a href="https://youtube.com/@gragemediatechnology?si=TUzeCE_g9uFOHmda"><ion-icon
+                                    name="logo-instagram"></ion-icon></a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- map -->
             <div class="contact map">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d15848.025922409286!2d108.4574444772461!3d-6.7690625997904945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1skeandra%20sumber!5e0!3m2!1sid!2sid!4v1721094248618!5m2!1sid!2sid"
-                    style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://maps.app.goo.gl/vg5QYpGBQZFFVKHu7" style="border:0;" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
