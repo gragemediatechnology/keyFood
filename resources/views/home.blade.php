@@ -44,8 +44,8 @@
                 <div class="content">
                     <section class="section__container header__container" id="home">
                         <div class="header__image">
-                            <img src="{{ $company->gambar_home_1 }}" alt="header " class="header-img" width="200px"
-                                height="200px" />
+                            <img src="{{ $company->gambar_home_1 }}" alt="header " class="header-img rounded-xl"
+                                width="200px" height="200px" />
                         </div>
                         <div class="header__content">
                             <h1>Beli, Makan & Nikmati <span>Makanan Terbaik</span>.</h1>
@@ -99,7 +99,8 @@
                                 <div
                                     class="special__card flex flex-col items-center justify-center text-center p-4 bg-transparent shadow-lg rounded-lg">
                                     <img src="{{ $product->photo }}" alt="special"
-                                        class="header-img w-full h-auto max-w-[300px] max-h-[300px] rounded-xl object-cover" />
+                                        class="header-img w-full h-full max-w-[300px] max-h-[300px] rounded-xl object-cover aspect-square" />
+
                                     <h4>{{ $product->name }}</h4>
                                     <p>
                                         <span class="quantity">Kategori:
@@ -170,7 +171,8 @@
 
                     <section class="section__container explore__container">
                         <div class="explore__image">
-                            <img src="{{ $company->gambar_home_2 }}" alt="explore" class="header-img" loading="lazy" />
+                            <img src="{{ $company->gambar_home_2 }}" alt="explore" class="header-img rounded-xl"
+                                loading="lazy" />
                         </div>
                         <div class="explore__content">
                             <h1 class="section__header">Nikmati Lezatnya Hidup Sehat!</h1>
