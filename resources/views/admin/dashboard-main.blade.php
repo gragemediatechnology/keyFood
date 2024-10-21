@@ -165,6 +165,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                         <div
                             class="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none md:flex-row md:items-center">
@@ -179,30 +180,31 @@
                             <div>
                                 <h6
                                     class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
-                                    Line Chart
+                                    Grafik Batang
                                 </h6>
                                 <p
                                     class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
-                                    Visualize your data in a simple way using the
-                                    @material-tailwind/html chart plugin.
+                                    Visualisasikan data Anda dengan cara sederhana menggunakan plugin chart dari
+                                    @material-tailwind/html.
                                 </p>
                             </div>
                         </div>
                         <div class="pt-6 px-2 pb-0">
-                            <div id="bar-chart"></div>
+                            <div id="grafik-batang"></div>
                         </div>
                     </div>
+
 
                 </div>
             </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
-        const chartConfig = {
+        const configGrafik = {
             series: [{
-                name: "Sales",
-                data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-            }, ],
+                name: "Kunjungan",
+                data: [50, 40, 300, 320, 500, 350, 200],
+            }],
             chart: {
                 type: "bar",
                 height: 240,
@@ -211,7 +213,7 @@
                 },
             },
             title: {
-                show: "",
+                show: false,
             },
             dataLabels: {
                 enabled: false,
@@ -224,6 +226,7 @@
                 },
             },
             xaxis: {
+                categories: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
                 axisTicks: {
                     show: false,
                 },
@@ -238,17 +241,6 @@
                         fontWeight: 400,
                     },
                 },
-                categories: [
-                    "Apr",
-                    "May",
-                    "Jun",
-                    "Jul",
-                    "Aug",
-                    "Sep",
-                    "Oct",
-                    "Nov",
-                    "Dec",
-                ],
             },
             yaxis: {
                 labels: {
@@ -279,13 +271,33 @@
             },
             tooltip: {
                 theme: "dark",
-            },
+                y: {
+                    formatter: function(val) {
+                        return val + " kunjungan"; // Menampilkan jumlah kunjungan
+                    }
+                },
+                x: {
+                    formatter: function(val) {
+                        const tanggal = {
+                            "Senin": "2024-10-14",
+                            "Selasa": "2024-10-15",
+                            "Rabu": "2024-10-16",
+                            "Kamis": "2024-10-17",
+                            "Jumat": "2024-10-18",
+                            "Sabtu": "2024-10-19",
+                            "Minggu": "2024-10-20",
+                        };
+                        return tanggal[val]; // Menampilkan tanggal yang sesuai
+                    }
+                }
+            }
         };
 
-        const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);
+        const chart = new ApexCharts(document.querySelector("#grafik-batang"), configGrafik);
 
         chart.render();
     </script>
+
 
     </div>
     </div>
