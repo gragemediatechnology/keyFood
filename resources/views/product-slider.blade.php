@@ -163,7 +163,7 @@
                                 // Append produk baru ke container produk
                                 $.each(data.data, function(index, product) {
                                     $('#product-container').append(`
-                        <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
+                        <div class="product-box ${toko.isTokoOnline ? '' : 'toko-tutup'}">
                             <span hidden>${product.id}</span>
                             <span hidden>${product.store_id}</span>
                             <span hidden>${product.slug}</span>
@@ -175,7 +175,7 @@
                             <div class="flex">
                                 ${getStarsHtml(product)}
                                 <span class="price">Rp ${parseInt(product.price).toLocaleString()}</span>
-                                ${isTokoOnline ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` :
+                                ${toko.isTokoOnline ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` :
                                 `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"><i class="fas fa-ban"></i> Toko Tutup</a>`}
                         </div>
                     `);
