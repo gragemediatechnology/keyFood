@@ -62,12 +62,6 @@
                 <h3>Contact Info</h3>
                 <div class="infoBox">
                     <div>
-                        <a href="https://maps.app.goo.gl/vg5QYpGBQZFFVKHu7">
-                            <span><ion-icon name="map"></ion-icon></span>
-                            <p>Perubahan Kota Baru Keandra, cirebon<br>Indonesia</p>
-                        </a>
-                    </div>
-                    <div>
                         <span><ion-icon name="mail"></ion-icon></span>
                         <a href="mailto:gragemediatechnology@gmail.com">gragemediatechnology@gmail.com</a>
                     </div>
