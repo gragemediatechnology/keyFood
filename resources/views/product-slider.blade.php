@@ -121,7 +121,10 @@
 
             {{-- Loader untuk menampilkan saat produk sedang dimuat --}}
             <div id="loader" style="display: none;">
-                <p>Loading more products...</p>
+                <div class="flex items-center justify-center h-screen">
+                    <div class="w-16 h-16 border-8 border-t-transparent border-blue-600 rounded-full animate-spin"></div>
+                  </div>
+
             </div>
 
             <script>
@@ -163,7 +166,7 @@
                                 // Append produk baru ke container produk
                                 $.each(data.data, function(index, product) {
                                     $('#product-container').append(`
-                        <div class="product-box ${toko.isTokoOnline ? '' : 'toko-tutup'}">
+                        <div class="product-box ${product.isTokoOnline ? '' : 'toko-tutup'}">
                             <span hidden>${product.id}</span>
                             <span hidden>${product.store_id}</span>
                             <span hidden>${product.slug}</span>
@@ -171,11 +174,11 @@
                             <strong>${product.name}</strong>
                             <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
                             <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
-                            ${isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
+                            ${product.isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
                             <div class="flex">
                                 ${getStarsHtml(product)}
                                 <span class="price">Rp ${parseInt(product.price).toLocaleString()}</span>
-                                ${toko.isTokoOnline ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` :
+                                ${product.isTokoOnline ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` :
                                 `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"><i class="fas fa-ban"></i> Toko Tutup</a>`}
                         </div>
                     `);
