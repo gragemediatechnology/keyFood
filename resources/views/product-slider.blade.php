@@ -55,10 +55,12 @@
                         <span class="quantity">Kategori:
                             {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                         <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}
-                            @if (!$isTokoOnline)
-                                <span class="text-red-500">(Toko Tutup)</span>
-                            @endif
                         </span>
+                        @if (!$isTokoOnline)
+                            <span class="text-red-500">(Toko Tutup)</span>
+                        @else
+                            <span class="text-green-500">(Toko Buka)</span>
+                        @endif
                         <div class="flex">
                             {{-- Tampilkan bintang penuh --}}
                             @for ($i = 1; $i <= $fullStars; $i++)
