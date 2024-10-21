@@ -151,7 +151,7 @@
                         }
                     });
 
-                    function loadMoreProducts() {
+                    function loadMoreProducts($products) {
                         $('#loader').show(); // Tampilkan loader saat memuat
 
                         currentPage++;
@@ -163,7 +163,7 @@
                                 $('#loader').hide(); // Sembunyikan loader setelah memuat
 
                                 // Append produk baru ke container produk
-                                $.each(data.data, function(index, product, average_rating) {
+                                $.each($products, function(index, product, average_rating) {
                                     $('#product-container').append(`
                                     <div class="product-box ${product.isTokoOnline ? '' : 'toko-tutup'}">
                                         <span hidden>${product.id}</span>
@@ -182,7 +182,7 @@
                                             ${product.isTokoOnline ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` :
                                             `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"><i class="fas fa-ban"></i> Toko Tutup</a>`}
                                     </div>
-                    `);
+                                `);
                                 });
 
                                 // Update current page
