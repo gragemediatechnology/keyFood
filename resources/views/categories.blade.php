@@ -252,8 +252,9 @@
                                     <strong>${product.name}</strong>
                                     <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
                                     <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}
-                                        ${!isTokoOnline ? '<span class="text-red-500">(Toko Tutup)</span>' : ''}
                                     </span>
+                                    
+                                    ${!isTokoOnline ? '<span class="text-red-500">(Toko Tutup)</span>' : '<span class="text-green-500">(Toko Buka)</span>'}
                                     <div class="flex">
                                         ${starsHtml}
                                         <p>(${average_rating.toFixed(1)} / 5)</p>
