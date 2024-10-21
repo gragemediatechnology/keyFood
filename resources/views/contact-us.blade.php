@@ -80,8 +80,7 @@
                     <ul class="sci">
                         <li><a href="https://youtube.com/@gragemediatechnology?si=TUzeCE_g9uFOHmda"><ion-icon
                                     name="logo-youtube"></ion-icon></a></li>
-                        <li><a href="https://grageweb.online"><ion-icon
-                                    name="logo-globe"></ion-icon></a></li>
+                        <li><a href="https://grageweb.online"><ion-icon name="globe"></ion-icon></a></li>
                         <li><a href="https://www.instagram.com/pandaidigital_idn?igsh=MXM4aDBxcnprbDR1eQ=="><ion-icon
                                     name="logo-instagram"></ion-icon></a></li>
                     </ul>
@@ -90,8 +89,10 @@
 
             <!-- map -->
             <div class="contact map">
-                <iframe src="https://maps.app.goo.gl/vg5QYpGBQZFFVKHu7" style="border:0;" allowfullscreen=""
-                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.9953448177175!2d108.46144749999999!3d-6.7704192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1f698feaec99%3A0x909eee85e942ce8a!2sKampoeng%20IT%20(%20JAGAT%20)!5e0!3m2!1sid!2sid!4v1729484305575!5m2!1sid!2sid"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
