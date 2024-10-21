@@ -142,6 +142,8 @@ Route::prefix('seller')->name('seller.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/main-admin', [PaymentController::class, 'index'])->name('dashboard-main')->middleware('permission:main-admin');
+    Route::get('/dashboard-visit', [PaymentController::class, 'visitHistoryChart'])->middleware('auth');
+
 
     Route::get('/dashboard-cms', function () {
         return view('admin.dashboard-cms');
