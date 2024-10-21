@@ -150,7 +150,7 @@
         </section>
     @endsection
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script>
+    <script>
     $(document).ready(function() {
         let selectedCategory = ''; // Variabel untuk menyimpan kategori yang dipilih
 
@@ -194,13 +194,9 @@
                     const products = data.data || []; // Pastikan data yang diterima adalah array produk
                     if (Array.isArray(products) && products.length > 0) {
                         $.each(products, function(index, product) {
-                            console.log(product);
-                            console.log(product.rating);
-                            console.log(product.toko.nama_toko);
-
+                            // Ambil nilai rating dan rated_by
                             var rating = product.rating || 0;
 
-                            // Handle `rated_by` sebagai string JSON
                             var rated_by;
                             if (typeof product.rated_by === 'string') {
                                 try {
@@ -213,14 +209,16 @@
                                 rated_by = product.rated_by || 1;
                             }
 
-                            // Hitung rating rata-rata
                             var average_rating = rated_by > 0 ? rating / rated_by : 0;
                             average_rating = parseFloat(average_rating.toFixed(1));
 
-                            // Hitung bintang penuh, setengah, dan kosong
                             var fullStars = Math.floor(average_rating);
                             var halfStar = average_rating - fullStars >= 0.5 ? 1 : 0;
                             var emptyStars = 5 - (fullStars + halfStar);
+
+                            // Cek status toko
+                            var toko = product.toko;
+                            var isTokoOnline = toko ? toko.is_online : false; // Cek apakah toko buka
 
                             var starsHtml = '';
 
@@ -239,13 +237,18 @@
                                 starsHtml += `<svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>`;
                             }
 
+                            // Buat elemen HTML produk
                             var productHtml = `
-                                <div class="product-box">
+                                <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
+                                    <span hidden>${product.id}</span>
+                                    <span hidden>${product.store_id}</span>
+                                    <span hidden>${product.slug}</span>
                                     <img alt="${product.name}" src="${product.photo}">
                                     <strong>${product.name}</strong>
-                                    <strong>${product.toko.is_online}</strong>
                                     <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
-                                    <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                                    <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}
+                                        ${!isTokoOnline ? '<span class="text-red-500">(Toko Tutup)</span>' : ''}
+                                    </span>
                                     <div class="flex">
                                         ${starsHtml}
                                         <p>(${average_rating.toFixed(1)} / 5)</p>
@@ -268,3 +271,4 @@
         }
     });
 </script>
+
