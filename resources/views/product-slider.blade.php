@@ -104,9 +104,12 @@
                                 <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                             </a>
                         @else
-                            <a href="javascript:void(0)" onclick="showTokoTutupAlert('{{ $toko->nama_toko }}')"
-                                style="color: red;">
-                                <i class="fas fa-shopping-bag" style="color: red;"></i> Toko Tutup
+                            <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                                data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
+                                data-slug="{{ $product->slug }}"
+                                class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"
+                                disabled>
+                                <i class="fas fa-ban"></i> Toko Tutup
                             </a>
                         @endif
                     </div>
