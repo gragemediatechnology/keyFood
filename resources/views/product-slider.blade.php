@@ -151,14 +151,14 @@
                         }
                     });
 
-                    function loadMoreProducts(products) {
+                    function loadMoreProducts() {
                         $('#loader').show(); // Show loader while loading
 
                         // Increment the current page
                         currentPage++;
 
                         // Assuming the products are already passed correctly
-                        console.log(products); // Log the products for debugging
+                        console.log(`${products}`); // Log the products for debugging
 
                         // Append new products to the product container
                         $.each(products, function(index, product) {
