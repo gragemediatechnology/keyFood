@@ -42,7 +42,9 @@
         </main>
     </div>
 
-    <livewire:scripts />
+    {{-- <livewire:scripts /> --}}
+    <script src="https://lapakkbk.online/livewire/livewire.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/livewire@0.6.1/lib/compiler.min.js"></script>
     <!-- <script
