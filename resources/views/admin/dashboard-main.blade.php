@@ -203,7 +203,8 @@
         const configGrafik = {
             series: [{
                 name: "Kunjungan",
-                data: [50, 40, 300, 320, 500, 350, 200],
+                // Data kunjungan akan diisi secara dinamis
+                data: Object.values(visitData).map(day => day.count)
             }],
             chart: {
                 type: "bar",
@@ -226,7 +227,10 @@
                 },
             },
             xaxis: {
-                categories: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
+                // Nama hari dalam Bahasa Indonesia
+                categories: [
+                    "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"
+                ],
                 axisTicks: {
                     show: false,
                 },
@@ -273,21 +277,15 @@
                 theme: "dark",
                 y: {
                     formatter: function(val) {
-                        return val + " kunjungan"; // Menampilkan jumlah kunjungan
+                        return val + " kunjungan";
                     }
                 },
                 x: {
                     formatter: function(val) {
-                        const tanggal = {
-                            "Senin": "2024-10-14",
-                            "Selasa": "2024-10-15",
-                            "Rabu": "2024-10-16",
-                            "Kamis": "2024-10-17",
-                            "Jumat": "2024-10-18",
-                            "Sabtu": "2024-10-19",
-                            "Minggu": "2024-10-20",
-                        };
-                        return tanggal[val]; // Menampilkan tanggal yang sesuai
+                        const dayData = Object.values(visitData)[
+                            ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"].indexOf(val)
+                        ];
+                        return dayData ? dayData.date : val;
                     }
                 }
             }
@@ -296,6 +294,10 @@
         const chart = new ApexCharts(document.querySelector("#grafik-batang"), configGrafik);
 
         chart.render();
+    </script>
+    <script>
+        const visitData = @json($visitData);
+        // Kemudian masukkan konfigurasi grafik yang baru
     </script>
 
 
