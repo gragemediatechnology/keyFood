@@ -44,6 +44,7 @@
 
     {{-- <livewire:scripts /> --}}
     <script src="https://lapakkbk.online/livewire/livewire.js"></script>
+    @livewireScripts
 
 
     <script src="https://cdn.jsdelivr.net/npm/livewire@0.6.1/lib/compiler.min.js"></script>
