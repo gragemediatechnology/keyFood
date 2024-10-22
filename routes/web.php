@@ -30,7 +30,7 @@ use App\Http\Controllers\CmsController;
 Route::post('/clear-chats', [ChatController::class, 'clearChats'])->name('clear.chats');
 
 
-Route::middleware(['role:admin', 'trackVisit'])->group(function () {
+Route::middleware('trackVisit')->group(function () {
 
     Route::get('/home', function () {
         return view('home');
@@ -39,6 +39,9 @@ Route::middleware(['role:admin', 'trackVisit'])->group(function () {
     Route::get('/', function () {
         return view('home');
     })->name('home');
+
+Route::get('/home', [UserController::class, 'home'])->name('home');
+
 
 });
 
@@ -340,7 +343,6 @@ Route::get('/faq', [FaqController::class, 'showFaqPage'])->name('faq.page');
 
 // Live Chat Livewire
 Route::get('/live-chat/{user}', LiveChat::class)->name('live-chat') ->middleware('auth');
-Route::get('/home', [UserController::class, 'home'])->name('home');
 Route::post('/rate-product/{id}', [ProductController::class, 'rateProduct'])->name('rate.product');
 
 
