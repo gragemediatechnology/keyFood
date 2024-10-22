@@ -1,4 +1,4 @@
-@if (Auth::check())
+@if (Auth::check)
     <div id="messageContainer" class="overflow-y-auto h-screen">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -23,7 +23,7 @@
                             <div
                                 class="fixed top-4 left-0 px-10 right-0 mx-auto flex items-center p-2 mb-4 border rounded-lg shadow-md bg-gray-100 z-50 w-[90%] max-w-sm md:max-w-md lg:max-w-lg">
                                 <div class="w-12 h-12 mr-4">
-                                    <img src="../{{ $secondUser->img ?? '../img/client-1.jpg' }}" alt="User Avatar"
+                                    <img src="{{ $secondUser->img ?? '../img/client-1.jpg' }}" alt="User Avatar"
                                         class="w-full h-full rounded-full">
                                 </div>
                                 <div>
@@ -48,7 +48,7 @@
                                         <div class="chat-image avatar">
                                             <div class="w-10 rounded-full">
                                                 <img alt="User Avatar"
-                                                    src="../{{ $message->fromUser->img ?? '../img/client-1.jpg' }}" />
+                                                    src="{{ $message->fromUser->img ?? '../img/client-1.jpg' }}" />
                                             </div>
                                         </div>
                                         <div class="chat-header text-gray-950">
@@ -93,11 +93,11 @@
 
 
                         <div class="form-control">
-                            <form id="messageForm" wire:submit.prevent="SendMessage"
+                            <form action="POST" id="messageForm" wire:submit.prevent="SendMessage"
                                 enctype="multipart/form-data">
                                 <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model="message"
                                     placeholder="Kirim pesan bang..." required></textarea>
-                                <input type="file" wire:model="image" class="" id="imageInput" />
+                                <input type="file" wire:model="image" class="hidden" id="imageInput" />
                                 <button type="button" id="chooseFileButton" class="btn btn-primary">Choose
                                     File</button>
                                 <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
@@ -108,7 +108,6 @@
             </div>
         </div>
     </div>
-
 
     <script>
         function openModal(imageSrc) {
