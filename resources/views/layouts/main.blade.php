@@ -119,44 +119,43 @@
     @include('partials.footer')
     @include('partials.bot-bar')
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.js"></script>
 
     <!-- SweetAlert JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.js"></script>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.x.x/dist/alpine.min.js" async></script>
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
-<script src="https://unpkg.com/scrollreveal"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.x.x/dist/alpine.min.js" async></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
-    integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
-</script>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+        integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
 
 
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/stores.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/stores.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
 
 
-<!-- <script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js">
-</script>
+    <!-- <script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js">
+    </script>
 <script defer
     src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/checkout.js">
 </script>
@@ -182,117 +181,117 @@
 
 
 
-<script>
-    let timer;
-    const countdown = 10 * 60 * 1000; // 10 menit dalam milidetik
+    <script>
+        let timer;
+        const countdown = 10 * 60 * 1000; // 10 menit dalam milidetik
 
-    function resetTimer() {
-        clearTimeout(timer);
-        timer = setTimeout(logoutUser, countdown);
-    }
+        function resetTimer() {
+            clearTimeout(timer);
+            timer = setTimeout(logoutUser, countdown);
+        }
 
-    function logoutUser() {
-        // Mengirim permintaan logout menggunakan AJAX
-        fetch('{{ route('logout') }}', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                _method: 'POST'
-            })
-        }).then(response => {
-            if (response.ok) {
-                window.location.href = '/'; // Redirect ke homepage
-            }
-        }).catch(error => {
-            console.error('Error:', error);
+        function logoutUser() {
+            // Mengirim permintaan logout menggunakan AJAX
+            fetch('{{ route('logout') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    _method: 'POST'
+                })
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/'; // Redirect ke homepage
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Reset timer setiap ada aktivitas di halaman
+        window.onload = resetTimer;
+        window.onmousemove = resetTimer;
+        window.onmousedown = resetTimer;
+        window.ontouchstart = resetTimer;
+        window.onclick = resetTimer;
+        window.onkeypress = resetTimer;
+        window.addEventListener('scroll', resetTimer, true);
+    </script>
+
+    <!-- SweetAlert Integration -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if ($errors->any())
+                setTimeout(function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: @json($errors->first()),
+                        timer: 5000, // Durasi tampilan alert dalam milidetik
+                        showConfirmButton: true
+                    });
+                }, 5000); // Penundaan dalam milidetik (1 detik)
+            @endif
+
+            @if (session('success'))
+                setTimeout(function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: '{{ session('success') }}',
+                        timer: 500000, // Durasi tampilan alert dalam milidetik
+                        showConfirmButton: true
+                    });
+                }, 500000); // Penundaan dalam milidetik (1 detik)
+            @endif
         });
-    }
+    </script>
 
-    // Reset timer setiap ada aktivitas di halaman
-    window.onload = resetTimer;
-    window.onmousemove = resetTimer;
-    window.onmousedown = resetTimer;
-    window.ontouchstart = resetTimer;
-    window.onclick = resetTimer;
-    window.onkeypress = resetTimer;
-    window.addEventListener('scroll', resetTimer, true);
-</script>
-
-<!-- SweetAlert Integration -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        @if ($errors->any())
-            setTimeout(function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: @json($errors->first()),
-                    timer: 5000, // Durasi tampilan alert dalam milidetik
-                    showConfirmButton: true
-                });
-            }, 5000); // Penundaan dalam milidetik (1 detik)
-        @endif
-
+    <!-- Sweet Alert Script -->
+    <script>
         @if (session('success'))
-            setTimeout(function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: '{{ session('success') }}',
-                    timer: 500000, // Durasi tampilan alert dalam milidetik
-                    showConfirmButton: true
-                });
-            }, 500000); // Penundaan dalam milidetik (1 detik)
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 300000,
+                showConfirmButton: true,
+            });
         @endif
-    });
-</script>
-
-<!-- Sweet Alert Script -->
-<script>
-    @if (session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ session('success') }}',
-            timer: 300000,
-            showConfirmButton: true,
-        });
-    @endif
-    @if (session('successVip'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ session('successVip') }}',
-            timer: 300000,
-            showConfirmButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Ok',
-            cancelButtonText: 'Kembali ke Halaman Admin'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Do nothing, stay on the current page
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                // Redirect to the admin page when "Kembali ke Halaman Admin" is clicked
-                window.location.href =
-                'https://lapakkbk.online/admin/stores'; // Replace with the actual admin page URL
-            }
-        });
-    @endif
+        @if (session('successVip'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('successVip') }}',
+                timer: 300000,
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Ok',
+                cancelButtonText: 'Kembali ke Halaman Admin'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Do nothing, stay on the current page
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    // Redirect to the admin page when "Kembali ke Halaman Admin" is clicked
+                    window.location.href =
+                        'https://lapakkbk.online/admin/stores'; // Replace with the actual admin page URL
+                }
+            });
+        @endif
 
 
-    @if (session('error'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal!',
-            text: '{{ session('error') }}',
-            timer: 300000,
-            showConfirmButton: true,
-        });
-    @endif
-</script>
-
+        @if (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ session('error') }}',
+                timer: 300000,
+                showConfirmButton: true,
+            });
+        @endif
+    </script>
+</body>
 
 </html>
