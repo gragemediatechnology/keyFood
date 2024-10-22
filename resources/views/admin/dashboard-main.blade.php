@@ -112,7 +112,7 @@
                                             <!-- Avatar with inset shadow -->
                                             <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                 <img class="object-cover w-full h-full rounded-full"
-                                                src="{{ $order->user->img }}" alt="user" loading="lazy" />
+                                                    src="{{ $order->user->img }}" alt="user" loading="lazy" />
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                                 </div>
                                             </div>
@@ -124,7 +124,7 @@
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 text-sm">
-                                       Rp. {{ $order->harga }}
+                                        Rp. {{ $order->harga }}
                                     </td>
                                     <td class="px-4 py-3 text-sm">
                                         {{ $order->tanggal_order }}
@@ -165,26 +165,139 @@
                             </div>
                         </div>
                     </div>
-                    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                        <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                            Traffic
-                        </h4>
-                        <canvas id="line"></canvas>
-                        <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                            <!-- Chart legend -->
-                            <div class="flex items-center">
-                                <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                                <span>Sayur-sayuran</span>
+
+                    <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                        <div
+                            class="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none md:flex-row md:items-center">
+                            <div class="w-max rounded-lg bg-gray-900 p-5 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-6 w-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3">
+                                    </path>
+                                </svg>
                             </div>
-                            <div class="flex items-center">
-                                <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
-                                <span>Buah-buahan</span>
+                            <div>
+                                <h6
+                                    class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
+                                    Grafik Batang
+                                </h6>
+                                <p
+                                    class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
+                                    Visualisasikan data Anda dengan cara sederhana menggunakan plugin chart dari
+                                    @material-tailwind/html.
+                                </p>
                             </div>
                         </div>
+                        <div class="pt-6 px-2 pb-0">
+                            <div id="grafik-batang"></div>
+                        </div>
                     </div>
+
+
                 </div>
             </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        const configGrafik = {
+            series: [{
+                name: "Kunjungan",
+                data: [50, 40, 300, 320, 500, 350, 200],
+            }],
+            chart: {
+                type: "bar",
+                height: 240,
+                toolbar: {
+                    show: false,
+                },
+            },
+            title: {
+                show: false,
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            colors: ["#020617"],
+            plotOptions: {
+                bar: {
+                    columnWidth: "40%",
+                    borderRadius: 2,
+                },
+            },
+            xaxis: {
+                categories: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
+                axisTicks: {
+                    show: false,
+                },
+                axisBorder: {
+                    show: false,
+                },
+                labels: {
+                    style: {
+                        colors: "#616161",
+                        fontSize: "12px",
+                        fontFamily: "inherit",
+                        fontWeight: 400,
+                    },
+                },
+            },
+            yaxis: {
+                labels: {
+                    style: {
+                        colors: "#616161",
+                        fontSize: "12px",
+                        fontFamily: "inherit",
+                        fontWeight: 400,
+                    },
+                },
+            },
+            grid: {
+                show: true,
+                borderColor: "#dddddd",
+                strokeDashArray: 5,
+                xaxis: {
+                    lines: {
+                        show: true,
+                    },
+                },
+                padding: {
+                    top: 5,
+                    right: 20,
+                },
+            },
+            fill: {
+                opacity: 0.8,
+            },
+            tooltip: {
+                theme: "dark",
+                y: {
+                    formatter: function(val) {
+                        return val + " kunjungan"; // Menampilkan jumlah kunjungan
+                    }
+                },
+                x: {
+                    formatter: function(val) {
+                        const tanggal = {
+                            "Senin": "2024-10-14",
+                            "Selasa": "2024-10-15",
+                            "Rabu": "2024-10-16",
+                            "Kamis": "2024-10-17",
+                            "Jumat": "2024-10-18",
+                            "Sabtu": "2024-10-19",
+                            "Minggu": "2024-10-20",
+                        };
+                        return tanggal[val]; // Menampilkan tanggal yang sesuai
+                    }
+                }
+            }
+        };
+
+        const chart = new ApexCharts(document.querySelector("#grafik-batang"), configGrafik);
+
+        chart.render();
+    </script>
+
 
     </div>
     </div>
