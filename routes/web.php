@@ -33,14 +33,18 @@ Route::post('/clear-chats', [ChatController::class, 'clearChats'])->name('clear.
 
 Route::middleware(['track.visits'])->group(function () {
     // Route publik Anda di sini
-});
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
+    
+    Route::get('/home', function () {
+        return view('home');
+    })->name('Home');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('Home');
+Route::get('/home', [UserController::class, 'home'])->name('home');
+
+});
+
 
 
 Route::get('/tutorial', [TutorialController::class, 'index'])->name('tutorial.index');
@@ -143,7 +147,10 @@ Route::prefix('seller')->name('seller.')->group(function () {
 // ROUTE ADMIN  PAGE
 Route::prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('/main-admin', [PaymentController::class, 'index'])->name('dashboard-main')->middleware('permission:main-admin');
+    // Route::get('/main-admin', [PaymentController::class, 'index'])->name('dashboard-main')->middleware('permission:main-admin');
+    Route::get('/main-admin', [PaymentController::class, 'index'])
+    ->name('dashboard-main')
+    ->middleware(['permission:main-admin', 'track.visits']);
 
 
     Route::get('/dashboard-cms', function () {
@@ -334,7 +341,6 @@ Route::get('/faq', [FaqController::class, 'showFaqPage'])->name('faq.page');
 
 // Live Chat Livewire
 Route::get('/live-chat/{user}', LiveChat::class)->name('live-chat') ->middleware('auth');
-Route::get('/home', [UserController::class, 'home'])->name('home');
 Route::post('/rate-product/{id}', [ProductController::class, 'rateProduct'])->name('rate.product');
 
 
