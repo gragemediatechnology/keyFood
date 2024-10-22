@@ -24,6 +24,7 @@
 
 
 
+// App/Http/Middleware/TrackVisit.php
 namespace App\Http\Middleware;
 
 use Closure;
@@ -32,6 +33,7 @@ use App\Models\VisitHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 class TrackVisit
 {
@@ -39,36 +41,46 @@ class TrackVisit
     {
         try {
             $ip = $request->ip();
-            $today = now()->format('Y-m-d');
-            $cacheKey = 'visit_' . $ip . '_' . $today;
+            $today = Carbon::now()->format('Y-m-d');
+            $cacheKey = "visit_{$ip}_{$today}";
             
-            // Cek apakah request dari bot
-            $userAgent = $request->header('User-Agent');
-            if (!preg_match('/bot|crawler|spider|crawling/i', $userAgent)) {
-                // Menggunakan cache harian
-                if (!Cache::has($cacheKey)) {
+            // Cek apakah pengunjung sudah tercatat hari ini
+            if (!Cache::has($cacheKey)) {
+                // Cek apakah sudah ada kunjungan dengan IP yang sama hari ini
+                $existingVisit = VisitHistory::where('ip_address', $ip)
+                    ->whereDate('visited_at', $today)
+                    ->first();
+
+                if (!$existingVisit) {
                     // Catat kunjungan baru
                     VisitHistory::create([
                         'ip_address' => $ip,
                         'user_id' => Auth::id(),
-                        'visited_at' => now()
+                        'visited_at' => now(),
+                        'created_at' => now(),
+                        'updated_at' => now()
                     ]);
-                    
-                    // Set cache selama 1 hari
-                    Cache::put($cacheKey, true, now()->endOfDay());
+
+                    // Set cache untuk mencegah multiple entries
+                    Cache::put($cacheKey, true, Carbon::now()->endOfDay());
                     
                     Log::info('New visit recorded', [
                         'ip' => $ip,
                         'user_id' => Auth::id(),
-                        'date' => $today
+                        'time' => now()->toDateTimeString(),
+                        'url' => $request->fullUrl()
                     ]);
                 }
             }
         } catch (\Exception $e) {
-            Log::error('Error in TrackVisit middleware: ' . $e->getMessage());
+            Log::error('Error in TrackVisit middleware: ' . $e->getMessage(), [
+                'exception' => $e,
+                'trace' => $e->getTraceAsString()
+            ]);
         }
-        
+
         return $next($request);
     }
 }
+
 
