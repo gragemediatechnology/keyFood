@@ -224,7 +224,17 @@
 <!-- SweetAlert Integration -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-       
+        @if ($errors->any())
+            setTimeout(function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: @json($errors->first()),
+                    timer: 5000, // Durasi tampilan alert dalam milidetik
+                    showConfirmButton: true
+                });
+            }, 5000); // Penundaan dalam milidetik (1 detik)
+        @endif
 
         @if (session('success'))
             setTimeout(function() {
