@@ -110,6 +110,7 @@ class LiveChat extends Component
 
     public function SendMessage(Request $request)
     {
+        dd($request->all());
         $path = null;
 
         $this->validate([
