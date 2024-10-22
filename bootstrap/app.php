@@ -18,6 +18,17 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             \App\Http\Middleware\TrackVisit::class,
         ]);
+
+        // Menambahkan TrackVisit sebagai named middleware
+        $middleware->alias([
+            'track.visits' => \App\Http\Middleware\TrackVisit::class,
+        ]);
+
+        // Mendaftarkan middleware global jika diperlukan
+        $middleware->group('web', [
+            \App\Http\Middleware\TrackVisit::class,
+        ]);
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
