@@ -26,14 +26,14 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\CmsController;
 
-
+Route::middleware(['track.visits'])->group(function () {
 Route::post('/clear-chats', [ChatController::class, 'clearChats'])->name('clear.chats');
 
 
 
-Route::middleware(['track.visits'])->group(function () {
+
     // Route publik Anda di sini
-});
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -143,7 +143,10 @@ Route::prefix('seller')->name('seller.')->group(function () {
 // ROUTE ADMIN  PAGE
 Route::prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('/main-admin', [PaymentController::class, 'index'])->name('dashboard-main')->middleware('permission:main-admin');
+    // Route::get('/main-admin', [PaymentController::class, 'index'])->name('dashboard-main')->middleware('permission:main-admin');
+    Route::get('/main-admin', [PaymentController::class, 'index'])
+    ->name('dashboard-main')
+    ->middleware(['permission:main-admin', 'track.visits']);
 
 
     Route::get('/dashboard-cms', function () {
@@ -359,3 +362,7 @@ Route::get('/resend-otp-forgot', [ForgotPasswordController::class, 'resendOtp'])
 Route::post('/forgot-password-otp', [ForgotPasswordController::class, 'sendOtp'])->name('forgot.password.otp');
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('reset.password');
 
+
+
+
+});
