@@ -8,6 +8,10 @@ use App\Models\Toko;
 use Illuminate\Http\Request;
 use App\Models\VisitHistory;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
+
+
 
 
 class PaymentController extends Controller
@@ -39,27 +43,40 @@ class PaymentController extends Controller
         $totalOrders = Orders::count();
         $paymentTotal = Orders::sum('harga');
 
-        // Mengambil data kunjungan untuk 7 hari terakhir
-        $endDate = Carbon::now(); // Hari ini (22 Oktober 2024)
-        $startDate = Carbon::now()->subDays(6); // 6 hari sebelumnya
-
-        $visits = VisitHistory::selectRaw('DATE(visited_at) as date, COUNT(*) as total')
-            ->whereBetween('visited_at', [$startDate->startOfDay(), $endDate->endOfDay()])
+        // Menentukan rentang tanggal
+        $endDate = Carbon::now(); // Hari ini
+        $startDate = Carbon::now()->startOfWeek(); // Senin dari minggu ini
+        
+        // Mengambil data kunjungan dengan query yang lebih efisien
+        $visits = VisitHistory::select(DB::raw('DATE(visited_at) as date'), DB::raw('COUNT(DISTINCT ip_address) as total'))
+            ->whereBetween('visited_at', [$startDate, $endDate])
             ->groupBy('date')
-            ->orderBy('date', 'asc')
-            ->get();
+            ->get()
+            ->keyBy('date');
 
-        // Menyiapkan data untuk grafik
+        // Menyiapkan data untuk grafik dengan format hari dalam Bahasa Indonesia
+        $daysIndonesia = [
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu',
+            'Sunday' => 'Minggu'
+        ];
+
         $visitData = [];
         $currentDate = $startDate->copy();
         
         while ($currentDate <= $endDate) {
             $dateStr = $currentDate->format('Y-m-d');
-            $visitCount = $visits->firstWhere('date', $dateStr);
-            $visitData[$currentDate->format('l')] = [
-                'count' => $visitCount ? $visitCount->total : 0,
+            $dayName = $daysIndonesia[$currentDate->format('l')];
+            
+            $visitData[$dayName] = [
+                'count' => $visits->has($dateStr) ? $visits[$dateStr]->total : 0,
                 'date' => $dateStr
             ];
+            
             $currentDate->addDay();
         }
 
@@ -72,6 +89,7 @@ class PaymentController extends Controller
             'visitData'
         ));
     }
+
 
     /**
      * Show the form for creating a new resource.
