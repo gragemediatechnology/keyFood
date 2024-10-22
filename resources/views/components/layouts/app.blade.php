@@ -15,10 +15,9 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-      
+
       <!-- <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/css/app.css"> -->
     @livewireStyles
-    @livewireScripts
 
 </head>
 
@@ -44,6 +43,8 @@
         <p class="mx-auto">TIM LAPAK KBK
         </p>
     </span>
+
+    <livewire:scripts />
 
     <script src="https://cdn.jsdelivr.net/npm/livewire@0.6.1/lib/compiler.min.js"></script>
     <!-- <script src="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/js/app.js"></script> -->
