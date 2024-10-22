@@ -35,60 +35,69 @@ class PaymentController extends Controller
     // }
 
     public function index()
-    {
-        // Data dasar
-        $orders = Orders::orderBy('id', 'desc')->paginate(20);
-        $totalUser = User::count();
-        $stores = Toko::count();
-        $totalOrders = Orders::count();
-        $paymentTotal = Orders::sum('harga');
+{
+    // Data dasar
+    $orders = Orders::orderBy('id', 'desc')->paginate(20);
+    $totalUser = User::count();
+    $stores = Toko::count();
+    $totalOrders = Orders::count();
+    $paymentTotal = Orders::sum('harga');
 
-        // Menentukan rentang tanggal
-        $endDate = Carbon::now(); // Hari ini
-        $startDate = Carbon::now()->startOfWeek(); // Senin dari minggu ini
+    // Mengatur range tanggal untuk 7 hari terakhir
+    $endDate = Carbon::now();
+    $startDate = Carbon::now()->subDays(6); // 7 hari termasuk hari ini
+    
+    // Query untuk mendapatkan data kunjungan
+    $visits = VisitHistory::select(
+            DB::raw('DATE(visited_at) as date'),
+            DB::raw('COUNT(DISTINCT ip_address) as total')
+        )
+        ->whereBetween('visited_at', [
+            $startDate->startOfDay(),
+            $endDate->endOfDay()
+        ])
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+
+    // Menyiapkan data untuk grafik
+    $daysIndonesia = [
+        'Sunday' => 'Minggu',
+        'Monday' => 'Senin',
+        'Tuesday' => 'Selasa',
+        'Wednesday' => 'Rabu',
+        'Thursday' => 'Kamis',
+        'Friday' => 'Jumat',
+        'Saturday' => 'Sabtu'
+    ];
+
+    // Inisialisasi data untuk 7 hari
+    $visitData = [];
+    $currentDate = $startDate->copy();
+    
+    while ($currentDate <= $endDate) {
+        $dateStr = $currentDate->format('Y-m-d');
+        $dayName = $daysIndonesia[$currentDate->format('l')];
         
-        // Mengambil data kunjungan dengan query yang lebih efisien
-        $visits = VisitHistory::select(DB::raw('DATE(visited_at) as date'), DB::raw('COUNT(DISTINCT ip_address) as total'))
-            ->whereBetween('visited_at', [$startDate, $endDate])
-            ->groupBy('date')
-            ->get()
-            ->keyBy('date');
-
-        // Menyiapkan data untuk grafik dengan format hari dalam Bahasa Indonesia
-        $daysIndonesia = [
-            'Monday' => 'Senin',
-            'Tuesday' => 'Selasa',
-            'Wednesday' => 'Rabu',
-            'Thursday' => 'Kamis',
-            'Friday' => 'Jumat',
-            'Saturday' => 'Sabtu',
-            'Sunday' => 'Minggu'
+        $dayVisits = $visits->firstWhere('date', $dateStr);
+        
+        $visitData[$dayName] = [
+            'count' => $dayVisits ? $dayVisits->total : 0,
+            'date' => $dateStr
         ];
-
-        $visitData = [];
-        $currentDate = $startDate->copy();
         
-        while ($currentDate <= $endDate) {
-            $dateStr = $currentDate->format('Y-m-d');
-            $dayName = $daysIndonesia[$currentDate->format('l')];
-            
-            $visitData[$dayName] = [
-                'count' => $visits->has($dateStr) ? $visits[$dateStr]->total : 0,
-                'date' => $dateStr
-            ];
-            
-            $currentDate->addDay();
-        }
-
-        return view('admin.dashboard-main', compact(
-            'orders',
-            'totalUser',
-            'paymentTotal',
-            'stores',
-            'totalOrders',
-            'visitData'
-        ));
+        $currentDate->addDay();
     }
+
+    return view('admin.dashboard-main', compact(
+        'orders',
+        'totalUser',
+        'paymentTotal',
+        'stores',
+        'totalOrders',
+        'visitData'
+    ));
+}
 
 
     /**
