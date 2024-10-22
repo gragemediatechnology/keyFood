@@ -35,21 +35,21 @@
                 <div>
                     <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Lapak KBK</h2>
                     <ul class="text-gray-500 font-medium">
-                        <li class="mb-4">
+                        <li class="mb-4 break-words">
                             <a href="https://maps.app.goo.gl/jPYA3x3XgB3pXWSYA"
-                                class="hover:underline ">{{ $company->company_name }}
-                                {{ $company->lokasi }}</a>
+                                class="hover:underline">{{ $company->company_name }} {{ $company->lokasi }}</a>
                         </li>
-                        <li class="mb-4">
+                        <li class="mb-4 break-words">
                             <a href="mailto:gragemediatechnology@gmail.com"
                                 class="hover:underline">{{ $company->email }}</a>
                         </li>
-                        <li>
+                        <li class="break-words">
                             <a href="https://wa.me/{{ $company->phone }}"
                                 class="hover:underline">+62{{ $company->phone }}</a>
                         </li>
                     </ul>
                 </div>
+
             </div>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
