@@ -33,16 +33,14 @@ Route::post('/clear-chats', [ChatController::class, 'clearChats'])->name('clear.
 
 Route::middleware(['track.visits'])->group(function () {
     // Route publik Anda di sini
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
-    
-    Route::get('/home', function () {
-        return view('home');
-    })->name('Home');
-    
 });
+Route::get('/', function () {
+    return view('home');
+})->name('home');
 
+Route::get('/home', function () {
+    return view('home');
+})->name('Home');
 
 
 Route::get('/tutorial', [TutorialController::class, 'index'])->name('tutorial.index');
