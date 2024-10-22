@@ -93,11 +93,11 @@
 
 
                         <div class="form-control">
-                            <form action="POST" id="messageForm" wire:submit.prevent="SendMessage"
+                            <form id="messageForm" wire:submit.prevent="SendMessage"
                                 enctype="multipart/form-data">
                                 <textarea id="messageTextarea" class="textarea textarea-bordered text-green-500 w-full" wire:model="message"
                                     placeholder="Kirim pesan bang..." required></textarea>
-                                <input type="file" wire:model="image" class="hidden" id="imageInput" />
+                                <input type="file" wire:model="image" class="" id="imageInput" />
                                 <button type="button" id="chooseFileButton" class="btn btn-primary">Choose
                                     File</button>
                                 <button type="submit" id="submitButton" class="btn btn-primary">Kirim</button>
