@@ -41,7 +41,7 @@
         </main>
     </div>
 
-    @livewireScripts
+    <livewire:scripts />
 
     <script src="https://cdn.jsdelivr.net/npm/livewire@0.6.1/lib/compiler.min.js"></script>
     <!-- <script
