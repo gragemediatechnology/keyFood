@@ -18,7 +18,7 @@ class TrackVisit
             'visited_at' => now(),
         ]);
 
-        // return $next($request);
+        return $next($request);
     }
 }
 
