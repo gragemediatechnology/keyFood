@@ -224,8 +224,7 @@
 <!-- SweetAlert Integration -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-     
-
+        
         @if (session('success'))
             setTimeout(function() {
                 Swal.fire({
