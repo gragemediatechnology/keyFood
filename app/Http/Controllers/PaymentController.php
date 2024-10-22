@@ -43,42 +43,33 @@ class PaymentController extends Controller
         $totalOrders = Orders::count();
         $paymentTotal = Orders::sum('harga');
 
-        // Menentukan rentang tanggal
-        $endDate = Carbon::now(); // Hari ini
-        $startDate = Carbon::now()->startOfWeek(); // Senin dari minggu ini
+        // Data kunjungan
+        $endDate = Carbon::now();
+        $startDate = Carbon::now()->subDays(6);
         
-        // Mengambil data kunjungan dengan query yang lebih efisien
-        $visits = VisitHistory::select(DB::raw('DATE(visited_at) as date'), DB::raw('COUNT(DISTINCT ip_address) as total'))
-            ->whereBetween('visited_at', [$startDate, $endDate])
+        $visits = VisitHistory::selectRaw('DATE(visited_at) as date, COUNT(DISTINCT ip_address) as total')
+            ->whereBetween('visited_at', [$startDate->startOfDay(), $endDate->endOfDay()])
             ->groupBy('date')
-            ->get()
-            ->keyBy('date');
+            ->orderBy('date')
+            ->get();
 
-        // Menyiapkan data untuk grafik dengan format hari dalam Bahasa Indonesia
-        $daysIndonesia = [
-            'Monday' => 'Senin',
-            'Tuesday' => 'Selasa',
-            'Wednesday' => 'Rabu',
-            'Thursday' => 'Kamis',
-            'Friday' => 'Jumat',
-            'Saturday' => 'Sabtu',
-            'Sunday' => 'Minggu'
-        ];
-
-        $visitData = [];
-        $currentDate = $startDate->copy();
-        
-        while ($currentDate <= $endDate) {
-            $dateStr = $currentDate->format('Y-m-d');
-            $dayName = $daysIndonesia[$currentDate->format('l')];
-            
-            $visitData[$dayName] = [
-                'count' => $visits->has($dateStr) ? $visits[$dateStr]->total : 0,
-                'date' => $dateStr
-            ];
-            
-            $currentDate->addDay();
-        }
+        // Format data untuk grafik
+        $visitData = collect(['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'])
+            ->mapWithKeys(function ($day) use ($visits, $startDate, $endDate) {
+                $date = $startDate->copy()->addDays(array_search($day, [
+                    'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'
+                ]));
+                
+                if ($date <= $endDate) {
+                    $visitCount = $visits->where('date', $date->format('Y-m-d'))->first();
+                    return [$day => [
+                        'count' => $visitCount ? $visitCount->total : 0,
+                        'date' => $date->format('Y-m-d')
+                    ]];
+                }
+                
+                return [$day => ['count' => 0, 'date' => null]];
+            })->toArray();
 
         return view('admin.dashboard-main', compact(
             'orders',
