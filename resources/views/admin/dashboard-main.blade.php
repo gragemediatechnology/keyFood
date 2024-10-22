@@ -205,7 +205,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const visitData = @json($visitData);
-            
+
             const configGrafik = {
                 series: [{
                     name: "Kunjungan",
@@ -285,21 +285,22 @@
                     x: {
                         formatter: function(val) {
                             const dayData = visitData[val];
-                            return dayData.date ? `${val} (${dayData.date})` : val;
+                            return dayData.date ? ${val} (${dayData.date}) : val;
                         }
                     }
                 }
             };
-        
+
             const chart = new ApexCharts(document.querySelector("#grafik-batang"), configGrafik);
             chart.render();
         });
         </script>
-        
+
     <script>
         const visitData = @json($visitData);
         // Kemudian masukkan konfigurasi grafik yang baru
     </script>
+
 
 
 
