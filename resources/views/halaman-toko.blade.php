@@ -49,12 +49,16 @@
                             $fullStars = floor($average_rating); // Bintang penuh
                             $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
                             $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
+
+                            // Cek status toko
+                            $toko = $product->toko;
+                            $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
                         @endphp
 
 
                         @if (Auth::check() && Auth::user()->hasRole('admin'))
                             {{-- Jika user adalah admin --}}
-                            <div class="product-box">
+                            <div class="product-box {{ $isTokoOnline ? '' : 'toko-tutup' }}">
                                 <input type="hidden" value="{{$product->store_id}}" name="id">
                                 <span hidden>{{ $product->id }}</span>
                                 <span hidden>{{ $product->store_id }}</span>
@@ -65,6 +69,11 @@
                                 <span class="quantity">Kategori:
                                     {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                                 <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
+                                @if (!$isTokoOnline)
+                                    <span class="text-red-500">(Toko Tutup)</span>
+                                @else
+                                    <span class="text-green-500">(Toko Buka)</span>
+                                @endif
                                 <div class="flex">
                                     {{-- Tampilkan bintang penuh --}}
                                     @for ($i = 1; $i <= $fullStars; $i++)
@@ -101,13 +110,23 @@
                                 </div>
                                 <span class="quantity"></span>
                                 <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                                <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
-                                    data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
-                                    data-slug="{{ $product->slug }}" class="cart-btn">
-                                    <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
-                                </a>
+                                @if ($isTokoOnline)
+                                    <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                                        data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
+                                        data-slug="{{ $product->slug }}" class="cart-btn">
+                                        <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                                    </a>
+                                @else
+                                    <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                                        data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
+                                        data-slug="{{ $product->slug }}"
+                                        class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"
+                                        disabled>
+                                        <i class="fas fa-ban"></i> Toko Tutup
+                                    </a>
+                                @endif
                                 {{-- Tambahkan menu khusus admin --}}
-                                <form action="{{ config('app_url').'/admin/vip-product' }}" method="POST">
+                                <form action="{{ config('app_url') . '/admin/vip-product' }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <input type="hidden" name="store_id" value="{{ $product->store_id }}">
