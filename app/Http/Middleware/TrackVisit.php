@@ -36,36 +36,29 @@ class TrackVisit
 {
     public function handle(Request $request, Closure $next)
     {
-        try {
+        if (!$request->is('admin/*')) { // Hanya track untuk halaman non-admin
             $ip = $request->ip();
             $cacheKey = 'visit_' . $ip . '_' . date('Y-m-d_H');
             
-            // Menggunakan cache untuk menghindari pencatatan berulang
             if (!Cache::has($cacheKey)) {
-                // Catat kunjungan baru
-                VisitHistory::create([
-                    'ip_address' => $ip,
-                    'user_id' => Auth::id(),
-                    'visited_at' => now()
-                ]);
-
-                // Set cache selama 1 jam
-                Cache::put($cacheKey, true, now()->addHour());
-
-                // Log untuk debugging
-                Log::info('New visit recorded', [
-                    'ip' => $ip,
-                    'user_id' => Auth::id(),
-                    'time' => now()->toDateTimeString(),
-                    'url' => $request->fullUrl()
-                ]);
+                try {
+                    VisitHistory::create([
+                        'ip_address' => $ip,
+                        'user_id' => Auth::id(),
+                        'visited_at' => now()
+                    ]);
+                    
+                    Cache::put($cacheKey, true, now()->addHour());
+                    
+                } catch (\Exception $e) {
+                    Log::error('Error tracking visit: ' . $e->getMessage());
+                }
             }
-        } catch (\Exception $e) {
-            Log::error('Error in TrackVisit middleware: ' . $e->getMessage());
         }
-
+        
         return $next($request);
     }
+
 }
 
 
