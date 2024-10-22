@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Orders;
 use App\Models\Toko;
 use Illuminate\Http\Request;
+use App\Models\VisitHistory;
+
 
 class PaymentController extends Controller
 {
@@ -19,8 +21,12 @@ class PaymentController extends Controller
         $stores = Toko::all()->count(); // menghitung jumlah toko
         $totalOrders = Orders::all()->count(); //menghitung jumlah transaksi atau order
         $paymentTotal = Orders::sum('harga'); // menjumlahkan semua kolom harga
+        $visits = VisitHistory::selectRaw('DATE(visited_at) as date, COUNT(*) as total')
+            ->groupBy('date')
+            ->orderBy('date', 'asc')
+            ->get();
 
-        return view('admin.dashboard-main',  compact('orders','totalUser', 'paymentTotal', 'stores', 'totalOrders'));
+        return view('admin.dashboard-main',  compact('orders','totalUser', 'paymentTotal', 'stores', 'totalOrders','visits'));
     }
 
     /**
@@ -70,4 +76,16 @@ class PaymentController extends Controller
     {
         //
     }
+
+    // public function visitHistoryChart()
+    // {
+    //     // Ambil data kunjungan, dikelompokkan berdasarkan tanggal
+    //     $visits = VisitHistory::selectRaw('DATE(visited_at) as date, COUNT(*) as total')
+    //         ->groupBy('date')
+    //         ->orderBy('date', 'asc')
+    //         ->get();
+
+    //     return view('admin.dashboard-main', compact('visits'));
+    // }
+
 }
