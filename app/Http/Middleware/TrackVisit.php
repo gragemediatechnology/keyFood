@@ -37,30 +37,65 @@ use Carbon\Carbon;
 
 class TrackVisit
 {
-    public function handle(Request $request, Closure $next)
+//     public function handle(Request $request, Closure $next)
+// {
+//     try {
+//         $ip = $request->ip();
+//         $userAgent = $request->header('User-Agent');  // Tambahkan User-Agent
+//         $today = Carbon::now()->format('Y-m-d');
+//         $cacheKey = "visit_{$ip}_{$userAgent}_{$today}";  // Cache berdasarkan IP dan User-Agent
+        
+//         if (!Cache::has($cacheKey)) {
+//             $existingVisit = VisitHistory::where('ip_address', $ip)
+//                 ->where('user_agent', $userAgent)  // Tambahkan User-Agent di query
+//                 ->whereDate('visited_at', $today)
+//                 ->first();
+
+//             if (!$existingVisit) {
+//                 VisitHistory::create([
+//                     'ip_address' => $ip,
+//                     'user_id' => Auth::id(),
+//                     'user_agent' => $userAgent,  // Simpan User-Agent
+//                     'visited_at' => now(),
+//                 ]);
+
+//                 Cache::put($cacheKey, true, Carbon::now()->endOfDay());
+//             }
+//         }
+//     } catch (\Exception $e) {
+//         Log::error('Error in TrackVisit middleware: ' . $e->getMessage());
+//     }
+
+//     return $next($request);
+// }
+
+public function handle(Request $request, Closure $next)
 {
     try {
-        $ip = $request->ip();
-        $userAgent = $request->header('User-Agent');  // Tambahkan User-Agent
-        $today = Carbon::now()->format('Y-m-d');
-        $cacheKey = "visit_{$ip}_{$userAgent}_{$today}";  // Cache berdasarkan IP dan User-Agent
-        
-        if (!Cache::has($cacheKey)) {
-            $existingVisit = VisitHistory::where('ip_address', $ip)
-                ->where('user_agent', $userAgent)  // Tambahkan User-Agent di query
-                ->whereDate('visited_at', $today)
-                ->first();
+        $ip = $request->ip();  // Ambil IP pengguna
+        $userAgent = $request->header('User-Agent');  // Ambil User Agent
+        $today = Carbon::now()->format('Y-m-d');  // Tanggal hari ini
 
-            if (!$existingVisit) {
-                VisitHistory::create([
-                    'ip_address' => $ip,
-                    'user_id' => Auth::id(),
-                    'user_agent' => $userAgent,  // Simpan User-Agent
-                    'visited_at' => now(),
-                ]);
+        Log::info("Tracking visit: IP - {$ip}, User-Agent - {$userAgent}, Date - {$today}");
 
-                Cache::put($cacheKey, true, Carbon::now()->endOfDay());
-            }
+        // Cek apakah kunjungan dari IP yang sama pada hari ini sudah tercatat
+        $existingVisit = VisitHistory::where('ip_address', $ip)
+            ->where('user_agent', $userAgent)
+            ->whereDate('visited_at', $today)
+            ->first();
+
+        if (!$existingVisit) {
+            // Simpan kunjungan baru ke database
+            VisitHistory::create([
+                'ip_address' => $ip,
+                'user_id' => Auth::id(),  // User ID atau null jika pengguna tidak login
+                'user_agent' => $userAgent,
+                'visited_at' => now(),
+            ]);
+
+            Log::info("New visit recorded for IP - {$ip}");
+        } else {
+            Log::info("Visit already exists for IP - {$ip}");
         }
     } catch (\Exception $e) {
         Log::error('Error in TrackVisit middleware: ' . $e->getMessage());
@@ -68,6 +103,7 @@ class TrackVisit
 
     return $next($request);
 }
+
 
 
 
