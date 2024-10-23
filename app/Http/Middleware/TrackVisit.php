@@ -41,25 +41,31 @@ class TrackVisit
 {
     try {
         $ip = $request->ip();
-        $userAgent = $request->header('User-Agent');  // Tambahkan User-Agent
+        $userAgent = $request->header('User-Agent');
+        $timestamp = Carbon::now()->timestamp; // Tambahkan timestamp sebagai identifikasi tambahan
         $today = Carbon::now()->format('Y-m-d');
-        $cacheKey = "visit_{$ip}_{$userAgent}_{$today}";  // Cache berdasarkan IP dan User-Agent
-        
+
+        // Kombinasi unik IP, User-Agent, dan timestamp untuk cache key
+        $cacheKey = "visit_{$ip}_{$userAgent}_{$timestamp}";
+
+        // Jika cache tidak ditemukan, berarti kunjungan baru
         if (!Cache::has($cacheKey)) {
             $existingVisit = VisitHistory::where('ip_address', $ip)
-                ->where('user_agent', $userAgent)  // Tambahkan User-Agent di query
+                ->where('user_agent', $userAgent)
                 ->whereDate('visited_at', $today)
                 ->first();
 
+            // Jika tidak ada kunjungan yang terdeteksi pada hari yang sama, catat kunjungan baru
             if (!$existingVisit) {
                 VisitHistory::create([
                     'ip_address' => $ip,
-                    'user_id' => Auth::id(),
-                    'user_agent' => $userAgent,  // Simpan User-Agent
+                    'user_id' => Auth::id(),  // Atau null jika pengunjung tidak login
+                    'user_agent' => $userAgent,
                     'visited_at' => now(),
                 ]);
 
-                Cache::put($cacheKey, true, Carbon::now()->endOfDay());
+                // Simpan dalam cache untuk sesi ini
+                Cache::put($cacheKey, true, now()->addMinutes(30));  // Cache hanya bertahan selama 30 menit
             }
         }
     } catch (\Exception $e) {
@@ -69,20 +75,6 @@ class TrackVisit
     return $next($request);
 }
 
-
-    private function isBot($userAgent)
-    {
-        $botKeywords = ['bot', 'crawler', 'spider', 'slurp', 'baidu', 'yandex'];
-        $userAgentLower = strtolower($userAgent);
-        
-        foreach ($botKeywords as $keyword) {
-            if (str_contains($userAgentLower, $keyword)) {
-                return true;
-            }
-        }
-        
-        return false;
-    }
 }
 
 
