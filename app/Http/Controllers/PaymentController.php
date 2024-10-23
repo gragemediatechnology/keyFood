@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\Toko;
+use Illuminate\Http\Request;
 use App\Models\VisitHistory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Http\Request;
 
 
 
@@ -36,94 +35,79 @@ class PaymentController extends Controller
     // }
 
     public function index()
-    {
-        try {
-            // Cache key untuk data dashboard
-            $cacheKey = 'dashboard_data_' . date('Y-m-d_H');
+{
+    try {
+        // Data dasar
+        $orders = Orders::orderBy('id', 'desc')->paginate(20);
+        $totalUser = User::count();
+        $stores = Toko::count();
+        $totalOrders = Orders::count();
+        $paymentTotal = Orders::sum('harga');
+
+        // Menentukan rentang tanggal
+        $endDate = Carbon::now()->endOfDay();
+        $startDate = Carbon::now()->startOfWeek()->startOfDay();
+
+        // Query untuk mengambil data kunjungan per hari
+        $visits = VisitHistory::select([
+            DB::raw('DATE(visited_at) as date'),
+            DB::raw('COUNT(DISTINCT ip_address) as total')
+        ])
+        ->whereBetween('visited_at', [$startDate, $endDate])
+        ->groupBy('date')
+        ->orderBy('date', 'ASC')
+        ->get();
+
+        // Menyiapkan data hari dalam bahasa Indonesia
+        $daysIndonesia = [
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu',
+            'Sunday' => 'Minggu'
+        ];
+
+        // Inisialisasi array untuk data kunjungan
+        $visitData = [];
+        $currentDate = $startDate->copy();
+
+        // Mengisi data untuk setiap hari
+        while ($currentDate <= $endDate) {
+            $dateStr = $currentDate->format('Y-m-d');
+            $dayName = $daysIndonesia[$currentDate->format('l')];
             
-            return Cache::remember($cacheKey, 3600, function () {
-                // Set timezone
-                $timezone = 'Asia/Jakarta';
-                $now = Carbon::now()->setTimezone($timezone);
-                
-                // Data dasar
-                $orders = Orders::orderBy('id', 'desc')->paginate(20);
-                $totalUser = User::count();
-                $stores = Toko::count();
-                $totalOrders = Orders::count();
-                $paymentTotal = Orders::sum('harga');
-
-                // Menentukan rentang tanggal (7 hari terakhir)
-                $endDate = $now->copy()->endOfDay();
-                $startDate = $now->copy()->subDays(6)->startOfDay();
-
-                // Query untuk data kunjungan dengan indexing yang tepat
-                $visits = VisitHistory::select([
-                    DB::raw('DATE(visited_at) as date'),
-                    DB::raw('COUNT(DISTINCT ip_address) as total')
-                ])
-                ->whereBetween('visited_at', [$startDate, $endDate])
-                ->groupBy('date')
-                ->orderBy('date', 'ASC')
-                ->get()
-                ->keyBy('date');
-
-                // Menyiapkan data hari
-                $daysIndonesia = [
-                    'Sunday' => 'Minggu',
-                    'Monday' => 'Senin',
-                    'Tuesday' => 'Selasa',
-                    'Wednesday' => 'Rabu',
-                    'Thursday' => 'Kamis',
-                    'Friday' => 'Jumat',
-                    'Saturday' => 'Sabtu'
-                ];
-
-                // Generate data kunjungan
-                $visitData = [];
-                $currentDate = $startDate->copy();
-                
-                while ($currentDate <= $endDate) {
-                    $dateStr = $currentDate->format('Y-m-d');
-                    $dayName = $daysIndonesia[$currentDate->format('l')];
-                    
-                    $visitData[$dayName] = [
-                        'count' => $visits->get($dateStr)?->total ?? 0,
-                        'date' => $dateStr
-                    ];
-                    
-                    $currentDate->addDay();
-                }
-
-                // Debug log
-                Log::info('Dashboard data generated', [
-                    'visit_data' => $visitData,
-                    'date_range' => [
-                        'start' => $startDate->toDateString(),
-                        'end' => $endDate->toDateString()
-                    ]
-                ]);
-
-                return view('admin.dashboard-main', compact(
-                    'orders',
-                    'totalUser',
-                    'paymentTotal',
-                    'stores',
-                    'totalOrders',
-                    'visitData'
-                ));
-            });
-
-        } catch (\Exception $e) {
-            Log::error('Dashboard error:', [
-                'message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
+            $dayVisit = $visits->firstWhere('date', $dateStr);
             
-            return view('admin.dashboard-main')->with('error', 'Terjadi kesalahan saat memuat data.');
+            $visitData[$dayName] = [
+                'count' => $dayVisit ? (int)$dayVisit->total : 0,
+                'date' => $dateStr
+            ];
+            
+            $currentDate->addDay();
         }
-    }
 
+        // Debug log untuk memverifikasi data
+        Log::info('Visit data generated:', ['data' => $visitData]);
+
+        return view('admin.dashboard-main', compact(
+            'orders',
+            'totalUser',
+            'paymentTotal',
+            'stores',
+            'totalOrders',
+            'visitData'
+        ));
+    } catch (\Exception $e) {
+        Log::error('Error in dashboard generation:', [
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ]);
+        
+        return view('admin.dashboard-main')->with('error', 'Terjadi kesalahan saat memuat data.');
+    }
+}
 
 
 
