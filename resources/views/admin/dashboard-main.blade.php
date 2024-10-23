@@ -186,7 +186,6 @@
                                 <p
                                     class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
                                     Ini Adalah Visualisasi Data  Untuk Melihat Data Pengunjung Website
-                                    @material-tailwind/html.
                                 </p>
                                 
                             </div>
