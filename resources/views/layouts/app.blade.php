@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- coba aja --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
@@ -19,7 +20,6 @@
     <!-- <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/css/app.css"> -->
 
     @livewireStyles
-    @livewireScripts
 
 </head>
 
@@ -41,6 +41,12 @@
             {{ $slot }}
         </main>
     </div>
+
+    {{-- <livewire:scripts /> --}}
+    <script src="https://lapakkbk.online/livewire/livewire.js"></script>
+    @livewireScripts
+
+
     <script src="https://cdn.jsdelivr.net/npm/livewire@0.6.1/lib/compiler.min.js"></script>
     <!-- <script
         src="https://rawcdn.githack.com/gragemediatechnology/keyFood/8dc3cd14766f16f255b2e9189d49417426d368b9/resources/js/app.js">

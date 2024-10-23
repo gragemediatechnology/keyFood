@@ -203,6 +203,7 @@
 
                     function getStarsHtml(product) {
                         let starsHtml = '';
+                        const average_rating = product.average_rating || 0; 
                         const fullStars = Math.floor(average_rating);
                         const halfStar = average_rating % 1 !== 0;
                         const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
