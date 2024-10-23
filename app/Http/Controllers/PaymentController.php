@@ -51,12 +51,13 @@ class PaymentController extends Controller
         // Query untuk mengambil data kunjungan per hari
         $visits = VisitHistory::select([
             DB::raw('DATE(visited_at) as date'),
-            DB::raw('COUNT(DISTINCT ip_address) as total')
+            DB::raw('COUNT(DISTINCT ip_address, user_agent) as total')  // Hitung berdasarkan IP dan User-Agent
         ])
         ->whereBetween('visited_at', [$startDate, $endDate])
         ->groupBy('date')
         ->orderBy('date', 'ASC')
         ->get();
+        
 
         // Menyiapkan data hari dalam bahasa Indonesia
         $daysIndonesia = [
