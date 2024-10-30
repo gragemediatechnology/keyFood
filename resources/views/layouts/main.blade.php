@@ -27,7 +27,7 @@
     <link rel="stylesheet"
         href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/nav.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/898403e73ffec5a26139d452a6d2ffa66d178334/public/css/nav.css">
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
     <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
