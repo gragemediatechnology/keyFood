@@ -27,7 +27,8 @@
     <link rel="stylesheet"
         href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/898403e73ffec5a26139d452a6d2ffa66d178334/public/css/nav.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/898403e73ffec5a26139d452a6d2ffa66d178334/public/css/nav.css">
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
     <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
@@ -100,44 +101,46 @@
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
 
 
-    <script>
-        let timer;
-        const countdown = 10 * 60 * 1000; // 10 menit dalam milidetik
+    @if (Auth::check())
+        <script>
+            let timer;
+            const countdown = 10 * 60 * 1000; // 10 menit dalam milidetik
 
-        function resetTimer() {
-            clearTimeout(timer);
-            timer = setTimeout(logoutUser, countdown);
-        }
+            function resetTimer() {
+                clearTimeout(timer);
+                timer = setTimeout(logoutUser, countdown);
+            }
 
-        function logoutUser() {
-            // Mengirim permintaan logout menggunakan AJAX
-            fetch('{{ route('logout') }}', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    _method: 'POST'
-                })
-            }).then(response => {
-                if (response.ok) {
-                    window.location.href = '/'; // Redirect ke homepage
-                }
-            }).catch(error => {
-                console.error('Error:', error);
-            });
-        }
+            function logoutUser() {
+                // Mengirim permintaan logout menggunakan AJAX
+                fetch('{{ route('logout') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _method: 'POST'
+                    })
+                }).then(response => {
+                    if (response.ok) {
+                        window.location.href = '/'; // Redirect ke homepage
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
 
-        // Reset timer setiap ada aktivitas di halaman
-        window.onload = resetTimer;
-        window.onmousemove = resetTimer;
-        window.onmousedown = resetTimer;
-        window.ontouchstart = resetTimer;
-        window.onclick = resetTimer;
-        window.onkeypress = resetTimer;
-        window.addEventListener('scroll', resetTimer, true);
-    </script>
+            // Reset timer setiap ada aktivitas di halaman
+            window.onload = resetTimer;
+            window.onmousemove = resetTimer;
+            window.onmousedown = resetTimer;
+            window.ontouchstart = resetTimer;
+            window.onclick = resetTimer;
+            window.onkeypress = resetTimer;
+            window.addEventListener('scroll', resetTimer, true);
+        </script>
+    @endif
 
     <!-- SweetAlert Integration -->
     <script>
