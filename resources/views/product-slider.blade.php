@@ -250,6 +250,5 @@
 
 @section('script')
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
-
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
 @endsection
