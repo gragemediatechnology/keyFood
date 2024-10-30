@@ -24,22 +24,22 @@
 
 
 
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
+    {{-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css"> --}}
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
+    {{-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css"> --}}
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/app.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css">
-    <link rel="stylesheet"
-        href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/stores.css">
-    <link rel="stylesheet"
-        href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/checkout.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css">
-    {{-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css"> --}}
+    {{-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css"> --}}
+    {{-- <link rel="stylesheet"
+        href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css"> --}}
+    {{-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/stores.css"> --}}
+    {{-- <link rel="stylesheet"
+        href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css"> --}}
+    {{-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css"> --}}
+    {{-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/checkout.css"> --}}
+    {{-- <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css"> --}}
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/nav.css">
 
     <!-- <link rel="stylesheet"
@@ -142,16 +142,16 @@
 
 
 
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/stores.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
+    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script> --}}
+    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script> --}}
+    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script> --}}
+    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/stores.js"></script> --}}
+    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script> --}}
 
 
     <!-- <script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js">
