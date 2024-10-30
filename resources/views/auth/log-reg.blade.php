@@ -114,7 +114,7 @@
     </div>
 
     <script defer
-        src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/login.js"></script>
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/797cc6c3375ef72b793d9299ce4d311981acb9fd/public/js/login.js"></script>
 
     <!-- SweetAlert untuk notifikasi sukses mengubah password -->
     @if (session('sweet_alert'))
