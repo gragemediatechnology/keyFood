@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('link')
-<link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css">
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css">
 @endsection
 
 @section('container')
@@ -224,5 +224,4 @@
 @endsection
 
 @section('script')
-
 @endsection

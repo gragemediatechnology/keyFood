@@ -1,4 +1,9 @@
 @extends('layouts.main')
+
+@section('link')
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/stores.css">
+@endsection
+
 @section('container')
     <section id="home">
 
@@ -33,13 +38,15 @@
                     <button type="submit">
                         <div class="container-s" id="visit">
                             <div class="user-s">
-                                <img src="{{ $store->foto_profile_toko ? 'store_image/' . $store->foto_profile_toko : 'img/markets.webp' }}" />
+                                <img
+                                    src="{{ $store->foto_profile_toko ? 'store_image/' . $store->foto_profile_toko : 'img/markets.webp' }}" />
                                 <!-- <img src="{{ $store->foto_profile_toko ? 'https://lapakkbk.online/store_image/' . $store->foto_profile_toko : 'https://lapakkbk.online/img/markets.webp' }}" -->
-                                    class="user-icon-s">
+                                class="user-icon-s">
                                 <div class="user-info-s">
                                     <div class="user-name-s">{{ $store->nama_toko }}</div>
                                     <div class="user-description-s">Alamat : {{ $store->alamat_toko }}</div>
-                                    <div class="user-description-s">Waktu Oprasional Toko : {{ $store->waktu_buka }} - {{ $store->waktu_tutup }}</div>
+                                    <div class="user-description-s">Waktu Oprasional Toko : {{ $store->waktu_buka }} -
+                                        {{ $store->waktu_tutup }}</div>
                                     @if ($store->is_online)
                                         <p class="text-green-500">Buka</p>
                                     @else
@@ -140,7 +147,7 @@
                             } else {
                                 resultsContainer.append(
                                     '<div class="h-screen flex justify-center mt-8"><div class="p-2 text-center">Toko tidak ditemukan</div></div>'
-                                    );
+                                );
                             }
                         },
                         error: function() {
@@ -154,4 +161,8 @@
         </script>
 
     </section>
+@endsection
+
+@section('script')
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/stores.js"></script>
 @endsection
