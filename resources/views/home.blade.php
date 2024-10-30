@@ -147,7 +147,7 @@
 
 
                                     <div class="special__footer flex flex-col justify-center items-center">
-                                        <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span><br>
+                                        <span class="price text-orange-500">Rp {{ number_format($product->price, 0, ',', '.') }}</span><br>
                                         @if (auth()->check())
                                             <!-- Jika user sudah login, kirim form ke detailed-store -->
                                             <form action="/detailed-store" method="GET">
