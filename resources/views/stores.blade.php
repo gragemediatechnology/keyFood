@@ -33,7 +33,8 @@
                     <button type="submit">
                         <div class="container-s" id="visit">
                             <div class="user-s">
-                                <img src="{{ $store->foto_profile_toko ? 'store_image/' . $store->foto_profile_toko : 'img/markets.webp' }}"
+                                {{-- <img src="{{ $store->foto_profile_toko ? 'store_image/' . $store->foto_profile_toko : 'img/markets.webp' }}" --}}
+                                <img src="{{ $store-->foto_profile_toko ? 'https://lapakkbk.online/store_image/' . $store->foto_profile_toko : 'https://lapakkbk.online/img/markets.webp' }}"
                                     class="user-icon-s">
                                 <div class="user-info-s">
                                     <div class="user-name-s">{{ $store->nama_toko }}</div>
