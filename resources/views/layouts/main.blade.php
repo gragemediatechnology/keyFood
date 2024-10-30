@@ -142,16 +142,16 @@
 
 
 
-    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script> --}}
-    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script> --}}
-    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script> --}}
-    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/stores.js"></script> --}}
-    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
+    {{-- <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/stores.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script> --}}
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script> --}}
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
 
 
     <!-- <script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js">
