@@ -46,6 +46,7 @@ class RegisteredUserController extends Controller
         Session::put('temp_user', [
             'name' => $request->name,
             'phone' => $request->phone,
+            'is_online' =>  true,
             'password' => Hash::make($request->password),
         ]);
 

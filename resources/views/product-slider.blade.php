@@ -198,7 +198,7 @@
                     //     $('#current-page').val(currentPage);
 
                     //     $('#loader').hide(); // Hide loader after loading
-                    // }
+                    // } 
 
 
                     function getStarsHtml(product) {

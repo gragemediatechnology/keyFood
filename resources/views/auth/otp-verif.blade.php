@@ -31,9 +31,8 @@
         <div
             class="max-w-md max-sm:max-w-sm max-h-lg mx-auto my-auto text-center bg-white bg-opacity-30 backdrop-blur-lg px-4 sm:px-8 py-10 rounded-xl shadow-lg">
             <header class="mb-8">
-                <h1 class="text-2xl font-bold mb-1">Mobile Phone Verification</h1>
-                <p class="text-[15px] text-slate-100">Enter the 6-digit verification code that was sent to your phone
-                    number.</p>
+                <h1 class="text-2xl font-bold mb-1">Verifikasi Nomor Telepon</h1>
+                <p class="text-[15px] text-slate-100">Masukkan 6 angka code OTP yang telah dikirimkan ke nomor Anda.</p>
             </header>
             {{-- <form id="otp-form" method="POST" action="{{ route('verify.wa.otp') }}"> --}}
             <form id="otp-form" method="POST" action="/verify-wa-otp">
