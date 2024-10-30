@@ -3,26 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="description"
+        content="LapakKBK - E-commerce terbaik di Keandra! Temukan berbagai produk berkualitas dengan harga terjangkau, penawaran spesial, dan layanan pengiriman cepat. Shop now!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
 
-    {{--
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> --}}
-
-    {{--
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
-
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
-
+    @yield('link')
 
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
@@ -30,54 +25,12 @@
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/app.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css">
-    <link rel="stylesheet"
-        href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/stores.css">
+
     <link rel="stylesheet"
         href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/checkout.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/nav.css">
-
-    <!-- <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/profile.css">
     <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/style.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/home.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/load.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/app.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/clock.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/halaman-toko.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/product-slider.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/stores.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/home-container.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/categories.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/checkout.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/cart.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/history.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/nav.css"> -->
-
-
-
-
-
-
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/898403e73ffec5a26139d452a6d2ffa66d178334/public/css/nav.css">
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
     <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
@@ -140,86 +93,90 @@
     </script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
-
+    @yield('script')
 
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/stores.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
 
 
-    <!-- <script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/cart.js">
-    </script>
-<script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/checkout.js">
-</script>
-<script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/stores.js">
-</script>
-<script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/categories.js">
-</script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home.js">
-</script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/load.js">
-</script>
-<script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
-<script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/product.js">
-</script>
-<script defer
-    src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/home-container.js">
-</script>
-<script defer src="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/js/nav.js">
-</script> -->
+    @if (Auth::check())
+        <script>
+            let timer;
+            const countdown = 10 * 60 * 1000; // 10 menit dalam milidetik
 
+            function resetTimer() {
+                clearTimeout(timer);
+                timer = setTimeout(logoutUser, countdown);
+            }
 
+            function logoutUser() {
+                // Mengirim permintaan logout menggunakan AJAX
+                fetch('{{ route('logout') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _method: 'POST'
+                    })
+                }).then(response => {
+                    if (response.ok) {
+                        window.location.href = '/'; // Redirect ke homepage
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+            // Reset timer setiap ada aktivitas di halaman
+            window.onload = resetTimer;
+            window.onmousemove = resetTimer;
+            window.onmousedown = resetTimer;
+            window.ontouchstart = resetTimer;
+            window.onclick = resetTimer;
+            window.onkeypress = resetTimer;
+            window.addEventListener('scroll', resetTimer, true);
+        </script>
+    @endif
 
     <script>
-        let timer;
-        const countdown = 10 * 60 * 1000; // 10 menit dalam milidetik
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll("img");
 
-        function resetTimer() {
-            clearTimeout(timer);
-            timer = setTimeout(logoutUser, countdown);
-        }
-
-        function logoutUser() {
-            // Mengirim permintaan logout menggunakan AJAX
-            fetch('{{ route('logout') }}', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    _method: 'POST'
-                })
-            }).then(response => {
-                if (response.ok) {
-                    window.location.href = '/'; // Redirect ke homepage
+            // Menambahkan lazy loading ke semua gambar yang tidak memiliki atribut loading
+            images.forEach(img => {
+                if (!img.hasAttribute("loading")) {
+                    img.setAttribute("loading", "lazy");
                 }
-            }).catch(error => {
-                console.error('Error:', error);
             });
-        }
 
-        // Reset timer setiap ada aktivitas di halaman
-        window.onload = resetTimer;
-        window.onmousemove = resetTimer;
-        window.onmousedown = resetTimer;
-        window.ontouchstart = resetTimer;
-        window.onclick = resetTimer;
-        window.onkeypress = resetTimer;
-        window.addEventListener('scroll', resetTimer, true);
+            // Menggunakan IntersectionObserver untuk menunda pemuatan gambar saat mendekati area pandang
+            const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        // Mengganti data-src menjadi src untuk memuat gambar
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                        }
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            // Menambahkan gambar ke observer jika memiliki data-src untuk pemuatan lebih lanjut
+            images.forEach(img => {
+                if (img.dataset.src) {
+                    lazyLoadObserver.observe(img);
+                }
+            });
+        });
     </script>
-
     <!-- SweetAlert Integration -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
