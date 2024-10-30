@@ -1,5 +1,5 @@
 <header class="header-nav">
-    <nav class="nav container-nav">
+    <nav class="nav container-nav py-5">
         <div class="nav__data">
             <a href="#" class="nav__logo">
                 @foreach($cms as $company)
