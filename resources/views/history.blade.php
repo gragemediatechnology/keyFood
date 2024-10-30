@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('link')
+<link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/history.css">
+@endsection
+
 @section('container')
     <section id="home">
         <!-- Flash message untuk success -->
@@ -217,4 +221,8 @@
             });
         }
     </script>
+@endsection
+
+@section('script')
+
 @endsection

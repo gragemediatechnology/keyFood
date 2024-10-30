@@ -1,4 +1,9 @@
 @extends('layouts.main')
+
+@section('link')
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/checkout.css">
+@endsection
+
 @section('container')
     <section id="home">
         <main class="mt-10">
@@ -15,7 +20,7 @@
                                 <span class="icon"><i class='bx bx-envelope'></i></span>
                                 <input type="email" id="checkout-email" name="checkout-email"
                                     placeholder="Enter your email.. (opsional)."
-                                    value="{{ old('checkout-email', $user->email ?? '') }}" >
+                                    value="{{ old('checkout-email', $user->email ?? '') }}">
                             </div>
                         </div>
                         <!-- Phone Input -->
@@ -39,7 +44,7 @@
                                 <span class="icon"><i class='bx bx-envelope'></i></span>
                                 <input type="email" id="checkout-email" name="checkout-email"
                                     placeholder="Enter your email.. (opsional)."
-                                    value="{{ old('checkout-email', $user->email ?? '') }}" >
+                                    value="{{ old('checkout-email', $user->email ?? '') }}">
                             </div>
                         </div>
                         <!-- Phone Input -->
@@ -92,7 +97,7 @@
                     <div class="form-control">
                         <label for="nomor-select">Pilih Nomor</label>
                         <div>
-                            
+
                             <select name="nomor_id" id="nomor-select" required>
                                 <option value="" disabled selected>Pilih Nomor...</option>
                             </select>
@@ -211,4 +216,8 @@
             }
         });
     </script>
+@endsection
+
+@section('script')
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
 @endsection
