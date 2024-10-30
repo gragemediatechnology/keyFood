@@ -23,8 +23,7 @@
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/app.css">
-    <link rel="stylesheet"
-        href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css">
+
     <link rel="stylesheet"
         href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css">
@@ -97,7 +96,6 @@
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
 

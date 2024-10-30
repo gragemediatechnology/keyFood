@@ -1,4 +1,10 @@
 @extends('layouts.main')
+
+@section('link')
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css">
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css">
+@endsection
+
 @section('container')
     <section id="home">
         <!-- Popular Bundle Pack Section -->
@@ -167,21 +173,21 @@
                     //         const average_rating = product.average_rating || 0; // Use default 0 if not available
 
                     //         $('#product-container').append(`
-                    //             <div class="product-box ${product.isTokoOnline ? '' : 'toko-tutup'}">
-                    //                 <span hidden>${product.id}</span>
-                    //                 <span hidden>${product.store_id}</span>
-                    //                 <span hidden>${product.slug}</span>
-                    //                 <img alt="${product.name}" src="${product.photo}">
-                    //                 <strong>${product.name}</strong>
-                    //                 <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
-                    //                 <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
-                    //                 ${product.isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
-                    //                 <div class="flex">
-                    //                     ${getStarsHtml(product)} <!-- Function to get star ratings -->
-                    //                     ${average_rating >= 1 ? `<p class="mx-2">(${average_rating} / 5)</p>` : `<p class="mx-2">(0 / 0)</p>`}
-                    //                 </div>
-                    //                 <span class="price">Rp ${parseInt(product.price).toLocaleString()}</span>
-                    //                 ${product.isTokoOnline ? `
+        //             <div class="product-box ${product.isTokoOnline ? '' : 'toko-tutup'}">
+        //                 <span hidden>${product.id}</span>
+        //                 <span hidden>${product.store_id}</span>
+        //                 <span hidden>${product.slug}</span>
+        //                 <img alt="${product.name}" src="${product.photo}">
+        //                 <strong>${product.name}</strong>
+        //                 <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+        //                 <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+        //                 ${product.isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
+        //                 <div class="flex">
+        //                     ${getStarsHtml(product)} <!-- Function to get star ratings -->
+        //                     ${average_rating >= 1 ? `<p class="mx-2">(${average_rating} / 5)</p>` : `<p class="mx-2">(0 / 0)</p>`}
+        //                 </div>
+        //                 <span class="price">Rp ${parseInt(product.price).toLocaleString()}</span>
+        //                 ${product.isTokoOnline ? `
                     //                     <a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn">
                     //                         <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
                     //                     </a>
@@ -190,15 +196,15 @@
                     //                         <i class="fas fa-ban"></i> Toko Tutup
                     //                     </a>
                     //                 `}
-                    //             </div>
-                    //         `);
+        //             </div>
+        //         `);
                     //     });
 
                     //     // Update current page hidden input
                     //     $('#current-page').val(currentPage);
 
                     //     $('#loader').hide(); // Hide loader after loading
-                    // } 
+                    // }
 
 
                     function getStarsHtml(product) {
@@ -239,4 +245,11 @@
             @include('partials.cart')
         </section>
     </section>
+@endsection
+
+
+@section('script')
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
+
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
 @endsection
