@@ -181,12 +181,11 @@
                              <div>
                                 <h6
                                     class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
-                                    Grafik Batang
+                                    Grafik Pengunjung Web Lapak KBK
                                 </h6>
                                 <p
                                     class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
-                                    Visualisasikan data Anda dengan cara sederhana menggunakan plugin chart dari
-                                    @material-tailwind/html.
+                                    Ini Adalah Visualisasi Data  Untuk Melihat Data Pengunjung Website
                                 </p>
                                 
                             </div>
@@ -300,6 +299,7 @@
         const visitData = @json($visitData);
         // Kemudian masukkan konfigurasi grafik yang baru
     </script>
+
 
 
     </div>

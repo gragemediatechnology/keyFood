@@ -149,7 +149,7 @@
 
                         @elseif (!Auth::check())
                             {{-- Jika user belum login, tampilkan detail toko --}}
-                            <div class="product-box">
+                            <div class="product-box {{ $isTokoOnline ? '' : 'toko-tutup' }}">
                                 <input type="hidden" value="{{$product->store_id}}" name="id">
                                 <span hidden>{{ $product->id }}</span>
                                 <span hidden>{{ $product->store_id }}</span>
@@ -195,12 +195,27 @@
                                     @endif
                                 </div>
                                 <span class="quantity"></span>
+                                @if (!$isTokoOnline)
+                                    <span class="text-red-500">(Toko Tutup)</span>
+                                @else
+                                    <span class="text-green-500">(Toko Buka)</span>
+                                @endif
                                 <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                                <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
-                                    data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
-                                    data-slug="{{ $product->slug }}" class="cart-btn">
-                                    <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
-                                </a>
+                                @if ($isTokoOnline)
+                                    <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                                        data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
+                                        data-slug="{{ $product->slug }}" class="cart-btn">
+                                        <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                                    </a>
+                                @else
+                                    <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                                        data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
+                                        data-slug="{{ $product->slug }}"
+                                        class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"
+                                        disabled>
+                                        <i class="fas fa-ban"></i> Toko Tutup
+                                    </a>
+                                @endif
                             </div>
                         @else
                             {{-- Tampilan default jika user sudah login tapi bukan admin --}}

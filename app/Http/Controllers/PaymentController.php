@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\VisitHistory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -35,7 +35,8 @@ class PaymentController extends Controller
     // }
 
     public function index()
-    {
+{
+    try {
         // Data dasar
         $orders = Orders::orderBy('id', 'desc')->paginate(20);
         $totalUser = User::count();
@@ -44,17 +45,21 @@ class PaymentController extends Controller
         $paymentTotal = Orders::sum('harga');
 
         // Menentukan rentang tanggal
-        $endDate = Carbon::now(); // Hari ini
-        $startDate = Carbon::now()->startOfWeek(); // Senin dari minggu ini
-        
-        // Mengambil data kunjungan dengan query yang lebih efisien
-        $visits = VisitHistory::select(DB::raw('DATE(visited_at) as date'), DB::raw('COUNT(DISTINCT ip_address) as total'))
-            ->whereBetween('visited_at', [$startDate, $endDate])
-            ->groupBy('date')
-            ->get()
-            ->keyBy('date');
+        $endDate = Carbon::now()->endOfDay();
+        $startDate = Carbon::now()->startOfWeek()->startOfDay();
 
-        // Menyiapkan data untuk grafik dengan format hari dalam Bahasa Indonesia
+        // Query untuk mengambil data kunjungan per hari
+        $visits = VisitHistory::select([
+            DB::raw('DATE(visited_at) as date'),
+            DB::raw('COUNT(DISTINCT ip_address, user_agent) as total')  // Hitung berdasarkan IP dan User-Agent
+        ])
+        ->whereBetween('visited_at', [$startDate, $endDate])
+        ->groupBy('date')
+        ->orderBy('date', 'ASC')
+        ->get();
+        
+
+        // Menyiapkan data hari dalam bahasa Indonesia
         $daysIndonesia = [
             'Monday' => 'Senin',
             'Tuesday' => 'Selasa',
@@ -65,20 +70,27 @@ class PaymentController extends Controller
             'Sunday' => 'Minggu'
         ];
 
+        // Inisialisasi array untuk data kunjungan
         $visitData = [];
         $currentDate = $startDate->copy();
-        
+
+        // Mengisi data untuk setiap hari
         while ($currentDate <= $endDate) {
             $dateStr = $currentDate->format('Y-m-d');
             $dayName = $daysIndonesia[$currentDate->format('l')];
             
+            $dayVisit = $visits->firstWhere('date', $dateStr);
+            
             $visitData[$dayName] = [
-                'count' => $visits->has($dateStr) ? $visits[$dateStr]->total : 0,
+                'count' => $dayVisit ? (int)$dayVisit->total : 0,
                 'date' => $dateStr
             ];
             
             $currentDate->addDay();
         }
+
+        // Debug log untuk memverifikasi data
+        Log::info('Visit data generated:', ['data' => $visitData]);
 
         return view('admin.dashboard-main', compact(
             'orders',
@@ -88,7 +100,16 @@ class PaymentController extends Controller
             'totalOrders',
             'visitData'
         ));
+    } catch (\Exception $e) {
+        Log::error('Error in dashboard generation:', [
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ]);
+        
+        return view('admin.dashboard-main')->with('error', 'Terjadi kesalahan saat memuat data.');
     }
+}
+
 
 
     /**

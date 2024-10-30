@@ -24,6 +24,7 @@
 
 
 
+// App/Http/Middleware/TrackVisit.php
 namespace App\Http\Middleware;
 
 use Closure;
@@ -32,41 +33,93 @@ use App\Models\VisitHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 class TrackVisit
 {
     public function handle(Request $request, Closure $next)
-    {
-        try {
-            $ip = $request->ip();
-            $cacheKey = 'visit_' . $ip . '_' . date('Y-m-d_H');
-            
-            // Menggunakan cache untuk menghindari pencatatan berulang
-            if (!Cache::has($cacheKey)) {
-                // Catat kunjungan baru
+{
+    try {
+        $ip = $request->ip();
+        $userAgent = $request->header('User-Agent');  // Tambahkan User-Agent
+        $today = Carbon::now()->format('Y-m-d');
+        $cacheKey = "visit_{$ip}_{$userAgent}_{$today}";  // Cache berdasarkan IP dan User-Agent
+        
+        if (!Cache::has($cacheKey)) {
+            $existingVisit = VisitHistory::where('ip_address', $ip)
+                ->where('user_agent', $userAgent)  // Tambahkan User-Agent di query
+                ->whereDate('visited_at', $today)
+                ->first();
+
+            if (!$existingVisit) {
                 VisitHistory::create([
                     'ip_address' => $ip,
                     'user_id' => Auth::id(),
-                    'visited_at' => now()
+                    'user_agent' => $userAgent,  // Simpan User-Agent
+                    'visited_at' => now(),
                 ]);
 
-                // Set cache selama 1 jam
-                Cache::put($cacheKey, true, now()->addHour());
-
-                // Log untuk debugging
-                Log::info('New visit recorded', [
-                    'ip' => $ip,
-                    'user_id' => Auth::id(),
-                    'time' => now()->toDateTimeString(),
-                    'url' => $request->fullUrl()
-                ]);
+                Cache::put($cacheKey, true, Carbon::now()->endOfDay());
             }
-        } catch (\Exception $e) {
-            Log::error('Error in TrackVisit middleware: ' . $e->getMessage());
         }
-
-        return $next($request);
+    } catch (\Exception $e) {
+        Log::error('Error in TrackVisit middleware: ' . $e->getMessage());
     }
+
+    return $next($request);
+}
+
+// public function handle(Request $request, Closure $next)
+// {
+//     try {
+//         $ip = $request->ip();  // Ambil IP pengguna
+//         $userAgent = $request->header('User-Agent');  // Ambil User Agent
+//         $today = Carbon::now()->format('Y-m-d');  // Tanggal hari ini
+
+//         Log::info("Tracking visit: IP - {$ip}, User-Agent - {$userAgent}, Date - {$today}");
+
+//         // Cek apakah kunjungan dari IP yang sama pada hari ini sudah tercatat
+//         $existingVisit = VisitHistory::where('ip_address', $ip)
+//             ->where('user_agent', $userAgent)
+//             ->whereDate('visited_at', $today)
+//             ->first();
+
+//         if (!$existingVisit) {
+//             // Simpan kunjungan baru ke database
+//             VisitHistory::create([
+//                 'ip_address' => $ip,
+//                 'user_id' => Auth::id(),  // User ID atau null jika pengguna tidak login
+//                 'user_agent' => $userAgent,
+//                 'visited_at' => now(),
+//             ]);
+
+//             Log::info("New visit recorded for IP - {$ip}");
+//         } else {
+//             Log::info("Visit already exists for IP - {$ip}");
+//         }
+//     } catch (\Exception $e) {
+//         Log::error('Error in TrackVisit middleware: ' . $e->getMessage());
+//     }
+
+//     return $next($request);
+// }
+
+
+
+
+//     private function isBot($userAgent)
+//     {
+//         $botKeywords = ['bot', 'crawler', 'spider', 'slurp', 'baidu', 'yandex'];
+//         $userAgentLower = strtolower($userAgent);
+        
+//         foreach ($botKeywords as $keyword) {
+//             if (str_contains($userAgentLower, $keyword)) {
+//                 return true;
+//             }
+//         }
+        
+//         return false;
+//     }
 }
 
 
