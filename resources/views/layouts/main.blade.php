@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="LapakKBK - E-commerce terbaik di Keandra! Temukan berbagai produk berkualitas dengan harga terjangkau, penawaran spesial, dan layanan pengiriman cepat. Shop now!">
+    <meta name="description"
+        content="LapakKBK - E-commerce terbaik di Keandra! Temukan berbagai produk berkualitas dengan harga terjangkau, penawaran spesial, dan layanan pengiriman cepat. Shop now!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -143,6 +144,39 @@
         </script>
     @endif
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll("img");
+
+            // Menambahkan lazy loading ke semua gambar yang tidak memiliki atribut loading
+            images.forEach(img => {
+                if (!img.hasAttribute("loading")) {
+                    img.setAttribute("loading", "lazy");
+                }
+            });
+
+            // Menggunakan IntersectionObserver untuk menunda pemuatan gambar saat mendekati area pandang
+            const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        // Mengganti data-src menjadi src untuk memuat gambar
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                        }
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            // Menambahkan gambar ke observer jika memiliki data-src untuk pemuatan lebih lanjut
+            images.forEach(img => {
+                if (img.dataset.src) {
+                    lazyLoadObserver.observe(img);
+                }
+            });
+        });
+    </script>
     <!-- SweetAlert Integration -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
