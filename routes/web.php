@@ -80,7 +80,7 @@ Route::get('/product-slider', [ProductController::class, 'showProductSlider'])->
 
 Route::get('/categories', function () {
     return view('categories');
-})
+});
 
 Route::get('/checkout', function () {
     return view('checkout');
