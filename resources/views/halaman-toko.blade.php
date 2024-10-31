@@ -61,7 +61,7 @@
                         $toko = $product->toko;
                         $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
 
-                        dd($isTokoOnline);
+                        // dd($isTokoOnline);
                     @endphp
 
 
@@ -79,7 +79,7 @@
                                 {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                             <span class="quantity">Toko:
                                 {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
-                            @if ($isTokoOnline)
+                            @if ($isTokoOnline == true)
                                 <span class="text-green-500">(Toko Buka)</span>
                             @else
                                 <span class="text-red-500">(Toko Tutup)</span>
@@ -120,7 +120,7 @@
                             </div>
                             <span class="quantity"></span>
                             <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                            @if ($isTokoOnline)
+                            @if ($isTokoOnline == true)
                                 <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
                                     data-store-id="{{ $product->store_id }}"
                                     data-category-id="{{ $product->category_id }}" data-slug="{{ $product->slug }}"
@@ -207,14 +207,14 @@
                             </div>
 
                             <span class="quantity"></span>
-                            @if ($isTokoOnline)
+                            @if ($isTokoOnline == true)
                                 <span class="text-green-500">(Toko Buka)</span>
                             @else
                                 <span class="text-red-500">(Toko Tutup)</span>
                             @endif
 
                             <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                            @if ($isTokoOnline)
+                            @if ($isTokoOnline == true)
                                 <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
                                     data-store-id="{{ $product->store_id }}"
                                     data-category-id="{{ $product->category_id }}" data-slug="{{ $product->slug }}"
