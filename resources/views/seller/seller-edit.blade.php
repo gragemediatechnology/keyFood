@@ -1,4 +1,10 @@
 @extends('layouts.main')
+
+@section('link')
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css">
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css">
+@endsection
+
 @section('container')
     <section id="home" style="margin-top: -35px">
         @if (Auth::check())
@@ -246,4 +252,9 @@
             @endif
         @endif
     </section>
+@endsection
+
+@section('script')
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
 @endsection
