@@ -17,13 +17,18 @@
                         <h1>{{ $detail->nama_toko }}</h1>
                         <h2>Alamat : {{ $detail->alamat_toko }}</h2>
                         <h2>Jam Oprasional Toko : {{ $detail->waktu_buka }} - {{ $detail->waktu_tutup }}</h2>
+                        @if ($detail->is_online == true)
+                            <h2 class="text-green-600">Buka</h2>
+                        @else
+                            <h2 class="text-red-600">Buka</h2>
+                        @endif
                     </div>
                 </div>
                 <div class="store-description">
                     <p>Deskripsi Toko : {{ $detail->deskripsi_toko }}</p>
                 </div>
+            @endforeach
         </div>
-        @endforeach
 
         <!-- produk produk -->
         <section id="popular-bundle-pack">
@@ -62,6 +67,7 @@
                         $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
 
                         // dd($isTokoOnline);
+
                     @endphp
 
 
