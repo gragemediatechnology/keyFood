@@ -24,7 +24,7 @@ class SellerEditController extends Controller
         // Pengecekan jika toko ditemukan
         if (!$toko) {
             // Jika toko tidak ditemukan (misalnya sudah dihapus), redirect dengan pesan error
-            return redirect()->route('dashboard')->with('error', 'Toko Anda tidak ditemukan atau sudah dihapus.');
+            return redirect()->route('home')->with('error', 'Toko Anda tidak ditemukan atau sudah dihapus.');
         }
 
         // Jika toko ditemukan, ambil produk berdasarkan id toko
