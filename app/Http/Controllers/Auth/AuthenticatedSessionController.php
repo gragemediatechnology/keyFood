@@ -131,7 +131,7 @@ class AuthenticatedSessionController extends Controller
         }
 
         // Jika tidak ada redirect URL, arahkan ke halaman default
-        return redirect()->route('home');
+        return redirect('https://lapakkbk.online');
     }
 
 
