@@ -1,4 +1,12 @@
 @extends('layouts.main')
+
+@section('link')
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css">
+
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css">
+    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css">
+@endsection
+
 @section('container')
     <section id="home" style="margin-top: -35px">
         @if (Auth::check())
@@ -11,7 +19,7 @@
                             <h1>{{ $toko->nama_toko }}</h1>
                             <h2>{{ $toko->alamat_toko }}</h2>
                             <h2 class="px-1">
-                                {{ $toko->waktu_buka && $toko->waktu_tutup ? 'Jam Oprasional Toko : ' . $toko->waktu_buka . ' - ' .   $toko->waktu_tutup : 'belum menyetting waktu buka - tutup' }}
+                                {{ $toko->waktu_buka && $toko->waktu_tutup ? 'Jam Oprasional Toko : ' . $toko->waktu_buka . ' - ' . $toko->waktu_tutup : 'belum menyetting waktu buka - tutup' }}
                                 @if ($toko->is_online)
                                     <p class="text-green-500 text-sm">Buka</p>
                                 @else
@@ -147,7 +155,8 @@
                                                     <p class="mb-4 text-gray-500 dark:text-gray-300">Apakah kamu yakin ingin
                                                         menghapus produk ini?</p>
                                                     <div class="flex justify-center items-center space-x-4">
-                                                        <button data-modal-toggle="deleteModal{{ $p->id }}" type="button"
+                                                        <button data-modal-toggle="deleteModal{{ $p->id }}"
+                                                            type="button"
                                                             class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                                             Batal
                                                         </button>
@@ -246,4 +255,9 @@
             @endif
         @endif
     </section>
+@endsection
+
+@section('script')
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
 @endsection

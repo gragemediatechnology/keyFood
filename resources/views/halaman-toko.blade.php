@@ -17,13 +17,18 @@
                         <h1>{{ $detail->nama_toko }}</h1>
                         <h2>Alamat : {{ $detail->alamat_toko }}</h2>
                         <h2>Jam Oprasional Toko : {{ $detail->waktu_buka }} - {{ $detail->waktu_tutup }}</h2>
+                        @if ($detail->is_online == true)
+                            <h2 class="text-green-500">Buka</h2>
+                        @else
+                            <h2 class="text-red-500">Tutup</h2>
+                        @endif
                     </div>
                 </div>
                 <div class="store-description">
                     <p>Deskripsi Toko : {{ $detail->deskripsi_toko }}</p>
                 </div>
+            @endforeach
         </div>
-        @endforeach
 
         <!-- produk produk -->
         <section id="popular-bundle-pack">
@@ -58,8 +63,16 @@
                         $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
 
                         // Cek status toko
-                        $toko = $product->toko;
-                        $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
+                        $isTokoOnline = false;
+                        foreach ($storeDetails as $detail) {
+                            if ($detail->is_online) {
+                                $isTokoOnline = true;
+                                break;
+                            }
+                        }
+
+                        // dd($isTokoOnline);
+
                     @endphp
 
 
@@ -77,10 +90,10 @@
                                 {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                             <span class="quantity">Toko:
                                 {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
-                            @if (!$isTokoOnline)
-                                <span class="text-red-500">(Toko Tutup)</span>
-                            @else
+                            @if ($isTokoOnline == true)
                                 <span class="text-green-500">(Toko Buka)</span>
+                            @else
+                                <span class="text-red-500">(Toko Tutup)</span>
                             @endif
                             <div class="flex">
                                 {{-- Tampilkan bintang penuh --}}
@@ -118,7 +131,7 @@
                             </div>
                             <span class="quantity"></span>
                             <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                            @if ($isTokoOnline)
+                            @if ($isTokoOnline == true)
                                 <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
                                     data-store-id="{{ $product->store_id }}"
                                     data-category-id="{{ $product->category_id }}" data-slug="{{ $product->slug }}"
@@ -203,14 +216,16 @@
                                     <p class="mx-2">( 0 / 0 )</p>
                                 @endif
                             </div>
+
                             <span class="quantity"></span>
-                            @if (!$isTokoOnline)
-                                <span class="text-red-500">(Toko Tutup)</span>
-                            @else
+                            @if ($isTokoOnline == true)
                                 <span class="text-green-500">(Toko Buka)</span>
+                            @else
+                                <span class="text-red-500">(Toko Tutup)</span>
                             @endif
+
                             <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                            @if ($isTokoOnline)
+                            @if ($isTokoOnline == true)
                                 <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
                                     data-store-id="{{ $product->store_id }}"
                                     data-category-id="{{ $product->category_id }}" data-slug="{{ $product->slug }}"
