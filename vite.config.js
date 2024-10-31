@@ -2,10 +2,6 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    base: '/',
-    build: {
-        outDir: 'dist'
-    },
     server: {
 
         //PORT DEFAULT
@@ -21,7 +17,7 @@ export default defineConfig({
 
         // host: 'lapakkbk.online',
         port: 8000,
-        // https: true, // Set this to true to enable HTTPS
+        https: true, // Set this to true to enable HTTPS
     },
     plugins: [
         laravel({
