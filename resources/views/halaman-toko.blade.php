@@ -18,9 +18,9 @@
                         <h2>Alamat : {{ $detail->alamat_toko }}</h2>
                         <h2>Jam Oprasional Toko : {{ $detail->waktu_buka }} - {{ $detail->waktu_tutup }}</h2>
                         @if ($detail->is_online == true)
-                            <h2 class="text-green-600">Buka</h2>
+                            <h2 class="text-green-500">Buka</h2>
                         @else
-                            <h2 class="text-red-600">Buka</h2>
+                            <h2 class="text-red-500">Tutup</h2>
                         @endif
                     </div>
                 </div>
@@ -63,8 +63,13 @@
                         $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
 
                         // Cek status toko
-                        $toko = $product->toko;
-                        $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
+                        $isTokoOnline = false;
+                        foreach ($storeDetails as $detail) {
+                            if ($detail->is_online) {
+                                $isTokoOnline = true;
+                                break;
+                            }
+                        }
 
                         // dd($isTokoOnline);
 
