@@ -77,10 +77,10 @@
                                 {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                             <span class="quantity">Toko:
                                 {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
-                            @if (!$isTokoOnline)
-                                <span class="text-red-500">(Toko Tutup)</span>
-                            @else
+                            @if ($isTokoOnline)
                                 <span class="text-green-500">(Toko Buka)</span>
+                            @else
+                                <span class="text-red-500">(Toko Tutup)</span>
                             @endif
                             <div class="flex">
                                 {{-- Tampilkan bintang penuh --}}
@@ -203,12 +203,14 @@
                                     <p class="mx-2">( 0 / 0 )</p>
                                 @endif
                             </div>
+
                             <span class="quantity"></span>
-                            @if (!$isTokoOnline)
-                                <span class="text-red-500">(Toko Tutup)</span>
-                            @else
+                            @if ($isTokoOnline)
                                 <span class="text-green-500">(Toko Buka)</span>
+                            @else
+                                <span class="text-red-500">(Toko Tutup)</span>
                             @endif
+
                             <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                             @if ($isTokoOnline)
                                 <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
