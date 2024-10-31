@@ -21,7 +21,7 @@ export default defineConfig({
 
         // host: 'lapakkbk.online',
         port: 8000,
-        https: true, // Set this to true to enable HTTPS
+        // https: true, // Set this to true to enable HTTPS
     },
     plugins: [
         laravel({
