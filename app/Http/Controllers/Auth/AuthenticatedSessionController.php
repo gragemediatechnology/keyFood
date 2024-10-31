@@ -121,6 +121,7 @@ class AuthenticatedSessionController extends Controller
             return redirect($request->input('redirect'));
         }
 
+        
         // Redirect berdasarkan role
         if (Auth::user()->hasRole('admin')) {
             return redirect()->route('admin.dashboard-main');
