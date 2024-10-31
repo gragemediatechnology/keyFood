@@ -11,7 +11,7 @@ export default defineConfig({
         //PORT DEFAULT
 
         // host: '0.0.0.0', // Atau 'localhost' jika ingin spesifik ke localhost
-        host: '89.116.187.91', // Atau 'localhost' jika ingin spesifik ke localhost
+        // host: '89.116.187.91', // Atau 'localhost' jika ingin spesifik ke localhost
         // port: 8000, // Pastikan port ini tidak digunakan oleh aplikasi lain`
 
 
