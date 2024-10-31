@@ -217,9 +217,9 @@ Route::get('/admin/backups/download/{filename}', [BackupController::class, 'down
 require __DIR__ . '/auth.php';
 
 
-Route::get('/dashboard', function () {
-    return 'This is the dashboard route.';
-})->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return 'This is the dashboard route.';
+// })->name('dashboard');
 
 
 // ROUTES GOOGLE
