@@ -60,6 +60,8 @@
                         // Cek status toko
                         $toko = $product->toko;
                         $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
+
+                        dd($isTokoOnline);
                     @endphp
 
 
