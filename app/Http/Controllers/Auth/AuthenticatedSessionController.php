@@ -80,7 +80,8 @@ class AuthenticatedSessionController extends Controller
     //     }
 
     //     return redirect()->intended(route('home'));
-    // }  
+    // }
+    // tes  
 
     public function store(LoginRequest $request): RedirectResponse
     {
