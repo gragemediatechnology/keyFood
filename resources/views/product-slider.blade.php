@@ -23,7 +23,7 @@
                 <h3>Daftar Produk</h3>
             </div>
 
-            <div class="product-container scrolling-pagination" id="product-container">
+            <div class="product-container" id="product-container">
                 @foreach ($products as $product)
                     @php
                         // Ambil nilai rating dan rated_by
@@ -119,7 +119,7 @@
                         @endif
                     </div>
                 @endforeach
-                {{ $products->links() }}
+
             </div>
 
             <script>
@@ -130,21 +130,6 @@
                         text: 'Maaf, toko ' + namaToko + ' sedang tutup. Anda tidak bisa melakukan checkout.',
                     });
                 }
-            </script>
-
-            <script type="text/javascript">
-                $('ul.pagination').hide();
-                $(function() {
-                    $('.scrolling-pagination').jscroll({
-                        autoTrigger: true,
-                        padding: 0,
-                        nextSelector: '.pagination li.active + li a',
-                        contentSelector: 'div.scrolling-pagination',
-                        callback: function() {
-                            $('ul.pagination').remove();
-                        }
-                    });
-                });
             </script>
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -187,6 +172,9 @@
                 });
             </script>
 
+
+
+
             @include('partials.cart')
         </section>
     </section>
@@ -194,8 +182,6 @@
 
 
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
 @endsection
