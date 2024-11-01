@@ -119,8 +119,83 @@
                         @endif
                     </div>
                 @endforeach
+                <div class="loading" style="display: none;">
 
+                    <p>Loading more products...</p>
+
+                </div>
             </div>
+
+
+
+
+            <script>
+                $(document).ready(function() {
+
+                    var page = 1;
+
+                    var lastPage = {{ $products->lastPage() }};
+
+                    $(window).scroll(function() {
+
+                        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+
+                            page++;
+
+                            if (page <= lastPage) {
+
+                                loadMoreData(page);
+
+                            }
+
+                        }
+
+                    });
+
+                    function loadMoreData(page) {
+
+                        $.ajax({
+
+                                url: '/product-slider?page=' + page,
+
+                                type: "get",
+
+                                beforeSend: function() {
+
+                                    $('.loading').show();
+
+                                }
+
+                            })
+
+                            .done(function(data) {
+
+                                if (data.products == "") {
+
+                                    $('.loading').html("No more records found");
+
+                                    return;
+
+                                }
+
+                                $('.loading').hide();
+
+                                $(".product-container").append(data.products);
+
+                                lastPage = data.last_page;
+
+                            })
+
+                            .fail(function(jqXHR, ajaxOptions, thrownError) {
+
+                                console.error('Server not responding...', thrownError);
+
+                            });
+
+                    }
+
+                });
+            </script>
 
             <script>
                 function showTokoTutupAlert(namaToko) {
@@ -182,88 +257,6 @@
 
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const productContainer = document.getElementById('product-container');
-            let currentPage = 1;
-            let isLoading = false;
-
-            // Fungsi untuk memuat lebih banyak produk
-            async function loadMoreProducts() {
-                if (isLoading) return;
-                isLoading = true;
-                currentPage++;
-
-                try {
-                    const response = await axios.get(`/product-slider?page=${currentPage}`, {
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
-                    });
-
-                    // Jika tidak ada produk lagi, hentikan observasi
-                    if (!response.data || response.data.data.length === 0) {
-                        observer.disconnect();
-                        return;
-                    }
-
-                    // Append produk baru dengan animasi smooth
-                    response.data.data.forEach(product => {
-                        const productBox = document.createElement('div');
-                        productBox.classList.add('product-box', 'opacity-0', 'transition-opacity',
-                            'duration-300');
-                        productBox.classList.add(product.isTokoOnline ? '' : 'toko-tutup');
-
-                        productBox.innerHTML = `
-                        <span hidden>${product.id}</span>
-                        <span hidden>${product.store_id}</span>
-                        <span hidden>${product.slug}</span>
-                        <img alt="${product.name}" src="${product.photo}">
-                        <strong>${product.name}</strong>
-                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
-                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
-                        ${product.isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
-                        <div class="flex">
-                            ${Array(product.fullStars).fill().map(() => `<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>`).join('')}
-                            ${product.halfStar ? `<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z"/></svg>` : ''}
-                            ${Array(product.emptyStars).fill().map(() => `<svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>`).join('')}
-                            <p class="mx-2">( ${product.average_rating} / 5 )</p>
-                        </div>
-                        <span class="price">Rp ${product.price.toLocaleString('id-ID', { minimumFractionDigits: 0 })}</span>
-                        ${product.isTokoOnline
-                            ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>`
-                            : `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"><i class="fas fa-ban"></i> Toko Tutup</a>`}
-                    `;
-
-                        productContainer.appendChild(productBox);
-
-                        // Animasi smooth dengan delay kecil
-                        setTimeout(() => productBox.classList.remove('opacity-0'), 10);
-                    });
-                } catch (error) {
-                    console.error('Gagal memuat lebih banyak produk:', error);
-                } finally {
-                    isLoading = false;
-                }
-            }
-
-            // Menggunakan IntersectionObserver untuk mendeteksi ketika mendekati akhir produk
-            const observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    loadMoreProducts();
-                }
-            }, {
-                rootMargin: '0px',
-                threshold: 1.0
-            });
-
-            observer.observe(document.querySelector('#product-container > .product-box:last-child'));
-        });
-    </script>
-
-
-
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
 @endsection
