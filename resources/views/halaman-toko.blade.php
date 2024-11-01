@@ -17,12 +17,12 @@
                         <h1>{{ $detail->nama_toko }}</h1>
                         <h2>Alamat : {{ $detail->alamat_toko }}</h2>
                         <h2>Jam Oprasional Toko : {{ $detail->waktu_buka }} - {{ $detail->waktu_tutup }}</h2>
-                        @if ($detail->is_online == true)
-                            <h2 class="text-green-500">Buka</h2>
-                        @else
-                            <h2 class="text-red-500">Tutup</h2>
-                        @endif
                     </div>
+                    @if ($detail->is_online == true)
+                        <h2 class="text-green-500">Buka</h2>
+                    @else
+                        <h2 class="text-red-500">Tutup</h2>
+                    @endif
                 </div>
                 <div class="store-description">
                     <p>Deskripsi Toko : {{ $detail->deskripsi_toko }}</p>
@@ -256,6 +256,11 @@
                                 {{ $product->category ? $product->category->name : 'Unknown' }}</span>
                             <span class="quantity">Toko:
                                 {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}</span>
+                            @if ($isTokoOnline == true)
+                                <span class="text-green-500">(Toko Buka)</span>
+                            @else
+                                <span class="text-red-500">(Toko Tutup)</span>
+                            @endif
                             <div class="flex">
                                 {{-- Tampilkan bintang penuh --}}
                                 @for ($i = 1; $i <= $fullStars; $i++)
@@ -292,11 +297,22 @@
                             </div>
                             <span class="quantity"></span>
                             <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-                            <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
-                                data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
-                                data-slug="{{ $product->slug }}" class="cart-btn">
-                                <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
-                            </a>
+                            @if ($isTokoOnline == true)
+                                <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                                    data-store-id="{{ $product->store_id }}"
+                                    data-category-id="{{ $product->category_id }}" data-slug="{{ $product->slug }}"
+                                    class="cart-btn">
+                                    <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                                </a>
+                            @else
+                                <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
+                                    data-store-id="{{ $product->store_id }}"
+                                    data-category-id="{{ $product->category_id }}" data-slug="{{ $product->slug }}"
+                                    class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"
+                                    disabled>
+                                    <i class="fas fa-ban"></i> Toko Tutup
+                                </a>
+                            @endif
                         </div>
                     @endif
                 @endforeach
