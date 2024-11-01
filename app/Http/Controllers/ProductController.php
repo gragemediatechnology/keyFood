@@ -97,28 +97,15 @@ class ProductController extends Controller
      */
     public function showProductSlider(Request $request)
     {
-        // Cek apakah sudah ada data produk acak yang disimpan di cache
-        $cacheKey = 'random_products';
+        // Mengambil data produk dengan pagination
+        $products = Product::inRandomOrder()->paginate(5);
 
-        if (!session()->has($cacheKey)) {
-            // Simpan produk dalam urutan acak di session selama sesi berjalan
-            $productIds = Product::pluck('id')->shuffle();
-            session([$cacheKey => $productIds]);
-        } else {
-            $productIds = session($cacheKey);
-        }
-
-        // Ambil produk berdasarkan ID yang telah diacak
-        $products = Product::whereIn('id', $productIds)->paginate(5);
-
+        // Jika permintaan AJAX, kembalikan data produk dalam format JSON
         if ($request->ajax()) {
-            return response()->json([
-                'posts' => view('product-slider', compact('products'))->render(),
-                'next_page' => $products->currentPage() + 1,
-                'last_page' => $products->lastPage()
-            ]);
+            return response()->json($products);
         }
 
+        // Jika bukan AJAX, kembalikan tampilan lengkap
         return view('product-slider', compact('products'));
     }
 

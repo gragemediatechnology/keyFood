@@ -121,81 +121,11 @@
                 @endforeach
                 <div class="loading" style="display: none;">
 
-                    <p>Loading more products...</p>
+                    <p>Loading more posts...</p>
 
                 </div>
             </div>
 
-
-
-
-            <script>
-                $(document).ready(function() {
-
-                    var page = 1;
-
-                    var lastPage = {{ $products->lastPage() }};
-
-                    $(window).scroll(function() {
-
-                        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-
-                            page++;
-
-                            if (page <= lastPage) {
-
-                                loadMoreData(page);
-
-                            }
-
-                        }
-
-                    });
-
-                    function loadMoreData(page) {
-
-                        $.ajax({
-
-                                url: '/product-slider?page=' + page,
-
-                                type: "get",
-
-                                beforeSend: function() {
-
-                                    $('.loading').show();
-
-                                }
-
-                            })
-
-                            .done(function(data) {
-
-                                if (data.products == "") {
-
-                                    $('.loading').html("No more records found");
-
-                                    return;
-
-                                }
-
-                                $('.loading').hide();
-
-                                $(".product-container").append(data.products);
-
-                                lastPage = data.last_page;
-
-                            })
-
-                            .fail(function(jqXHR, ajaxOptions, thrownError) {
-
-                                console.error('Server not responding...', thrownError);
-
-                            });
-
-                    }
-
-                });
-            </script>
 
             <script>
                 function showTokoTutupAlert(namaToko) {
@@ -207,7 +137,6 @@
                 }
             </script>
 
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
                 $(document).ready(function() {
                     var currentPage = $('#current-page').val();
@@ -257,6 +186,7 @@
 
 
 @section('script')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
     <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
 @endsection
