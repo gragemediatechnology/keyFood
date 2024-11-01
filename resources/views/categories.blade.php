@@ -284,7 +284,7 @@
                             });
                         } else {
                             $('#product-list').append(
-                                '<p class="text-gray-500">Produk Kosong</p>'
+                                '<p class="text-gray-500">Produk Tidak Ada</p>'
                                 ); // Tampilkan pesan jika tidak ada produk
                         }
                     },
