@@ -208,7 +208,7 @@
                                         @endfor
 
                                         @if ($average_rating >= 1)
-                                            <p class="mx-2">( {{ $average_rating }} / 5 ) {{ $rated_by }}</p>
+                                            <p class="mx-2">( {{ $average_rating }} / 5 ) {{ $rated_by }} Pcs</p>
                                         @else
                                             <p class="mx-2">( 0 / 0 )</p>
                                         @endif
