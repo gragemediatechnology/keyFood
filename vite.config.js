@@ -2,6 +2,9 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
+    publicDir: '/var/www/html/keyFood/public',  
+    root: '/var/www/html/keyFood',
+    outDir: '/var/www/html/keyFood/public/build',  
     server: {
 
         //PORT DEFAULT

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('link')
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/halaman-toko.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/14fea551a368621e3fd2012fa820cfd33852ee5c/public/css/halaman-toko.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/product-slider.css">
     <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/categories.css">
 @endsection
@@ -17,12 +17,12 @@
                         <h1>{{ $detail->nama_toko }}</h1>
                         <h2>Alamat : {{ $detail->alamat_toko }}</h2>
                         <h2>Jam Oprasional Toko : {{ $detail->waktu_buka }} - {{ $detail->waktu_tutup }}</h2>
+                        @if ($detail->is_online == true)
+                            <p class="text-green-500">Buka</p>
+                        @else
+                            <p class="text-red-500">Tutup</p>
+                        @endif
                     </div>
-                    @if ($detail->is_online == true)
-                        <h2 class="text-green-500">Buka</h2>
-                    @else
-                        <h2 class="text-red-500">Tutup</h2>
-                    @endif
                 </div>
                 <div class="store-description">
                     <p>Deskripsi Toko : {{ $detail->deskripsi_toko }}</p>

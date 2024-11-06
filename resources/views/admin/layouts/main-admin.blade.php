@@ -19,6 +19,8 @@
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
     {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
+
+
 </head>
 
 <body>
