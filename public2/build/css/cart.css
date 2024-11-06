@@ -1,0 +1,243 @@
+
+.show-modal {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 15px 22px;
+  background: #c0dcffaa;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 18px rgba(52,87,220,0.18);
+}
+body.dark .show-modal{
+  color: #232323;
+  background: #c0dcffaa;
+  box-shadow: 0 10px 18px rgba(255, 255, 255, 0.18);
+}
+.show-modal:hover {
+  background: #c0dcffaa;
+}
+.bottom-sheet {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: 0.1s linear;
+}
+.bottom-sheet.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.bottom-sheet .sheet-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+  background: #000;
+}
+body.dark .bottom-sheet .sheet-overlay{
+  background: #fff;
+}
+.bottom-sheet .content {
+    width: 100%;
+    position: relative;
+    background: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
+    max-height: 90vh;
+    height: 50vh;
+    max-width: 1150px;
+    padding: 25px 30px;
+    transform: translateY(100%);
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    transition: 0.3s ease;
+    backdrop-filter: blur(10px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+  }
+
+  body.dark .bottom-sheet .content{
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.03);
+  }
+  
+.bottom-sheet.show .content{
+  transform: translateY(0%);
+}
+.bottom-sheet.dragging .content {
+  transition: none;
+}
+.bottom-sheet.fullscreen .content {
+  border-radius: 0;
+  overflow-y: hidden;
+}
+.bottom-sheet .header {
+  display: flex;
+  justify-content: center;
+}
+.header .drag-icon {
+  cursor: grab;
+  user-select: none;
+  padding: 15px;
+  margin-top: -15px;
+}
+.header .drag-icon span {
+  height: 4px;
+  width: 40px;
+  display: block;
+  background: #d1d2d3;
+  border-radius: 50px;
+}
+
+body.dark .drag-icon span{
+  background: #000;
+}
+.bottom-sheet .body {
+  height: 100%;
+  overflow-y: auto;
+  padding: 15px 0 40px;
+  scrollbar-width: none;
+}
+.bottom-sheet .body::-webkit-scrollbar {
+  width: 0;
+}
+.bottom-sheet .body h2 {
+  font-size: 1.8rem;
+}
+
+body.dark .bottom-sheet .body h2 {
+  color: white;
+}
+
+body.dark .bottom-sheet .body h5 {
+  color: white;
+}
+.bottom-sheet .body p {
+  margin-top: 20px;
+  font-size: 1.05rem;
+}
+
+body.dark .bottom-sheet .body p {
+  color: lightgray;
+}
+
+.icon-cart {
+  color: black;
+  position: fixed;
+  bottom: 200px;
+  /* left: 50%; */
+  transform: translateX(-50%);
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  display: none; /* Initially hidden */
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  /* opacity: 0; */
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  transform: translateY(100px); /* Start from below */
+}
+
+.icon-cart.show {
+  display: flex; /* Show element */
+  opacity: 1;
+  transform: translateY(0); /* Move to original position */
+}
+
+.icon-cart svg {
+    width: 24px; /* Adjust the icon width */
+    height: 24px; /* Adjust the icon height */
+    margin-right: 8px; /* Space between icon and text */
+}
+
+.icon-cart span {
+    font-size: 16px; /* Adjust the text size */
+    line-height: 1; /* Ensure line height does not affect vertical alignment */
+    color: black; /* Text color */
+}
+
+/* For tablets and smaller devices */
+@media (max-width: 768px) {
+    .bottom-sheet .content {
+      width: 90%; /* Adjust width for smaller screens */
+      height: 60vh; /* Slightly larger height for smaller screens */
+      margin-left: 0; /* Remove left margin */
+      padding: 15px; /* Reduce padding */
+    }
+  
+    .bottom-sheet .body h2 {
+      font-size: 1.5rem; /* Smaller heading size */
+    }
+  
+    .bottom-sheet .body p {
+      font-size: 0.9rem; /* Smaller paragraph size */
+    }
+  }
+  
+  /* For mobile phones */
+  @media (max-width: 480px) {
+    .bottom-sheet .content {
+      height: 70vh; /* Increase height to better fit mobile screens */
+      padding: 10px; /* Further reduce padding */
+    }
+
+  
+    .bottom-sheet .body h2 {
+      font-size: 1.2rem; /* Smaller heading size for mobile */
+    }
+  
+    .bottom-sheet .body p {
+      font-size: 0.85rem; /* Smaller paragraph size for mobile */
+    }
+  }
+
+  /* For tablets and smaller devices */
+@media (max-width: 768px) {
+    .bottom-sheet .content {
+      width: 90%; /* Adjust width for smaller screens */
+      height: 60vh; /* Slightly larger height for smaller screens */
+      margin-left: 0; /* Remove left margin */
+      padding: 15px; /* Reduce padding */
+    }
+  
+    .bottom-sheet .body h2 {
+      font-size: 1.5rem; /* Smaller heading size */
+    }
+  
+    .bottom-sheet .body p {
+      font-size: 0.9rem; /* Smaller paragraph size */
+    }
+  }
+  
+  /* For mobile phones */
+  @media (max-width: 480px) {
+    .bottom-sheet .content {
+      height: 70vh; /* Increase height to better fit mobile screens */
+      padding: 10px; /* Further reduce padding */
+      margin-left: 20px;
+    }
+  
+    .bottom-sheet .body h2 {
+      font-size: 1.2rem; /* Smaller heading size for mobile */
+    }
+  
+    .bottom-sheet .body p {
+      font-size: 0.85rem; /* Smaller paragraph size for mobile */
+    }
+  }

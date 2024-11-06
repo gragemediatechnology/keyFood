@@ -21,6 +21,8 @@
         "boxicons": "^2.1.4",
         "flowbite": "^2.4.1",
         "livewire": "^0.6.1",
-        "mysqldump": "^3.2.0"
+        "mysqldump": "^1.4.2",
+        "qs": "^6.13.0",
+        "tough-cookie": "^4.1.4"
     }
 }
