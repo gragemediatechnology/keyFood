@@ -117,7 +117,6 @@
         });
 
         $.ajax({
-            // url: '{{ route('admin.backups.manual') }}',
             url: 'backups/manual',
             method: 'POST',
             headers: {
