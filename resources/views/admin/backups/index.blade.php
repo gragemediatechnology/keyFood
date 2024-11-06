@@ -110,7 +110,7 @@
     $('#backup-btn').click(function () {
         Swal.fire({
             title: 'Proses Backup Dimulai',
-            text: 'Mohon tunggu, proses backup sedang berlangsung...',
+            text: 'Mohon tunggu, proses backup sedang berlangsung. Jangan tinggalkan halaman ini selama proses backup berlangsung!',
             icon: 'info',
             allowOutsideClick: false,
             showConfirmButton: false
