@@ -23,7 +23,7 @@ class ForgotPasswordController extends Controller
             'phone' => 'required|string|exists:users,phone',
         ]);
 
-        
+
         // Simpan data sementara ke session
         Session::put('temp_user', [
             'phone' => $request->phone,
@@ -46,7 +46,7 @@ class ForgotPasswordController extends Controller
             // Arahkan ke halaman input OTP
             return redirect('/otp-forgot');
         }
-       
+
             return back()->withErrors(['phone' => 'Nomor WhatsApp tidak ditemukan.']);
     }
 
@@ -55,7 +55,15 @@ class ForgotPasswordController extends Controller
         $url = "https://wakbk.grageweb.online/send-message";
         $data = [
             'number' => $phone,
-            'message' => "Kode OTP Anda untuk reset password: $otp. Kode ini berlaku selama 2 menit."
+            'message' => " *LapakKBK - Kode Verifikasi Anda* \n\n
+                Kode verifikasi untuk melanjutkan proses reset password di LapakKBK telah dikirimkan.\n\n
+                Kode OTP: $otp \n
+                Masa Berlaku: 2 Menit \n\n
+                Silakan masukkan kode ini dalam waktu 2 menit untuk menyelesaikan proses reset password.\n
+                Demi keamanan akun Anda, mohon untuk tidak membagikan kode ini kepada siapa pun.\n
+                LapakKBK tidak akan pernah meminta Anda untuk mengungkapkan kode verifikasi ini.\n\n
+                Terima kasih telah menggunakan layanan LapakKBK!\n\n\n
+                _Mohon Jangan Membalas Pesan Otomatis Dari Kami._"
         ];
 
         $ch = curl_init($url);
@@ -95,7 +103,7 @@ class ForgotPasswordController extends Controller
         return response()->json(['status' => 'error', 'message' => 'OTP salah. Silakan coba lagi.'], 400);
     }
 }
-    
+
 
     public function resendOtp()
     {
@@ -123,10 +131,10 @@ class ForgotPasswordController extends Controller
         $request->validate([
             'password' => 'nullable|string|min:8|confirmed',
         ]);
-    
+
         // Dapatkan user dari sesi lupa password
         $user = User::where('phone', Session::get('temp_user'))->first();
-    
+
         if (!$user) {
             return back()->withErrors(['phone' => 'Pengguna tidak ditemukan.']);
         }
@@ -140,9 +148,9 @@ class ForgotPasswordController extends Controller
          Session::forget(['temp_user']);
 
         $user->save();
-    
-       
-    
+
+
+
         // return redirect('/login')->with('status', 'Password berhasil direset.');
 
         return redirect('/login')->with('sweet_alert', [
@@ -152,5 +160,5 @@ class ForgotPasswordController extends Controller
         ]);
 
     }
-    
+
 }
