@@ -47,8 +47,8 @@
                                         </svg>
                                         Download
                                     </a>
-                                    <form method="POST" action="{{ route('admin.backups.delete', $backup['filename']) }}"
-                                    // <form method="POST" action="/admin/backups/{{ $backup['filename'] }}"
+                                    <!-- <form method="POST" action="{{ route('admin.backups.delete', $backup['filename']) }}" -->
+                                    <form method="POST" action="/admin/backups/{{ $backup['filename'] }}"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus backup ini?')">
                                         @csrf
                                         @method('DELETE')
@@ -105,7 +105,7 @@
         });
     });
 </script> --}}
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $('#backup-btn').click(function () {
         Swal.fire({
@@ -117,7 +117,6 @@
         });
 
         $.ajax({
-            // url: '{{ route('admin.backups.manual') }}',
             url: 'backups/manual',
             method: 'POST',
             headers: {
