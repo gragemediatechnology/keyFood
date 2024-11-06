@@ -78,15 +78,7 @@ class OtpWaVerificationController extends Controller
         $url = "https://wakbk.grageweb.online/send-message";
         $data = [
             'number' => $phone,
-            'message' => "*LapakKBK - Kode Verifikasi Anda* \n\n
-                Kode verifikasi untuk melanjutkan proses registrasi di LapakKBK telah dikirimkan.\n\n
-                Kode OTP: $otp \n
-                Masa Berlaku: 2 Menit \n\n
-                Silakan masukkan kode ini dalam waktu 2 menit untuk menyelesaikan proses registrasi.\n
-                Demi keamanan akun Anda, mohon untuk tidak membagikan kode ini kepada siapa pun.\n
-                LapakKBK tidak akan pernah meminta Anda untuk mengungkapkan kode verifikasi ini.\n\n
-                Terima kasih telah menggunakan layanan LapakKBK!\n\n\n
-                _Mohon Jangan Membalas Pesan Otomatis Dari Kami._"
+            'message' => "*LapakKBK - Kode Verifikasi Anda* \n\nKode verifikasi untuk melanjutkan proses registrasi di LapakKBK telah dikirimkan.\n\nKode OTP: * $otp * \nMasa Berlaku: 2 Menit \n\nSilakan masukkan kode ini dalam waktu 2 menit untuk menyelesaikan proses registrasi.\nDemi keamanan akun Anda, mohon untuk tidak membagikan kode ini kepada siapa pun.\nLapakKBK tidak akan pernah meminta Anda untuk mengungkapkan kode verifikasi ini.\nTerima kasih telah menggunakan layanan LapakKBK!\n\n\n_Mohon Jangan Membalas Pesan Otomatis Dari Kami._"
         ];
 
         $ch = curl_init($url);
