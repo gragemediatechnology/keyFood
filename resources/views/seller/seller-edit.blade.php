@@ -27,7 +27,7 @@
                                 @endif
                             </h2>
                         </div>
-                        <div class="edit-button-container">
+                        <div class="edit-button-container max-sm:hidden">
                             <a href="/seller/edit_toko/{{ $toko->id_toko }}">
                                 <button type="button"
                                     class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Edit
@@ -61,6 +61,36 @@
 
                     <div class="store-description">
                         <p>{{ $toko->deskripsi_toko }}</p>
+                    </div>
+                    <div class="edit-button-container md:hidden">
+                        <a href="/seller/edit_toko/{{ $toko->id_toko }}">
+                            <button type="button"
+                                class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Edit
+                                Toko
+                            </button>
+                        </a>
+                        @if ($toko->is_online)
+                            <form action="/seller/set_status/{{ $toko->id_toko }}" method="POST"
+                                style="display: inline;">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit"
+                                    class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                    Tutup toko
+                                </button>
+                            </form>
+                        @else
+                            <form action="/seller/set_status/{{ $toko->id_toko }}" method="POST"
+                                style="display: inline;">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit"
+                                    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                                    Buka toko
+                                </button>
+                            </form>
+                        @endif
+
                     </div>
                 </div>
                 <!-- produk produk -->
