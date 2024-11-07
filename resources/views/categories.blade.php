@@ -43,7 +43,7 @@
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
-            <div id="product-list" class="product-container">
+            <div id="product-list" class="product-container product-list">
             @foreach ($products as $product)
                     @php
                         // Ambil nilai rating dan rated_by
