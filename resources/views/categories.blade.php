@@ -257,7 +257,7 @@
                                 }
 
                                 // Buat elemen HTML produk
-                                let productHtml = `
+                                let productHtml{{ $loop->index }} = `
                                 <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
                                     <span hidden>${product.id}</span>
                                     <span hidden>${product.store_id}</span>
@@ -275,13 +275,15 @@
                                     </div>
                                     <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
 
-                                    
-                                    '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>'
+                                    ${!isTokoOnline ?
+                                    '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}"class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"disabled><i class="fas fa-ban"></i> Toko Tutup</a>'
+                                    :
+                                    '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>'}
 
 
                                 </div>`;
                                 $(`#product-list`).append(
-                                    productHtml); // Tambahkan produk ke daftar
+                                    productHtml{{ $loop->index }}); // Tambahkan produk ke daftar
                             });
                         } else {
                             $('#product-list').append(
