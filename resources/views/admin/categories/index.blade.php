@@ -52,7 +52,7 @@
                                     <td class="px-4 py-3 text-sm">{{ $category->name }}</td>
                                     <td class="px-4 py-3">
                                         <div class="flex items-center text-sm">
-                                            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                            <div class="relative w-8 h-8 mr-3 rounded-full md:block">
                                                 <img class="object-cover w-full h-full rounded-full"
                                                     src="https://lapakkbk.online/{{ $category->icon}}" alt="{{ $category->name }}"
                                                     loading="lazy" />
