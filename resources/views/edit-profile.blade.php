@@ -19,7 +19,7 @@
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/e7944c0d2670c19afb8043149a034e05d5331b98/public/css/edit-p.css">
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
-    <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
+    <title>Teras KBK || {{ Route::currentRouteName() }} </title>
 </head>
 
 <body>

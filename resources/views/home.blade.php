@@ -68,7 +68,7 @@
                     <section class="section__container special__container" id="special">
                         <h2 class="section__header">Menu Terbaik Untukmu</h2>
                         <p class="section__description">
-                            Majukan UMKM Bersama Lapak KBK
+                            Majukan UMKM Bersama Teras KBK
                         </p>
                         <div class="special__grid">
                             @foreach ($products as $product)
@@ -265,7 +265,7 @@
                                     <div class="swiper-slide">
                                         <div class="client__card">
                                             <p>
-                                                Sebagai pelanggan, pengalaman berbelanja di lapak kbk ini sangat memuaskan!
+                                                Sebagai pelanggan, pengalaman berbelanja di Teras kbk ini sangat memuaskan!
                                                 Proses pemesanan mudah, pengiriman cepat, dan produk sesuai deskripsi.
                                                 Pasti akan belanja lagi di sini!
                                             </p>

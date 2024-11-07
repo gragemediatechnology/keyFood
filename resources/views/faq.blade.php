@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
-    <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
+    <title>Teras KBK || {{ Route::currentRouteName() }} </title>
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/jipyy/keyFood/94e3005f001914148945e309f555715db94e24f6/public/css/faq.css">
 

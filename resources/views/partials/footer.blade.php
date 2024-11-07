@@ -37,7 +37,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Lapak KBK</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Teras KBK</h2>
                     <ul class="text-gray-500 font-medium">
                         <li class="mb-4 break-words">
                             <a href="https://maps.app.goo.gl/jPYA3x3XgB3pXWSYA"
