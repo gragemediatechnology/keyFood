@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://lapakkbk.online'),
+    'url' => env('APP_URL', 'https://teraskabeka.com'),
 
     /*
     |--------------------------------------------------------------------------
