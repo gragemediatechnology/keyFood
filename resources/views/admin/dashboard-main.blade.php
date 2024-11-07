@@ -117,7 +117,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <p class="font-semibold">{{ $order->user->name }}</p>
+                                                <p class="font-semibold">{{ $order->user?->name }}</p>
                                                 <p class="text-xs text-gray-600 dark:text-gray-400">{{ $order->id_user }}
                                                 </p>
                                             </div>
