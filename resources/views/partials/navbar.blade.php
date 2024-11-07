@@ -3,7 +3,7 @@
         <div class="nav__data">
             <a href="#" class="nav__logo">
                 @foreach($cms as $company)
-                    <img src="https://lapakkbk.online/{{ $company->logo }}" class="h-8 me-2" alt="KeyFood Logo" /> {{$company->company_name}}
+                    <img src="https://teraskabeka.com/{{ $company->logo }}" class="h-8 me-2" alt="KeyFood Logo" /> {{$company->company_name}}
                 @endforeach
             </a>
 

@@ -17,7 +17,7 @@
         <div class="h-full flex items-center justify-center ">
             <div class="rounded-lg  px-4 pt-6 pb-8 w-full max-w-lg shadow-lg dark:bg-gray-800">
                 <div class="mx-auto rounded-full overflow-hidden" style="width: 100px; height:auto;">
-                    <img src="https://lapakkbk.online/{{ Auth::user()->img ?? '/img/client-1.jpg' }}" alt="User Image"
+                    <img src="https://teraskabeka.com/{{ Auth::user()->img ?? '/img/client-1.jpg' }}" alt="User Image"
                          style="width: 100px; height:auto;" />
                 </div>
 

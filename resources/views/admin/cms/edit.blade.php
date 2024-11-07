@@ -36,7 +36,7 @@
                                 <!-- Upload Logo -->
                                 <label class="cursor-pointer">
                                     <div class="w-12 h-12 flex-none rounded-xl border overflow-hidden mb-2">
-                                        <img id="logo" class="w-full h-full object-cover" src="https://lapakkbk.online/{{ $data->logo }}"
+                                        <img id="logo" class="w-full h-full object-cover" src="https://teraskabeka.com/{{ $data->logo }}"
                                             alt="Avatar Upload">
                                     </div>
                                     <span
@@ -48,7 +48,7 @@
                                 <!-- Upload Gambar Home 1 -->
                                 <label class="cursor-pointer ml-4">
                                     <div class="w-12 h-12 flex-none rounded-xl border overflow-hidden mb-2">
-                                        <img id="gambar_home_1" class="w-full h-full object-cover" src="https://lapakkbk.online/{{ $data->gambar_home_1 }}"
+                                        <img id="gambar_home_1" class="w-full h-full object-cover" src="https://teraskabeka.com/{{ $data->gambar_home_1 }}"
                                             alt="Avatar Upload">
                                     </div>
                                     <span
@@ -60,7 +60,7 @@
                                 <!-- Upload Gambar Home 2 -->
                                 <label class="cursor-pointer ml-4">
                                     <div class="w-12 h-12 flex-none rounded-xl border overflow-hidden mb-2">
-                                        <img id="gambar_home_2" class="w-full h-full object-cover" src="https://lapakkbk.online/{{ $data->gambar_home_2 }}"
+                                        <img id="gambar_home_2" class="w-full h-full object-cover" src="https://teraskabeka.com/{{ $data->gambar_home_2 }}"
                                             alt="Avatar Upload">
                                     </div>
                                     <span
@@ -72,7 +72,7 @@
                                 <!-- Upload Gambar Home 3 -->
                                 <label class="cursor-pointer ml-4">
                                     <div class="w-12 h-12 flex-none rounded-xl border overflow-hidden mb-2">
-                                        <img id="gambar_home_3" class="w-full h-full object-cover" src="https://lapakkbk.online/{{ $data->gambar_home_3 }}"
+                                        <img id="gambar_home_3" class="w-full h-full object-cover" src="https://teraskabeka.com/{{ $data->gambar_home_3 }}"
                                             alt="Avatar Upload">
                                     </div>
                                     <span

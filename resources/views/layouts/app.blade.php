@@ -43,7 +43,7 @@
     </div>
 
     {{-- <livewire:scripts /> --}}
-    <script src="https://lapakkbk.online/livewire/livewire.js"></script>
+    <script src="https://teraskabeka.com/livewire/livewire.js"></script>
     @livewireScripts
 
 

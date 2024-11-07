@@ -13,7 +13,7 @@
             @if (Auth::user()->hasRole('seller'))
                 <div class="store-header">
                     <div class="store-info">
-                        <img src="https://lapakkbk.online/{{ $toko->foto_profile_toko ? 'store_image/' . $toko->foto_profile_toko : 'https://lapakkbk.online/img/markets.webp' }} "
+                        <img src="https://teraskabeka.com/{{ $toko->foto_profile_toko ? 'store_image/' . $toko->foto_profile_toko : 'https://teraskabeka.com/img/markets.webp' }} "
                             alt="logo toko" class="store-logo">
                         <div class="store-text">
                             <h1>{{ $toko->nama_toko }}</h1>
@@ -204,7 +204,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <img alt="pack" src="https://lapakkbk.online/{{ $p->photo }}">
+                                    <img alt="pack" src="https://teraskabeka.com/{{ $p->photo }}">
                                     <strong>{{ $p->name }}</strong>
                                     <span class="category">Kategori: {{ $p->category->name }}</span>
                                     <span class="quantity">Jumlah: {{ $p->quantity }}</span>

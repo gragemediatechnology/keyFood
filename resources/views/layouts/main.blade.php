@@ -233,7 +233,7 @@
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     // Redirect to the admin page when "Kembali ke Halaman Admin" is clicked
                     window.location.href =
-                        'https://lapakkbk.online/admin/stores'; // Replace with the actual admin page URL
+                        'https://teraskabeka.com/admin/stores'; // Replace with the actual admin page URL
                 }
             });
         @endif
