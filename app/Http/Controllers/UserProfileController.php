@@ -69,25 +69,47 @@ class UserProfileController extends Controller
     //     return redirect('/')->with('success', 'Account deleted successfully.');
     // }
     
-    public function destroy($id)
-    {
-        $user = User::findOrFail($id);
+    // public function destroy($id)
+    // {
+    //     $user = User::findOrFail($id);
 
-        // Check if the user has the 'seller' role
-        if ($user->hasRole('seller')) {
-            // Reset roles to no roles or a default role
-            $user->syncRoles([]); // Atur ke kosong atau bisa assign role default jika ada
+    //     // Check if the user has the 'seller' role
+    //     if ($user->hasRole('seller')) {
+    //         // Reset roles to no roles or a default role
+    //         $user->syncRoles([]); // Atur ke kosong atau bisa assign role default jika ada
 
-            // Optionally, delete the user's related products and store (handled in the model)
-            $user->products()->delete();
-            $user->store()->delete();
-        }
+    //         // Optionally, delete the user's related products and store (handled in the model)
+    //         $user->products()->delete();
+    //         $user->store()->delete();
+    //     }
 
-        // Delete the user
-        $user = Auth::user();
-        Auth::logout();
-        $user->delete();
+    //     // Delete the user
+    //     $user = Auth::user();
+    //     Auth::logout();
+    //     $user->delete();
 
-        return redirect('/')->with('success', 'Account deleted successfully.');
+    //     return redirect('/')->with('success', 'Account deleted successfully.');
+    // }
+
+    public function destroy()
+{
+    $user = Auth::user();
+
+    // Check if the user has the 'seller' role
+    if ($user->hasRole('seller')) {
+        // Reset roles to no roles or a default role
+        $user->syncRoles([]); // Atur ke kosong atau bisa assign role default jika ada
+
+        // Optionally, delete the user's related products and store (handled in the model)
+        $user->products()->delete();
+        $user->store()->delete();
     }
+
+    // Logout and delete the user
+    Auth::logout();
+    $user->delete();
+
+    return redirect('/')->with('success', 'Account deleted successfully.');
+}
+
 }
