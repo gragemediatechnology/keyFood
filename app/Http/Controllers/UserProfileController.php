@@ -47,7 +47,7 @@ class UserProfileController extends Controller
         if ($request->hasFile('img')) {
             $file = $request->file('img');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('img'), $filename);
+            $file->move(base_path('public_html/img'), $filename);
             $user->img = 'img/' . $filename;
         } elseif (!$request->hasFile('img') && $user->img) {
             $user->img = $user->img;
