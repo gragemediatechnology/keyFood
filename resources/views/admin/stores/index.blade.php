@@ -13,6 +13,7 @@
                     <p><strong>ID:</strong> {{ $store->id_toko }}</p>
                     <img src="https://lapakkbk.online/img/{{ $store->foto_profile_toko }}" alt="Profile Picture">
                     {{-- <h2>{{ $store->nama_toko }}</h2> --}}
+                    <form action="/detailed-store" method="GET">
                     <div class="flex items-center text-sm">
                         <!-- Avatar with inset shadow -->
                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
@@ -27,11 +28,9 @@
                             <button type="submit">
                                 <p class="font-semibold">{{ $store->nama_toko }}</p>
                             </button>
-                            <p class="text-xs text-gray-600 dark:text-gray-400">
-                                {{ $store->id_seller }}
-                            </p>
                         </div>
                     </div>
+                    </form>
 
                     <div class="info">
                         <strong>Seller_id:</strong> {{ $store->id_seller }}
