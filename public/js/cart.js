@@ -119,7 +119,7 @@ function getData() {
                             </a>
                         </div>
                         <p class="font-normal text-base leading-7 text-gray-500 mb-6">
-                            ${cart[key].slug} <a href="javascript:;" class="text-indigo-600"></a>
+                            ${cart[key].slug}123 <a href="javascript:;" class="text-indigo-600"></a>
                         </p>
                         <div class="flex justify-between items-center">
                             <div class="flex items-center gap-4">
