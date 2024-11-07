@@ -13,7 +13,7 @@
                     <p><strong>ID:</strong> {{ $store->id_toko }}</p>
                     <img src="https://lapakkbk.online/img/{{ $store->foto_profile_toko }}" alt="Profile Picture">
                     {{-- <h2>{{ $store->nama_toko }}</h2> --}}
-                    <h2><div class="flex items-center text-sm">
+                    <div class="flex items-center text-sm">
                         <!-- Avatar with inset shadow -->
                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                             <img class="object-cover w-full h-full rounded-full"
@@ -31,7 +31,7 @@
                                 {{ $store->id_seller }}
                             </p>
                         </div>
-                    </div></h2>
+                    </div>
 
                     <div class="info">
                         <strong>Seller_id:</strong> {{ $store->id_seller }}
