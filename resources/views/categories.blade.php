@@ -257,7 +257,7 @@
                                 }
 
                                 // Buat elemen HTML produk
-                                var productHtml = `
+                                let productHtml = `
                                 <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
                                     <span hidden>${product.id}</span>
                                     <span hidden>${product.store_id}</span>
