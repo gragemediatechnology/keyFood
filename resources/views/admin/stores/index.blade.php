@@ -1,37 +1,36 @@
 @extends('admin.layouts.main-admin')
 @section('container-admin')
-<main class="h-screen pb-16 overflow-y-auto">
-    <div class="container grid px-6 mx-auto py-4 mb-8">
-        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Toko
-        </h2>
+    <main class="h-screen pb-16 overflow-y-auto">
+        <div class="container grid px-6 mx-auto py-4 mb-8">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Toko
+            </h2>
 
-        {{-- ini cards --}}
-        <div class="container-profile ">
-            @forelse($stores as $store)
-            <form action="/detailed-store" method="GET">
-                <input type="hidden" value="{{ $store->id_toko }}" name="id">
-                <div class="card-profile">
-                    <p><strong>ID:</strong> {{ $store->id_toko }}</p>
-                    <img src="https://lapakkbk.online/img/{{ $store->foto_profile_toko }}" alt="Profile Picture">
-                    {{-- <h2>{{ $store->nama_toko }}</h2> --}}
-                    <div class="flex items-center text-sm">
-                        <!-- Avatar with inset shadow -->
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                            <img class="object-cover w-full h-full rounded-full"
-                                src="https://lapakkbk.online/store_image/{{ $store->foto_profile_toko }}"
-                                alt="{{ $store->nama_toko }}" loading="lazy" />
-                            <div class="absolute inset-0 rounded-full shadow-inner"
-                                aria-hidden="true">
-                            </div>
-                        </div>
-                        <div>
-                            <button type="submit">
-                                <p class="font-semibold">{{ $store->nama_toko }}</p>
-                            </button>
-                        </div>
+            {{-- ini cards --}}
+            <div class="container-profile ">
+                @forelse($stores as $store)
+                    <div class="card-profile">
+                        <p><strong>ID:</strong> {{ $store->id_toko }}</p>
+                        <form action="/detailed-store" method="GET">
+                            <input type="hidden" value="{{ $store->id_toko }}" name="id">
+                            <img src="https://lapakkbk.online/img/{{ $store->foto_profile_toko }}" alt="Profile Picture">
+                            {{-- <h2>{{ $store->nama_toko }}</h2> --}}
+                            <div class="flex items-center text-sm">
+                                <!-- Avatar with inset shadow -->
+                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                    <img class="object-cover w-full h-full rounded-full"
+                                        src="https://lapakkbk.online/store_image/{{ $store->foto_profile_toko }}"
+                                        alt="{{ $store->nama_toko }}" loading="lazy" />
+                                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="submit">
+                                        <p class="font-semibold">{{ $store->nama_toko }}</p>
+                                    </button>
+                                </div>
+                        </form>
                     </div>
-                    </form>
 
                     <div class="info">
                         <strong>Seller_id:</strong> {{ $store->id_seller }}
@@ -53,40 +52,27 @@
                             <li>
                                 <a href="#"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                                    <form method="POST" action="/admin/stores/destroy/{{ $store->id_toko }}"
-                                        onsubmit="return confirmDelete()">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                            aria-label="Delete">
-                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
-                                                viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                        </button>
-                                    </form>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                                    out</a>
+                                <form method="POST" action="/admin/stores/destroy/{{ $store->id_toko }}"
+                                    onsubmit="return confirmDelete()">
+                                    @csrf
+                                    @method('DELETE')
+                                    <span class="text-red-600">Delete</span>
+                                    <button type="submit"
+                                        class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                                        aria-label="Delete">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </div>
-                </div>
-            @empty
-                <p>No stores found.</p>
+            </div>
+        @empty
+            <p>No stores found.</p>
             @endforelse
 
         </div>
@@ -200,5 +186,5 @@
                     }
                 </script>
             </div>
-</main>
+    </main>
 @endsection
