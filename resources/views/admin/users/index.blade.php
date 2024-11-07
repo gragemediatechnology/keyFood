@@ -82,7 +82,7 @@
                         <p><strong>ID:</strong> {{ $user->id }}</p>
                         {{-- <a href="{{ route('live-chat', $user) }}"> --}}
                         <a href="/live-chat/{{ $user->id }}">
-                            <img src="{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture">
+                            <img src="https://lapakkbk.online/{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture">
                         </a>
                         <h2>{{ $user->name }}</h2>
                         <p><strong>Role:</strong>
@@ -169,7 +169,7 @@
                                                 <!-- Avatar with inset shadow -->
                                                 <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                     <img class="object-cover w-full h-full rounded-full"
-                                                        src="{{ ($user->img ?? 'img/client-1.jpg') }}" alt="user" loading="lazy">
+                                                        src="https://lapakkbk.online/{{ ($user->img ?? 'img/client-1.jpg') }}" alt="user" loading="lazy">
 
                                                 </div>
                                                 <div>
