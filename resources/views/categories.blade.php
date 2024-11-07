@@ -43,8 +43,8 @@
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
+            <div id="product-list" class="product-container">
             @foreach ($products as $product)
-            <div id="product-list{{ $loop->index }}" class="product-container">
                     @php
                         // Ambil nilai rating dan rated_by
                         $rating = $product->rating ?? 0;
@@ -139,8 +139,8 @@
                             </a>
                         @endif
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
 
             <script>
                 function showTokoTutupAlert(namaToko) {
@@ -282,7 +282,7 @@
 
 
                                 </div>`;
-                                $(`#product-list${index}`).append(
+                                $(`.product-list`).append(
                                     productHtml); // Tambahkan produk ke daftar
                             });
                         } else {
