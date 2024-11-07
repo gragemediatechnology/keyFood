@@ -44,8 +44,7 @@
                 <h3>Daftar Produk</h3>
             </div>
             <div id="product-list" class="product-container">
-                @foreach ($products as $product)
-                <div id="product-data{{ $loop->index }}">
+            @foreach ($products as $product)
                     @php
                         // Ambil nilai rating dan rated_by
                         $rating = $product->rating ?? 0;
@@ -139,7 +138,6 @@
                                 <i class="fas fa-ban"></i> Toko Tutup
                             </a>
                         @endif
-                    </div>
                     </div>
                     @endforeach
                 </div>
@@ -284,7 +282,7 @@
 
 
                                 </div>`;
-                                $(`#product-data${index}`).append(
+                                $(`#product-list`).append(
                                     productHtml); // Tambahkan produk ke daftar
                             });
                         } else {
