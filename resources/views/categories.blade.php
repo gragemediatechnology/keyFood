@@ -43,8 +43,8 @@
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
-            <div id="product-list" class="product-container">
-                @foreach ($products as $product)
+            @foreach ($products as $product)
+            <div id="product-list{{ $loop->index }}" class="product-container">
                     @php
                         // Ambil nilai rating dan rated_by
                         $rating = $product->rating ?? 0;
@@ -139,8 +139,8 @@
                             </a>
                         @endif
                     </div>
+                </div>
                 @endforeach
-            </div>
 
             <script>
                 function showTokoTutupAlert(namaToko) {
@@ -276,13 +276,13 @@
                                     <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
 
                                     ${!isTokoOnline ?
-                                    '<a href="javascript:void(0)" data-product-id{{ $product->id }}="{{ $product->id }}"data-store-id{{ $product->store_id }}="{{ $product->store_id }}" data-category-id{{ $product->category_id }}="{{ $product->category_id }}"data-slug{{ $product->slug }}="{{ $product->slug }}"class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"disabled><i class="fas fa-ban"></i> Toko Tutup</a>'
+                                    '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}"class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"disabled><i class="fas fa-ban"></i> Toko Tutup</a>'
                                     :
-                                    '<a href="javascript:void(0)" data-product-id{{ $product->id }}="{{ $product->id }}"data-store-id{{ $product->store_id }}="{{ $product->store_id }}" data-category-id{{ $product->category_id }}="{{ $product->category_id }}"data-slug{{ $product->slug }}="{{ $product->slug }}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>'}
+                                    '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>'}
 
 
                                 </div>`;
-                                $('#product-list').append(
+                                $(`#product-list${index}`).append(
                                     productHtml); // Tambahkan produk ke daftar
                             });
                         } else {
