@@ -207,6 +207,7 @@
                             $.each(products, function(index, product) {
                                 // Ambil nilai rating dan rated_by
                                 var rating = product.rating || 0;
+                                console.log(product);
 
                                 var rated_by;
                                 if (typeof product.rated_by === 'string') {
