@@ -28,6 +28,9 @@
                             <button type="submit">
                                 <p class="font-semibold">{{ $store->nama_toko }}</p>
                             </button>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                                {{ $store->id_seller }}
+                            </p>
                         </div>
                     </div>
                     </form>
