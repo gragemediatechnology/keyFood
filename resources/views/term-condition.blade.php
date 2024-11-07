@@ -98,9 +98,9 @@
                 </div>
                 <div class="tc_btns">
                     <button class="accept" onclick="window.history.back();">
-                        Accept
+                        Kembali
                     </button>
-                    <form method="POST" action="/logout" style="display: inline-flex">
+                    <!-- <form method="POST" action="/logout" style="display: inline-flex">
                         @csrf
                         <a href="/logout" onclick="event.preventDefault();
 this.closest('form').submit();">
@@ -108,7 +108,7 @@ this.closest('form').submit();">
                                 Decline
                             </button>
                         </a>
-                    </form>
+                    </form> -->
                 </div>
             </div>
     </section>
