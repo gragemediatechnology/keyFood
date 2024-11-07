@@ -43,8 +43,9 @@
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
-            <div class="product-container">
-            @foreach ($products as $product)
+            <div id="product-list" class="product-container">
+                @foreach ($products as $product)
+                <div id="product-data{{ $loop->index }}">
                     @php
                         // Ambil nilai rating dan rated_by
                         $rating = $product->rating ?? 0;
@@ -72,7 +73,7 @@
                         $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
                     @endphp
 
-                    <div class="product-box {{ $isTokoOnline ? '' : 'toko-tutup' }}" id="product-list{{ $loop->index }}">
+                    <div class="product-box {{ $isTokoOnline ? '' : 'toko-tutup' }}">
                         <span hidden>{{ $product->id }}</span>
                         <span hidden>{{ $product->store_id }}</span>
                         <span hidden>{{ $product->slug }}</span>
@@ -138,6 +139,7 @@
                                 <i class="fas fa-ban"></i> Toko Tutup
                             </a>
                         @endif
+                    </div>
                     </div>
                     @endforeach
                 </div>
@@ -282,7 +284,7 @@
 
 
                                 </div>`;
-                                $(`#product-list${index}`).append(
+                                $(`#product-data${index}`).append(
                                     productHtml); // Tambahkan produk ke daftar
                             });
                         } else {
