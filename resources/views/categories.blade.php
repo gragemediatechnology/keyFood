@@ -202,6 +202,8 @@
                         $('#product-list').empty(); // Kosongkan daftar produk sebelumnya
 
                         const products = data.data ||
+                        console.log(products);
+                        
                     []; // Pastikan data yang diterima adalah array produk
                         if (Array.isArray(products) && products.length > 0) {
                             $.each(products, function(index, product) {
