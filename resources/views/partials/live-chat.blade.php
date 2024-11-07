@@ -47,7 +47,7 @@
         $totalUnreadMessages = \App\Models\LiveChat::whereIn('from_user_id', $users->pluck('id'))->where('to_user_id', auth()->id())->where('is_read', false)->count();
         ?>
 
-        <button
+        {{-- <button
             class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full fixed bottom-4 right-4 mb-4 mr-4 max-sm:mb-20">
             <i class='bx bxs-bell text-2xl sm:text-3xl'></i>
             @if ($totalUnreadMessages > 0)
@@ -56,7 +56,14 @@
                     {{ $totalUnreadMessages }}
                 </span>
             @endif
-        </button>
+        </button> --}}
+        <a href="https://wa.me/6289661110584?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20keyFood">
+            <button
+                class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full fixed bottom-4 right-4 mb-4 mr-4 max-sm:mb-20">
+                <i class='bx bxs-conversation text-2xl sm:text-3xl'></i>
+                <!-- Use 'bxs-conversation' for a solid style -->
+            </button>
+        </a>
 
 
 
@@ -141,7 +148,7 @@
         // Calculate the total unread message count from all admins for the authenticated user
         $totalUnreadMessages = \App\Models\LiveChat::where('to_user_id', auth()->id())->where('is_read', false)->count();
         ?>
-        <button
+        {{-- <button
             class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full fixed bottom-4 right-4 mb-4 mr-4 max-sm:mb-20">
             <i class='bx bxs-conversation text-2xl sm:text-3xl'></i>
             @if ($totalUnreadMessages > 0)
@@ -150,7 +157,14 @@
                     {{ $totalUnreadMessages }}
                 </span>
             @endif
-        </button>
+        </button> --}}
+        <a href="https://wa.me/6289661110584?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20keyFood">
+            <button
+                class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full fixed bottom-4 right-4 mb-4 mr-4 max-sm:mb-20">
+                <i class='bx bxs-conversation text-2xl sm:text-3xl'></i>
+                <!-- Use 'bxs-conversation' for a solid style -->
+            </button>
+        </a>
 
 
 
