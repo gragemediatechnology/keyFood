@@ -251,7 +251,7 @@
                             aria-hidden="true"></span>
                     @endif
                     <a class="{{ Request::is('faqs') ? 'inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100' : 'inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200' }}"
-                        href="/faqs.index">
+                        href="/admin/faqs">
                         <i class='bx bx-question-mark bx-sm'></i>
                         <span class="ml-4">FAQ</span>
                     </a>
