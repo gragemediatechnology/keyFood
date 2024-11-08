@@ -130,7 +130,7 @@
                                 response.data.forEach(function(store) {
                                     resultsContainer.append(`
                                     <form action="/detailed-store" method="GET">
-                                        <input type="hidden" value="${store.nama_toko}" name="nama_toko">
+                                    <input type="hidden" value="{{ $store->id_toko }}" name="id">
                                         <button type="submit">
                                             <div class="container-s" id="visit">
                                                 <div class="user-s">
