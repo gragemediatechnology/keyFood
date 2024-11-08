@@ -28,6 +28,7 @@
             <form action="/edit-profile/update" method="POST" enctype="multipart/form-data" class="mx-auto"
                 style="width: 90%;">
                 @csrf
+                <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div class="input-image">
                     @if (Auth::user()->img)
                         <img src="{{ Auth::user()->img }}" alt="Current profile picture"
@@ -150,6 +151,77 @@
     <script defer
         src="https://rawcdn.githack.com/gragemediatechnology/keyFood/e7944c0d2670c19afb8043149a034e05d5331b98/public/js/edit-p.js">
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const password = document.getElementById('floating_password');
+            const confirmPassword = document.getElementById('floating_password_confirmation');
+
+            function validatePassword() {
+                if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity('Password harus sama');
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+            }
+
+            password.addEventListener('change', validatePassword);
+            confirmPassword.addEventListener('keyup', validatePassword);
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+
+                fetch('/edit-profile/update', {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil!',
+                                text: data.message,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                window.location.href = '/home';
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: data.message,
+                                confirmButtonColor: '#007bff'
+                            });
+
+
+                            if (data.field) {
+                                document.getElementById('floating_' + data.field).focus();
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Terjadi kesalahan saat memperbarui profil',
+                            confirmButtonColor: '#007bff'
+                        });
+                    });
+            });
+        });
+    </script>
+
+
+
 </body>
 
 </html>
