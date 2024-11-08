@@ -129,7 +129,7 @@
                             if (response.data.length > 0) {
                                 response.data.forEach(function(store) {
                                     resultsContainer.append(`
-                                    <form action="/detailed-store" method="POST">
+                                    <form action="/detailed-store" method="GET">
                                         @csrf
                                         <input type="hidden" value="${store.nama_toko}" name="nama_toko">
                                         <button type="submit">
