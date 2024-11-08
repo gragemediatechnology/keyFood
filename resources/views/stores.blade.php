@@ -135,7 +135,7 @@
                                             <div class="container-s" id="visit">
                                                 <div class="user-s">
                                                  <img class="user-icon-s"
-                                                src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? $store->foto_profile_toko : 'markets.png'}" />
+                                                    src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'}" />
                                                     
                                                     <div class="user-info-s">
                                                         <div class="user-name-s">${store.nama_toko}</div>
