@@ -189,7 +189,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'success',
                     title: 'Berhasil!',
                     text: data.message,
-                    showConfirmButton: false,
+                    // showConfirmButton: false,
+                    confirmButtonColor: '#007bff'
                     timer: 1500
                 }).then(() => {
                     window.location.href = '/home';
@@ -199,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'error',
                     title: 'Oops...',
                     text: data.message
+                    confirmButtonColor: '#007bff'
                 });
 
                 // Fokus ke field yang error
@@ -212,6 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Terjadi kesalahan saat memperbarui profil'
+                confirmButtonColor: '#007bff'
             });
         });
     });

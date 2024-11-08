@@ -60,7 +60,7 @@ class UserProfileController extends Controller
     //     return redirect('/home')->with('success', 'Profil berhasil diperbarui.');
     // }
 
-   // Di UserProfileController
+
 public function update(Request $request)
 {
     try {
