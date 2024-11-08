@@ -80,7 +80,7 @@ class RoleRequestController extends Controller
                 $store->id_seller = $user->id;
                 $store->nama_toko = 'Nama Toko Baru'; // Ganti sesuai kebutuhan
                 $store->alamat_toko = 'Alamat Toko'; // Ganti sesuai kebutuhan
-                $store->foto_profile_toko = 'markets.webp'; // Ganti sesuai kebutuhan
+                $store->foto_profile_toko = 'markets.png'; // Ganti sesuai kebutuhan
                 $store->is_online = 0; // Set default offline
                 $store->save();
             }
