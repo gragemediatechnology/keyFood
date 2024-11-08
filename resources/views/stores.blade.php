@@ -130,7 +130,6 @@
                                 response.data.forEach(function(store) {
                                     resultsContainer.append(`
                                     <form action="/detailed-store" method="GET">
-                                        @csrf
                                         <input type="hidden" value="${store.nama_toko}" name="nama_toko">
                                         <button type="submit">
                                             <div class="container-s" id="visit">
