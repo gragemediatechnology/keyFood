@@ -150,41 +150,18 @@
     <script defer
         src="https://rawcdn.githack.com/gragemediatechnology/keyFood/e7944c0d2670c19afb8043149a034e05d5331b98/public/js/edit-p.js">
     </script>
-   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-   @if(session('error') == 'Email telah digunakan')
-       <script>
-           Swal.fire({
-               icon: 'error',
-               title: 'Gagal!',
-               text: 'Email telah digunakan, silakan gunakan email lain.',
-               confirmButtonText: 'OK'
-           });
-       </script>
-   @endif
-   
-   @if(session('error') == 'Nomor telepon telah digunakan')
-       <script>
-           Swal.fire({
-               icon: 'error',
-               title: 'Gagal!',
-               text: 'Nomor telepon telah digunakan, silakan gunakan nomor telepon lain.',
-               confirmButtonText: 'OK'
-           });
-       </script>
-   @endif
-   
-   @if(session('success'))
-       <script>
-           Swal.fire({
-               icon: 'success',
-               title: 'Berhasil!',
-               text: '{{ session("success") }}',
-               confirmButtonText: 'OK'
-           });
-       </script>
-   @endif
-   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if(session('alert'))
+        <script>
+            Swal.fire({
+                icon: '{{ session('alert.type') }}',
+                title: '{{ session('alert.title') }}',
+                text: '{{ session('alert.message') }}',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
+    
     
 </body>
 
