@@ -43,8 +43,8 @@
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
-            <div id="product-list" class="product-container">
             @foreach ($products as $product)
+            <div id="product-list{{ $loop->index }}" class="product-container">
                     @php
                         // Ambil nilai rating dan rated_by
                         $rating = $product->rating ?? 0;
@@ -139,8 +139,8 @@
                             </a>
                         @endif
                     </div>
-                    @endforeach
                 </div>
+                    @endforeach
 
             <script>
                 function showTokoTutupAlert(namaToko) {
@@ -257,7 +257,7 @@
                                 }
 
                                 // Buat elemen HTML produk
-                                let productHtml{{ $loop->index }} = `
+                                let productHtml = `
                                 <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
                                     <span hidden>${product.id}</span>
                                     <span hidden>${product.store_id}</span>
@@ -282,8 +282,8 @@
 
 
                                 </div>`;
-                                $(`#product-list`).append(
-                                    productHtml{{ $loop->index }}); // Tambahkan produk ke daftar
+                                $(`#product-list${ index }`).append(
+                                    productHtml); // Tambahkan produk ke daftar
                             });
                         } else {
                             $('#product-list').append(
