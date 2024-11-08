@@ -245,37 +245,37 @@
                         <p>(${average_rating.toFixed(1)} / 5)</p>
                         </div>
                         <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                        <a href="javascript:void(0)" class="${isTokoOnline ? 'cart-btn' : 'w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear'}"
+                        data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" ${!isTokoOnline ? 'disabled' : ''}>
+                            <i class="fas fa-${isTokoOnline ? 'shopping-bag' : 'ban'}"></i> ${isTokoOnline ? 'Tambah Ke Keranjang' : 'Toko Tutup'}
+                        </a>
 
-                        ${isTokoOnline ?
-                        '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>'
-                        :
-                        '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}"class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"disabled><i class="fas fa-ban"></i> Toko Tutup</a>'
-                        }
+                       
                     </div>`;
                     $('#product-list').append(productHtml); // Tambahkan produk ke daftar
                 });
 
-                // Event listener untuk tombol "Tambah ke Keranjang"
-                $(document).on('click', '.cart-btn', function(e) {
-                    e.preventDefault();
-                    if ($(this).is('[disabled]')) return; // Cek jika tombol dalam kondisi disable
+                // // Event listener untuk tombol "Tambah ke Keranjang"
+                // $(document).on('click', '.cart-btn', function(e) {
+                //     e.preventDefault();
+                //     if ($(this).is('[disabled]')) return; // Cek jika tombol dalam kondisi disable
 
-                    const productId = $(this).data('product-id');
-                    const storeId = $(this).data('store-id');
-                    const categoryId = $(this).data('category-id');
-                    const slug = $(this).data('slug');
+                //     const productId = $(this).data('product-id');
+                //     const storeId = $(this).data('store-id');
+                //     const categoryId = $(this).data('category-id');
+                //     const slug = $(this).data('slug');
 
-                    // Debugging: Tampilkan data produk yang akan ditambahkan ke keranjang
-                    console.log('Produk Ditambahkan ke Keranjang:', {
-                        productId,
-                        storeId,
-                        categoryId,
-                        slug
-                    });
+                //     // Debugging: Tampilkan data produk yang akan ditambahkan ke keranjang
+                //     console.log('Produk Ditambahkan ke Keranjang:', {
+                //         productId,
+                //         storeId,
+                //         categoryId,
+                //         slug
+                //     });
 
-                    // Lakukan operasi untuk menambahkan ke keranjang
-                    // Contoh: $.post('/cart/add', { productId, storeId, categoryId, slug });
-                });
+                //     // Lakukan operasi untuk menambahkan ke keranjang
+                //     // Contoh: $.post('/cart/add', { productId, storeId, categoryId, slug });
+                // });
             } else {
                 $('#product-list').append('<p class="text-gray-500">Produk Tidak Ada</p>');
             }
