@@ -219,13 +219,13 @@
 
                     var starsHtml = '';
                     for (let i = 0; i < fullStars; i++) {
-                        starsHtml += `<svg class="text-yellow-500 w-5 h-auto fill-current" ...></svg>`;
+                        starsHtml += `<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>`;
                     }
                     if (halfStar) {
-                        starsHtml += `<svg class="text-yellow-500 w-5 h-auto fill-current" ...></svg>`;
+                        starsHtml += ` <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z"/></svg>`;
                     }
                     for (let i = 0; i < emptyStars; i++) {
-                        starsHtml += `<svg class="text-gray-300 w-5 h-auto fill-current" ...></svg>`;
+                        starsHtml += ` <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>`;
                     }
 
                     // Buat elemen HTML produk
@@ -241,41 +241,42 @@
                         '<span class="text-green-500">(Toko Buka)</span>'}
 
                         <div class="flex">
-                        ${starsHtml}
-                        <p>(${average_rating.toFixed(1)} / 5)</p>
-                        </div>
-                        <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                                        ${starsHtml}
+                                        <p>(${average_rating.toFixed(1)} / 5)</p>
+                                    </div>
 
-                        ${isTokoOnline ?
-                        '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>'
-                        :
-                        '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}"class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"disabled><i class="fas fa-ban"></i> Toko Tutup</a>'
-                        }
+                        <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                        <a href="javascript:void(0)" class="${isTokoOnline ? 'cart-btn' : 'w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear'}"
+                        data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" ${!isTokoOnline ? 'disabled' : ''}>
+                            <i class="fas fa-${isTokoOnline ? 'shopping-bag' : 'ban'}"></i> ${isTokoOnline ? 'Tambah Ke Keranjang' : 'Toko Tutup'}
+                        </a>
+
+                       
                     </div>`;
                     $('#product-list').append(productHtml); // Tambahkan produk ke daftar
                 });
 
-                // Event listener untuk tombol "Tambah ke Keranjang"
-                $(document).on('click', '.cart-btn', function(e) {
-                    e.preventDefault();
-                    if ($(this).is('[disabled]')) return; // Cek jika tombol dalam kondisi disable
+                // // Event listener untuk tombol "Tambah ke Keranjang"
+                // $(document).on('click', '.cart-btn', function(e) {
+                //     e.preventDefault();
+                //     if ($(this).is('[disabled]')) return; // Cek jika tombol dalam kondisi disable
 
-                    const productId = $(this).data('product-id');
-                    const storeId = $(this).data('store-id');
-                    const categoryId = $(this).data('category-id');
-                    const slug = $(this).data('slug');
+                //     const productId = $(this).data('product-id');
+                //     const storeId = $(this).data('store-id');
+                //     const categoryId = $(this).data('category-id');
+                //     const slug = $(this).data('slug');
 
-                    // Debugging: Tampilkan data produk yang akan ditambahkan ke keranjang
-                    console.log('Produk Ditambahkan ke Keranjang:', {
-                        productId,
-                        storeId,
-                        categoryId,
-                        slug
-                    });
+                //     // Debugging: Tampilkan data produk yang akan ditambahkan ke keranjang
+                //     console.log('Produk Ditambahkan ke Keranjang:', {
+                //         productId,
+                //         storeId,
+                //         categoryId,
+                //         slug
+                //     });
 
-                    // Lakukan operasi untuk menambahkan ke keranjang
-                    // Contoh: $.post('/cart/add', { productId, storeId, categoryId, slug });
-                });
+                //     // Lakukan operasi untuk menambahkan ke keranjang
+                //     // Contoh: $.post('/cart/add', { productId, storeId, categoryId, slug });
+                // });
             } else {
                 $('#product-list').append('<p class="text-gray-500">Produk Tidak Ada</p>');
             }
