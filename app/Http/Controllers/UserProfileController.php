@@ -47,7 +47,7 @@ public function update(Request $request)
             if ($existingPhone) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Nomor telepon sudah digunakan. Silakan gunakan nomor lain.',
+                    'message' => 'Nomor telepon sudah digunakan atau masih memakai nomor default 0000000000. Silakan gunakan nomor lain.',
                     'field' => 'phone'
                 ], 422);
             }
