@@ -13,7 +13,7 @@
             @if (Auth::user()->hasRole('seller'))
                 <div class="store-header">
                     <div class="store-info">
-                        <img src="https://teraskabeka.com/{{ $toko->foto_profile_toko ? 'store_image/' . $toko->foto_profile_toko : 'https://teraskabeka.com/img/markets.webp' }} "
+                        <img src="https://teraskabeka.com/{{ $toko->foto_profile_toko ? 'store_image/' . $toko->foto_profile_toko : 'markets.webp' }} "
                             alt="logo toko" class="store-logo">
                         <div class="store-text">
                             <h1>{{ $toko->nama_toko }}</h1>
