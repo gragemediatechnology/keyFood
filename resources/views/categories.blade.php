@@ -257,7 +257,7 @@
                                 }
 
                                 // Buat elemen HTML produk
-                                let productHtml{{ $loop->index }} = `
+                                let productHtml = `
                                 <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
                                     <span hidden>${product.id}</span>
                                     <span hidden>${product.store_id}</span>
@@ -283,7 +283,7 @@
 
                                 </div>`;
                                 $(`#product-list`).append(
-                                    productHtml{{ $loop->index }}); // Tambahkan produk ke daftar
+                                    productHtml); // Tambahkan produk ke daftar
                             });
                         } else {
                             $('#product-list').append(
