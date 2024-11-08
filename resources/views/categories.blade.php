@@ -235,11 +235,18 @@
                         <strong>${product.name}</strong>
                         <span>Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
                         <span>Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
-                        ${!isTokoOnline ? '<span class="text-red-500">(Toko Tutup)</span>' : '<span class="text-green-500">(Toko Buka)</span>'}
-                        <div class="flex">${starsHtml}<p>(${average_rating.toFixed(1)} / 5)</p></div>
+                        ${!isTokoOnline ?
+                         '<span class="text-red-500">(Toko Tutup)</span>'
+                          :
+                           '<span class="text-green-500">(Toko Buka)</span>'}
+
+                        <div class="flex">
+                        ${starsHtml}
+                        <p>(${average_rating.toFixed(1)} / 5)</p>
+                        </div>
                         <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
                         
-                        <a href="javascript:void(0)" class="cart-btn w-full h-[40px] bg-${isTokoOnline ? 'green' : 'red'}-100 text-${isTokoOnline ? 'green' : 'red'}-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear" 
+                        <a href="javascript:void(0)" class="cart-btn w-full h-[40px] bg-${isTokoOnline ? 'green' : 'red'}-500 text-${isTokoOnline ? 'green' : 'red'}-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear" 
                         data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" ${!isTokoOnline ? 'disabled' : ''}>
                             <i class="fas fa-${isTokoOnline ? 'shopping-bag' : 'ban'}"></i> ${isTokoOnline ? 'Tambah Ke Keranjang' : 'Toko Tutup'}
                         </a>
