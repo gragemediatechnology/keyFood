@@ -189,113 +189,95 @@
                 performSearch(); // Menampilkan semua produk
             });
 
-            // Fungsi performSearch
             function performSearch(query = '', category = '') {
-                $.ajax({
-                    url: "/categories/search",
-                    type: "GET",
-                    data: {
-                        'query': query,
-                        'category': category
-                    },
-                    success: function(data) {
-                        $('#product-list').empty(); // Kosongkan daftar produk sebelumnya
+    $.ajax({
+        url: "/categories/search",
+        type: "GET",
+        data: {
+            'query': query,
+            'category': category
+        },
+        success: function(data) {
+            $('#product-list').empty(); // Kosongkan daftar produk sebelumnya
 
-                        const products = data.data ||
-                        console.log(products);
-                        
-                    []; // Pastikan data yang diterima adalah array produk
-                        if (Array.isArray(products) && products.length > 0) {
-                            $.each(products, function(index, product) {
-                                // Ambil nilai rating dan rated_by
-                                var rating = product.rating || 0;
-                                console.log(product);
+            const products = data.data || [];
+            if (Array.isArray(products) && products.length > 0) {
+                $.each(products, function(index, product) {
+                    // Ambil nilai rating dan rated_by
+                    var rating = product.rating || 0;
+                    var rated_by = Array.isArray(product.rated_by) ? product.rated_by.length : product.rated_by || 1;
+                    var average_rating = rated_by > 0 ? rating / rated_by : 0;
+                    average_rating = parseFloat(average_rating.toFixed(1));
 
-                                var rated_by;
-                                if (typeof product.rated_by === 'string') {
-                                    try {
-                                        rated_by = JSON.parse(product.rated_by);
-                                        rated_by = Array.isArray(rated_by) ? rated_by.length :
-                                            rated_by;
-                                    } catch (e) {
-                                        rated_by = 1; // Default jika parsing gagal
-                                    }
-                                } else {
-                                    rated_by = product.rated_by || 1;
-                                }
+                    var fullStars = Math.floor(average_rating);
+                    var halfStar = average_rating - fullStars >= 0.5 ? 1 : 0;
+                    var emptyStars = 5 - (fullStars + halfStar);
 
-                                var average_rating = rated_by > 0 ? rating / rated_by : 0;
-                                average_rating = parseFloat(average_rating.toFixed(1));
+                    // Cek status toko
+                    var toko = product.toko;
+                    var isTokoOnline = toko ? toko.is_online : false;
 
-                                var fullStars = Math.floor(average_rating);
-                                var halfStar = average_rating - fullStars >= 0.5 ? 1 : 0;
-                                var emptyStars = 5 - (fullStars + halfStar);
-
-                                // Cek status toko
-                                var toko = product.toko;
-                                var isTokoOnline = toko ? toko.is_online :
-                                    false; // Cek apakah toko buka
-
-                                var starsHtml = '';
-
-                                // Bintang penuh
-                                for (let i = 0; i < fullStars; i++) {
-                                    starsHtml +=
-                                        `<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>`;
-                                }
-
-                                // Bintang setengah
-                                if (halfStar) {
-                                    starsHtml +=
-                                        `<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z"/></svg>`;
-                                }
-
-                                // Bintang kosong
-                                for (let i = 0; i < emptyStars; i++) {
-                                    starsHtml +=
-                                        `<svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>`;
-                                }
-
-                                // Buat elemen HTML produk
-                                let productHtml = `
-                                <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
-                                    <span hidden>${product.id}</span>
-                                    <span hidden>${product.store_id}</span>
-                                    <span hidden>${product.slug}</span>
-                                    <img alt="${product.name}" src="${product.photo}">
-                                    <strong>${product.name}</strong>
-                                    <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
-                                    <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}
-                                    </span>
-
-                                    ${!isTokoOnline ? '<span class="text-red-500">(Toko Tutup)</span>' : '<span class="text-green-500">(Toko Buka)</span>'}
-                                    <div class="flex">
-                                        ${starsHtml}
-                                        <p>(${average_rating.toFixed(1)} / 5)</p>
-                                    </div>
-                                    <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
-
-                                    ${!isTokoOnline ?
-                                    '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}"class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"disabled><i class="fas fa-ban"></i> Toko Tutup</a>'
-                                    :
-                                    '<a href="javascript:void(0)" data-product-id="{{ $product->id }}"data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"data-slug="{{ $product->slug }}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>'}
-
-
-                                </div>`;
-                                $(`#product-list`).append(
-                                    productHtml); // Tambahkan produk ke daftar
-                            });
-                        } else {
-                            $('#product-list').append(
-                                '<p class="text-gray-500">Produk Tidak Ada</p>'
-                                ); // Tampilkan pesan jika tidak ada produk
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log("Error: " + error); // Debugging jika terjadi kesalahan
+                    var starsHtml = '';
+                    for (let i = 0; i < fullStars; i++) {
+                        starsHtml += `<svg class="text-yellow-500 w-5 h-auto fill-current" ...></svg>`;
                     }
+                    if (halfStar) {
+                        starsHtml += `<svg class="text-yellow-500 w-5 h-auto fill-current" ...></svg>`;
+                    }
+                    for (let i = 0; i < emptyStars; i++) {
+                        starsHtml += `<svg class="text-gray-300 w-5 h-auto fill-current" ...></svg>`;
+                    }
+
+                    // Buat elemen HTML produk
+                    let productHtml = `
+                    <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
+                        <img alt="${product.name}" src="${product.photo}">
+                        <strong>${product.name}</strong>
+                        <span>Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+                        <span>Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                        ${!isTokoOnline ? '<span class="text-red-500">(Toko Tutup)</span>' : '<span class="text-green-500">(Toko Buka)</span>'}
+                        <div class="flex">${starsHtml}<p>(${average_rating.toFixed(1)} / 5)</p></div>
+                        <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                        
+                        <a href="javascript:void(0)" class="cart-btn w-full h-[40px] bg-${isTokoOnline ? 'green' : 'red'}-100 text-${isTokoOnline ? 'green' : 'red'}-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear" 
+                        data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" ${!isTokoOnline ? 'disabled' : ''}>
+                            <i class="fas fa-${isTokoOnline ? 'shopping-bag' : 'ban'}"></i> ${isTokoOnline ? 'Tambah Ke Keranjang' : 'Toko Tutup'}
+                        </a>
+                    </div>`;
+                    $('#product-list').append(productHtml); // Tambahkan produk ke daftar
                 });
+
+                // Event listener untuk tombol "Tambah ke Keranjang"
+                $(document).on('click', '.cart-btn', function(e) {
+                    e.preventDefault();
+                    if ($(this).is('[disabled]')) return; // Cek jika tombol dalam kondisi disable
+
+                    const productId = $(this).data('product-id');
+                    const storeId = $(this).data('store-id');
+                    const categoryId = $(this).data('category-id');
+                    const slug = $(this).data('slug');
+
+                    // Debugging: Tampilkan data produk yang akan ditambahkan ke keranjang
+                    console.log('Produk Ditambahkan ke Keranjang:', {
+                        productId,
+                        storeId,
+                        categoryId,
+                        slug
+                    });
+
+                    // Lakukan operasi untuk menambahkan ke keranjang
+                    // Contoh: $.post('/cart/add', { productId, storeId, categoryId, slug });
+                });
+            } else {
+                $('#product-list').append('<p class="text-gray-500">Produk Tidak Ada</p>');
             }
+        },
+        error: function(xhr, status, error) {
+            console.log("Error: " + error); // Debugging jika terjadi kesalahan
+        }
+    });
+}
+
         });
     </script>
 
