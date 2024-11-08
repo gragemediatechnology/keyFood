@@ -155,71 +155,71 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    const password = document.getElementById('floating_password');
-    const confirmPassword = document.getElementById('floating_password_confirmation');
-
-    function validatePassword() {
-        if (password.value !== confirmPassword.value) {
-            confirmPassword.setCustomValidity('Password harus sama');
-        } else {
-            confirmPassword.setCustomValidity('');
-        }
-    }
-
-    password.addEventListener('change', validatePassword);
-    confirmPassword.addEventListener('keyup', validatePassword);
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // Kirim data form menggunakan fetch API
-        fetch('/edit-profile/update', {
-            method: 'POST',
-            body: new FormData(form),
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: data.message,
-                    // showConfirmButton: false,
-                    confirmButtonColor: '#007bff'
-                    timer: 1500
-                }).then(() => {
-                    window.location.href = '/home';
-                });
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const password = document.getElementById('floating_password');
+        const confirmPassword = document.getElementById('floating_password_confirmation');
+    
+        function validatePassword() {
+            if (password.value !== confirmPassword.value) {
+                confirmPassword.setCustomValidity('Password harus sama');
             } else {
+                confirmPassword.setCustomValidity('');
+            }
+        }
+    
+        password.addEventListener('change', validatePassword);
+        confirmPassword.addEventListener('keyup', validatePassword);
+    
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            // Kirim data form menggunakan fetch API
+            fetch('/edit-profile/update', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        window.location.href = '/home';
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: data.message,
+                        confirmButtonColor: '#007bff' // Warna biru untuk tombol konfirmasi
+                    });
+    
+                    // Fokus ke field yang error
+                    if (data.field) {
+                        document.getElementById('floating_' + data.field).focus();
+                    }
+                }
+            })
+            .catch(error => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: data.message
-                    confirmButtonColor: '#007bff'
+                    text: 'Terjadi kesalahan saat memperbarui profil',
+                    confirmButtonColor: '#007bff' // Warna biru untuk tombol konfirmasi
                 });
-
-                // Fokus ke field yang error
-                if (data.field) {
-                    document.getElementById('floating_' + data.field).focus();
-                }
-            }
-        })
-        .catch(error => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Terjadi kesalahan saat memperbarui profil'
-                confirmButtonColor: '#007bff'
             });
         });
     });
-});
-</script>
+    </script>
+    
     
     
 </body>
