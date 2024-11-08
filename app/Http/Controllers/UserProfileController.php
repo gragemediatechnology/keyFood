@@ -32,37 +32,6 @@ class UserProfileController extends Controller
             'password.confirmed' => 'Password dan konfirmasi password harus sama.'
         ]);
 
-            // Cek apakah email  sudah digunakan oleh user lain
-        $existingUser = \App\Models\User::where(function ($query) use ($request) {
-            $query->where('email', $request->email);
-        })->where('id', '!=', Auth::id())->first();
-
-            // Cek apakah nomor telepon sudah digunakan oleh user lain
-        $existingUser2 = \App\Models\User::where(function ($query) use ($request) {
-            $query->where('phone', $request->email);
-        })->where('id', '!=', Auth::id())->first();
-    
-        if ($existingUser) {
-            // Kembalikan dengan SweetAlert jika email sudah digunakan
-            return redirect()->back()->with([
-                'alert' => [
-                    'type' => 'error',
-                    'title' => 'Perhatian!',
-                    'message' => 'Email telah digunakan. Silakan gunakan yang lain.'
-                ]
-            ]);
-        }
-        if ($existingUser2) {
-            // Kembalikan dengan SweetAlert jika nomor telepon sudah digunakan
-            return redirect()->back()->with([
-                'alert2' => [
-                    'type' => 'error',
-                    'title' => 'Perhatian!',
-                    'message' => ' Nomor telepon telah digunakan. Silakan gunakan yang lain.'
-                ]
-            ]);
-        }
-
         $user = Auth::user();
         $user->name = $request->input('name');
         $user->email = $request->input('email');

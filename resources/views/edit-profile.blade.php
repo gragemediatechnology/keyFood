@@ -150,7 +150,7 @@
     <script defer
         src="https://rawcdn.githack.com/gragemediatechnology/keyFood/e7944c0d2670c19afb8043149a034e05d5331b98/public/js/edit-p.js">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if(session('alert'))
         <script>
             Swal.fire({
@@ -160,18 +160,7 @@
                 confirmButtonText: 'OK'
             });
         </script>
-    @endif
-
-    @if(session('alert2'))
-        <script>
-            Swal.fire({
-                icon: '{{ session('alert.type') }}',
-                title: '{{ session('alert.title') }}',
-                text: '{{ session('alert.message') }}',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    @endif
+    @endif --}}
     
     
 </body>
