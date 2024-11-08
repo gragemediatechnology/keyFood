@@ -64,40 +64,36 @@ class UserProfileController extends Controller
 {
     $request->validate([
         'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255',
-        'phone' => 'nullable|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
+        'phone' => 'nullable|string|max:255|unique:users,phone,' . Auth::id(),
         'password' => 'nullable|string|min:8|confirmed',
         'first_name' => 'nullable|string|max:255',
         'last_name' => 'nullable|string|max:255',
         'location' => 'nullable|string|max:255',
     ], [
-        'password.confirmed' => 'Password dan konfirmasi password harus sama.'
+        'password.confirmed' => 'Password dan konfirmasi password harus sama.',
     ]);
 
-    // Cek apakah email atau nomor telepon sudah digunakan oleh user lain
-    $existingUser = \App\Models\User::where(function ($query) use ($request) {
-        $query->where('email', $request->email)
-              ->orWhere('phone', $request->phone);
-    })->where('id', '!=', Auth::id())->first();
+    $user = Auth::user();
 
-    if ($existingUser) {
-        // Kembalikan dengan SweetAlert jika email atau nomor telepon sudah digunakan
-        return redirect()->back()->with([
-            'alert' => [
-                'type' => 'error',
-                'title' => 'Perhatian!',
-                'message' => 'Email atau nomor telepon telah digunakan. Silakan gunakan yang lain.'
-            ]
-        ]);
+    // Cek apakah email atau nomor telepon sudah digunakan
+    $emailExists = User::where('email', $request->email)->where('id', '!=', $user->id)->exists();
+    $phoneExists = User::where('phone', $request->phone)->where('id', '!=', $user->id)->exists();
+
+    if ($emailExists) {
+        return redirect()->back()->with('error', 'Email telah digunakan');
     }
 
-    // Update user
-    $user = Auth::user();
+    if ($phoneExists) {
+        return redirect()->back()->with('error', 'Nomor telepon telah digunakan');
+    }
+
+    // Update data user
     $user->name = $request->input('name');
     $user->email = $request->input('email');
-    $user->phone = $request->input('phone');
     $user->first_name = $request->input('first_name');
     $user->last_name = $request->input('last_name');
+    $user->phone = $request->input('phone');
     $user->location = $request->input('location');
 
     if ($request->filled('password')) {
@@ -113,14 +109,10 @@ class UserProfileController extends Controller
 
     $user->save();
 
-    return redirect('/home')->with([
-        'alert' => [
-            'type' => 'success',
-            'title' => 'Berhasil!',
-            'message' => 'Profil berhasil diperbarui.'
-        ]
-    ]);
+    return redirect('/home')->with('success', 'Profil berhasil diperbarui.');
 }
+
+
 
 
     // public function destroy2()
