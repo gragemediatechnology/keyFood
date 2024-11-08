@@ -140,7 +140,7 @@
                                                     <div class="user-info-s">
                                                         <div class="user-name-s">${store.nama_toko}</div>
                                                         <div class="user-description-s">${store.alamat_toko}</div>
-                                                        <div class="user-description-s">Waktu Oprasional Toko : ${store.waktu_buka } -  ${store.waktu_tutup}</div>
+                                                        <div class="user-description-s">Waktu Oprasional Toko : ${store.waktu_buka  -  store.waktu_tutup ? store.waktu_buka  -  store.waktu_tutup : '-'}</div>
                                                         ${store.is_online ? '<p class="text-green-500">Buka</p>' : '<p class="text-red-500">Tutup</p>' }
                                                     </div>
                                                 </div>
