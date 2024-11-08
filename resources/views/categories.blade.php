@@ -217,8 +217,6 @@
                                 var toko = product.toko;
                                 var isTokoOnline = toko ? toko.is_online : false;
 
-                                var starsHtml = '';
-
                                 // Bintang penuh
                                 for (let i = 0; i < fullStars; i++) {
                                     starsHtml +=
