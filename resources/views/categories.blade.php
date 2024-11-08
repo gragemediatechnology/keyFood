@@ -43,6 +43,7 @@
             <div class="product-heading">
                 <h3>Daftar Produk</h3>
             </div>
+            <div id="product-list" class="product-container">
             @foreach ($products as $product)
             <div id="product-list{{ $loop->index }}" class="product-container">
                     @php
@@ -140,7 +141,8 @@
                         @endif
                     </div>
                 </div>
-                    @endforeach
+                @endforeach
+            </div>
 
             <script>
                 function showTokoTutupAlert(namaToko) {
