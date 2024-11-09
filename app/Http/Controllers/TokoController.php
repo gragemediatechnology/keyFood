@@ -110,10 +110,9 @@ class TokoController extends Controller
             }
 
             // Simpan gambar baru di public/store_image
-            $imageName = time() . '_' . $image->getClientOriginalName(); // Tambahkan timestamp
-            $image->move(public_path('store_image'), $imageName);
-            $toko->foto_profile_toko = $imageName;
-
+            $image = $request->file('foto_profile_toko');
+            $imagePath = $image->move(public_path('store_image'), $image->getClientOriginalName());
+            $toko->foto_profile_toko = $image->getClientOriginalName();
         }
 
         // Simpan perubahan
