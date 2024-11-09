@@ -74,48 +74,16 @@ class RoleRequestController extends Controller
             // Cek apakah toko sudah ada, jika belum buat toko baru
             $store = Toko::where('id_seller', $user->id)->first();
             
-            // if (!$store) {
-            //     // Buat toko baru
-            //     $store = new Toko();
-            //     $store->id_seller = $user->id;
-            //     $store->nama_toko = 'Nama Toko Baru'; // Ganti sesuai kebutuhan
-            //     $store->alamat_toko = 'Alamat Toko'; // Ganti sesuai kebutuhan
-            //     $store->foto_profile_toko = 'markets.png'; // Ganti sesuai kebutuhan
-            //     $store->is_online = 0; // Set default offline
-            //     $store->save();
-            // }
-
             if (!$store) {
                 // Buat toko baru
                 $store = new Toko();
                 $store->id_seller = $user->id;
                 $store->nama_toko = 'Nama Toko Baru'; // Ganti sesuai kebutuhan
                 $store->alamat_toko = 'Alamat Toko'; // Ganti sesuai kebutuhan
-            
-                // Set nama file untuk gambar profil toko dan direktori tujuan
-                $defaultImage = 'markets.webp';
-                $targetDirectory = 'store_image'; // Direktori untuk menyimpan gambar profil toko
-            
-                // Cek apakah direktori target ada, jika tidak, buat direktori
-                if (!file_exists(public_path($targetDirectory))) {
-                    mkdir(public_path($targetDirectory), 0755, true);
-                }
-            
-                // Buat nama file unik dengan menambahkan timestamp atau random string
-                $uniqueSuffix = time() . '_' . uniqid(); // Bisa gunakan uniqid() atau Str::random(10)
-                $newFileName = pathinfo($defaultImage, PATHINFO_FILENAME) . "_{$uniqueSuffix}." . pathinfo($defaultImage, PATHINFO_EXTENSION);
-            
-                // Salin file default ke direktori target dengan nama unik
-                copy(public_path("img/{$defaultImage}"), public_path("{$targetDirectory}{$newFileName}"));
-            
-                // Set path gambar profil toko di database
-                $store->foto_profile_toko = "{$targetDirectory}{$newFileName}";
-            
-                // Set status toko offline secara default
-                $store->is_online = 0;
+                $store->foto_profile_toko = 'markets.png'; // Ganti sesuai kebutuhan
+                $store->is_online = 0; // Set default offline
                 $store->save();
             }
-            
 
             // Redirect dengan pesan sukses
             return redirect()->back()->with('success', 'Role seller telah diterima dan akun toko telah dibuat.');
