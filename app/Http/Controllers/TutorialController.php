@@ -9,7 +9,7 @@ class TutorialController extends Controller
     public function index()
     {
         // Path ke folder 'public/vidio'
-        $videoDirectory = public_path('vidio');
+        $videoDirectory = public_html('vidio');
 
         // Ambil semua file video dari folder
         $videos = File::files($videoDirectory);
