@@ -66,12 +66,12 @@ class CheckoutController extends Controller
             // Kirim pesan ke pembeli dan penjual menggunakan API
             Http::withoutVerifying()->post('https://wakbk.grageweb.online/send-message', [
                 'number' => $request['checkout-phone'],
-                'message' => "Yth. Pelanggan KeyFood,\n\nIni adalah konfirmasi pesanan Anda. Anda telah membeli:\n\n* *" . $product['name'] . " sebanyak " . $product['quantity'] . " buah, dari toko " . $toko['nama_toko'] . "*.\n\nTotal pembayaran: Rp " . number_format($product['quantity'] * $product['price']) . ".\nSilahkan hubungi penjual: " . $toko['user']['phone'] .  ".\n\nTerima kasih atas kepercayaan Anda. Tim KeyFood akan segera memproses pesanan Anda.\n\nHormat kami,\nTim KeyFood",
+                'message' => "Yth. Pelanggan Teras KBK,\n\nIni adalah konfirmasi pesanan Anda. Anda telah membeli:\n\n* *" . $product['name'] . " sebanyak " . $product['quantity'] . " buah, dari toko " . $toko['nama_toko'] . "*.\n\nTotal pembayaran: Rp " . number_format($product['quantity'] * $product['price']) . ".\nSilahkan hubungi penjual: " . $toko['user']['phone'] .  ".\n\nTerima kasih atas kepercayaan Anda. Tim Teras KBK akan segera memproses pesanan Anda.\n\nHormat kami,\nTim Teras KBK",
             ]);
 
             Http::withoutVerifying()->post('https://wakbk.grageweb.online/send-message', [
                 'number' => $toko['user']['phone'],
-                'message' => "Yth. Penjual,\n\nKami informasikan bahwa produk Anda, *" . $product['name'] . "* (x" . $product['quantity'] . "), telah dipesan oleh *" . $request['checkout-name'] . "*. \n\nDetail pesanan:\n* *Jumlah:* " . $product['quantity'] . " buah/pcs\n* *Total harga:* Rp " . $product['quantity'] * $product['price'] . "\n* *Alamat pengiriman:* " . $request['checkout-address'] . "\n* *Nomor telepon pembeli:* " . $request['checkout-phone'] . "\n\nMohon segera proses pesanan ini dan informasikan kepada pembeli mengenai status pengiriman. Terima kasih atas kerjasama Anda.\n\nHormat kami,\nTim KeyFood",
+                'message' => "Yth. Penjual Teras KBK,\n\nKami informasikan bahwa produk Anda, *" . $product['name'] . "* (x" . $product['quantity'] . "), telah dipesan oleh *" . $request['checkout-name'] . "*. \n\nDetail pesanan:\n* *Jumlah:* " . $product['quantity'] . " buah/pcs\n* *Total harga:* Rp " . $product['quantity'] * $product['price'] . "\n* *Alamat pengiriman:* " . $request['checkout-address'] . "\n* *Nomor telepon pembeli:* " . $request['checkout-phone'] . "\n\nMohon segera proses pesanan ini dan informasikan kepada pembeli mengenai status pengiriman. Terima kasih atas kerjasama Anda.\n\nHormat kami,\nTim Teras KBK",
             ]);
 
             // Validasi data produk

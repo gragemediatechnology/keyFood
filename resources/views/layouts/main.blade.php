@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description"
-        content="LapakKBK - E-commerce terbaik di Keandra! Temukan berbagai produk berkualitas dengan harga terjangkau, penawaran spesial, dan layanan pengiriman cepat. Shop now!">
+        content="Teras KBK - E-commerce terbaik di Keandra! Temukan berbagai produk berkualitas dengan harga terjangkau, penawaran spesial, dan layanan pengiriman cepat. Shop now!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -33,7 +33,7 @@
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/898403e73ffec5a26139d452a6d2ffa66d178334/public/css/nav.css">
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
-    <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
+    <title>Teras  KBK || {{ Route::currentRouteName() }} </title>
     {{-- ini diatas, disebelah dikasih title statis --}}
 
     <!-- SweetAlert CSS -->
@@ -233,7 +233,7 @@
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     // Redirect to the admin page when "Kembali ke Halaman Admin" is clicked
                     window.location.href =
-                        'https://lapakkbk.online/admin/stores'; // Replace with the actual admin page URL
+                        'https://teraskabeka.com/admin/stores'; // Replace with the actual admin page URL
                 }
             });
         @endif

@@ -6,7 +6,7 @@
                     <a href="/home" class="flex items-center">
                         <span
                             class="self-center text-2xl font-semibold whitespace-nowrap text-gray-500">{{ $company->company_name }}</span>
-                        <img src="https://lapakkbk.online/{{ $company->logo }}" class="h-8 me-2" alt="KeyFood Logo" />
+                        <img src="https://teraskabeka.com/{{ $company->logo }}" class="h-8 me-2" alt="KeyFood Logo" />
                     </a>
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
@@ -21,7 +21,7 @@
                                 Admin</a>
                         </li> --}}
                         <li class="mb-4">
-                            <a href="https://wa.me/6289661110584?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20keyFood">Chat
+                            <a href="https://wa.me/6285182629897?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20Teras KBK">Chat
                                 Admin</a>
                         </li>
 
@@ -37,7 +37,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Lapak KBK</h2>
+                    <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Teras KBK</h2>
                     <ul class="text-gray-500 font-medium">
                         <li class="mb-4 break-words">
                             <a href="https://maps.app.goo.gl/jPYA3x3XgB3pXWSYA"

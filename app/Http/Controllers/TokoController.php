@@ -98,22 +98,22 @@ class TokoController extends Controller
         $toko->alamat_toko = $request->input('alamat_toko');
         $toko->deskripsi_toko = $request->input('deskripsi_toko');
 
-        // Jika ada file foto yang di-upload, proses penyimpanan
         if ($request->hasFile('foto_profile_toko')) {
             // Hapus gambar lama jika ada
             if ($toko->foto_profile_toko) {
-                // Hapus gambar lama dari public/store_image
                 $oldImagePath = public_path('store_image/' . $toko->foto_profile_toko);
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath); // Hapus file jika ada
                 }
             }
-
+        
             // Simpan gambar baru di public/store_image
             $image = $request->file('foto_profile_toko');
-            $imagePath = $image->move(public_path('store_image'), $image->getClientOriginalName());
-            $toko->foto_profile_toko = $image->getClientOriginalName();
+            $imageName = time() . '_' . $image->getClientOriginalName(); // Buat nama file unik
+            $image->move(public_path('store_image'), $imageName);
+            $toko->foto_profile_toko = $imageName;
         }
+        
 
         // Simpan perubahan
         $toko->save();

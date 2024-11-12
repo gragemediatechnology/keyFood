@@ -17,8 +17,43 @@ class UserProfileController extends Controller
         ]);
     }
 
-    public function update(Request $request)
-    {
+
+
+public function update(Request $request)
+{
+    try {
+        // Validasi email dan phone yang unik
+        $user = Auth::user();
+        
+        // Cek email
+        $existingEmail = User::where('email', $request->email)
+            ->where('id', '!=', $user->id)
+            ->first();
+            
+        if ($existingEmail) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Email sudah digunakan. Silakan gunakan email lain.',
+                'field' => 'email'
+            ], 422);
+        }
+        
+        // Cek nomor telepon
+        if ($request->phone) {
+            $existingPhone = User::where('phone', $request->phone)
+                ->where('id', '!=', $user->id)
+                ->first();
+                
+            if ($existingPhone) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Nomor telepon sudah digunakan atau masih memakai nomor default 0000000000. Silakan gunakan nomor lain.',
+                    'field' => 'phone'
+                ], 422);
+            }
+        }
+
+        // Sisa kode validasi yang sudah ada
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::id(),
@@ -31,7 +66,7 @@ class UserProfileController extends Controller
             'password.confirmed' => 'Password dan konfirmasi password harus sama.'
         ]);
 
-        $user = Auth::user();
+        // Sisa kode update yang sudah ada
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->first_name = $request->input('first_name');
@@ -46,7 +81,7 @@ class UserProfileController extends Controller
         if ($request->hasFile('img')) {
             $file = $request->file('img');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('img'), $filename);
+            $file->move(base_path('public_html/img'), $filename);
             $user->img = 'img/' . $filename;
         } elseif (!$request->hasFile('img') && $user->img) {
             $user->img = $user->img;
@@ -56,37 +91,38 @@ class UserProfileController extends Controller
 
         $user->save();
 
-        return redirect('/home')->with('success', 'Profil berhasil diperbarui.');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Profil berhasil diperbarui'
+        ]);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Terjadi kesalahan saat memperbarui profil'
+        ], 500);
     }
-
-    // public function destroy2()
-    // {
-    //     $user = Auth::user();
-    //     Auth::logout();
-    //     $user->delete();
-
-    //     return redirect('/')->with('success', 'Account deleted successfully.');
-    // }
+}
     
-    public function destroy($id)
-    {
-        $user = User::findOrFail($id);
+    public function destroy()
+{
+    $user = Auth::user();
 
-        // Check if the user has the 'seller' role
-        if ($user->hasRole('seller')) {
-            // Reset roles to no roles or a default role
-            $user->syncRoles([]); // Atur ke kosong atau bisa assign role default jika ada
+    // Check if the user has the 'seller' role
+    if ($user->hasRole('seller')) {
+        // Reset roles to no roles or a default role
+        $user->syncRoles([]); // Atur ke kosong atau bisa assign role default jika ada
 
-            // Optionally, delete the user's related products and store (handled in the model)
-            $user->products()->delete();
-            $user->store()->delete();
-        }
-
-        // Delete the user
-        $user = Auth::user();
-        Auth::logout();
-        $user->delete();
-
-        return redirect('/')->with('success', 'Account deleted successfully.');
+        // Optionally, delete the user's related products and store (handled in the model)
+        $user->products()->delete();
+        $user->store()->delete();
     }
+
+    // Logout and delete the user
+    Auth::logout();
+    $user->delete();
+
+    return redirect('/')->with('success', 'Account deleted successfully.');
+}
+
 }

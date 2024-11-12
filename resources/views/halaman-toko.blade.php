@@ -11,7 +11,7 @@
         <div class="store-header">
             @foreach ($storeDetails as $detail)
                 <div class="store-info">
-                    <img src="{{ $detail->foto_profile_toko ? 'https://lapakkbk.online/store_image/' . $detail->foto_profile_toko : 'https://lapakkbk.online/img/markets.webp' }}"
+                    <img src="{{ $detail->foto_profile_toko ? 'https://teraskabeka.com/store_image/' . $detail->foto_profile_toko : 'https://teraskabeka.com/img/markets.webp' }}"
                         alt="logo toko" class="store-logo">
                     <div class="store-text">
                         <h1>{{ $detail->nama_toko }}</h1>
@@ -83,7 +83,7 @@
                             <span hidden>{{ $product->id }}</span>
                             <span hidden>{{ $product->store_id }}</span>
                             <span hidden>{{ $product->slug }}</span>
-                            <img alt="{{ $product->name }}" src="https://lapakkbk.online/{{ $product->photo }}">
+                            <img alt="{{ $product->name }}" src="https://teraskabeka.com/{{ $product->photo }}">
                             <strong>{{ $product->name }}</strong>
                             {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
                             <span class="quantity">Kategori:
@@ -175,7 +175,7 @@
                             <span hidden>{{ $product->id }}</span>
                             <span hidden>{{ $product->store_id }}</span>
                             <span hidden>{{ $product->slug }}</span>
-                            <img alt="{{ $product->name }}" src="https://lapakkbk.online/{{ $product->photo }}">
+                            <img alt="{{ $product->name }}" src="https://teraskabeka.com/{{ $product->photo }}">
                             <strong>{{ $product->name }}</strong>
                             {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
                             <span class="quantity">Kategori:
@@ -249,7 +249,7 @@
                             <span hidden>{{ $product->id }}</span>
                             <span hidden>{{ $product->store_id }}</span>
                             <span hidden>{{ $product->slug }}</span>
-                            <img alt="{{ $product->name }}" src="https://lapakkbk.online/{{ $product->photo }}">
+                            <img alt="{{ $product->name }}" src="https://teraskabeka.com/{{ $product->photo }}">
                             <strong>{{ $product->name }}</strong>
                             {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
                             <span class="quantity">Kategori:

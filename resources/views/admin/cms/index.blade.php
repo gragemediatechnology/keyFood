@@ -47,7 +47,7 @@
                                         <!-- Avatar dengan bayangan -->
                                         <div class="relative w-8 h-8 mr-3 rounded-full"> <!-- Menghapus class hidden -->
                                             <img class="object-cover w-full h-full rounded-full"
-                                                src="https://lapakkbk.online/{{ $company->gambar_home_1 }}"
+                                                src="https://teraskabeka.com/{{ $company->gambar_home_1 }}"
                                                 alt="Gambar Home 1" loading="lazy" />
                                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                             </div>
@@ -59,7 +59,7 @@
                                     <div class="flex items-center text-sm">
                                         <div class="relative w-8 h-8 mr-3 rounded-full"> <!-- Menghapus class hidden -->
                                             <img class="object-cover w-full h-full rounded-full"
-                                                src="https://lapakkbk.online/{{ $company->gambar_home_2 }}"
+                                                src="https://teraskabeka.com/{{ $company->gambar_home_2 }}"
                                                 alt="Gambar Home 2" loading="lazy" />
                                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                             </div>
@@ -71,7 +71,7 @@
                                     <div class="flex items-center text-sm">
                                         <div class="relative w-8 h-8 mr-3 rounded-full"> <!-- Menghapus class hidden -->
                                             <img class="object-cover w-full h-full rounded-full"
-                                                src="https://lapakkbk.online/{{ $company->gambar_home_3 }}"
+                                                src="https://teraskabeka.com/{{ $company->gambar_home_3 }}"
                                                 alt="Gambar Home 3" loading="lazy" />
                                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                             </div>
@@ -83,7 +83,7 @@
                                     <div class="flex items-center text-sm">
                                         <div class="relative w-8 h-8 mr-3 rounded-full"> <!-- Menghapus class hidden -->
                                             <img class="object-cover w-full h-full rounded-full"
-                                                src="https://lapakkbk.online/{{ $company->logo }}"
+                                                src="https://teraskabeka.com/{{ $company->logo }}"
                                                 alt="Logo Perusahaan" loading="lazy" />
                                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                             </div>

@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'asset_url' => env('APP_URL', 'https://lapakkbk.online'),
-    'app_url' => env('APP_URL', 'https://lapakkbk.online'),
+    'asset_url' => env('APP_URL', 'https://teraskabeka.com'),
+    'app_url' => env('APP_URL', 'https://teraskabeka.com'),
     'class_namespace' => 'App\\Livewire',
 
     /*

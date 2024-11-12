@@ -22,7 +22,7 @@ class TutorialController extends Controller
             ];
         });
 
-        // Kirim data ke view blade
+       
         return view('tutorial', compact('videos'));
     }
 }

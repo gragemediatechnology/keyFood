@@ -82,7 +82,7 @@
                         <p><strong>ID:</strong> {{ $user->id }}</p>
                         {{-- <a href="{{ route('live-chat', $user) }}"> --}}
                         <a href="/live-chat/{{ $user->id }}">
-                            <img src="{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture">
+                            <img src="https://teraskabeka.com/{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture">
                         </a>
                         <h2>{{ $user->name }}</h2>
                         <p><strong>Role:</strong>
@@ -122,14 +122,13 @@
                         </button>
                         <div id="dropdown1" class="dropdown-menu">
                             <ul>
-                                <li>
-                                    {{-- <a href="{{ route('admin.users.edit', $user) }}" --}}
+                                {{-- <li>
                                     <a href="/admin/users/edit/{{ $user->id }}"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                </li>
+                                </li> --}}
                                 <li>
                                     {{-- <form method="POST" action="{{ route('admin.users.destroy', $user) }}" --}}
-                                    <form method="POST" action="/admin/users/destroy/{{ $user }}"
+                                    <form method="POST" action="/admin/users/destroy/{{ $user->id }}"
                                         onsubmit="return confirmDelete()">
                                         @csrf
                                         @method('DELETE')
@@ -169,7 +168,7 @@
                                                 <!-- Avatar with inset shadow -->
                                                 <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                     <img class="object-cover w-full h-full rounded-full"
-                                                        src="{{ ($user->img ?? 'img/client-1.jpg') }}" alt="user" loading="lazy">
+                                                        src="https://teraskabeka.com/{{ ($user->img ?? 'img/client-1.jpg') }}" alt="user" loading="lazy">
 
                                                 </div>
                                                 <div>
@@ -213,7 +212,7 @@
                                         <td class="px-4 py-3 text-sm">
                                             <div class="flex gap-2">
                                                 {{-- <a href="{{ route('admin.users.edit', $user) }}" --}}
-                                                <a href="/admin/users/edit/{{ $user->id }}"
+                                                {{-- <a href="/admin/users/edit/{{ $user->id }}"
                                                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray">
                                                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
                                                         viewBox="0 0 20 20">
@@ -222,7 +221,7 @@
                                                         </path>
                                                     </svg>
                                                     Edit
-                                                </a>
+                                                </a> --}}
                                                 {{-- <form method="POST" action="{{ route('admin.users.destroy', $user) }}" --}}
                                                 <form method="POST" action="/admin/users/destroy/{{ $user->id }}"
                                                     onsubmit="return confirmDelete()">

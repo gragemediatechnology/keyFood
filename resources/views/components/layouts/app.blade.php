@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg">
-    <title>Lapak KBK || {{ Route::currentRouteName() }} </title>
+    <title>Teras KBK || {{ Route::currentRouteName() }} </title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -40,11 +40,11 @@
         </main>
     </div>
     <span class="justify-center text-center">
-        <p class="mx-auto">TIM LAPAK KBK
+        <p class="mx-auto">TIM Teras KBK
         </p>
     </span>
 
-    <script src="https://lapakkbk.online/livewire/livewire.js"></script>
+    <script src="https://teraskabeka.com/livewire/livewire.js"></script>
     @livewireScripts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

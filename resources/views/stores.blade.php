@@ -21,10 +21,10 @@
                     </div>
                     <input type="search" id="default-search"
                         class="block w-full p-4 ps-10 text-sm text-black border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-100 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Cari Toko..." required />
-                    <a href="/stores"><button
-                    class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Semua</button></a>
-               
+                        placeholder="Cari Toko..." />
+
+                    <button onclick="clearSearch()"
+                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">X</button>
                 </div>
             </form>
         </div>
@@ -38,12 +38,11 @@
                         <div class="container-s" id="visit">
                             <div class="user-s">
                                 <img class="user-icon-s"
-                                    src="{{ $store->foto_profile_toko ? 'store_image/' . $store->foto_profile_toko : 'img/markets.webp' }}" />
+                                    src="https://teraskabeka.com/store_image/{{ $store->foto_profile_toko ?  $store->foto_profile_toko : 'markets.png' }}" />
                                 <div class="user-info-s">
                                     <div class="user-name-s">{{ $store->nama_toko }}</div>
                                     <div class="user-description-s">Alamat : {{ $store->alamat_toko }}</div>
-                                    <div class="user-description-s">Waktu Oprasional Toko : {{ $store->waktu_buka }} -
-                                        {{ $store->waktu_tutup }}</div>
+                                    <div class="user-description-s">Waktu Oprasional Toko : {{ $store->waktu_buka }} - {{ $store->waktu_tutup }}</div>
                                     @if ($store->is_online)
                                         <p class="text-green-500">Buka</p>
                                     @else
@@ -87,6 +86,11 @@
             }
         </style>
         <script>
+            function clearSearch() {
+                document.getElementById("default-search").value = "";
+            }
+
+
             const toggleButton = document.getElementById('toggleButton');
             const formSection = document.getElementById('formSection');
             const cancelButton = document.getElementById('cancelButton');
@@ -124,16 +128,19 @@
                             if (response.data.length > 0) {
                                 response.data.forEach(function(store) {
                                     resultsContainer.append(`
-                                    <form action="/detailed-store" method="POST">
-                                        @csrf
-                                        <input type="hidden" value="${store.nama_toko}" name="nama_toko">
+                                    <form action="/detailed-store" method="GET">
+                                    <input type="hidden" value="${store.id_toko}" name="id">
                                         <button type="submit">
                                             <div class="container-s" id="visit">
                                                 <div class="user-s">
-                                                    <img src="store_image/${store.foto_profile_toko}" class="user-icon-s">
+                                                 <img class="user-icon-s"
+                                                    src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'}" />
+                                                    
                                                     <div class="user-info-s">
                                                         <div class="user-name-s">${store.nama_toko}</div>
                                                         <div class="user-description-s">${store.alamat_toko}</div>
+                                                        <div class="user-description-s">Waktu Oprasional Toko : ${store.waktu_buka  -  store.waktu_tutup ? store.waktu_buka  -  store.waktu_tutup : '-'}</div>
+                                                        ${store.is_online ? '<p class="text-green-500">Buka</p>' : '<p class="text-red-500">Tutup</p>' }
                                                     </div>
                                                 </div>
                                             </div>
