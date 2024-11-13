@@ -19,16 +19,16 @@
 
     @yield('link')
 
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/clock.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/profile.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/style.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/load.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/app.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/clock.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/profile.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/home.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/style.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/load.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/app.css">
 
     <link rel="stylesheet"
-        href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/home-container.css">
-    <link rel="stylesheet" href="https://raw.githack.com/gragemediatechnology/keyFood/main/public/css/cart.css">
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/home-container.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/cart.css">
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/898403e73ffec5a26139d452a6d2ffa66d178334/public/css/nav.css">
 
@@ -95,12 +95,12 @@
 
     @yield('script')
 
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/clock.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/cart.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/load.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/home-container.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/nav.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/clock.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/cart.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/home.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/load.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/home-container.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/nav.js"></script>
 
 
     @if (Auth::check())
