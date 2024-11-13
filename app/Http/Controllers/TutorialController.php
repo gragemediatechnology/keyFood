@@ -13,6 +13,8 @@ class TutorialController extends Controller
 
         // Ambil semua file video dari folder
         $videos = File::files($videoDirectory);
+        dd($videoDirectory);
+
 
         // Ubah menjadi Collection agar bisa menggunakan fungsi seperti map
         $videos = collect($videos)->map(function ($file) {
