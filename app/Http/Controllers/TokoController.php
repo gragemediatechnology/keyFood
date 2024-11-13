@@ -27,7 +27,7 @@ class TokoController extends Controller
         $request->validate([
             'nama_toko' => 'required|string|max:255',
             'alamat_toko' => 'required|string|max:255',
-            'foto_profile_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto_profile_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
         $store = new Toko();
