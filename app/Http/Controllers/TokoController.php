@@ -101,7 +101,7 @@ class TokoController extends Controller
         if ($request->hasFile('foto_profile_toko')) {
             // Hapus gambar lama jika ada
             if ($toko->foto_profile_toko) {
-                $oldImagePath = public_path('store_image/' . $toko->foto_profile_toko);
+                $oldImagePath = base_path('public_html/store_image/' . $toko->foto_profile_toko);
                 if (file_exists($oldImagePath)) {
                     unlink($oldImagePath); // Hapus file jika ada
                 }
@@ -110,7 +110,7 @@ class TokoController extends Controller
             // Simpan gambar baru di public/store_image
             $image = $request->file('foto_profile_toko');
             $imageName = time() . '_' . $image->getClientOriginalName(); // Buat nama file unik
-            $image->move(public_path('store_image'), $imageName);
+            $image->move(base_path('public_html/store_image'), $imageName);
             $toko->foto_profile_toko = $imageName;
         }
         
