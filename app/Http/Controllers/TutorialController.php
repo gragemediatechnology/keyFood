@@ -33,7 +33,7 @@ class TutorialController extends Controller
     {
         // Path ke folder 'storage/app/public/vidio'
         // $videoDirectory = storage_path('app/public/vidio');
-        $videoDirectory = base_path('vidio/');
+        $videoDirectory = base_path('public_html/vidio/');
         // $videoDirectory = url('/vidio/tutorial_mengajukan_permintaan_sebagai_penjual.mp4');
         // $videoDirectory = url('/vidio');
 
@@ -43,7 +43,7 @@ class TutorialController extends Controller
         // }
 
         // Ambil semua file video dari folder
-        dd($videoDirectory);
+        // dd($videoDirectory);
         $videos = File::files($videoDirectory);
         // Ubah menjadi Collection agar bisa menggunakan fungsi seperti map
         $videos = collect($videos)->map(function ($file) {
