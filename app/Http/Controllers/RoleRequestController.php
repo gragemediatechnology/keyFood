@@ -93,7 +93,7 @@ class RoleRequestController extends Controller
                 File::copy($defaultImagePath, $newImagePath);
             
                 // Set path foto_profile_toko ke nama baru untuk disimpan di database
-                $store->foto_profile_toko = 'store_image/' . $uniqueFilename;
+                $store->foto_profile_toko = $uniqueFilename;
                 $store->is_online = 0; // Set default offline
                 $store->save();
             }
