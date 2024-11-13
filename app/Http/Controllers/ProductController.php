@@ -73,7 +73,7 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             if ($request->hasFile('photo')) {
-                $photoPath = $request->file('photo')->move(public_path('products_photo'), $request->file('photo')->getClientOriginalName());
+                $photoPath = $request->file('photo')->move(base_path('public_html/products_photo'), $request->file('photo')->getClientOriginalName());
                 $validate['photo'] = 'products_photo/' . $request->file('photo')->getClientOriginalName();
             }
             $validate['slug'] = Str::slug($request->name);
