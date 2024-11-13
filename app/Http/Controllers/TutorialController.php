@@ -32,7 +32,8 @@ class TutorialController extends Controller
     public function index()
     {
         // Path ke folder 'storage/app/public/vidio'
-        $videoDirectory = storage_path('app/public/vidio');
+        // $videoDirectory = storage_path('app/public/vidio');
+        $videoDirectory = public_path('vidio/');
 
         // Cek apakah folder ada
         if (!File::exists($videoDirectory)) {
@@ -46,7 +47,7 @@ class TutorialController extends Controller
         $videos = collect($videos)->map(function ($file) {
             return [
                 'filename' => $file->getFilename(),
-                'path' => asset('storage/vidio/' . $file->getFilename())
+                'path' => public_path('vidio/' . $file->getFilename())
             ];
         });
 
