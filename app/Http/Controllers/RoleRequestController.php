@@ -86,7 +86,7 @@ class RoleRequestController extends Controller
             
                 // Path file default dan path tujuan di dalam public_html/store_image
                 $defaultImagePath = base_path('public_html/store_image/markets.png');
-                $uniqueFilename = uniqid() . '_markets.png';
+                $uniqueFilename = time() . '_' . 'markets.png';
                 $newImagePath = base_path('public_html/store_image/' . $uniqueFilename);
             
                 // Copy file default ke lokasi baru dengan nama unik
