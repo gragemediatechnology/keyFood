@@ -27,7 +27,7 @@
                 {{-- Foto yang Ada --}}
                 <div>
                     <label class="text-white dark:text-gray-200" for="foto_profile_toko">Foto yang Ada</label>
-                    <img src="{{ asset('store_image/' . $toko->foto_profile_toko) }}" class="h-[100px] w-auto mt-2" alt="{{ $toko->nama_toko }}">
+                    <img src="{{ asset($toko->foto_profile_toko) }}" class="h-[100px] w-auto mt-2" alt="{{ $toko->nama_toko }}">
                     <input id="foto_profile_toko" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" type="file" name="foto_profile_toko" />
                     @error('foto_profile_toko')
                         <div class="text-red-500 mt-2">{{ $message }}</div>
