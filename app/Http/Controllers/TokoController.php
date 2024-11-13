@@ -27,7 +27,7 @@ class TokoController extends Controller
         $request->validate([
             'nama_toko' => 'required|string|max:255',
             'alamat_toko' => 'required|string|max:255',
-            'foto_profile_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'foto_profile_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $store = new Toko();
@@ -42,12 +42,12 @@ class TokoController extends Controller
         if ($request->hasFile('foto_profile_toko')) {
             $image = $request->file('foto_profile_toko');
 
-            // Simpan gambar di folder 'public/img' dalam storage
-            $imagePath = $image->store('public_html/products_photo');
-            // $imagePath = $image->move(base_path('public_html/products_photo'));
+            // Simpan gambar di folder 'public/store_image' menggunakan base_path
+            $imageName = time() . '_' . $image->getClientOriginalName(); // Buat nama file unik
+            $image->move(base_path('public_html/store_image'), $imageName);
 
             // Simpan hanya nama file, bukan seluruh path
-            $store->foto_profile_toko = basename($imagePath);
+            $store->foto_profile_toko = $imageName;
         }
 
 
