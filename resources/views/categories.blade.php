@@ -251,7 +251,7 @@
                             <i class="fas fa-${isTokoOnline ? 'shopping-bag' : 'ban'}"></i> ${isTokoOnline ? 'Tambah Ke Keranjang' : 'Toko Tutup'}
                         </a>
 
-                       
+
                     </div>`;
                     $('#product-list').append(productHtml); // Tambahkan produk ke daftar
                 });
@@ -291,5 +291,5 @@
     </script>
 
     @section('script')
-        <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
+        <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js"></script>
     @endsection

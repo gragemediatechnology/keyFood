@@ -288,6 +288,6 @@
 @endsection
 
 @section('script')
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/product.js"></script>
-    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/categories.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/product.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js"></script>
 @endsection
