@@ -36,9 +36,9 @@ class TutorialController extends Controller
         $videoDirectory = public_path('vidio/Screen Recording 2024-09-05 111102.mp4');
 
         // Cek apakah folder ada
-        if (!File::exists($videoDirectory)) {
-            abort(404, "Folder vidio tidak ditemukan.");
-        }
+        // if (!File::exists($videoDirectory)) {
+        //     abort(404, "Folder vidio tidak ditemukan.");
+        // }
 
         // Ambil semua file video dari folder
         $videos = File::files($videoDirectory);
