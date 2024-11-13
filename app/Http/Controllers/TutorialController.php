@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 class TutorialController extends Controller
 {
     public function index()
-    {
+    { 
         // Path ke folder 'public/vidio 123'
         $videoDirectory = public_path('vidio');
 
