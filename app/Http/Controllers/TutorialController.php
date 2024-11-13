@@ -33,7 +33,8 @@ class TutorialController extends Controller
     {
         // Path ke folder 'storage/app/public/vidio'
         // $videoDirectory = storage_path('app/public/vidio');
-        $videoDirectory = base_path('vidio/tutorial_mengajukan_permintaan_sebagai_penjual.mp4');
+        // $videoDirectory = base_path('vidio/tutorial_mengajukan_permintaan_sebagai_penjual.mp4');
+        $videoDirectory = public_path('vidio/tutorial_mengajukan_permintaan_sebagai_penjual.mp4');
 
         // Cek apakah folder ada
         // if (!File::exists($videoDirectory)) {
