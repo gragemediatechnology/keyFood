@@ -33,7 +33,7 @@ class TutorialController extends Controller
     {
         // Path ke folder 'storage/app/public/vidio'
         // $videoDirectory = storage_path('app/public/vidio');
-        $videoDirectory = public_path('vidio/');
+        $videoDirectory = public_path('vidio/Screen Recording 2024-09-05 111102.mp4');
 
         // Cek apakah folder ada
         if (!File::exists($videoDirectory)) {
