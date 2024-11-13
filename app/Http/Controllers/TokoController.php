@@ -43,7 +43,8 @@ class TokoController extends Controller
             $image = $request->file('foto_profile_toko');
 
             // Simpan gambar di folder 'public/img' dalam storage
-            $imagePath = $image->store('public_html/products_photo');
+            // $imagePath = $image->store('public_html/products_photo');
+            $imagePath = $image->move(base_path('public_html/products_photo'));
 
             // Simpan hanya nama file, bukan seluruh path
             $store->foto_profile_toko = basename($imagePath);
