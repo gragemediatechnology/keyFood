@@ -8,8 +8,8 @@ class TutorialController extends Controller
 {
     public function index()
     {
-        // Path ke folder 'public/vidio'
-        $videoDirectory = public_html('vidio');
+        // Path ke folder 'public/vidio 123'
+        $videoDirectory = public_path('vidio');
 
         // Ambil semua file video dari folder
         $videos = File::files($videoDirectory);
@@ -22,7 +22,7 @@ class TutorialController extends Controller
             ];
         });
 
-        // Kirim data ke view blade
+       
         return view('tutorial', compact('videos'));
     }
 }
