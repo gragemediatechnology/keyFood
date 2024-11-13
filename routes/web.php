@@ -107,7 +107,6 @@ Route::get('/term-condition', function () {
 });
 
 
-
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest')
     ->name('login');
