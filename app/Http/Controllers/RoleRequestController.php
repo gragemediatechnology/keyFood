@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RoleRequest;
-use App\Models\Store;
 use App\Models\Toko;
 use App\Models\User;
+use App\Models\Store;
+use App\Models\RoleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class RoleRequestController extends Controller
 {
@@ -74,16 +75,29 @@ class RoleRequestController extends Controller
             // Cek apakah toko sudah ada, jika belum buat toko baru
             $store = Toko::where('id_seller', $user->id)->first();
             
-            if (!$store) {
-                // Buat toko baru
-                $store = new Toko();
-                $store->id_seller = $user->id;
-                $store->nama_toko = 'Nama Toko Baru'; // Ganti sesuai kebutuhan
-                $store->alamat_toko = 'Alamat Toko'; // Ganti sesuai kebutuhan
-                $store->foto_profile_toko = 'markets.png'; // Ganti sesuai kebutuhan
-                $store->is_online = 0; // Set default offline
-                $store->save();
-            }
+           
+                
+                if (!$store) {
+                    // Buat toko baru
+                    $store = new Toko();
+                    $store->id_seller = $user->id;
+                    $store->nama_toko = 'Nama Toko Baru'; // Ganti sesuai kebutuhan
+                    $store->alamat_toko = 'Alamat Toko'; // Ganti sesuai kebutuhan
+                
+                    // Path file default dan path tujuan
+                    $defaultImagePath = public_path('store_image/markets.png');
+                    $newImagePath = public_path('store_image/' . uniqid() . '_markets.png');
+                
+                    // Copy file default ke lokasi baru
+                    File::copy($defaultImagePath, $newImagePath);
+                
+                    // Set path foto_profile_toko ke lokasi baru (untuk disimpan di database)
+                    $store->foto_profile_toko = uniqid() . '_markets.png';
+                    $store->is_online = 0; // Set default offline
+                    $store->save();
+                }
+
+           
 
             // Redirect dengan pesan sukses
             return redirect()->back()->with('success', 'Role seller telah diterima dan akun toko telah dibuat.');
