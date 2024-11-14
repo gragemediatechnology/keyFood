@@ -81,7 +81,8 @@
                     <div class="card-profile card-table" data-roles="{{ $user->roles->pluck('name')->join(', ') }}">
                         <p><strong>ID:</strong> {{ $user->id }}</p>
                         {{-- <a href="{{ route('live-chat', $user) }}"> --}}
-                        <a href="/live-chat/{{ $user->id }}">
+                        {{-- <a href="/live-chat/{{ $user->id }}"> --}}
+                        <a>
                             <img src="https://teraskabeka.com/{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture">
                         </a>
                         <h2>{{ $user->name }}</h2>
@@ -173,7 +174,8 @@
                                                 </div>
                                                 <div>
                                                     {{-- <a href="{{ route('live-chat', $user) }}"> --}}
-                                                    <a href="/live-chat/{{ $user->id }}">
+                                                    {{-- <a href="/live-chat/{{ $user->id }}"> --}}
+                                                    <a>
                                                         <p class="font-semibold">{{ $user->name }}</p>
                                                         <p class="text-xs text-gray-600 dark:text-gray-400">ID:
                                                             {{ $user->id }}

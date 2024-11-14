@@ -49,7 +49,7 @@
                         </li>
                         <li class="break-words">
                             <a href="https://wa.me/{{ $company->phone }}"
-                                class="hover:underline">+62{{ $company->phone }}</a>
+                                class="hover:underline">{{ $company->phone }}</a>
                         </li>
                     </ul>
                 </div>

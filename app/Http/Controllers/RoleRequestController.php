@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RoleRequest;
-use App\Models\Store;
 use App\Models\Toko;
 use App\Models\User;
+use App\Models\Store;
+use App\Models\RoleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class RoleRequestController extends Controller
 {
@@ -74,16 +75,30 @@ class RoleRequestController extends Controller
             // Cek apakah toko sudah ada, jika belum buat toko baru
             $store = Toko::where('id_seller', $user->id)->first();
             
+           
+                
             if (!$store) {
                 // Buat toko baru
                 $store = new Toko();
                 $store->id_seller = $user->id;
                 $store->nama_toko = 'Nama Toko Baru'; // Ganti sesuai kebutuhan
                 $store->alamat_toko = 'Alamat Toko'; // Ganti sesuai kebutuhan
-                $store->foto_profile_toko = 'markets.png'; // Ganti sesuai kebutuhan
+            
+                // Path file default dan path tujuan di dalam public_html/store_image
+                $defaultImagePath = base_path('public_html/store_image/markets.png');
+                $uniqueFilename = time() . '_' . 'markets.png';
+                $newImagePath = base_path('public_html/store_image/' . $uniqueFilename);
+            
+                // Copy file default ke lokasi baru dengan nama unik
+                File::copy($defaultImagePath, $newImagePath);
+            
+                // Set path foto_profile_toko ke nama baru untuk disimpan di database
+                $store->foto_profile_toko = $uniqueFilename;
                 $store->is_online = 0; // Set default offline
                 $store->save();
             }
+
+           
 
             // Redirect dengan pesan sukses
             return redirect()->back()->with('success', 'Role seller telah diterima dan akun toko telah dibuat.');

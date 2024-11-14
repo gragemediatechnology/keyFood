@@ -13,7 +13,8 @@
             @if (Auth::user()->hasRole('seller'))
                 <div class="store-header">
                     <div class="store-info">
-                        <img src="https://teraskabeka.com/store_image/{{ $toko->foto_profile_toko ?  $toko->foto_profile_toko : 'markets.png' }} "
+                        <!-- <img src="https://teraskabeka.com/store_image/{{ $toko->foto_profile_toko ?  $toko->foto_profile_toko : 'markets.png' }} "alt="logo toko" class="store-logo"> -->
+                        <img src="{{ asset('store_image/' . ($toko->foto_profile_toko ? $toko->foto_profile_toko : 'markets.png')) }}"
                             alt="logo toko" class="store-logo">
                         <div class="store-text">
                             <h1>{{ $toko->nama_toko }}</h1>
