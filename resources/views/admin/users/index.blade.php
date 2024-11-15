@@ -37,10 +37,10 @@
 
                 <!-- Add New User Button -->
                 {{-- <a href="{{ route('admin.users.create') }}" --}}
-                <a href="/admin/users/create"
+                {{-- <a href="/admin/users/create"
                     class="inline-block px-4 py-2 bg-blue-600 text-black rounded-lg hover:bg-blue-700">
                     Add New User
-                </a>
+                </a> --}}
 
                 <!-- Dropdown Menu Button -->
                 <div class="relative inline-flex justify-end mb-4">
