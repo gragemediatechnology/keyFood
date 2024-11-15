@@ -39,9 +39,10 @@
                 <div>
                     <h2 class="mb-6 text-sm font-semibold text-gray-400 uppercase">Teras KBK</h2>
                     <ul class="text-gray-500 font-medium">
-                        <li class="mb-4 break-words">
-                            <a href="https://maps.app.goo.gl/jPYA3x3XgB3pXWSYA"
-                                class="hover:underline">{{ $company->company_name }} {{ $company->lokasi }}</a>
+                        <li class="mb-4 break-words max-w-[25ch]">
+                            <a href="https://maps.app.goo.gl/jPYA3x3XgB3pXWSYA" class="hover:underline">
+                                {{ $company->company_name }} {{ $company->lokasi }}
+                            </a>
                         </li>
                         <li class="mb-4 break-words">
                             <a href="mailto:gragemediatechnology@gmail.com"
@@ -73,7 +74,7 @@
                     <span class="sr-only">Instagram page</span>
                 </a>
                 <a href="https://grageweb.online" class="text-gray-500 hover:text-gray-700 ms-5">
-                    <i class='bx bxl-linkedin-square'></i>
+                    <i class='bx bx-globe'></i>
                     <span class="sr-only">Official Website</span>
                 </a>
             </div>
