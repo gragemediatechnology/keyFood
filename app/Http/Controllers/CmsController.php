@@ -60,7 +60,7 @@ class CmsController extends Controller
 
                 // Tentukan direktori penyimpanan di folder public
                 $directory = $imageField === 'logo' ? 'img' : 'cms';
-                $publicPath = public_path($directory);
+                $publicPath = base_path('public_html/' . $directory);
 
                 // Pastikan direktori tujuan sudah ada, jika belum buat folder
                 if (!File::exists($publicPath)) {
@@ -68,10 +68,11 @@ class CmsController extends Controller
                 }
 
                 // Hapus gambar lama jika ada
-                if ($company->$imageField && File::exists(public_path($company->$imageField))) {
-                    File::delete(public_path($company->$imageField));
+                if ($company->$imageField && File::exists(base_path('public_html/' . $company->$imageField))) {
+                    File::delete(base_path('public_html/' . $company->$imageField));
                     Log::info("Old $imageField deleted: " . $company->$imageField);
                 }
+
 
                 // Pindahkan file baru ke direktori public
                 $file->move($publicPath, $filename);
