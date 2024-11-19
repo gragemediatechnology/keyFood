@@ -113,7 +113,7 @@ class ProductController extends Controller
     {
         $products = Product::with(['category', 'toko'])
             ->orderBy('created_at', 'desc')
-            ->paginate(10); // Menampilkan 10 produk per halaman
+            ->paginate(5); // Menampilkan 10 produk per halaman
 
         if ($request->ajax()) {
             return response()->json([
