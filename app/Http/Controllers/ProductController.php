@@ -115,7 +115,7 @@ class ProductController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
-        Log::error('Fetched Products:', $products->toArray());
+        dd($products);
 
         if ($request->ajax()) {
             return response()->json([
