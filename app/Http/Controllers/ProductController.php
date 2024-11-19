@@ -117,12 +117,12 @@ class ProductController extends Controller
 
         if ($request->ajax()) {
             return response()->json([
-                'html' => view('products.ajax-list', compact('products'))->render(),
+                'html' => view('product-slider', compact('products'))->render(),
                 'next_page' => $products->nextPageUrl()
             ]);
         }
 
-        return view('products.index', compact('products'));
+        return view('product-slider', compact('products'));
     }
 
 
