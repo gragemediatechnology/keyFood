@@ -115,6 +115,8 @@ class ProductController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
+        Log::error('Fetched Products:', $products->toArray());
+
         if ($request->ajax()) {
             return response()->json([
                 'html' => view('components.product-list', compact('products'))->render(),
@@ -122,9 +124,7 @@ class ProductController extends Controller
             ]);
         }
 
-        // Hanya halaman pertama yang merender tampilan penuh
         return view('product-slider', compact('products'));
-
     }
 
     /**
