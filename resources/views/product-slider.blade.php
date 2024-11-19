@@ -97,7 +97,7 @@
             </script>
 
             <script>
-                let nextPageUrl = "{{ $products->nextPageUrl() }}";
+                let nextPageUrl = "{{ route('products.index', ['page' => 2]) }}";
                 let isLoading = false;
 
                 window.addEventListener('scroll', () => {
