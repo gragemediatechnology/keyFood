@@ -1,4 +1,4 @@
-@extends('admin.layouts.main-admin')
+ @extends('admin.layouts.main-admin')
 @section('container-admin')
 <main class="h-screen overflow-y-auto">
     <div class="container px-6 mx-auto grid overflow-y-hidden py-4 mb-8">
