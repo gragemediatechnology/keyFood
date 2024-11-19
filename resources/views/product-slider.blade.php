@@ -108,7 +108,7 @@
                     // Tampilkan indikator loading
                     document.getElementById('loading').classList.remove('hidden');
 
-                    const nextPageUrl = `/product-slider?page=${currentPage + 1}`;
+                    const nextPageUrl = `https://teraskabeka.com/product-slider?page=${currentPage + 1}`;
 
                     fetch(nextPageUrl, {
                         headers: {
