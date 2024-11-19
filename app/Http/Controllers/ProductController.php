@@ -113,16 +113,16 @@ class ProductController extends Controller
     {
         $products = Product::with(['category', 'toko'])
             ->orderBy('created_at', 'desc')
-            ->paginate(5); // Menampilkan 10 produk per halaman
+            ->paginate(5); // Menampilkan 5 produk per halaman
 
         if ($request->ajax()) {
             return response()->json([
-                'html' => view('components.product-list', compact('products'))->render(), // Render komponen kecil
-                'next_page' => $products->nextPageUrl()
+                'html' => view('components.product-list', compact('products'))->render(),
+                'next_page' => $products->nextPageUrl(), // URL untuk halaman berikutnya
             ]);
         }
 
-        return view('product-slider', compact('products')); // Tampilan awal untuk halaman
+        return view('product-slider', compact('products')); // View utama
     }
 
     /**
