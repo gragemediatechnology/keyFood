@@ -110,34 +110,38 @@
 
                     const nextPageUrl = `/product-slider?page=${currentPage + 1}`;
 
-                    fetch(nextPageUrl)
+                    fetch(nextPageUrl, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
                         .then(response => {
-                            if (!response.ok) throw new Error('Network response was not ok');
-                            return response.json();
+                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                            return response.text(); // Ambil teks mentah untuk analisis lebih lanjut
                         })
-                        .then(data => {
-                            currentPage++;
+                        .then(responseText => {
+                            try {
+                                const data = JSON.parse(responseText); // Parsing ke JSON
+                                currentPage++;
+                                document.querySelector('#product-container').insertAdjacentHTML('beforeend', data.html);
+                                document.getElementById('loading').classList.add('hidden');
 
-                            // Tambahkan HTML produk baru ke dalam container
-                            document.querySelector('#product-container').insertAdjacentHTML('beforeend', data.html);
+                                if (!data.next_page) {
+                                    window.removeEventListener('scroll', handleScroll);
+                                }
 
-                            // Sembunyikan indikator loading
-                            document.getElementById('loading').classList.add('hidden');
-
-                            // Periksa jika ada halaman berikutnya
-                            if (!data.next_page) {
-                                // Jika tidak ada halaman berikutnya, hapus event listener scroll
-                                window.removeEventListener('scroll', handleScroll);
+                                isLoading = false;
+                            } catch (error) {
+                                console.error('Invalid JSON:', responseText); // Log teks mentah untuk debugging
+                                throw error;
                             }
-
-                            isLoading = false;
                         })
                         .catch(error => {
                             console.error('Error:', error);
-                            // Sembunyikan indikator loading jika terjadi error
                             document.getElementById('loading').classList.add('hidden');
                             isLoading = false;
                         });
+
                 }
 
                 // Event listener scroll
