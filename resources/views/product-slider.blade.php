@@ -97,33 +97,38 @@
             </script>
 
             <script>
-                let nextPageUrl = "{{ route('products.index', ['page' => 2]) }}";
+                let currentPage = 1;
                 let isLoading = false;
 
-                window.addEventListener('scroll', () => {
-                    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !isLoading && nextPageUrl) {
-                        isLoading = true;
-                        document.getElementById('loading').classList.remove('hidden'); // Tampilkan loading
+                function loadMoreProducts() {
+                    if (isLoading) return;
 
-                        fetch(nextPageUrl, {
-                            headers: {
-                                'X-Requested-With': 'XMLHttpRequest'
-                            }
-                        })
+                    isLoading = true;
+                    const nextPageUrl = `/product-slider?page=${currentPage + 1}`;
+                    
+                    fetch(nextPageUrl)
                         .then(response => response.json())
                         .then(data => {
-                            document.getElementById('product-container').innerHTML += data.html; // Tambahkan produk baru
-                            nextPageUrl = data.next_page; // Perbarui URL halaman berikutnya
-                            isLoading = false;
-                            document.getElementById('loading').classList.add('hidden'); // Sembunyikan loading
+                            currentPage++;
+
+                            // Tambahkan HTML produk baru ke container
+                            document.querySelector('#product-container').insertAdjacentHTML('beforeend', data.html);
+
+                            // Periksa jika ada halaman berikutnya
+                            if (data.next_page) {
+                                isLoading = false;
+                            }
                         })
-                        .catch(() => {
-                            alert('Gagal memuat data, silakan coba lagi.');
-                            isLoading = false;
-                            document.getElementById('loading').classList.add('hidden'); // Sembunyikan loading
-                        });
+                        .catch(error => console.error('Error:', error));
+                }
+
+                // Deteksi scroll dan panggil fungsi loadMoreProducts
+                window.addEventListener('scroll', () => {
+                    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                        loadMoreProducts();
                     }
                 });
+
             </script>
 
 

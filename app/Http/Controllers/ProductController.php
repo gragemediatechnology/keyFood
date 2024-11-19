@@ -117,14 +117,13 @@ class ProductController extends Controller
 
         if ($request->ajax()) {
             return response()->json([
-                'html' => view('product-slider', compact('products'))->render(),
+                'html' => view('components.product-list', compact('products'))->render(), // Render komponen kecil
                 'next_page' => $products->nextPageUrl()
             ]);
         }
 
-        return view('product-slider', compact('products'));
+        return view('product-slider', compact('products')); // Tampilan awal untuk halaman
     }
-
 
     /**
      * Show the form for editing the specified resource.
