@@ -109,6 +109,22 @@ class ProductController extends Controller
         return view('product-slider', compact('products'));
     }
 
+    public function indexCoba(Request $request)
+    {
+        $products = Product::with(['category', 'toko'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); // Menampilkan 10 produk per halaman
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('products.ajax-list', compact('products'))->render(),
+                'next_page' => $products->nextPageUrl()
+            ]);
+        }
+
+        return view('products.index', compact('products'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.

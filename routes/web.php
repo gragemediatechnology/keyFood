@@ -76,7 +76,9 @@ Route::get('/faq', function () {
 Route::get('/coba', function () {
     return view('coba_wa');
 });
-Route::get('/product-slider', [ProductController::class, 'showProductSlider'])->name('Product');
+// Route::get('/product-slider', [ProductController::class, 'showProductSlider'])->name('Product');
+
+Route::get('/product-slider', [ProductController::class, 'indexCoba'])->name('Product');
 
 Route::get('/categories', function () {
     return view('categories');
