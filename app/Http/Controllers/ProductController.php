@@ -96,17 +96,15 @@ class ProductController extends Controller
      * Display the specified resource.
      */
     public function showProductSlider(Request $request)
-    {
-        // Mengambil data produk dengan pagination
-        $products = Product::inRandomOrder()->get();
+    {  
+        // Ambil semua produk tanpa duplikasi
+        $products = Product::inRandomOrder()->paginate(5); // Mengambil 5 produk pertama
 
-        // Jika permintaan AJAX, kembalikan data produk dalam format JSON
         if ($request->ajax()) {
             return response()->json($products);
         }
 
-        // Jika bukan AJAX, kembalikan tampilan lengkap
-        return view('product-slider', compact('products'));
+        return view('your_view_name', compact('products'));
     }
 
 
