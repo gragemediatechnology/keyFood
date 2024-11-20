@@ -40,11 +40,11 @@
                     </div>
                 @endforeach
             </div>
-            
+
             <div id="loading" class="hidden text-center py-4">
                 <p>Loading...</p>
             </div>
-            
+
 
 
             <script>
@@ -108,39 +108,46 @@
                     // Tampilkan indikator loading
                     document.getElementById('loading').classList.remove('hidden');
 
-                    const nextPageUrl = `https://teraskabeka.com/product-slider?page=${currentPage + 1}`;
+                    let nextPageUrl = null;
 
-                    fetch(nextPageUrl, {
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
-                    })
-                        .then(response => {
-                            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                            return response.text(); // Ambil teks mentah untuk analisis lebih lanjut
-                        })
-                        .then(responseText => {
-                            try {
-                                const data = JSON.parse(responseText); // Parsing ke JSON
-                                currentPage++;
-                                document.querySelector('#product-container').insertAdjacentHTML('beforeend', data.html);
-                                document.getElementById('loading').classList.add('hidden');
+                    function loadMoreProducts() {
+                        if (isLoading || !nextPageUrl) return;
 
-                                if (!data.next_page) {
-                                    window.removeEventListener('scroll', handleScroll);
-                                }
+                        isLoading = true;
+                        document.getElementById('loading').classList.remove('hidden');
 
-                                isLoading = false;
-                            } catch (error) {
-                                console.error('Invalid JSON:', responseText); // Log teks mentah untuk debugging
-                                throw error;
+                        fetch(nextPageUrl, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
                             }
                         })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            document.getElementById('loading').classList.add('hidden');
-                            isLoading = false;
-                        });
+                            .then(response => {
+                                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                                return response.json();
+                            })
+                            .then(data => {
+                                // Update nextPageUrl dari respons
+                                nextPageUrl = data.next_page;
+
+                                // Tambahkan HTML produk baru
+                                document.querySelector('#product-container').insertAdjacentHTML('beforeend', data.html);
+
+                                // Sembunyikan loading
+                                document.getElementById('loading').classList.add('hidden');
+                                isLoading = false;
+
+                                // Hapus event scroll jika halaman terakhir
+                                if (!nextPageUrl) {
+                                    window.removeEventListener('scroll', handleScroll);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                document.getElementById('loading').classList.add('hidden');
+                                isLoading = false;
+                            });
+                    }
+
 
                 }
 
