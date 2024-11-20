@@ -178,69 +178,71 @@
             </script>
 
             <script>
-                let page = 1; // Start with the first page
-                let loading = false; // To prevent multiple requests
+                let page = 1; // Start from the first page
+                let loading = false; // Prevent multiple AJAX requests
 
                 function loadMoreProducts() {
                     if (loading) return; // Prevent multiple requests
                     loading = true; // Set loading to true
 
-                    // Show the loading indicator
-                    document.querySelector('.loading').style.display = 'block';
+                    const loadingIndicator = document.querySelector('.loading');
+                    loadingIndicator.style.display = 'block'; // Show loading indicator
 
-                    // Make an AJAX request to fetch more products
                     fetch(`/product-slider?page=${page + 1}`, {
                         method: 'GET',
                         headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-Requested-With': 'XMLHttpRequest', // Ensure AJAX request is sent
                         },
                     })
                     .then(response => response.json())
                     .then(data => {
-                        // Hide the loading indicator
-                        document.querySelector('.loading').style.display = 'none';
+                        loadingIndicator.style.display = 'none'; // Hide loading indicator
                         loading = false; // Reset loading state
 
-                        // Check if there are more products
-                        if (data.data.length > 0) {
-                            const container = document.getElementById('product-container');
-
-                            // Append new products to the container
-                            data.data.forEach(product => {
-                                const productBox = `
-                                    <div class="product-box ${product.toko && product.toko.isOpen() ? '' : 'toko-tutup'}">
-                                        <span hidden>${product.id}</span>
-                                        <span hidden>${product.store_id}</span>
-                                        <span hidden>${product.slug}</span>
-                                        <img alt="${product.name}" src="${product.photo}">
-                                        <strong>${product.name}</strong>
-                                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
-                                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
-                                        ${product.toko && product.toko.isOpen() ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
-                                        <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
-                                        <a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn">
-                                            <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
-                                        </a>
-                                    </div>
-                                `;
-                                container.insertAdjacentHTML('beforeend', productBox);
-                            });
-
-                            page++; // Increment the page number for the next request
+                        // Check if there are products returned
+                        if (data.data.length === 0) {
+                            window.removeEventListener('scroll', scrollHandler); // Remove scroll listener if no more products
+                            return; // Exit if no products to load
                         }
+
+                        const container = document.getElementById('product-container');
+
+                        // Append new products to the container
+                        data.data.forEach(product => {
+                            const productBox = `
+                                <div class="product-box ${product.toko && product.toko.isOpen ? '' : 'toko-tutup'}">
+                                    <img alt="${product.name}" src="${product.photo}">
+                                    <strong>${product.name}</strong>
+                                    <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+                                    <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                                    ${product.toko && product.toko.isOpen ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
+                                    <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                                    <a href="javascript:void(0)" data-product-id="${product.id}" class="cart-btn">
+                                        <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                                    </a>
+                                </div>
+                            `;
+                            container.insertAdjacentHTML('beforeend', productBox);
+                        });
+
+                        // Increment the page number for the next request
+                        page++;
                     })
                     .catch(error => {
                         console.error('Error loading products:', error);
                         loading = false; // Reset loading state
-                        document.querySelector('.loading').style.display = 'none'; // Hide loading indicator
+                        loadingIndicator.style.display = 'none'; // Hide loading indicator
                     });
                 }
 
-                window.addEventListener('scroll', () => {
-                    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-                        loadMoreProducts(); // Load more products when reaching the bottom
+                // Scroll event listener
+                const scrollHandler = () => {
+                    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                        loadMoreProducts(); // Load more products when reaching near the bottom
                     }
-                });
+                };
+
+                window.addEventListener('scroll', scrollHandler);
             </script>
 
 
