@@ -97,61 +97,40 @@
             </script> --}}
 
             <script>
-                let currentPage = 1;
+                let nextPageUrl = "{{ $products->nextPageUrl() }}";
                 let isLoading = false;
 
                 function loadMoreProducts() {
-                    if (isLoading) return;
+                    if (isLoading || !nextPageUrl) return;
 
                     isLoading = true;
-
-                    // Tampilkan indikator loading
                     document.getElementById('loading').classList.remove('hidden');
 
-                    let nextPageUrl = null;
+                    fetch(nextPageUrl, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            nextPageUrl = data.next_page; // Update nextPageUrl
 
-                    function loadMoreProducts() {
-                        if (isLoading || !nextPageUrl) return;
+                            document.querySelector('#product-container').insertAdjacentHTML('beforeend', data.html);
 
-                        isLoading = true;
-                        document.getElementById('loading').classList.remove('hidden');
+                            document.getElementById('loading').classList.add('hidden');
+                            isLoading = false;
 
-                        fetch(nextPageUrl, {
-                            headers: {
-                                'X-Requested-With': 'XMLHttpRequest'
+                            if (!nextPageUrl) {
+                                window.removeEventListener('scroll', handleScroll);
                             }
                         })
-                            .then(response => {
-                                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                                return response.json();
-                            })
-                            .then(data => {
-                                // Update nextPageUrl dari respons
-                                nextPageUrl = data.next_page;
-
-                                // Tambahkan HTML produk baru
-                                document.querySelector('#product-container').insertAdjacentHTML('beforeend', data.html);
-
-                                // Sembunyikan loading
-                                document.getElementById('loading').classList.add('hidden');
-                                isLoading = false;
-
-                                // Hapus event scroll jika halaman terakhir
-                                if (!nextPageUrl) {
-                                    window.removeEventListener('scroll', handleScroll);
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                document.getElementById('loading').classList.add('hidden');
-                                isLoading = false;
-                            });
-                    }
-
-
+                        .catch(error => {
+                            console.error('Error:', error);
+                            document.getElementById('loading').classList.add('hidden');
+                            isLoading = false;
+                        });
                 }
 
-                // Event listener scroll
                 function handleScroll() {
                     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
                         loadMoreProducts();
@@ -159,8 +138,8 @@
                 }
 
                 window.addEventListener('scroll', handleScroll);
-
             </script>
+
 
 
 
