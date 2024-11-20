@@ -99,7 +99,7 @@ class ProductController extends Controller
     {
         // Mengambil data produk dengan pagination
         $products = Product::all();
-        dd($products);
+        // dd($products);
 
         // Jika permintaan AJAX, kembalikan data produk dalam format JSON
         if ($request->ajax()) {
