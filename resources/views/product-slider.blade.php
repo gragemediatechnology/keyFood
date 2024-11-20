@@ -138,7 +138,7 @@
                 }
             </script>
 
-            <script>
+            {{-- <script>
                 let currentPage = 1; // Halaman saat ini
                 let loading = false; // Tampung status loading
                 let hasMoreProducts = true; // Menandakan apakah masih ada produk untuk dimuat
@@ -206,9 +206,9 @@
                 // Pada awal halaman, panggil fungsi untuk memuat produk pertama
                 loadMoreProducts();
 
-            </script>
+            </script> --}}
 
-            {{-- <script>
+            <script>
                 let page = 1; // Start from the first page
                 let loading = false; // Prevent multiple AJAX requests
 
@@ -274,7 +274,7 @@
                 };
 
                 window.addEventListener('scroll', scrollHandler);
-            </script> --}}
+            </script>
 
 
 
