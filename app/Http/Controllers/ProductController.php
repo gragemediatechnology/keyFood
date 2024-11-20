@@ -115,12 +115,12 @@ class ProductController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
-        dd(env('APP_URL') . '/product-slider?page=' . ($products->currentPage() + 1));
+        // dd(env('APP_URL') . '/product-slider?page=' . ($products->currentPage() + 1));
 
         if ($request->ajax()) {
             return response()->json([
                 'html' => view('components.product-list', compact('products'))->render(),
-                'next_page' => $products->nextPageUrl(),
+                'next_page' => env('APP_URL') . '/product-slider?page=' . ($products->currentPage() + 1),
             ]);
         }
 
