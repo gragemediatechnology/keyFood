@@ -3,7 +3,7 @@
 @section('link')
     <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/699e918c4e888784bef08b8ffce0004d019c29f0/public_html/css/product-slider.css">
     <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/27db7ba39c81dbdafd840f462048a50468a23550/public_html/css/categories.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @endsection
 
 @section('container')
@@ -177,69 +177,69 @@
 
             </script>
 
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
-                let currentPage = 1; // Track the current page
-                let loading = false; // Prevent multiple AJAX calls
+                let page = 1; // Start with the first page
+                let loading = false; // To prevent multiple requests
 
-                $(document).ready(function() {
-                    // Listen for scroll event
-                    $('#product-container').on('scroll', function() {
-                        // Check if scrolled to the bottom
-                        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-                            if (!loading) {
-                                loading = true; // Set loading to true
-                                $('.loading').show(); // Show loading indicator
+                function loadMoreProducts() {
+                    if (loading) return; // Prevent multiple requests
+                    loading = true; // Set loading to true
 
-                                // Increment the current page
-                                currentPage++;
+                    // Show the loading indicator
+                    document.querySelector('.loading').style.display = 'block';
 
-                                // Make AJAX request to fetch more products
-                                $.ajax({
-                                    url: '{{ route("Product") }}', // Your route to fetch products
-                                    type: 'GET',
-                                    data: {
-                                        page: currentPage // Send current page number
-                                    },
-                                    success: function(data) {
-                                        // Append new products to the container
-                                        if (data.data.length > 0) {
-                                            data.data.forEach(function(product) {
-                                                let productBox = `
-                                                    <div class="product-box ${product.toko.isOpen() ? '' : 'toko-tutup'}">
-                                                        <span hidden>${product.id}</span>
-                                                        <span hidden>${product.store_id}</span>
-                                                        <span hidden>${product.slug}</span>
-                                                        <img alt="${product.name}" src="${product.photo}">
-                                                        <strong>${product.name}</strong>
-                                                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
-                                                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
-                                                        ${product.toko.isOpen() ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
-                                                        <div class="flex">
-                                                            ${renderStars(product.rating, product.rated_by)}
-                                                            <p class="mx-2">( ${calculateAverageRating(product.rating, product.rated_by)} / 5 )</p>
-                                                        </div>
-                                                        <span class="price">Rp ${formatPrice(product.price)}</span>
-                                                        ${product.toko.isOpen() ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` : `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"><i class="fas fa-ban"></i> Toko Tutup</a>`}
-                                                    </div>
-                                                `;
-                                                $('#product-container').append(productBox);
-                                            });
-                                            loading = false; // Reset loading
-                                        } else {
-                                            // No more products to load
-                                            $(window).off('scroll'); // Stop listening for scroll events
-                                        }
-                                        $('.loading').hide(); // Hide loading indicator
-                                    },
-                                    error: function() {
-                                        loading = false; // Reset loading on error
-                                        $('.loading').hide(); // Hide loading indicator
-                                    }
-                                });
-                            }
+                    // Make an AJAX request to fetch more products
+                    fetch(`/product-slider?page=${page + 1}`, {
+                        method: 'GET',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Hide the loading indicator
+                        document.querySelector('.loading').style.display = 'none';
+                        loading = false; // Reset loading state
+
+                        // Check if there are more products
+                        if (data.data.length > 0) {
+                            const container = document.getElementById('product-container');
+
+                            // Append new products to the container
+                            data.data.forEach(product => {
+                                const productBox = `
+                                    <div class="product-box ${product.toko && product.toko.isOpen() ? '' : 'toko-tutup'}">
+                                        <span hidden>${product.id}</span>
+                                        <span hidden>${product.store_id}</span>
+                                        <span hidden>${product.slug}</span>
+                                        <img alt="${product.name}" src="${product.photo}">
+                                        <strong>${product.name}</strong>
+                                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+                                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                                        ${product.toko && product.toko.isOpen() ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
+                                        <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                                        <a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn">
+                                            <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                                        </a>
+                                    </div>
+                                `;
+                                container.insertAdjacentHTML('beforeend', productBox);
+                            });
+
+                            page++; // Increment the page number for the next request
                         }
+                    })
+                    .catch(error => {
+                        console.error('Error loading products:', error);
+                        loading = false; // Reset loading state
+                        document.querySelector('.loading').style.display = 'none'; // Hide loading indicator
                     });
+                }
+
+                window.addEventListener('scroll', () => {
+                    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                        loadMoreProducts(); // Load more products when reaching the bottom
+                    }
                 });
             </script>
 
