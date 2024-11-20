@@ -97,7 +97,7 @@
             </script> --}}
 
             <script>
-                let nextPageUrl = "{{ $products->nextPageUrl() }}";
+                let nextPageUrl = "{{ env('APP_URL') . '/product-slider?page=' . ($products->currentPage() + 1) }}";
                 let isLoading = false;
 
                 function loadMoreProducts() {
