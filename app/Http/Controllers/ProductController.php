@@ -109,23 +109,6 @@ class ProductController extends Controller
         return view('product-slider', compact('products'));
     }
 
-    public function indexCoba(Request $request)
-    {
-        $products = Product::with(['category', 'toko'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(5);
-
-        // dd(env('APP_URL') . '/product-slider?page=' . ($products->currentPage() + 1));
-
-        if ($request->ajax()) {
-            return response()->json([
-                'html' => view('components.product-list', compact('products'))->render(),
-                'next_page' => env('APP_URL') . '/product-slider?page=' . ($products->currentPage() + 1),
-            ]);
-        }
-
-        return view('product-slider', compact('products'));
-    }
 
     /**
      * Show the form for editing the specified resource.
