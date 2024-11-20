@@ -208,7 +208,7 @@
 
             </script>
 
-            <script>
+            {{-- <script>
                 let page = 1; // Start from the first page
                 let loading = false; // Prevent multiple AJAX requests
 
@@ -274,7 +274,7 @@
                 };
 
                 window.addEventListener('scroll', scrollHandler);
-            </script>
+            </script> --}}
 
 
 
