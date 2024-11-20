@@ -143,7 +143,6 @@
                     var lastPage = $('#last-page').val();
 
 
-
                     function getStarsHtml(product) {
                         let starsHtml = '';
                         const average_rating = product.average_rating || 0;
@@ -172,7 +171,74 @@
                         return starsHtml;
                     }
 
+                });
 
+
+            </script>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                let currentPage = 1; // Track the current page
+                let loading = false; // Prevent multiple AJAX calls
+
+                $(document).ready(function() {
+                    // Listen for scroll event
+                    $('#product-container').on('scroll', function() {
+                        // Check if scrolled to the bottom
+                        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+                            if (!loading) {
+                                loading = true; // Set loading to true
+                                $('.loading').show(); // Show loading indicator
+
+                                // Increment the current page
+                                currentPage++;
+
+                                // Make AJAX request to fetch more products
+                                $.ajax({
+                                    url: '{{ route("Product") }}', // Your route to fetch products
+                                    type: 'GET',
+                                    data: {
+                                        page: currentPage // Send current page number
+                                    },
+                                    success: function(data) {
+                                        // Append new products to the container
+                                        if (data.data.length > 0) {
+                                            data.data.forEach(function(product) {
+                                                let productBox = `
+                                                    <div class="product-box ${product.toko.isOpen() ? '' : 'toko-tutup'}">
+                                                        <span hidden>${product.id}</span>
+                                                        <span hidden>${product.store_id}</span>
+                                                        <span hidden>${product.slug}</span>
+                                                        <img alt="${product.name}" src="${product.photo}">
+                                                        <strong>${product.name}</strong>
+                                                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+                                                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                                                        ${product.toko.isOpen() ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
+                                                        <div class="flex">
+                                                            ${renderStars(product.rating, product.rated_by)}
+                                                            <p class="mx-2">( ${calculateAverageRating(product.rating, product.rated_by)} / 5 )</p>
+                                                        </div>
+                                                        <span class="price">Rp ${formatPrice(product.price)}</span>
+                                                        ${product.toko.isOpen() ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn"><i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang</a>` : `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"><i class="fas fa-ban"></i> Toko Tutup</a>`}
+                                                    </div>
+                                                `;
+                                                $('#product-container').append(productBox);
+                                            });
+                                            loading = false; // Reset loading
+                                        } else {
+                                            // No more products to load
+                                            $(window).off('scroll'); // Stop listening for scroll events
+                                        }
+                                        $('.loading').hide(); // Hide loading indicator
+                                    },
+                                    error: function() {
+                                        loading = false; // Reset loading on error
+                                        $('.loading').hide(); // Hide loading indicator
+                                    }
+                                });
+                            }
+                        }
+                    });
                 });
             </script>
 
