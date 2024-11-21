@@ -306,12 +306,12 @@
                 });
         }
 
-        // const scrollHandler = () => {
-        //     // Muat lebih banyak produk ketika mendekati bagian bawah halaman
-        //     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-        //         loadMoreProducts();
-        //     }
-        // };
+        const scrollHandler = () => {
+            // Muat lebih banyak produk ketika mendekati bagian bawah halaman
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                loadMoreProducts();
+            }
+        };
 
         // Tambahkan event scroll
         window.addEventListener('scroll', scrollHandler);
