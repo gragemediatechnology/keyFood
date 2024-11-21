@@ -98,10 +98,11 @@ class ProductController extends Controller
     public function showProductSlider(Request $request)
     {
         // Mengambil data produk dengan pagination
-        $products = Product::paginate(1); 
+        $products = Product::paginate(0);
 
         // Jika permintaan AJAX, kembalikan data produk dalam format JSON
         if ($request->ajax()) {
+            $products = Product::paginate(1);
             return response()->json($products);
         }
 
