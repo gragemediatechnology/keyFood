@@ -111,8 +111,11 @@ class ProductController extends Controller
 
     public function showProductSlider(Request $request)
     {
-        // Ambil jumlah item per halaman dari permintaan (default 1 untuk mobile)
-        $itemsPerPage = $request->input('itemsPerPage', 1);
+        // Default jumlah item per halaman
+        $defaultItemsPerPage = 1;
+
+        // Ambil parameter `itemsPerPage` dari request atau gunakan default
+        $itemsPerPage = $request->input('itemsPerPage', $defaultItemsPerPage);
 
         // Mengambil data produk dengan pagination dinamis
         $products = Product::paginate($itemsPerPage);
@@ -123,7 +126,7 @@ class ProductController extends Controller
         }
 
         // Jika bukan AJAX, kembalikan tampilan lengkap
-        return view('product-slider', compact('products'));
+        return view('product-slider', compact('products', 'itemsPerPage'));
     }
 
 

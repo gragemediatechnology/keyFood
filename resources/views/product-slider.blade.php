@@ -372,7 +372,31 @@
 
         // Muat produk pertama kali ketika halaman selesai dimuat
         document.addEventListener('DOMContentLoaded', () => {
-            loadMoreProducts();
+            // Set jumlah produk awal berdasarkan perangkat
+            const itemsPerPage = isMobile() ? 1 : 3;
+
+            // Muat halaman pertama dengan jumlah produk sesuai perangkat
+            fetch(`/product-slider?page=${page}&itemsPerPage=${itemsPerPage}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('product-container');
+                    data.data.forEach(product => {
+                        const productBox = `
+                            <div class="product-box">
+                                <img alt="${product.name}" src="${product.photo}">
+                                <strong>${product.name}</strong>
+                                <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                            </div>
+                        `;
+                        container.insertAdjacentHTML('beforeend', productBox);
+                    });
+                })
+                .catch(error => console.error('Error loading initial products:', error));
         });
     </script>
 @endsection
