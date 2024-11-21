@@ -25,7 +25,7 @@
             </div>
 
             <div class="product-container" id="product-container">
-                
+
                 <div class="loading" style="display: none;">
 
                     <p>Loading more posts...</p>
@@ -245,31 +245,31 @@
 
                     // Tambahkan produk ke dalam container
                     data.data.forEach(product => {
-                        const rating = product.rating ?? 0;
+                        var rating = product.rating ?? 0;
 
                         // Proses `rated_by`
                         let ratedBy = 1; // Default
                         if (typeof product.rated_by === 'string') {
-                            const ratedByArray = JSON.parse(product.rated_by);
+                            var ratedByArray = JSON.parse(product.rated_by);
                             ratedBy = Array.isArray(ratedByArray) ? ratedByArray.length : ratedByArray;
                         } else {
                             ratedBy = product.rated_by ?? 1;
                         }
 
-                        const averageRating = ratedBy > 0 ? (rating / ratedBy).toFixed(1) : 0;
-                        const fullStars = Math.floor(averageRating);
-                        const halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
-                        const emptyStars = 5 - (fullStars + halfStar);
+                        var averageRating = ratedBy > 0 ? (rating / ratedBy).toFixed(1) : 0;
+                        var fullStars = Math.floor(averageRating);
+                        var halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
+                        var emptyStars = 5 - (fullStars + halfStar);
 
-                        const isTokoOnline = product.toko ? product.toko.isOpen : false; // Status toko
+                        var isTokoOnline = product.toko ? product.toko.isOpen : false; // Status toko
 
-                        const starIcons = `
+                        var starIcons = `
                             ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(fullStars)}
                             ${halfStar ? '<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z"/></svg>' : ''}
                             ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(emptyStars)}
                         `;
 
-                        const productBox = `
+                        var productBox = `
                             <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
                                 <img alt="${product.name}" src="${product.photo}">
                                 <strong>${product.name}</strong>
@@ -332,25 +332,25 @@
                 .then(data => {
                     const container = document.getElementById('product-container');
                     data.data.forEach(product => {
-                        const rating = product.rating ?? 0;
+                        var rating = product.rating ?? 0;
 
                         // Proses `rated_by`
                         let ratedBy = 1; // Default
                         if (typeof product.rated_by === 'string') {
-                            const ratedByArray = JSON.parse(product.rated_by);
+                            var ratedByArray = JSON.parse(product.rated_by);
                             ratedBy = Array.isArray(ratedByArray) ? ratedByArray.length : ratedByArray;
                         } else {
                             ratedBy = product.rated_by ?? 1;
                         }
 
-                        const averageRating = ratedBy > 0 ? (rating / ratedBy).toFixed(1) : 0;
-                        const fullStars = Math.floor(averageRating);
-                        const halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
-                        const emptyStars = 5 - (fullStars + halfStar);
+                        var averageRating = ratedBy > 0 ? (rating / ratedBy).toFixed(1) : 0;
+                        var fullStars = Math.floor(averageRating);
+                        var halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
+                        var emptyStars = 5 - (fullStars + halfStar);
 
-                        const isTokoOnline = product.toko ? product.toko.isOpen : false; // Status toko
+                        var isTokoOnline = product.toko ? product.toko.isOpen : false; // Status toko
 
-                        const starIcons = `
+                        var starIcons = `
                             ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(fullStars)}
                             ${halfStar ? '<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z"/></svg>' : ''}
                             ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(emptyStars)}
