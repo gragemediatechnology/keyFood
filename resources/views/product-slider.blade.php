@@ -229,6 +229,7 @@
                     .then(data => {
                         loadingIndicator.style.display = 'none'; // Hide loading indicator
                         loading = false; // Reset loading state
+                        console.log('123', data);
 
                         // Check if there are products returned
                         if (data.data.length === 0) {
