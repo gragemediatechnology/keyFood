@@ -208,98 +208,75 @@
 
             </script> --}}
 
-            <script>
-                let page = 1; // Current page
+            {{-- <script>
+                let page = 1; // Start from the first page
                 let loading = false; // Prevent multiple AJAX requests
 
                 function loadMoreProducts() {
-                    if (loading) return; // Prevent overlapping requests
-                    loading = true; // Set loading to true to block further requests
+                    if (loading) return; // Prevent multiple requests
+                    loading = true; // Set loading to true
 
                     const loadingIndicator = document.querySelector('.loading');
-                    if (loadingIndicator) {
-                        loadingIndicator.style.display = 'block'; // Show loading indicator
-                    }
+                    loadingIndicator.style.display = 'block'; // Show loading indicator
 
                     fetch(`/product-slider?page=${page + 1}`, {
                         method: 'GET',
                         headers: {
-                            'X-Requested-With': 'XMLHttpRequest', // Ensure it's an AJAX request
+                            'X-Requested-With': 'XMLHttpRequest', // Ensure AJAX request is sent
                         },
                     })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! Status: ${response.status}`);
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            // Hide loading indicator
-                            if (loadingIndicator) {
-                                loadingIndicator.style.display = 'none';
-                            }
-                            loading = false; // Reset loading state
+                    .then(response => response.json())
+                    .then(data => {
+                        loadingIndicator.style.display = 'none'; // Hide loading indicator
+                        loading = false; // Reset loading state
+                        console.log('123', data);
 
-                            // Check if there are products to display
-                            if (data.data.length === 0) {
-                                window.removeEventListener('scroll', scrollHandler); // Stop listening for scroll events if no more products
-                                return;
-                            }
+                        // Check if there are products returned
+                        if (data.data.length === 0) {
+                            window.removeEventListener('scroll', scrollHandler); // Remove scroll listener if no more products
+                            return; // Exit if no products to load
+                        }
 
-                            const container = document.getElementById('product-container');
-                            if (!container) {
-                                console.error('Product container not found!');
-                                return;
-                            }
+                        const container = document.getElementById('product-container');
 
-                            // Append new products to the container
-                            data.data.forEach(product => {
-                                const productBox = `
-                                    <div class="product-box ${product.toko && product.toko.isOpen ? '' : 'toko-tutup'}">
-                                        <img alt="${product.name}" src="${product.photo}">
-                                        <strong>${product.name}</strong>
-                                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
-                                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
-                                        ${product.toko && product.toko.isOpen
-                                            ? '<span class="text-green-500">(Toko Buka)</span>'
-                                            : '<span class="text-red-500">(Toko Tutup)</span>'}
-                                        <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
-                                        <a href="javascript:void(0)" data-product-id="${product.id}" class="cart-btn">
-                                            <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
-                                        </a>
-                                    </div>
-                                `;
-                                container.insertAdjacentHTML('beforeend', productBox);
-                            });
-
-                            // Increment page number for the next request
-                            page++;
-                        })
-                        .catch(error => {
-                            console.error('Error loading products:', error);
-                            loading = false; // Reset loading state
-                            if (loadingIndicator) {
-                                loadingIndicator.style.display = 'none'; // Hide loading indicator
-                            }
+                        // Append new products to the container
+                        data.data.forEach(product => {
+                            const productBox = `
+                                <div class="product-box ${product.toko && product.toko.isOpen ? '' : 'toko-tutup'}">
+                                    <img alt="${product.name}" src="${product.photo}">
+                                    <strong>${product.name}</strong>
+                                    <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+                                    <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                                    ${product.toko && product.toko.isOpen ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
+                                    <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                                    <a href="javascript:void(0)" data-product-id="${product.id}" class="cart-btn">
+                                        <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                                    </a>
+                                </div>
+                            `;
+                            container.insertAdjacentHTML('beforeend', productBox);
                         });
+
+                        // Increment the page number for the next request
+                        page++;
+                    })
+                    .catch(error => {
+                        console.error('Error loading products:', error);
+                        loading = false; // Reset loading state
+                        loadingIndicator.style.display = 'none'; // Hide loading indicator
+                    });
                 }
 
                 // Scroll event listener
                 const scrollHandler = () => {
-                    // Trigger loading when the user is near the bottom of the page
                     if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-                        loadMoreProducts();
+                        loadMoreProducts(); // Load more products when reaching near the bottom
                     }
                 };
 
-                // Add scroll event listener when the page loads
                 window.addEventListener('scroll', scrollHandler);
+            </script> --}}
 
-                // Optionally, load the first set of products on page load
-                document.addEventListener('DOMContentLoaded', () => {
-                    loadMoreProducts();
-                });
-            </script>
 
 
 
@@ -315,4 +292,87 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/product.js"></script>
     <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js"></script>
+
+    <script>
+        let page = 1; // Halaman awal
+        let loading = false; // Status permintaan AJAX
+
+        function isMobile() {
+            return window.innerWidth <= 768; // Deteksi perangkat mobile
+        }
+
+        function loadMoreProducts() {
+            if (loading) return; // Jangan lanjut jika sedang memuat
+            loading = true;
+
+            const loadingIndicator = document.querySelector('.loading');
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'block'; // Tampilkan indikator loading
+            }
+
+            fetch(`/product-slider?page=${page + 1}&itemsPerPage=${isMobile() ? 1 : 3}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest', // Tandai sebagai permintaan AJAX
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none'; // Sembunyikan indikator loading
+                    }
+                    loading = false; // Reset status loading
+
+                    // Jika tidak ada data lagi, hentikan event scroll
+                    if (data.data.length === 0) {
+                        window.removeEventListener('scroll', scrollHandler);
+                        return;
+                    }
+
+                    const container = document.getElementById('product-container');
+                    if (!container) return;
+
+                    // Tambahkan produk ke dalam container
+                    data.data.forEach(product => {
+                        const productBox = `
+                            <div class="product-box">
+                                <img alt="${product.name}" src="${product.photo}">
+                                <strong>${product.name}</strong>
+                                <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                            </div>
+                        `;
+                        container.insertAdjacentHTML('beforeend', productBox);
+                    });
+
+                    page++; // Tingkatkan nomor halaman untuk permintaan berikutnya
+                })
+                .catch(error => {
+                    console.error('Error loading products:', error);
+                    loading = false; // Reset status loading
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                });
+        }
+
+        const scrollHandler = () => {
+            // Muat lebih banyak produk ketika mendekati bagian bawah halaman
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                loadMoreProducts();
+            }
+        };
+
+        // Tambahkan event scroll
+        window.addEventListener('scroll', scrollHandler);
+
+        // Muat produk pertama kali ketika halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMoreProducts();
+        });
+    </script>
 @endsection
