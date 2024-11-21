@@ -24,14 +24,14 @@
                 <h3>Daftar Produk</h3>
             </div>
 
-            <div class="product-container" id="product-container">
+            {{-- <div class="product-container" id="product-container">
 
                 <div class="loading" style="display: none;">
 
                     <p>Loading more posts...</p>
 
                 </div>
-            </div>
+            </div> --}}
 
 
             <script>
