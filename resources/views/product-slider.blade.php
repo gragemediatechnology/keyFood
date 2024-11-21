@@ -320,6 +320,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Set jumlah produk awal berdasarkan perangkat
             // const itemsPerPage = isMobile() ? 1 : 3;
+            // const itemsPerPage = isMobile() ? 1 : 3;
             const itemsPerPage = 1;
 
             // Muat halaman pertama dengan jumlah produk sesuai perangkat
@@ -333,6 +334,7 @@
                 .then(data => {
                     const container = document.getElementById('product-container');
                     data.data.forEach(product => {
+                        console.log(data);
                         var rating = product.rating ?? 0;
 
                         // Proses `rated_by`
