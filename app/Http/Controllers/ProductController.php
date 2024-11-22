@@ -118,7 +118,7 @@ class ProductController extends Controller
         $itemsPerPage = $request->input('itemsPerPage', $defaultItemsPerPage);
 
         // Mengambil data produk dengan pagination dinamis
-        $products = Product::paginate($itemsPerPage);
+        $products = Product::with('category', 'toko')->paginate($itemsPerPage);
 
         // Jika permintaan AJAX, kembalikan data produk dalam format JSON
         if ($request->ajax()) {
