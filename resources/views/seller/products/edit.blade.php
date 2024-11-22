@@ -25,7 +25,7 @@
 
                     <div class="mt-4">
                         <label for="photo" class="block font-medium text-sm text-gray-700">{{ __('Foto Sebelumnya') }}</label>
-                        <img src="{{ asset($product->photo) }}" class="h-[100px] w-auto" alt="{{ $product->name }}">
+                        <img src="{{ asset($product->photo) }}" class="h-[100px] w-auto" alt="{{ $product->name }}" loading="lazy">
                         <input id="photo" class="block mt-1 w-full" type="file" name="photo">
                         @error('photo')
                             <p class="text-red-500 text-sm mt-2">{{ $message }}</p>

@@ -18,7 +18,7 @@
             <div class="rounded-lg  px-4 pt-6 pb-8 w-full max-w-lg shadow-lg dark:bg-gray-800">
                 <div class="mx-auto rounded-full overflow-hidden" style="width: 100px; height:auto;">
                     <img src="https://teraskabeka.com/{{ Auth::user()->img ?? '/img/client-1.jpg' }}" alt="User Image"
-                         style="width: 100px; height:auto;" />
+                         style="width: 100px; height:auto;" loading="lazy" />
                 </div>
 
                 <h1 class="my-2 text-center text-xl font-bold leading-8 text-gray-900 dark:text-gray-100">

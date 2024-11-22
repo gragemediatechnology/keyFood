@@ -24,7 +24,7 @@
                                 class="fixed top-4 left-0 px-10 right-0 mx-auto flex items-center p-2 mb-4 border rounded-lg shadow-md bg-gray-100 z-50 w-[90%] max-w-sm md:max-w-md lg:max-w-lg">
                                 <div class="w-12 h-12 mr-4">
                                     <img src="../{{ $secondUser->img ?? '../img/client-1.jpg' }}" alt="User Avatar"
-                                        class="w-full h-full rounded-full">
+                                        class="w-full h-full rounded-full" loading="lazy">
                                 </div>
                                 <div>
                                     <h3 class="text-lg font-semibold text-gray-950">{{ $secondUser->name }}</h3>
@@ -48,7 +48,7 @@
                                         <div class="chat-image avatar">
                                             <div class="w-10 rounded-full">
                                                 <img alt="User Avatar"
-                                                    src="../{{ $message->fromUser->img ?? '../img/client-1.jpg' }}" />
+                                                    src="../{{ $message->fromUser->img ?? '../img/client-1.jpg' }}" loading="lazy"/>
                                             </div>
                                         </div>
                                         <div class="chat-header text-gray-950">
@@ -61,7 +61,7 @@
                                                 <img src="../{{ 'storage/' . $message->image }}" alt="Image"
                                                     class="max-w-24 h-auto rounded-lg mt-2 cursor-pointer"
                                                     id="chatImage"
-                                                    onclick="openModal('{{ 'storage/' . $message->image }}')">
+                                                    onclick="openModal('{{ 'storage/' . $message->image }}')" loading="lazy">
                                             @endif
 
                                             @if ($message->message)
@@ -85,7 +85,7 @@
                                     <span class="text-2xl">×</span>
                                 </button>
                                 <img id="modalImage" src="" alt="Large Image"
-                                    class="w-full h-auto max-h-80 rounded-lg">
+                                    class="w-full h-auto max-h-80 rounded-lg" loading="lazy">
                             </div>
                         </div>
 

@@ -8,7 +8,7 @@
                 <div class="mx-auto rounded-full overflow-hidden" style="width: 100px; height:auto;">
                     <!-- <img src="{{ Auth::user()->img ?? './img/client-1.jpg' }}" alt="User Image"
                          style="width: 100px; height:auto;" /> -->
-                         <img src="{{ Auth::user()->img ? '/' . asset(Auth::user()->img) : asset('img/client-1.jpg') }}" alt="User Image">
+                         <img src="{{ Auth::user()->img ? '/' . asset(Auth::user()->img) : asset('img/client-1.jpg') }}" alt="User Image" loading="lazy">
                          />
                 </div>
 

@@ -13,7 +13,7 @@
                         <p><strong>ID:</strong> {{ $store->id_toko }}</p>
                         <form action="/detailed-store" method="GET">
                             <input type="hidden" value="{{ $store->id_toko }}" name="id">
-                            <img src="https://teraskabeka.com/store_image/{{ $store->foto_profile_toko ? $store->foto_profile_toko : 'markets.png' }}" alt="Profile Picture">
+                            <img src="https://teraskabeka.com/store_image/{{ $store->foto_profile_toko ? $store->foto_profile_toko : 'markets.png' }}" alt="Profile Picture" loading="lazy">
                             {{-- <h2>{{ $store->nama_toko }}</h2> --}}
                             <div class="flex items-center text-sm">
                                 <!-- Avatar with inset shadow -->
