@@ -320,8 +320,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Set jumlah produk awal berdasarkan perangkat
             // const itemsPerPage = isMobile() ? 1 : 3;
-            // const itemsPerPage = isMobile() ? 1 : 3;
-            const itemsPerPage = 1;
+            const itemsPerPage = isMobile() ? 1 : 3;
 
             // Muat halaman pertama dengan jumlah produk sesuai perangkat
             fetch(`/product-slider?page=${page}&itemsPerPage=${itemsPerPage}`, {
