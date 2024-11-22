@@ -333,7 +333,7 @@
                 .then(data => {
                     const container = document.getElementById('product-container');
                     data.data.forEach(product => {
-                        console.log(data);
+                        console.log('coba', data);
                         var rating = product.rating ?? 0;
 
                         // Proses `rated_by`
