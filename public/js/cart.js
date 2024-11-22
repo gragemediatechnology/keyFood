@@ -102,7 +102,7 @@ function getData() {
             document.getElementById('cart').innerHTML += `
               <div class="cart-item rounded-3xl border-2 border-gray-200 p-4 lg:p-8 grid grid-cols-12 mb-8 max-lg:max-w-lg max-lg:mx-auto gap-y-4">
                     <div class="col-span-12 lg:col-span-2 img box">
-                        <img src="${cart[key].photo}" alt="${cart[key].name}" class="max-lg:w-full lg:w-[180px] rounded-lg">
+                        <img src="${cart[key].photo}" alt="${cart[key].name}" class="max-lg:w-full lg:w-[180px] rounded-lg" loading="lazy">
                     </div>
                     <div class="col-span-12 lg:col-span-10 detail w-full lg:pl-3">
                         <div class="flex items-center justify-between w-full mb-4">
