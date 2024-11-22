@@ -261,7 +261,7 @@
                         var halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
                         var emptyStars = 5 - (fullStars + halfStar);
 
-                        var isTokoOnline = product.toko ? product.toko.isOpen : false; // Status toko
+                        var isTokoOnline = product.toko ? product.toko.is_online : false; // Status toko
 
                         var starIcons = `
                             ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(fullStars)}
@@ -333,7 +333,7 @@
                 .then(data => {
                     const container = document.getElementById('product-container');
                     data.data.forEach(product => {
-                        console.log(data);
+                        console.log('coba', data);
                         var rating = product.rating ?? 0;
 
                         // Proses `rated_by`
@@ -350,7 +350,7 @@
                         var halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
                         var emptyStars = 5 - (fullStars + halfStar);
 
-                        var isTokoOnline = product.toko ? product.toko.isOpen : false; // Status toko
+                        var isTokoOnline = product.toko ? product.toko.is_online : false; // Status toko
 
                         var starIcons = `
                             ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(fullStars)}
