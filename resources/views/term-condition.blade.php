@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/584a8943e4f59a35bd19192a3b6a00174c1dfb5a/public/css/terms.css">
     <script src="https://kit.fontawesome.com/3ef3559250.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
     <title>Teras KBK || {{ Route::currentRouteName() }} </title>
 </head>
 

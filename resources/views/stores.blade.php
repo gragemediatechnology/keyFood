@@ -37,8 +37,8 @@
                     <button type="submit">
                         <div class="container-s" id="visit">
                             <div class="user-s">
-                                <img class="user-icon-s"
-                                    src="https://teraskabeka.com/store_image/{{ $store->foto_profile_toko ?  $store->foto_profile_toko : 'markets.png' }}" />
+                                <img class="user-icon-s "
+                                    src="https://teraskabeka.com/store_image/{{ $store->foto_profile_toko ?  $store->foto_profile_toko : 'markets.png' }}" loading="lazy"/>
                                 <div class="user-info-s">
                                     <div class="user-name-s">{{ $store->nama_toko }}</div>
                                     <div class="user-description-s">Alamat : {{ $store->alamat_toko }}</div>
@@ -134,7 +134,7 @@
                                             <div class="container-s" id="visit">
                                                 <div class="user-s">
                                                  <img class="user-icon-s"
-                                                    src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'}" />
+                                                    src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'}" loading="lazy"/>
 
                                                     <div class="user-info-s">
                                                         <div class="user-name-s">${store.nama_toko}</div>

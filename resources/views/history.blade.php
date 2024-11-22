@@ -30,7 +30,7 @@
             <section class="bg-transparent min-h-screen flex items-center justify-center p-4">
                 <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full">
                     <div class="relative mb-8">
-                        <img src="../img/no-order.png" alt="Empty box" class="w-40 h-40 mx-auto" />
+                        <img src="../img/no-order.png" alt="Empty box" class="w-40 h-40 mx-auto" loading="lazy"/>
                     </div>
                     <h2 class="text-3xl font-bold mb-4 text-gray-800">Pesanan Masih Kosong:(</h2>
                     <p class="text-gray-600 mb-8">Anda belum memesan apa pun. Temukan produk-produk menarik kami dan
@@ -83,8 +83,8 @@
                                 <div class="flex flex-col sm:flex-row items-center gap-8 lg:gap-24 px-3 md:px-11">
                                     <div class="grid grid-cols-4 w-full">
                                         <div class="col-span-4 sm:col-span-1 flex justify-center">
-                                            <img class="w-24 h-24 max-md:w-20 max-md:h-20 max-sm:mx-auto"
-                                                src="{{ $orderDetail->products->photo ?? '' }}" alt="">
+                                            <img class="w-24 h-24 max-md:w-20 max-md:h-20 max-sm:mx-auto "
+                                                src="{{ $orderDetail->products->photo ?? '' }}" alt="" loading="lazy">
                                         </div>
                                         <div
                                             class="col-span-4 sm:col-span-3 mt-4 sm:pl-8 flex flex-col justify-center max-sm:items-center">

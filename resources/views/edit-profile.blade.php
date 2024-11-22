@@ -18,7 +18,7 @@
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/e7944c0d2670c19afb8043149a034e05d5331b98/public/css/edit-p.css">
 
-    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
     <title>Teras KBK || {{ Route::currentRouteName() }} </title>
 </head>
 
@@ -32,10 +32,10 @@
                 <div class="input-image">
                     @if (Auth::user()->img)
                         <img src="{{ Auth::user()->img }}" alt="Current profile picture"
-                            style="max-width: 200px; margin-bottom: 10px;">
+                            style="max-width: 200px; margin-bottom: 10px;" loading="lazy">
                     @endif
-                    <input type="file" id="file" name="img" hidden>
-                    <div class="img-area" data-img="">
+                    <input type="file" id="file" name="img" loading="lazy" hidden>
+                    <div class="img-area" data-img="" loading="lazy">
                         <i class='bx bxs-cloud-upload icon' style="font-size: 50px;"></i>
                         <h3>Upload Image</h3>
                         <p>Image size must be less than <span>2MB</span></p>

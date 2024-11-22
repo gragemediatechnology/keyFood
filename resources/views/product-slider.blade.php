@@ -271,7 +271,7 @@
 
                         var productBox = `
                             <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
-                                <img alt="${product.name}" src="${product.photo}">
+                                <img alt="${product.name}" src="${product.photo}" loading="lazy">
                                 <strong>${product.name}</strong>
                                 <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
                                 <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
@@ -361,7 +361,7 @@
 
                         const productBox = `
                             <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
-                                <img alt="${product.name}" src="${product.photo}">
+                                <img alt="${product.name}" src="${product.photo}" loading="lazy">
                                 <strong>${product.name}</strong>
                                 <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
                                 <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>

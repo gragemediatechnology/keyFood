@@ -126,7 +126,7 @@
     <div class="container-profile">
         <div class="card-profile">
             <p><strong>ID:</strong> 12345</p>
-            <img src="https://via.placeholder.com/100" alt="Profile Picture">
+            <img src="https://via.placeholder.com/100" alt="Profile Picture" loading="lazy">
             <h2>Username1</h2>
             <p><strong>Role:</strong> User Role1</p>
             <div class="info">
@@ -159,7 +159,7 @@
 
         <div class="card-profile">
             <p><strong>ID:</strong> 12346</p>
-            <img src="https://via.placeholder.com/100" alt="Profile Picture">
+            <img src="https://via.placeholder.com/100" alt="Profile Picture" loading="lazy">
             <h2>Username2</h2>
             <p><strong>Role:</strong> User Role2</p>
             <div class="info">
@@ -192,7 +192,7 @@
 
         <div class="card-profile">
             <p><strong>ID:</strong> 12347</p>
-            <img src="https://via.placeholder.com/100" alt="Profile Picture">
+            <img src="https://via.placeholder.com/100" alt="Profile Picture" loading="lazy">
             <h2>Username3</h2>
             <p><strong>Role:</strong> User Role3</p>
             <div class="info">

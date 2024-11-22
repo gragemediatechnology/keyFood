@@ -8,8 +8,8 @@
     <section id="home" class="mt-11">
         <section id="search-banner">
             {{-- bg --}}
-            <img alt="bg" class="bg-1" src="img/bg-1.png">
-            <img alt="bg-2" class="bg-2" src="img/topping.png">
+            <img alt="bg" class="bg-1" src="img/bg-1.png" loading="lazy">
+            <img alt="bg-2" class="bg-2" src="img/topping.png" loading="lazy">
             {{-- text --}}
             <div class="search-banner-text">
                 <h1>Pesan Makananmu Sekarang!</h1>
@@ -32,7 +32,7 @@
             <div class="category-container">
                 @foreach ($categories as $category)
                     <a href="#" class="category-box" data-category="{{ $category->name }}">
-                        <img alt="Product" src="{{ $category->icon }}">
+                        <img alt="Product" src="{{ $category->icon }}" loading="lazy">
                         <span>{{ $category->name }}</span>
                     </a>
                 @endforeach
@@ -76,7 +76,7 @@
                         <span hidden>{{ $product->id }}</span>
                         <span hidden>{{ $product->store_id }}</span>
                         <span hidden>{{ $product->slug }}</span>
-                        <img alt="{{ $product->name }}" src="{{ $product->photo }}">
+                        <img alt="{{ $product->name }}" src="{{ $product->photo }}" loading="lazy">
                         <strong>{{ $product->name }}</strong>
                         <span class="quantity">Kategori:
                             {{ $product->category ? $product->category->name : 'Unknown' }}</span>
@@ -231,7 +231,7 @@
                     // Buat elemen HTML produk
                     let productHtml = `
                     <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
-                        <img alt="${product.name}" src="${product.photo}">
+                        <img alt="${product.name}" src="${product.photo}" loading="lazy">
                         <strong>${product.name}</strong>
                         <span>Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
                         <span>Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
