@@ -1,6 +1,6 @@
 <form action="#" class="sign-up-form">
     <h2 class="title">
-      <img src="img/regis.svg" style="max-width: 150px; align-items: center;" alt="">
+      <img src="img/regis.svg" style="max-width: 150px; align-items: center;" alt="" loading="lazy">
     </h2>
     <div class="input-field">
       <i class="fas fa-user"></i>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
     <title>Teras KBK || {{ Route::currentRouteName() }} </title>
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/5ac470d94f12d3fd869f505c958e4f359dbde479/public_html/css/faq.css">
