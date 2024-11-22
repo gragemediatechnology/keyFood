@@ -37,7 +37,7 @@
                                 <label class="cursor-pointer">
                                     <div class="w-12 h-12 flex-none rounded-xl border overflow-hidden mb-2">
                                         <img id="logo" class="w-full h-full object-cover" src="https://teraskabeka.com/{{ $data->logo }}"
-                                            alt="Avatar Upload">
+                                            alt="Avatar Upload" loading="lazy">
                                     </div>
                                     <span
                                         class="focus:outline-none text-black px-2 py-1 text-xs font-medium leading-5 bg-purple-600 rounded-lg hover:bg-green-500 hover:shadow-lg dark:text-white">Browse</span>
@@ -49,7 +49,7 @@
                                 <label class="cursor-pointer ml-4">
                                     <div class="w-12 h-12 flex-none rounded-xl border overflow-hidden mb-2">
                                         <img id="gambar_home_1" class="w-full h-full object-cover" src="https://teraskabeka.com/{{ $data->gambar_home_1 }}"
-                                            alt="Avatar Upload">
+                                            alt="Avatar Upload" loading="lazy">
                                     </div>
                                     <span
                                         class="focus:outline-none text-black px-2 py-1 text-xs font-medium leading-5 bg-purple-600 rounded-lg hover:bg-green-500 hover:shadow-lg dark:text-white">Browse</span>
@@ -61,7 +61,7 @@
                                 <label class="cursor-pointer ml-4">
                                     <div class="w-12 h-12 flex-none rounded-xl border overflow-hidden mb-2">
                                         <img id="gambar_home_2" class="w-full h-full object-cover" src="https://teraskabeka.com/{{ $data->gambar_home_2 }}"
-                                            alt="Avatar Upload">
+                                            alt="Avatar Upload" loading="lazy">
                                     </div>
                                     <span
                                         class="focus:outline-none text-black px-2 py-1 text-xs font-medium leading-5 bg-purple-600 rounded-lg hover:bg-green-500 hover:shadow-lg dark:text-white">Browse</span>
@@ -73,7 +73,7 @@
                                 <label class="cursor-pointer ml-4">
                                     <div class="w-12 h-12 flex-none rounded-xl border overflow-hidden mb-2">
                                         <img id="gambar_home_3" class="w-full h-full object-cover" src="https://teraskabeka.com/{{ $data->gambar_home_3 }}"
-                                            alt="Avatar Upload">
+                                            alt="Avatar Upload" loading="lazy">
                                     </div>
                                     <span
                                         class="focus:outline-none text-black px-2 py-1 text-xs font-medium leading-5 bg-purple-600 rounded-lg hover:bg-green-500 hover:shadow-lg dark:text-white">Browse</span>

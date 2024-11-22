@@ -8,7 +8,7 @@
                 <!-- Messages from first user -->
                 <div class="space-y-2">
                     <div class="flex items-start space-x-2">
-                        <img src="{{ Auth::user()->img ?? './img/client-1.jpg' }}" alt="User avatar"
+                        <img src="{{ Auth::user()->img ?? './img/client-1.jpg' }}" alt="User avatar" loading="lazy"
                             class="w-6 h-6 sm:w-8 sm:h-8 rounded-full flex-shrink-0">
                         <div class="bg-white dark:bg-gray-800 rounded-lg p-2 sm:p-3 max-w-[75%] sm:max-w-md">
                             <p class="font-semibold dark:text-white text-sm sm:text-base">Shanay Cruz</p>
@@ -34,7 +34,7 @@
                             <p class="text-xs text-blue-200 mt-1">05:14 PM</p>
                         </div>
                         <img src="{{ Auth::user()->img ?? './img/client-1.jpg' }}" alt="Your avatar"
-                            class="w-6 h-6 sm:w-8 sm:h-8 rounded-full flex-shrink-0">
+                            class="w-6 h-6 sm:w-8 sm:h-8 rounded-full flex-shrink-0" loading="lazy">
                     </div>
 
                     <div class="flex items-start justify-end space-x-2">

@@ -33,7 +33,7 @@
             </div>
             <div class="form-group mb-5">
                 <label for="upload-img" class="block mb-1 text-gray-400">Unggah Gambar</label>
-                <input type="file" id="upload-img" name="upload-img" accept="image/*" onchange="previewImage(event)" class="w-full p-2 border border-gray-700 rounded bg-gray-700 text-white">
+                <input type="file" id="upload-img" name="upload-img" accept="image/*" onchange="previewImage(event)" class="w-full p-2 border border-gray-700 rounded bg-gray-700 text-white" loading="lazy">
             </div>
             <div class="image-preview flex flex-wrap gap-2 mt-2 mb-5 justify-center" id="image-preview"></div>
             <button type="submit" class="w-full p-2 bg-blue-500 text-white rounded hover:bg-gray-600">Tambah Produk</button>

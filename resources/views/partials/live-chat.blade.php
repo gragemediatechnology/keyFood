@@ -112,7 +112,7 @@
                                                 class="list-users flex items-center gap-4 py-2 hover:bg-gray-50 hover:rounded-md relative">
                                                 <img class="w-10 h-10 mx-2 rounded-full"
                                                     src="{{ $user->profile_picture_url ?? 'img/client-1.jpg' }}"
-                                                    alt="{{ $user->name }} image">
+                                                    alt="{{ $user->name }} image" loading="lazy">
                                                 <div class="flex-1 min-w-0 identity">
                                                     <p class="text-sm md:text-base font-medium text-gray-900 truncate">
                                                         {{ $user->name }}</p>
@@ -211,7 +211,7 @@
                                                 class="list-users flex items-center gap-4 py-2 hover:bg-gray-50 hover:rounded-md relative">
                                                 <img class="w-10 h-10 mx-2 rounded-full"
                                                     src="{{ $admin->profile_picture_url ?? 'img/client-1.jpg' }}"
-                                                    alt="{{ $admin->name }} image">
+                                                    alt="{{ $admin->name }} image" loading="lazy">
                                                 <div class="flex-1 min-w-0 identity">
                                                     <p class="text-sm md:text-base font-medium text-gray-900 truncate">
                                                         {{ $admin->name }}</p>

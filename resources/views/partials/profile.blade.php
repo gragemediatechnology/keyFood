@@ -4,7 +4,7 @@
         class="fixed-button flex h-12 w-12 items-center justify-center rounded-lg bg-slate-900 text-slate-100 ring-slate-100 transition hover:shadow-md hover:ring-2 overflow-hidden"
         @click="isOpen = !isOpen">
         <img class="w-full object-cover" src="https://teraskabeka.com/{{ Auth::user()->img ?? 'img/client-1.png' }}"
-            alt="Profile">
+            alt="Profile" loading="lazy">
     </button>
 
     <!-- Dropdown Menu -->
@@ -18,7 +18,7 @@
                         class="flex items-center justify-center rounded-lg h-12 w-12 overflow-hidden border-2 border-slate-600">
                         <img class="w-full object-cover"
                             src="https://teraskabeka.com/{{ Auth::user()->img ?? '/img/client-1.png' }}"
-                            alt="Profile">
+                            alt="Profile" loading="lazy">
                     </div>
                     <div style="width: 100%">
                         <div class="flex gap-1 text-sm font-semibold">
@@ -121,7 +121,7 @@
             <i class="fa-solid fa-arrow-left back"></i>
         </button>
         <div class="profile-pic">
-            <img src="https://teraskabeka.com/{{ Auth::user()->img ?? '/img/client-1.png' }}" alt="user avatar">
+            <img src="https://teraskabeka.com/{{ Auth::user()->img ?? '/img/client-1.png' }}" alt="user avatar" loading="lazy">
         </div>
         <div class="profile-details">
             <div class="intro">

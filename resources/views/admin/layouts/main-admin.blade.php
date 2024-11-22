@@ -16,7 +16,7 @@
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/e1b4f808733bdee8140603f23dc03bb63a0901dd/public/assets/css/card.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
-    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
     {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
 

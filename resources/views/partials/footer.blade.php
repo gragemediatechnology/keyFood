@@ -6,7 +6,7 @@
                     <a href="/home" class="flex items-center">
                         <span
                             class="self-center text-2xl font-semibold whitespace-nowrap text-gray-500">{{ $company->company_name }}</span>
-                        <img src="https://teraskabeka.com/{{ $company->logo }}" class="h-8 me-2" alt="KeyFood Logo" />
+                        <img src="https://teraskabeka.com/{{ $company->logo }}" class="h-8 me-2" alt="KeyFood Logo" loading="lazy"/>
                     </a>
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">

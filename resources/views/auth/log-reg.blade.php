@@ -14,7 +14,7 @@
 
     <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.0/dist/sweetalert2.min.css">
-    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -96,7 +96,7 @@
                         Register
                     </button>
                 </div>
-                <img src="img/log.svg" class="image" alt="" />
+                <img src="img/log.svg" class="image" alt="" loading="lazy"/>
             </div>
             <div class="panel right-panel">
                 <div class="content">
@@ -108,7 +108,7 @@
                         Sign in
                     </button>
                 </div>
-                <img src="img/register.svg" class="image" alt="" />
+                <img src="img/register.svg" class="image" alt="" loading="lazy"/>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
     {{-- coba aja --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
     <title>Teras KBK || {{ Route::currentRouteName() }} </title>
 
     <!-- Fonts -->

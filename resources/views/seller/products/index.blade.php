@@ -33,7 +33,7 @@
 
                 @forelse($products as $product)
                 <div class="item-product flex flex-row justify-between items-center">
-                    <img src="{{ asset($product->photo) }}" class="h-[100px] w-auto" alt="{{ $product->name }}">
+                    <img src="{{ asset($product->photo) }}" class="h-[100px] w-auto" alt="{{ $product->name }}" loading="lazy">
                     <div>
                         <h3>{{ $product->name }}</h3>
                         <p>{{ $product->category->name }}</p>

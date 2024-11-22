@@ -83,7 +83,7 @@
                         {{-- <a href="{{ route('live-chat', $user) }}"> --}}
                         {{-- <a href="/live-chat/{{ $user->id }}"> --}}
                         <a>
-                            <img src="https://teraskabeka.com/{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture">
+                            <img src="https://teraskabeka.com/{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture" loading="lazy">
                         </a>
                         <h2>{{ $user->name }}</h2>
                         <p><strong>Role:</strong>

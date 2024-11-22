@@ -41,7 +41,7 @@
                     <label for="icon" class="block text-gray-700 dark:text-gray-300 font-bold mb-2">Icon</label>
                     <input type="file" id="icon" name="icon" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline">
                     @if($category->icon)
-                        <img src="{{ url($category->icon) }}" style="width: 100px" class="h-10 mt-2" alt="Category Icon">
+                        <img src="{{ url($category->icon) }}" style="width: 100px" class="h-10 mt-2" alt="Category Icon" loading="lazy">
                     @endif
                 </div>
 

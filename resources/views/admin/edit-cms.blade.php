@@ -140,7 +140,7 @@
             <div class="mb-6">
                 <label for="image" class="block text-gray-700">Image 1</label>
                 <div class="border-dashed border-2 border-gray-300 p-6 text-center rounded-lg cursor-pointer hover:border-gray-400" @click="$refs.image.click()">
-                    <i class="fas fa-image text-gray-500 text-4xl mb-2" x-show="!imagePreview1"></i>
+                    <i class="fas fa-image text-gray-500 text-4xl mb-2" x-show="!imagePreview1" loading="lazy"></i>
                     <img :src="imagePreview1" alt="Image Preview" class="w-full h-full object-cover" x-show="imagePreview1">
                     <div x-show="!imagePreview1">Upload Foto 1</div>
                     <input type="file" id="image" name="image" class="hidden" @change="handleFileUpload('image', 'imagePreview1')" x-ref="image">
@@ -150,7 +150,7 @@
                 <label for="image2" class="block text-gray-700">Image 2</label>
                 <div class="border-dashed border-2 border-gray-300 p-6 text-center rounded-lg cursor-pointer hover:border-gray-400" @click="$refs.image2.click()">
                     <i class="fas fa-image text-gray-500 text-4xl mb-2" x-show="!imagePreview2"></i>
-                    <img :src="imagePreview2" alt="Image Preview" class="w-full h-full object-cover" x-show="imagePreview2">
+                    <img :src="imagePreview2" alt="Image Preview" class="w-full h-full object-cover" x-show="imagePreview2" loading="lazy">
                     <div x-show="!imagePreview2">Upload Foto 2</div>
                     <input type="file" id="image2" name="image2" class="hidden" @change="handleFileUpload('image2', 'imagePreview2')" x-ref="image2">
                 </div>
@@ -159,7 +159,7 @@
                 <label for="image3" class="block text-gray-700">Image 3</label>
                 <div class="border-dashed border-2 border-gray-300 p-6 text-center rounded-lg cursor-pointer hover:border-gray-400" @click="$refs.image3.click()">
                     <i class="fas fa-image text-gray-500 text-4xl mb-2" x-show="!imagePreview3"></i>
-                    <img :src="imagePreview3" alt="Image Preview" class="w-full h-full object-cover" x-show="imagePreview3">
+                    <img :src="imagePreview3" alt="Image Preview" class="w-full h-full object-cover" x-show="imagePreview3" loading="lazy">
                     <div x-show="!imagePreview3">Upload Foto 3</div>
                     <input type="file" id="image3" name="image3" class="hidden" @change="handleFileUpload('image3', 'imagePreview3')" x-ref="image3">
                 </div>

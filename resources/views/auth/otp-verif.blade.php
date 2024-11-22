@@ -13,7 +13,7 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="../img/whatsapp.png">
+    <link rel="icon" type="image/x-icon" href="../img/whatsapp.png" loading="lazy">
 
     <style>
         /* Hide spinner for Chrome, Safari, and newer versions of Edge */
@@ -26,7 +26,7 @@
 
 </head>
 
-<body class="bg-cover bg-center bg-no-repeat w-full h-screen" style="background-image: url('../img/otp-bg-2.jpg');">
+<body class="bg-cover bg-center bg-no-repeat w-full h-screen" style="background-image: url('../img/otp-bg-2.jpg');" loading="lazy">
     <section class="max-sm:py-64 md:py-24">
         <div
             class="max-w-md max-sm:max-w-sm max-h-lg mx-auto my-auto text-center bg-white bg-opacity-30 backdrop-blur-lg px-4 sm:px-8 py-10 rounded-xl shadow-lg">

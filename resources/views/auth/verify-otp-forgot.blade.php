@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/x-icon" href="../img/logos.svg">
+    <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
     <title>Teras KBK || {{ Route::currentRouteName() }} </title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,7 +18,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="icon" type="image/x-icon" href="../img/whatsapp.png">
+    <link rel="icon" type="image/x-icon" href="../img/whatsapp.png" loading="lazy">
 
     <style>
         /* Hide spinner for Chrome, Safari, and newer versions of Edge */
@@ -31,7 +31,7 @@
 
 </head>
 
-<body class="bg-cover bg-center bg-no-repeat w-full h-screen" style="background-image: url('../img/otp-bg-2.jpg');">
+<body class="bg-cover bg-center bg-no-repeat w-full h-screen" style="background-image: url('../img/otp-bg-2.jpg');" loading="lazy">
     <section class="max-sm:py-64 md:py-24">
         <div
             class="max-w-md max-sm:max-w-sm max-h-lg mx-auto my-auto text-center bg-white bg-opacity-30 backdrop-blur-lg px-4 sm:px-8 py-10 rounded-xl shadow-lg">

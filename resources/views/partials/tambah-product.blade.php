@@ -41,7 +41,7 @@
                                 <p id="file-types" class="text-xs text-white">PNG, JPG, GIF up to 10MB</p>
                             </label>
                         </div>
-                        <img id="image-preview" class="mt-2 hidden w-full h-48 object-cover rounded-md" />
+                        <img id="image-preview" class="mt-2 hidden w-full h-48 object-cover rounded-md" loading="lazy"/>
                     </div>
                 </div>
             </div>

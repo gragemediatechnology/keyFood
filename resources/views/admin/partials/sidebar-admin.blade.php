@@ -335,7 +335,7 @@
                             @if (Auth::check())
                                 <img class="object-cover w-8 h-8 rounded-full"
                                     src="https://teraskabeka.com/{{ Auth::user()->img ?? '/img/client-1.jpg' }}" alt=""
-                                    aria-hidden="true" />
+                                    aria-hidden="true" loading="lazy"/>
                         </button>
                         <template x-if="isProfileMenuOpen">
                             <ul x-transition:leave="transition ease-in duration-150"
@@ -349,7 +349,7 @@
                                         class="flex items-center justify-center rounded-lg h-12 w-12 overflow-hidden ">
                                         <img class="object-cover w-8 h-8 rounded-full"
                                             src="https://teraskabeka.com/{{ Auth::user()->img ?? '/img/client-1.jpg' }}"
-                                            alt="Profile">
+                                            alt="Profile" loading="lazy"
                                     </div>
                                     <div style="width: 100%" class="ml-2">
                                         <div class="flex gap-1 text-sm font-semibold">

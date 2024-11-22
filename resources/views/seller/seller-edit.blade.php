@@ -15,7 +15,7 @@
                     <div class="store-info">
                         <!-- <img src="https://teraskabeka.com/store_image/{{ $toko->foto_profile_toko ?  $toko->foto_profile_toko : 'markets.png' }} "alt="logo toko" class="store-logo"> -->
                         <img src="{{ asset('store_image/' . ($toko->foto_profile_toko ? $toko->foto_profile_toko : 'markets.png')) }}"
-                            alt="logo toko" class="store-logo">
+                            alt="logo toko" class="store-logo" loading="lazy"> 
                         <div class="store-text">
                             <h1>{{ $toko->nama_toko }}</h1>
                             <h2>{{ $toko->alamat_toko }}</h2>
@@ -205,7 +205,7 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <img alt="pack" src="https://teraskabeka.com/{{ $p->photo }}">
+                                    <img alt="pack" src="https://teraskabeka.com/{{ $p->photo }}" loading="lazy">
                                     <strong>{{ $p->name }}</strong>
                                     <span class="category">Kategori: {{ $p->category->name }}</span>
                                     <span class="quantity">Jumlah: {{ $p->quantity }}</span>
