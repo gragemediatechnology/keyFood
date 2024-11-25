@@ -219,5 +219,5 @@
 @endsection
 
 @section('script')
-    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/74094528fe5f3ca44c147b06f4c1039768fa9022/public_html/js/checkout.js"></script>
+    <script defer src="https://raw.githack.com/gragemediatechnology/keyFood/main/public/js/checkout.js"></script>
 @endsection
