@@ -19,28 +19,21 @@
 
     @yield('link')
 
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/clock.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/profile.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/home.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/style.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/load.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/app.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/clock.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/profile.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/home.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/style.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/load.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/app.css">
 
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/home-container.css">
-    <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/cart.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/cart.css">
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/898403e73ffec5a26139d452a6d2ffa66d178334/public/css/nav.css">
 
     <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
-    <title>Teras KBK || {{ Route::currentRouteName() }} </title>
+    <title>Teras  KBK || {{ Route::currentRouteName() }} </title>
     {{-- ini diatas, disebelah dikasih title statis --}}
 
     <!-- SweetAlert CSS -->
@@ -102,24 +95,12 @@
 
     @yield('script')
 
-    <script defer
-        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/clock.js">
-    </script>
-    <script defer
-        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/98f943110591c6014535f1ebc5bcd1fd4ec86266/public/js/cart.js">
-    </script>
-    <script defer
-        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/home.js">
-    </script>
-    <script defer
-        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/load.js">
-    </script>
-    <script defer
-        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/home-container.js">
-    </script>
-    <script defer
-        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/nav.js">
-    </script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/clock.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/98f943110591c6014535f1ebc5bcd1fd4ec86266/public/js/cart.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/home.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/load.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/home-container.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/nav.js"></script>
 
 
     @if (Auth::check())
@@ -162,66 +143,6 @@
             window.addEventListener('scroll', resetTimer, true);
         </script>
     @endif
-
-
-    <script>
-        // Fungsi untuk mengompres gambar
-        function compressImage(img, maxSizeKB = 200, quality = 0.7) {
-            return new Promise((resolve) => {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-
-                // Atur ukuran canvas sama dengan gambar
-                canvas.width = img.width;
-                canvas.height = img.height;
-
-                // Gambar ulang ke canvas
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                // Ulangi proses kompresi jika masih lebih besar dari maxSizeKB
-                const compress = (currentQuality) => {
-                    canvas.toBlob(
-                        (blob) => {
-                            if (blob.size / 1024 <= maxSizeKB || currentQuality <= 0.1) {
-                                resolve(blob);
-                            } else {
-                                compress(currentQuality - 0.1); // Kurangi kualitas
-                            }
-                        },
-                        'image/jpeg',
-                        currentQuality
-                    );
-                };
-
-                compress(quality);
-            });
-        }
-
-        // Fungsi untuk mengubah semua gambar di halaman
-        async function compressAllImages() {
-            const images = document.querySelectorAll('img');
-
-            for (const img of images) {
-                // Tunggu sampai gambar dimuat
-                await new Promise((resolve) => {
-                    if (img.complete) resolve();
-                    else img.onload = resolve;
-                });
-
-                // Proses kompresi
-                const compressedBlob = await compressImage(img);
-                const compressedUrl = URL.createObjectURL(compressedBlob);
-
-                // Ganti src gambar dengan hasil kompresi
-                img.src = compressedUrl;
-            }
-        }
-
-        // Jalankan kompresi saat halaman selesai dimuat
-        window.onload = () => {
-            compressAllImages();
-        };
-    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
