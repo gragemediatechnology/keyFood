@@ -142,6 +142,14 @@
                     </div>
                 @endforeach
             </div>
+            <div class="product-container" id="product-container">
+
+                <div class="loading" style="display: none;">
+
+                    <p>Loading more posts...</p>
+
+                </div>
+            </div>
 
             <script>
                 function showTokoTutupAlert(namaToko) {
