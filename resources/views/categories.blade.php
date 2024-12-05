@@ -45,108 +45,9 @@
                 <h3>Daftar Produk</h3>
             </div>
             <div id="product-list" class="product-container">
-                @foreach ($products as $product)
-                    @php
-                        // Ambil nilai rating dan rated_by
-                        $rating = $product->rating ?? 0;
-
-                        // Jika rated_by adalah JSON, decode jadi array dan hitung elemennya, jika tidak, gunakan langsung
-                        if (is_string($product->rated_by)) {
-                            $rated_by = json_decode($product->rated_by, true);
-                            $rated_by = is_array($rated_by) ? count($rated_by) : $rated_by; // Jika array, hitung jumlahnya
-                        } else {
-                            $rated_by = $product->rated_by ?? 1; // Gunakan 1 sebagai default jika kosong
-                        }
-
-                        // Hitung rata-rata rating jika rated_by lebih dari 0
-                        $average_rating = $rated_by > 0 ? $rating / $rated_by : 0;
-
-                        // Batasi rata-rata rating menjadi satu angka di belakang koma
-                        $average_rating = number_format($average_rating, 1);
-
-                        $fullStars = floor($average_rating); // Bintang penuh
-                        $halfStar = $average_rating - $fullStars >= 0.5 ? 1 : 0; // Setengah bintang jika rating memiliki desimal > 0.5
-                        $emptyStars = 5 - ($fullStars + $halfStar); // Bintang kosong
-
-                        // Cek status toko
-                        $toko = $product->toko;
-                        $isTokoOnline = $toko ? $toko->isOpen() : false; // Cek apakah toko buka
-                    @endphp
-
-                    <div class="product-box {{ $isTokoOnline ? '' : 'toko-tutup' }}">
-                        <span hidden>{{ $product->id }}</span>
-                        <span hidden>{{ $product->store_id }}</span>
-                        <span hidden>{{ $product->slug }}</span>
-                        <img alt="{{ $product->name }}" src="{{ $product->photo }}" loading="lazy">
-                        <strong>{{ $product->name }}</strong>
-                        <span class="quantity">Kategori:
-                            {{ $product->category ? $product->category->name : 'Unknown' }}</span>
-                        <span class="quantity">Toko: {{ $product->toko ? $product->toko->nama_toko : 'Unknown' }}
-                        </span>
-                        @if (!$isTokoOnline)
-                            <span class="text-red-500">(Toko Tutup)</span>
-                        @else
-                            <span class="text-green-500">(Toko Buka)</span>
-                        @endif
-                        <div class="flex">
-                            {{-- Tampilkan bintang penuh --}}
-                            @for ($i = 1; $i <= $fullStars; $i++)
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                </svg>
-                            @endfor
-
-                            {{-- Tampilkan setengah bintang jika ada --}}
-                            @if ($halfStar)
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z" />
-                                </svg>
-                            @endif
-
-                            {{-- Tampilkan bintang kosong --}}
-                            @for ($i = 1; $i <= $emptyStars; $i++)
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                                </svg>
-                            @endfor
-
-                            @if ($average_rating >= 1)
-                                <p class="mx-2">( {{ $average_rating }} / 5 )</p>
-                            @else
-                                <p class="mx-2">( 0 / 0 )</p>
-                            @endif
-                        </div>
-                        <span class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
-
-                        @if ($isTokoOnline)
-                            <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
-                                data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
-                                data-slug="{{ $product->slug }}" class="cart-btn">
-                                <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
-                            </a>
-                        @else
-                            <a href="javascript:void(0)" data-product-id="{{ $product->id }}"
-                                data-store-id="{{ $product->store_id }}" data-category-id="{{ $product->category_id }}"
-                                data-slug="{{ $product->slug }}"
-                                class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear"
-                                disabled>
-                                <i class="fas fa-ban"></i> Toko Tutup
-                            </a>
-                        @endif
-                    </div>
-                @endforeach
-            </div>
-            <div class="product-container" id="product-container">
-
                 <div class="loading" style="display: none;">
 
-                    <p>Loading more posts...</p>
+                    {{-- <p>Loading more posts...</p> --}}
 
                 </div>
             </div>
@@ -162,121 +63,12 @@
             </script>
 
             @include('partials.cart')
-            <div class="pagination">
+            {{-- <div class="pagination">
                 {{ $products->links() }}
-            </div>
+            </div> --}}
         </section>
     @endsection
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        let page = 1; // Halaman awal
-        let loading = false; // Status permintaan AJAX
-
-        function isMobile() {
-            return window.innerWidth <= 768; // Deteksi perangkat mobile
-        }
-
-        function loadMoreCategories() {
-            if (loading) return; // Jangan lanjut jika sedang memuat
-            loading = true;
-
-            const loadingIndicator = document.querySelector('.loading');
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'block'; // Tampilkan indikator loading
-            }
-
-            fetch(`/categories?page=${page + 1}&itemsPerPage=${isMobile() ? 1 : 3}`, {
-                    method: 'GET',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest', // Tandai sebagai permintaan AJAX
-                    },
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (loadingIndicator) {
-                        loadingIndicator.style.display = 'none'; // Sembunyikan indikator loading
-                    }
-                    loading = false; // Reset status loading
-
-                    // Jika tidak ada data lagi, hentikan event scroll
-                    if (data.data.length === 0) {
-                        window.removeEventListener('scroll', scrollHandler);
-                        return;
-                    }
-
-                    const container = document.getElementById('product-container');
-                    if (!container) return;
-
-                    // Tambahkan kategori ke dalam container
-                    data.data.forEach(category => {
-                        const categoryBox = `
-                            <div class="category-box">
-                                <img alt="${category.name}" src="${category.photo}" loading="lazy">
-                                <strong>${category.name}</strong>
-                                <span class="description">${category.description || 'No description available'}</span>
-                                <span class="product-count">Total Products: ${category.total_products || 0}</span>
-                            </div>
-                        `;
-                        container.insertAdjacentHTML('beforeend', categoryBox);
-                    });
-
-                    page++; // Tingkatkan nomor halaman untuk permintaan berikutnya
-                })
-                .catch(error => {
-                    console.error('Error loading categories:', error);
-                    loading = false; // Reset status loading
-                    if (loadingIndicator) {
-                        loadingIndicator.style.display = 'none';
-                    }
-                });
-        }
-
-        const scrollHandler = () => {
-            // Muat lebih banyak kategori ketika mendekati bagian bawah halaman
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-                loadMoreCategories();
-            }
-        };
-
-        // Tambahkan event scroll
-        window.addEventListener('scroll', scrollHandler);
-
-        // Muat kategori pertama kali ketika halaman selesai dimuat
-        document.addEventListener('DOMContentLoaded', () => {
-            const itemsPerPage = isMobile() ? 1 : 3;
-
-            fetch(`/categories?page=${page}&itemsPerPage=${itemsPerPage}`, {
-                    method: 'GET',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById('product-container');
-                    data.data.forEach(category => {
-                        const categoryBox = `
-                            <div class="category-box">
-                                <img alt="${category.name}" src="${category.photo}" loading="lazy">
-                                <strong>${category.name}</strong>
-                                <span class="description">${category.description || 'No description available'}</span>
-                                <span class="product-count">Total Products: ${category.total_products || 0}</span>
-                            </div>
-                        `;
-                        container.insertAdjacentHTML('beforeend', categoryBox);
-                    });
-                })
-                .catch(error => console.error('Error loading initial categories:', error));
-        });
-    </script>
-
-
 
     <script>
         $(document).ready(function() {
@@ -377,7 +169,7 @@
 
                     </div>`;
                                 $('#product-list').append(
-                                productHtml); // Tambahkan produk ke daftar
+                                    productHtml); // Tambahkan produk ke daftar
                             });
 
                             // // Event listener untuk tombol "Tambah ke Keranjang"
@@ -411,6 +203,194 @@
                 });
             }
 
+        });
+    </script>
+
+    <script>
+        let page = 1; // Halaman awal
+        let loading = false; // Status permintaan AJAX
+
+        function isMobile() {
+            return window.innerWidth <= 768; // Deteksi perangkat mobile
+        }
+
+        function loadMoreProducts() {
+            if (loading) return; // Jangan lanjut jika sedang memuat
+            loading = true;
+
+            const loadingIndicator = document.querySelector('.loading');
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'block'; // Tampilkan indikator loading
+            }
+
+            fetch(`/categories?page=${page + 1}&itemsPerPage=${isMobile() ? 1 : 3}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest', // Tandai sebagai permintaan AJAX
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none'; // Sembunyikan indikator loading
+                    }
+                    loading = false; // Reset status loading
+
+                    // Jika tidak ada data lagi, hentikan event scroll
+                    if (data.data.length === 0) {
+                        window.removeEventListener('scroll', scrollHandler);
+                        return;
+                    }
+
+                    const container = document.getElementById('product-list');
+                    if (!container) return;
+
+                    // Tambahkan produk ke dalam container
+                    data.data.forEach(product => {
+                        var rating = product.rating ?? 0;
+
+                        // Proses `rated_by`
+                        let ratedBy = 1; // Default
+                        if (typeof product.rated_by === 'string') {
+                            var ratedByArray = JSON.parse(product.rated_by);
+                            ratedBy = Array.isArray(ratedByArray) ? ratedByArray.length : ratedByArray;
+                        } else {
+                            ratedBy = product.rated_by ?? 1;
+                        }
+
+                        var averageRating = ratedBy > 0 ? (rating / ratedBy).toFixed(1) : 0;
+                        var fullStars = Math.floor(averageRating);
+                        var halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
+                        var emptyStars = 5 - (fullStars + halfStar);
+
+                        var isTokoOnline = product.toko ? product.toko.is_online : false; // Status toko
+
+                        var starIcons = `
+                    ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(fullStars)}
+                    ${halfStar ? '<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z"/></svg>' : ''}
+                    ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(emptyStars)}
+                `;
+
+                        var productBox = `
+                    <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
+                        <img alt="${product.name}" src="${product.photo}" loading="lazy">
+                        <strong>${product.name}</strong>
+                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                        ${isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
+                        <div class="flex">
+                            ${starIcons}
+                            <p class="mx-2">(${averageRating} / 5)</p>
+                        </div>
+                        <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                        ${isTokoOnline
+                            ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-alamat-toko="${product.toko.alamat_toko}" data-store-id="${product.store_id}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn">
+                                            <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                                        </a>`
+                            : `<a href="javascript:void(0)" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear">
+                                            <i class="fas fa-ban"></i> Toko Tutup
+                                        </a>`}
+                    </div>
+                `;
+
+                        container.insertAdjacentHTML('beforeend', productBox);
+                    });
+
+
+                    page++; // Tingkatkan nomor halaman untuk permintaan berikutnya
+                })
+                .catch(error => {
+                    console.error('Error loading products:', error);
+                    loading = false; // Reset status loading
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                });
+        }
+
+        const scrollHandler = () => {
+            // Muat lebih banyak produk ketika mendekati bagian bawah halaman
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                loadMoreProducts();
+            }
+        };
+
+        // Tambahkan event scroll
+        window.addEventListener('scroll', scrollHandler);
+
+        // Muat produk pertama kali ketika halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set jumlah produk awal berdasarkan perangkat
+            // const itemsPerPage = isMobile() ? 1 : 3;
+            const itemsPerPage = isMobile() ? 1 : 3;
+
+            // Muat halaman pertama dengan jumlah produk sesuai perangkat
+            fetch(`/categories?page=${page}&itemsPerPage=${itemsPerPage}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('product-list');
+                    data.data.forEach(product => {
+                        console.log('coba', data);
+                        var rating = product.rating ?? 0;
+
+                        // Proses `rated_by`
+                        let ratedBy = 1; // Default
+                        if (typeof product.rated_by === 'string') {
+                            var ratedByArray = JSON.parse(product.rated_by);
+                            ratedBy = Array.isArray(ratedByArray) ? ratedByArray.length : ratedByArray;
+                        } else {
+                            ratedBy = product.rated_by ?? 1;
+                        }
+
+                        var averageRating = ratedBy > 0 ? (rating / ratedBy).toFixed(1) : 0;
+                        var fullStars = Math.floor(averageRating);
+                        var halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
+                        var emptyStars = 5 - (fullStars + halfStar);
+
+                        var isTokoOnline = product.toko ? product.toko.is_online : false; // Status toko
+
+                        var starIcons = `
+                    ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(fullStars)}
+                    ${halfStar ? '<svg xmlns="http://www.w3.org/2000/svg" class="text-yellow-500 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M8 12.545L3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 12.545V0z"/></svg>' : ''}
+                    ${'<svg xmlns="http://www.w3.org/2000/svg" class="text-gray-300 w-5 h-auto fill-current" viewBox="0 0 16 16"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/></svg>'.repeat(emptyStars)}
+                `;
+
+                        const productBox = `
+                    <div class="product-box ${isTokoOnline ? '' : 'toko-tutup'}">
+                        <img alt="${product.name}" src="${product.photo}" loading="lazy">
+                        <strong>${product.name}</strong>
+                        <span class="quantity">Kategori: ${product.category ? product.category.name : 'Unknown'}</span>
+                        <span class="quantity">Toko: ${product.toko ? product.toko.nama_toko : 'Unknown'}</span>
+                        ${isTokoOnline ? '<span class="text-green-500">(Toko Buka)</span>' : '<span class="text-red-500">(Toko Tutup)</span>'}
+                        <div class="flex">
+                            ${starIcons}
+                            <p class="mx-2">(${averageRating} / 5)</p>
+                        </div>
+                        <span class="price">Rp ${new Intl.NumberFormat('id-ID').format(product.price)}</span>
+                        ${isTokoOnline
+                            ? `<a href="javascript:void(0)" data-product-id="${product.id}" data-store-id="${product.store_id}" data-alamat-toko="${product.toko.alamat_toko}" data-category-id="${product.category_id}" data-slug="${product.slug}" class="cart-btn">
+                                            <i class="fas fa-shopping-bag"></i> Tambah Ke Keranjang
+                                        </a>`
+                            : `<a href="javascript:void(0)" class="w-full h-[40px] bg-red-100 text-red-600 flex justify-center items-center mt-[20px] transition-all duration-300 ease-linear">
+                                            <i class="fas fa-ban"></i> Toko Tutup
+                                        </a>`}
+                    </div>
+                `;
+
+                        container.insertAdjacentHTML('beforeend', productBox);
+                    });
+                })
+                .catch(error => console.error('Error loading initial products:', error));
         });
     </script>
 

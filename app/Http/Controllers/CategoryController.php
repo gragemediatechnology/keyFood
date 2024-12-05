@@ -94,11 +94,24 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
     }
 
-    public function showCategories()
+    public function showCategories(Request $request)
     {
         $categories = Category::all();
-        $products = Product::paginate(20);// Mengambil semua kategori dari database
-        return view('categories', compact('categories','products'));
-    
+        // Default jumlah item per halaman
+        $defaultItemsPerPage = 1;
+
+        // Ambil parameter `itemsPerPage` dari request atau gunakan default
+        $itemsPerPage = $request->input('itemsPerPage', $defaultItemsPerPage);
+
+        // Mengambil data produk dengan pagination dinamis
+        $products = Product::with('category', 'toko')->paginate($itemsPerPage);
+
+        // Jika permintaan AJAX, kembalikan data produk dalam format JSON
+        if ($request->ajax()) {
+            return response()->json($products);
+        }
+
+        // Jika bukan AJAX, kembalikan tampilan lengkap
+        return view('categories', compact('products', 'categories', 'itemsPerPage'));
     }
 }
