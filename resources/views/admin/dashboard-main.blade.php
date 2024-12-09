@@ -166,10 +166,10 @@
                         </div>
                     </div>
 
-                     <div class="relative flex flex-col rounded-xl bg-white dark:bg-gray-800 bg-clip-border text-gray-700 shadow-md">
+                     <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                          <div
-                            class="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 dark:text-gray-400 shadow-none md:flex-row md:items-center">
-                             <div class="w-max rounded-lg bg-gray-900 dark:bg-white p-5 text-white dark:text-gray-800">
+                            class="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none md:flex-row md:items-center">
+                             <div class="w-max rounded-lg bg-gray-900 p-5 text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-6 w-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -180,11 +180,11 @@
                             </div>
                              <div>
                                 <h6
-                                    class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-gray-900 dark:text-white antialiased">
+                                    class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
                                     Grafik Pengunjung Web Teras KBK
                                 </h6>
                                 <p
-                                    class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 dark:text-gray-400 antialiased">
+                                    class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
                                     Ini Adalah Visualisasi Data  Untuk Melihat Data Pengunjung Website
                                 </p>
                                 
