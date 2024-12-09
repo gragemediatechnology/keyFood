@@ -35,11 +35,11 @@
                                     {{-- <a href="{{ route('admin.backups.download', $backup['filename']) }}" --}}
                                     <a href="/admin/backups/download/{{ $backup['filename'] }}"
                                         class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-100 focus:outline-none focus:shadow-outline-gray">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                        {{-- <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                                             <path
                                                 d="M3 12a1 1 0 011-1h2V6a1 1 0 112 0v5h2V6a1 1 0 112 0v5h2a1 1 0 110 2H4a1 1 0 01-1-1zm12.707 3.293l-3-3a1 1 0 10-1.414 1.414L13 14.586V3a1 1 0 112 0v11.586l1.707-1.707a1 1 0 001.414 1.414l-3 3a1 1 0 01-1.414 0z">
                                             </path>
-                                        </svg>
+                                        </svg> --}}
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="size-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
