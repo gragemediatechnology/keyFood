@@ -309,43 +309,47 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-
     public function rateProduct(Request $request, $id)
     {
         $user = Auth::user();
-        $product = Product::findOrFail($id);
-
+        $product = Product::withTrashed()->find($id); // Memeriksa produk termasuk yang dihapus dengan Soft Deletes
+    
+        // Cek apakah produk sudah dihapus
+        if ($product->trashed()) {
+            return redirect()->back()->with('error', 'Tidak bisa memberikan rating, produk telah dihapus oleh penjual.');
+        }
+    
         // Validasi rating
         $request->validate([
             'rating' => 'required|numeric|min:1|max:5',
         ]);
-
+    
         // Cari order detail terbaru untuk produk ini yang belum diberi rating
         $latestOrderDetail = Orders::where('id_user', $user->id)
             ->where('product_id', $product->id)
             ->whereNull('rating')
             ->orderBy('created_at', 'desc')
             ->first();
-
+    
         if (!$latestOrderDetail) {
-            return redirect()->back()->with('error', 'Anda sudah memberikan ratting pada pembelian di produk ini.');
+            return redirect()->back()->with('error', 'Anda sudah memberikan rating pada pembelian di produk ini.');
         }
-
+    
         // Simpan rating ke order detail
         $latestOrderDetail->update([
             'rating' => $request->rating
         ]);
-
+    
         // Hitung ulang rata-rata rating produk
         $averageRating = Orders::where('product_id', $product->id)
             ->whereNotNull('rating')
             ->avg('rating');
-
+    
         // Update rating produk
         $product->update([
             'rating' => $averageRating
         ]);
-
+    
         return redirect()->back()->with('success', 'Terima kasih sudah memberikan rating!');
     }
 
