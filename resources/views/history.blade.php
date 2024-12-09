@@ -90,7 +90,7 @@
                                             class="col-span-4 sm:col-span-3 mt-4 sm:pl-8 flex flex-col justify-center max-sm:items-center">
                                             <h6
                                                 class="font-manrope font-semibold text-2xl leading-9 text-black mb-3 whitespace-nowrap">
-                                                {{ $orderDetail->products->name ?? 'Product not found' }}
+                                                {{ $orderDetail->products->name ?? 'Produk Telah Dihapus Oleh Penjual' }}
                                             </h6>
                                             <p
                                                 class="font-normal text-lg leading-8 text-gray-500 mb-8 max-md:mb-2 whitespace-nowrap">
