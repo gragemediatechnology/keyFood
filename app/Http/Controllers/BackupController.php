@@ -79,7 +79,7 @@ class BackupController extends Controller
 
         // Perintah Artisan untuk menjalankan backup
         // $command = "php $artisanPath backup:run 2>&1";
-        $command = "php $artisanPath backup:run --only-files";
+        $command = "php $artisanPath backup:run --only-db";
 
         // Jalankan perintah
         $output = shell_exec($command);
