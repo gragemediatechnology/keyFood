@@ -78,8 +78,8 @@ class BackupController extends Controller
         $artisanPath = $projectRoot . DIRECTORY_SEPARATOR . 'artisan';
 
         // Perintah Artisan untuk menjalankan backup
-        // $command = "php $artisanPath backup:run 2>&1";
-        $command = "php $artisanPath backup:run --only-db";
+        // $command = "php $artisanPath backup:run 2>&1"; //backup full db & directory
+        $command = "php $artisanPath backup:run --only-db"; //backup only db
 
         // Jalankan perintah
         $output = shell_exec($command);
