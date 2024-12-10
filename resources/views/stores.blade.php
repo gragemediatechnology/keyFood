@@ -86,6 +86,87 @@
             }
         </style>
         <script>
+            let page = 1; // Halaman awal
+            let loading = false; // Status permintaan AJAX
+        
+            function loadMoreStores() {
+                if (loading) return; // Jangan lanjut jika sedang memuat
+                loading = true;
+        
+                const loadingIndicator = document.createElement('div');
+                loadingIndicator.classList.add('loading');
+                loadingIndicator.style.display = 'block';
+                document.getElementById('store-list').appendChild(loadingIndicator);
+        
+                fetch(`/stores?page=${page + 1}&itemsPerPage=6&ajax=true`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    loading = false;
+                    loadingIndicator.remove();
+        
+                    // Jika tidak ada data lagi, hentikan event scroll
+                    if (data.data.length === 0) {
+                        window.removeEventListener('scroll', scrollHandler);
+                        return;
+                    }
+        
+                    const container = document.getElementById('store-list');
+        
+                    // Tambahkan toko ke dalam container
+                    data.data.forEach(store => {
+                        const storeElement = `
+                        <form action="/detailed-store/" method="GET">
+                            <input type="hidden" value="${store.id_toko}" name="id">
+                            <button type="submit">
+                                <div class="container-s" id="visit">
+                                    <div class="user-s">
+                                        <img class="user-icon-s"
+                                            src="https://djajanan.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'}" loading="lazy"/>
+                                        <div class="user-info-s">
+                                            <div class="user-name-s">${store.nama_toko}</div>
+                                            <div class="user-description-s">Alamat : ${store.alamat_toko}</div>
+                                            <div class="user-description-s">Waktu Oprasional Toko : ${store.waktu_buka ? store.waktu_buka : ''} - ${store.waktu_tutup ? store.waktu_tutup : ''}</div>
+                                            ${store.is_online 
+                                                ? '<p class="text-green-500">Buka</p>' 
+                                                : '<p class="text-red-500">Tutup</p>'}
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                        </form>`;
+        
+                        container.insertAdjacentHTML('beforeend', storeElement);
+                    });
+        
+                    page++; // Tingkatkan nomor halaman untuk permintaan berikutnya
+                })
+                .catch(error => {
+                    console.error('Error loading stores:', error);
+                    loading = false;
+                });
+            }
+        
+            const scrollHandler = () => {
+                // Muat lebih banyak toko ketika mendekati bagian bawah halaman
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                    loadMoreStores();
+                }
+            };
+        
+            // Tambahkan event scroll
+            window.addEventListener('scroll', scrollHandler);
+        </script>
+        <script>
             function clearSearch() {
                 document.getElementById("default-search").value = "";
             }
