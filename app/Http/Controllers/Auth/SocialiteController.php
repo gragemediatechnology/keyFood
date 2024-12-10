@@ -18,18 +18,24 @@ class SocialiteController extends Controller
     public function handleGoogleCallback()
     {
         try {
-            
+
             $user = Socialite::driver('google')->user();
             // Mencari pengguna berdasarkan google_id
             $existingUser = User::where('google_id', $user->id)->first();
 
             if ($existingUser) {
                 // Jika pengguna ada, login
-                Auth::login($existingUser);
-                 $existingUser->update(['is_online' => true]);
+                if ($existingUser->hasRole('admin')) {
+                    Auth::login($existingUser);
+                    $existingUser->update(['is_online' => true]);
 
-                return redirect()->intended('/home');
-                dd('masuk');
+                    return redirect()->intended('/admin/main-admin');
+                } else {
+                    Auth::login($existingUser);
+                    $existingUser->update(['is_online' => true]);
+
+                    return redirect()->intended('/home');
+                }
 
             } else {
 
