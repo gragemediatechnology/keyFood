@@ -13,7 +13,7 @@
             <img alt="bg-2" class="bg-2" src="img/topping.png" loading="lazy">
             {{-- text --}}
             <div class="search-banner-text">
-                <h1>Pesan Makananmu Sekarang!</h1>
+                <h1>Pesan Apa Saja dan Kapan Saja!</h1>
                 <strong>#GratisOngkir</strong>
                 {{-- search --}}
                 <form action="" class="search-boxs" onsubmit="return false;">
