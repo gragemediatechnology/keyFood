@@ -189,7 +189,7 @@
                     <section class="section__container banner__container">
                         <div class="banner__card">
                             <span class="banner__icon"><i class="ri-bowl-fill"></i></span>
-                            <h4>Pesan Kilat, Pilihan Tepat!"</h4>
+                            <h4>Pesan Kilat, Pilihan Tepat!</h4>
                             <p>
                                 Segala kebutuhan jadi lebih mudah! Dengan beberapa klik, temukan produk favoritmu dan
                                 nikmati kenyamanan berbelanja dari kami. Beragam pilihan, semuanya praktis dan memuaskan!
