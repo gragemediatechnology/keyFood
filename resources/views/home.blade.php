@@ -189,20 +189,18 @@
                     <section class="section__container banner__container">
                         <div class="banner__card">
                             <span class="banner__icon"><i class="ri-bowl-fill"></i></span>
-                            <h4>Pesan Kilat, Makan Nikmat!</h4>
+                            <h4>Pesan Kilat, Pilihan Tepat!"</h4>
                             <p>
-                                Pesan makanan jadi lebih mudah! Cukup beberapa klik, santapan favoritmu siap diantar.
-                                Nikmati
-                                praktisnya pilih menu beragam dari kami, semuanya lezat!
+                                Segala kebutuhan jadi lebih mudah! Dengan beberapa klik, temukan produk favoritmu dan
+                                nikmati kenyamanan berbelanja dari kami. Beragam pilihan, semuanya praktis dan memuaskan!
                             </p>
                         </div>
                         <div class="banner__card">
                             <span class="banner__icon"><i class="ri-truck-fill"></i></span>
-                            <h4>Jelajah Rasa, Puaskan Selera!</h4>
+                            <h4>Jelajah Pilihan, Puaskan Keinginan!</h4>
                             <p>
-                                Mau hidangan yang gurih, manis, atau yang lain? Semuanya ada di sini! Kamu bebas pilih
-                                sesuai
-                                seleramu! Kami punya banyak pilihan
+                                Butuh sesuatu yang spesial? Dari makanan, minuman, hingga kebutuhan lainnya, semuanya ada di
+                                sini! Pilih sesuai keinginanmu, kami siap memuaskan harimu. Kami punya banyak pilihan
                                 yang pasti bikin kamu puas.
                             </p>
                         </div>
@@ -210,8 +208,9 @@
                             <span class="banner__icon"><i class="ri-star-smile-fill"></i></span>
                             <h4>Santai Saja, Biar Kami yang Urus!</h4>
                             <p>
-                                Setelah pesan, tinggal duduk manis, deh! Biarkan kami siapkan pesananmu dengan sepenuh hati.
-                                Cicipi setiap suapan kelezatannya, karena kepuasanmu adalah prioritas kami.
+                                Setelah pesan, kamu tinggal bersantai! Kami akan menyiapkan kebutuhanmu dengan penuh
+                                perhatian. Nikmati kemudahan dan kualitas terbaik, karena kepuasanmu adalah tujuan utama
+                                kami.
                             </p>
                         </div>
                     </section>
