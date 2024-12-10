@@ -1,9 +1,12 @@
 @extends('layouts.main')
 
 @section('link')
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/14fea551a368621e3fd2012fa820cfd33852ee5c/public/css/halaman-toko.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/699e918c4e888784bef08b8ffce0004d019c29f0/public_html/css/product-slider.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/27db7ba39c81dbdafd840f462048a50468a23550/public_html/css/categories.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/14fea551a368621e3fd2012fa820cfd33852ee5c/public/css/halaman-toko.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/699e918c4e888784bef08b8ffce0004d019c29f0/public_html/css/product-slider.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/27db7ba39c81dbdafd840f462048a50468a23550/public_html/css/categories.css">
 @endsection
 
 @section('container')
@@ -12,7 +15,7 @@
             @foreach ($storeDetails as $detail)
                 <div class="store-info">
                     <img src="{{ $detail->foto_profile_toko ? 'https://teraskabeka.com/store_image/' . $detail->foto_profile_toko : 'https://teraskabeka.com/img/markets.webp' }} "
-                    loading="lazy" alt="logo toko" class="store-logo">
+                        loading="lazy" alt="logo toko" class="store-logo">
                     <div class="store-text">
                         <h1>{{ $detail->nama_toko }}</h1>
                         <h2>Alamat : {{ $detail->alamat_toko }}</h2>
@@ -28,6 +31,17 @@
                     <p>Deskripsi Toko : {{ $detail->deskripsi_toko }}</p>
                 </div>
             @endforeach
+            <div class="flex gap-4">
+                <!-- Button Copy Link -->
+                <button id="copy-link-btn" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    Copy Link
+                </button>
+
+                <!-- Button Share -->
+                <button id="share-link-btn" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                    Share Link
+                </button>
+            </div>
         </div>
 
         <!-- produk produk -->
@@ -83,7 +97,8 @@
                             <span hidden>{{ $product->id }}</span>
                             <span hidden>{{ $product->store_id }}</span>
                             <span hidden>{{ $product->slug }}</span>
-                            <img alt="{{ $product->name }}" src="https://teraskabeka.com/{{ $product->photo }}" loading="lazy">
+                            <img alt="{{ $product->name }}" src="https://teraskabeka.com/{{ $product->photo }}"
+                                loading="lazy">
                             <strong>{{ $product->name }}</strong>
                             {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
                             <span class="quantity">Kategori:
@@ -175,7 +190,8 @@
                             <span hidden>{{ $product->id }}</span>
                             <span hidden>{{ $product->store_id }}</span>
                             <span hidden>{{ $product->slug }}</span>
-                            <img alt="{{ $product->name }}" src="https://teraskabeka.com/{{ $product->photo }}" loading="lazy">
+                            <img alt="{{ $product->name }}" src="https://teraskabeka.com/{{ $product->photo }}"
+                                loading="lazy">
                             <strong>{{ $product->name }}</strong>
                             {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
                             <span class="quantity">Kategori:
@@ -249,7 +265,8 @@
                             <span hidden>{{ $product->id }}</span>
                             <span hidden>{{ $product->store_id }}</span>
                             <span hidden>{{ $product->slug }}</span>
-                            <img alt="{{ $product->name }}" src="https://teraskabeka.com/{{ $product->photo }}" loading="lazy">
+                            <img alt="{{ $product->name }}" src="https://teraskabeka.com/{{ $product->photo }}"
+                                loading="lazy">
                             <strong>{{ $product->name }}</strong>
                             {{-- <strong>{{ $product->toko->nama_toko }}</strong> --}}
                             <span class="quantity">Kategori:
@@ -324,6 +341,53 @@
 @endsection
 
 @section('script')
-    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/product.js"></script>
-    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const copyButton = document.getElementById("copy-link-btn");
+            const shareButton = document.getElementById("share-link-btn");
+
+            // Copy Link to Clipboard
+            copyButton.addEventListener("click", async () => {
+                const link = window.location.href; // URL saat ini
+                try {
+                    await navigator.clipboard.writeText(link);
+                    alert("Link copied to clipboard!");
+                } catch (err) {
+                    console.error("Failed to copy link: ", err);
+                    alert("Failed to copy the link. Please try again.");
+                }
+            });
+
+            // Share Link
+            shareButton.addEventListener("click", async () => {
+                const link = window.location.href; // URL saat ini
+                const title = document.title; // Judul halaman
+                const text = "Ayo Lihat Toko Ini!";
+
+                // Periksa apakah browser mendukung Web Share API
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: title,
+                            text: text,
+                            url: link,
+                        });
+                        console.log("Shared successfully!");
+                    } catch (err) {
+                        console.error("Error sharing: ", err);
+                        alert("Failed to share the link. Please try again.");
+                    }
+                } else {
+                    alert("Sharing not supported on this browser. Please copy the link manually.");
+                }
+            });
+        });
+    </script>
+    
+    <script defer
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/product.js">
+    </script>
+    <script defer
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js">
+    </script>
 @endsection

@@ -3,8 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description"
-        content="Teras KBK - E-commerce terbaik di Keandra! Temukan berbagai produk berkualitas dengan harga terjangkau, penawaran spesial, dan layanan pengiriman cepat. Shop now!">
+    @if (request()->is('detailed-store'))
+
+        @foreach ($storeDetails as $detail)
+            <title>Teras KBK || {{ $detail->nama_toko }}</title>
+            <meta name="description" content="{{ $detail->alamat_toko }} - {{ $detail->deskripsi_toko }}">
+            <meta property="og:title" content="Teras KBK || {{ $detail->nama_toko }}" />
+            <meta property="og:description" content="{{ $detail->alamat_toko }} - {{ $detail->deskripsi_toko }}" />
+            <meta property="og:image"
+                content="{{ $detail->foto_profile_toko ? 'https://teraskabeka.com/store_image/' . $detail->foto_profile_toko : 'https://teraskabeka.com/img/markets.webp' }}" />
+            <meta property="og:url" content="{{ url()->full() }}" />
+            <meta property="og:type" content="website" />
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="Teras KBK || {{ $detail->nama_toko }}">
+            <meta name="twitter:description" content="{{ $detail->alamat_toko }} - {{ $detail->deskripsi_toko }}">
+            <meta name="twitter:image"
+                content="{{ $detail->foto_profile_toko ? 'https://teraskabeka.com/store_image/' . $detail->foto_profile_toko : 'https://teraskabeka.com/img/markets.webp' }}">
+        @endforeach
+    @else
+        <meta name="description"
+            content="Teras KBK - E-commerce terbaik di Keandra! Temukan berbagai produk berkualitas dengan harga terjangkau, penawaran spesial, dan layanan pengiriman cepat. Shop now!">
+        <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
+        <title>Teras KBK || {{ Route::currentRouteName() }} </title>
+    @endif
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,21 +40,26 @@
 
     @yield('link')
 
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/clock.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/profile.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/home.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/style.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/load.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/app.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/clock.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/profile.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/home.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/style.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/load.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/app.css">
 
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/home-container.css">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/cart.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/css/cart.css">
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/898403e73ffec5a26139d452a6d2ffa66d178334/public/css/nav.css">
 
-    <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
-    <title>Teras  KBK || {{ Route::currentRouteName() }} </title>
     {{-- ini diatas, disebelah dikasih title statis --}}
 
     <!-- SweetAlert CSS -->
@@ -95,12 +121,24 @@
 
     @yield('script')
 
-    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/clock.js"></script>
-    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/98f943110591c6014535f1ebc5bcd1fd4ec86266/public/js/cart.js"></script>
-    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/home.js"></script>
-    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/load.js"></script>
-    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/home-container.js"></script>
-    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/nav.js"></script>
+    <script defer
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/clock.js">
+    </script>
+    <script defer
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/98f943110591c6014535f1ebc5bcd1fd4ec86266/public/js/cart.js">
+    </script>
+    <script defer
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/home.js">
+    </script>
+    <script defer
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/load.js">
+    </script>
+    <script defer
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/home-container.js">
+    </script>
+    <script defer
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/46ef1975afc1dce417ab00c89c9161e4f81c52e0/public_html/js/nav.js">
+    </script>
 
 
     @if (Auth::check())
