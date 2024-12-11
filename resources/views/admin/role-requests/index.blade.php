@@ -12,7 +12,8 @@
                 @forelse($roleRequests as $request)
                     <div class="card-profile">
                         <p><strong>ID:</strong>{{ $request->user_id }}</p>
-                        <img src="https://teraskabeka.com/{{ $request->img ? $request->img : 'img/client-1.png' }}" alt="Profile Picture" loading="lazy">
+                        <img src="https://teraskabeka.com/{{ $request->img ? $request->img : 'img/client-1.png' }}"
+                            alt="Profile Picture" loading="lazy">
                         <h2>{{ $request->name }}</h2>
                         <div class="info">
                             <p><strong>No Telp</strong> {{ $request->phone }}</p>
@@ -32,8 +33,7 @@
                                 @csrf
                                 <button
                                     class="check flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                    aria-label="Check"
-                                    onclick="document.getElementById('approved-status').style.display = 'inline'; return false;">
+                                    aria-label="Check">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" width="24" height="24"
                                         viewBox="0 0 24 24" fill="currentColor">
                                         <path
@@ -49,8 +49,7 @@
                                 @csrf
                                 <button
                                     class="cancel flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                                    aria-label="Cancel"
-                                    onclick="document.getElementById('approved-status').style.display = 'none'; return false;">
+                                    aria-label="Cancel">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" width="24" height="24"
                                         viewBox="0 0 24 24" fill="currentColor">
                                         <path
@@ -89,7 +88,8 @@
                                             <div class="flex items-center text-sm">
                                                 <div class="relative  w-8 h-8 mr-3 rounded-full md:block">
                                                     <img class="object-cover w-full h-full rounded-full"
-                                                        src="https://teraskabeka.com/{{ $request->img ? $request->img : 'img/client-1.png' }}" alt="" loading="lazy" />
+                                                        src="https://teraskabeka.com/{{ $request->img ? $request->img : 'img/client-1.png' }}"
+                                                        alt="" loading="lazy" />
                                                     <div class="absolute inset-0 rounded-full shadow-inner"
                                                         aria-hidden="true">
                                                     </div>
@@ -151,7 +151,7 @@
                                                 </form>
 
                                                 {{-- <form action="{{ route('role-request.cancel', $request->id) }}" --}}
-                                               <form action="/role-request/cancel/{{ $request->user_id }}" method="POST"
+                                                <form action="/role-request/cancel/{{ $request->user_id }}" method="POST"
                                                     method="POST" style="display: inline;">
                                                     @csrf
                                                     <button
