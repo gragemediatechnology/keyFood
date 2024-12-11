@@ -128,7 +128,7 @@
         src="https://rawcdn.githack.com/gragemediatechnology/keyFood/98f943110591c6014535f1ebc5bcd1fd4ec86266/public/js/cart.js">
     </script>
     <script defer
-        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_htmlb/js/home.js">
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/home.js">
     </script>
     <script defer
         src="https://rawcdn.githack.com/gragemediatechnology/keyFood/ea622abc460ff8dd056dcec020989ee66a3f878e/public_html/js/load.js">
