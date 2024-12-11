@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
     <title>Teras KBK || {{ Route::currentRouteName() }} </title>
     <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/5ac470d94f12d3fd869f505c958e4f359dbde479/public/css/faq.css">
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/5ac470d94f12d3fd869f505c958e4f359dbde479/public_html/css/faq.css">
 
 
     <script src="https://cdn.tailwindcss.com"></script>

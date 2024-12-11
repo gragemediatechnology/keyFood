@@ -4,9 +4,9 @@
     <link rel="stylesheet"
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/14fea551a368621e3fd2012fa820cfd33852ee5c/public/css/halaman-toko.css">
     <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/699e918c4e888784bef08b8ffce0004d019c29f0/public/css/product-slider.css">
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/699e918c4e888784bef08b8ffce0004d019c29f0/public_html/css/product-slider.css">
     <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/27db7ba39c81dbdafd840f462048a50468a23550/public/css/categories.css">
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/27db7ba39c81dbdafd840f462048a50468a23550/public_html/css/categories.css">
 @endsection
 
 @section('container')
@@ -385,9 +385,9 @@
     </script>
     
     <script defer
-        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public/js/product.js">
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/product.js">
     </script>
     <script defer
-        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public/js/categories.js">
+        src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js">
     </script>
 @endsection

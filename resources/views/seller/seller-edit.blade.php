@@ -15,7 +15,7 @@
                     <div class="store-info">
                         <!-- <img src="https://teraskabeka.com/store_image/{{ $toko->foto_profile_toko ?  $toko->foto_profile_toko : 'markets.png' }} "alt="logo toko" class="store-logo"> -->
                         <img src="{{ asset('store_image/' . ($toko->foto_profile_toko ? $toko->foto_profile_toko : 'markets.png')) }}"
-                            alt="logo toko" class="store-logo" loading="lazy">
+                            alt="logo toko" class="store-logo" loading="lazy"> 
                         <div class="store-text">
                             <h1>{{ $toko->nama_toko }}</h1>
                             <h2>{{ $toko->alamat_toko }}</h2>
@@ -289,6 +289,6 @@
 @endsection
 
 @section('script')
-<script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/product.js"></script>
-<script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/product.js"></script>
+    <script defer src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js"></script>
 @endsection
