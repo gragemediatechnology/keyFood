@@ -396,6 +396,6 @@ href="https://rawcdn.githack.com/gragemediatechnology/keyFood/27db7ba39c81dbdafd
 
     @section('script')
         <script defer
-            src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js">
+            src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public/js/categories.js">
         </script>
     @endsection

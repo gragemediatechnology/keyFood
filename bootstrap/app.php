@@ -24,7 +24,7 @@ $app = Application::configure(basePath: dirname(__DIR__))
     ->create();
 
 // Set the public path to public_html
-if (is_dir($dir = __DIR__ . '/../public_html')) {
+if (is_dir($dir = __DIR__ . '/../public')) {
     // Override the default public path to public_html
     $app->instance('path.public', $dir);
 } else {
