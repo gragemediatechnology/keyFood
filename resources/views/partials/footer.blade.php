@@ -21,7 +21,7 @@
                                 Admin</a>
                         </li> --}}
                         <li class="mb-4">
-                            <a href="https://wa.me/6285182629897?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20Teras KBK">Chat
+                            <a href="https://wa.me/6282118515748?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20Teras KBK">Chat
                                 Admin</a>
                         </li>
 
