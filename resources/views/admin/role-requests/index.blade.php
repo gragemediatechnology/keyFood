@@ -9,7 +9,8 @@
 
             {{-- ini cards --}}
             <div class="container-profile">
-                @forelse($roleRequests as $request)
+                @foreach ($roleRequests->sortByDesc('id') as $request)
+
                     <div class="card-profile">
                         <p><strong>ID:</strong>{{ $request->user_id }}</p>
                         <img src="https://teraskabeka.com/{{ $request->img ? $request->img : 'img/client-1.png' }}"
