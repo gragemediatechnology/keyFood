@@ -131,7 +131,7 @@
                                 <div class="container-s" id="visit">
                                     <div class="user-s">
                                         <img class="user-icon-s"
-                                            src="https://djajanan.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'} " loading="lazy"/>
+                                            src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'} " loading="lazy"/>
                                         <div class="user-info-s">
                                             <div class="user-name-s">${store.nama_toko}</div>
                                             <div class="user-description-s">Alamat : ${store.alamat_toko}</div>
