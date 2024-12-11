@@ -2,7 +2,7 @@
 
 @section('link')
     <link rel="stylesheet"
-        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/27db7ba39c81dbdafd840f462048a50468a23550/public_html/css/categories.css">
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/27db7ba39c81dbdafd840f462048a50468a23550/public/css/categories.css">
 @endsection
 
 @section('container')
@@ -396,6 +396,6 @@
 
     @section('script')
         <script defer
-            src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public_html/js/categories.js">
+            src="https://rawcdn.githack.com/gragemediatechnology/keyFood/64887d1180dabea3764552a01facbfafcff0560c/public/js/categories.js">
         </script>
     @endsection
