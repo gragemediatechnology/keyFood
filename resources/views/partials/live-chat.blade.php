@@ -57,7 +57,7 @@
                 </span>
             @endif
         </button> --}}
-        <a href="https://wa.me/6285182629897?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20Teras KBK">
+        <a href="https://wa.me/6282118515748?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20Teras KBK">
             <button
                 class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full fixed bottom-4 right-4 mb-4 mr-4 max-sm:mb-20">
                 <i class='bx bxs-conversation text-2xl sm:text-3xl'></i>
@@ -158,7 +158,7 @@
                 </span>
             @endif
         </button> --}}
-        <a href="https://wa.me/6285182629897?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20Teras KBK">
+        <a href="https://wa.me/6282118515748?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20Teras KBK">
             <button
                 class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full fixed bottom-4 right-4 mb-4 mr-4 max-sm:mb-20">
                 <i class='bx bxs-conversation text-2xl sm:text-3xl'></i>
@@ -242,7 +242,7 @@
         </div>
     @endif
 @else
-    <a href="https://wa.me/6285182629897?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20Teras KBK">
+    <a href="https://wa.me/6282118515748?text=Saya%20ingin%20bertanya%20tentang%20produk%20di%20website%20Teras KBK">
         <button
             class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded-full fixed bottom-4 right-4 mb-4 mr-4 max-sm:mb-20">
             <i class='bx bxs-conversation text-2xl sm:text-3xl'></i>
