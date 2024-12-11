@@ -81,7 +81,7 @@ public function update(Request $request)
         if ($request->hasFile('img')) {
             $file = $request->file('img');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(base_path('public_html/img'), $filename);
+            $file->move(base_path('public/img'), $filename);
             $user->img = 'img/' . $filename;
         } elseif (!$request->hasFile('img') && $user->img) {
             $user->img = $user->img;
