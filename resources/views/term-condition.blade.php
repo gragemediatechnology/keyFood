@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/584a8943e4f59a35bd19192a3b6a00174c1dfb5a/public/css/terms.css">
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/gragemediatechnology/keyFood/584a8943e4f59a35bd19192a3b6a00174c1dfb5a/public/css/terms.css">
     <script src="https://kit.fontawesome.com/3ef3559250.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
     <title>Teras KBK || {{ Route::currentRouteName() }} </title>
@@ -36,18 +37,21 @@
                         </div>
                         <div class="info">
                             <h3>1. Penerimaan Syarat dan Ketentuan</h3>
-                            <p>Dengan mengakses dan menggunakan situs web TerasKabeka, Anda setuju untuk mematuhi syarat dan
+                            <p>Dengan mengakses dan menggunakan situs web TerasKabeka, Anda setuju untuk mematuhi syarat
+                                dan
                                 ketentuan ini. Jika Anda tidak setuju dengan syarat dan ketentuan ini, harap jangan
                                 menggunakan situs web kami.</p>
                             <br>
                             <h3>2. Perubahan Syarat dan Ketentuan</h3>
-                            <p>TerasKabeka berhak untuk mengubah atau memperbarui syarat dan ketentuan ini kapan saja tanpa
+                            <p>TerasKabeka berhak untuk mengubah atau memperbarui syarat dan ketentuan ini kapan saja
+                                tanpa
                                 pemberitahuan terlebih dahulu. Perubahan tersebut akan efektif segera setelah
                                 dipublikasikan di situs web kami. Anda disarankan untuk secara berkala memeriksa halaman
                                 ini untuk mengetahui perubahan terbaru.</p>
                             <br>
                             <h3>3. Pendaftaran dan Akun</h3>
-                            <p>Untuk menggunakan beberapa layanan di TerasKabeka, Anda mungkin perlu mendaftar dan membuat
+                            <p>Untuk menggunakan beberapa layanan di TerasKabeka, Anda mungkin perlu mendaftar dan
+                                membuat
                                 akun. Anda setuju untuk memberikan informasi yang akurat, lengkap, dan terbaru selama
                                 proses pendaftaran.</p>
                             <p>Anda bertanggung jawab untuk menjaga kerahasiaan informasi akun Anda, termasuk kata sandi
@@ -79,12 +83,14 @@
                                 pribadi Anda.</p>
                             <br>
                             <h3>8. Batasan Tanggung Jawab</h3>
-                            <p>TerasKabeka tidak bertanggung jawab atas kerugian atau kerusakan yang timbul dari penggunaan
+                            <p>TerasKabeka tidak bertanggung jawab atas kerugian atau kerusakan yang timbul dari
+                                penggunaan
                                 atau ketidakmampuan untuk menggunakan situs web kami. Kami tidak memberikan jaminan
                                 bahwa situs web kami akan bebas dari kesalahan atau gangguan.</p>
                             <br>
                             <h3>9. Hak Kekayaan Intelektual</h3>
-                            <p>Semua konten yang terdapat di situs web TerasKabeka, termasuk teks, gambar, logo, dan grafik,
+                            <p>Semua konten yang terdapat di situs web TerasKabeka, termasuk teks, gambar, logo, dan
+                                grafik,
                                 adalah milik TerasKabeka dan dilindungi oleh undang-undang hak cipta. Anda tidak
                                 diperbolehkan untuk menyalin, mendistribusikan, atau menggunakan konten tersebut tanpa
                                 izin tertulis dari kami.</p>
@@ -97,18 +103,20 @@
 
                 </div>
                 <div class="tc_btns">
-                    <button class="accept" onclick="window.history.back();">
-                        Kembali
-                    </button>
-                    <!-- <form method="POST" action="/logout" style="display: inline-flex">
+                    <a href="/home">
+                        <button class="accept">
+                            Setuju
+                        </button>
+                    </a>
+                    <form method="POST" action="/logout" style="display: inline-flex">
                         @csrf
                         <a href="/logout" onclick="event.preventDefault();
 this.closest('form').submit();">
                             <button class="decline">
-                                Decline
+                                Tolak
                             </button>
                         </a>
-                    </form> -->
+                    </form>
                 </div>
             </div>
     </section>
