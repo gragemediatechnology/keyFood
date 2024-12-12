@@ -9,7 +9,7 @@
         href="https://rawcdn.githack.com/gragemediatechnology/keyFood/584a8943e4f59a35bd19192a3b6a00174c1dfb5a/public/css/terms.css">
     <script src="https://kit.fontawesome.com/3ef3559250.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="../img/logos.svg" loading="lazy">
-    <title>Teras KBK || {{ Route::currentRouteName() }} </title>
+    <title>Teras KBK || Syarat & Ketentuan </title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
                         <i class="fa-solid fa-clipboard"></i>
                     </div>
                     <div class="title">
-                        <p>Terms & Conditions</p>
+                        <p>Syarat & Ketentuan</p>
                     </div>
                     <div class="info">
                         Selamat datang di TerasKabeka! Kami sangat senang Anda mengunjungi dan menggunakan layanan kami.
