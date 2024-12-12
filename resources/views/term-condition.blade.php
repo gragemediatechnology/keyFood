@@ -108,7 +108,7 @@
                             Setuju
                         </button>
                     </a>
-                    <form method="POST" action="/logout" style="display: inline-flex">
+                    {{-- <form method="POST" action="/logout" style="display: inline-flex">
                         @csrf
                         <a href="/logout" onclick="event.preventDefault();
 this.closest('form').submit();">
@@ -116,7 +116,7 @@ this.closest('form').submit();">
                                 Tolak
                             </button>
                         </a>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
     </section>
