@@ -27,6 +27,10 @@ use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\CmsController;
 
 
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
+});
+
 Route::post('/clear-chats', [ChatController::class, 'clearChats'])->name('clear.chats');
 
 
