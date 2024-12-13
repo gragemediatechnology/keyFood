@@ -35,80 +35,93 @@ class PaymentController extends Controller
     // }
 
     public function index()
-{
-    try {
-        // Data dasar
-        $orders = Orders::orderBy('id', 'desc')->paginate(20);
-        $totalUser = User::count();
-        $stores = Toko::count();
-        $totalOrders = Orders::count();
-        $paymentTotal = Orders::sum('harga');
+    {
+        try {
+            // Data dasar
+            $orders = Orders::orderBy('id', 'desc')->paginate(20);
+            $totalUser = User::count();
+            $stores = Toko::count();
+            $totalOrders = Orders::count();
+            $paymentTotal = Orders::sum('harga');
 
-        // Menentukan rentang tanggal
-        $endDate = Carbon::now()->endOfDay();
-        $startDate = Carbon::now()->startOfWeek()->startOfDay();
+            // dd($totalUser);
+            // Menentukan rentang tanggal
+            $endDate = Carbon::now()->endOfDay();
+            $startDate = Carbon::now()->startOfWeek()->startOfDay();
 
-        // Query untuk mengambil data kunjungan per hari
-        $visits = VisitHistory::select([
-            DB::raw('DATE(visited_at) as date'),
-            DB::raw('COUNT(DISTINCT ip_address, user_agent) as total')  // Hitung berdasarkan IP dan User-Agent
-        ])
-        ->whereBetween('visited_at', [$startDate, $endDate])
-        ->groupBy('date')
-        ->orderBy('date', 'ASC')
-        ->get();
-        
+            // Query untuk mengambil data kunjungan per hari
+            $visits = VisitHistory::select([
+                DB::raw('DATE(visited_at) as date'),
+                DB::raw('COUNT(DISTINCT ip_address, user_agent) as total')  // Hitung berdasarkan IP dan User-Agent
+            ])
+                ->whereBetween('visited_at', [$startDate, $endDate])
+                ->groupBy('date')
+                ->orderBy('date', 'ASC')
+                ->get();
 
-        // Menyiapkan data hari dalam bahasa Indonesia
-        $daysIndonesia = [
-            'Monday' => 'Senin',
-            'Tuesday' => 'Selasa',
-            'Wednesday' => 'Rabu',
-            'Thursday' => 'Kamis',
-            'Friday' => 'Jumat',
-            'Saturday' => 'Sabtu',
-            'Sunday' => 'Minggu'
-        ];
+            $categories = Category::all()->map(function ($category) {
+                $count = Product::where('category_id', $category->id)->count(); // Sesuaikan dengan nama tabel dan kolom relasi
+                return [
+                    'name' => $category->name,
+                    'slug' => $category->slug,
+                    'icon' => $category->icon, // Menambahkan kolom 'icon' jika diperlukan
+                    'count' => $count, // Menambahkan hasil count produk
+                ];
+            });
 
-        // Inisialisasi array untuk data kunjungan
-        $visitData = [];
-        $currentDate = $startDate->copy();
-
-        // Mengisi data untuk setiap hari
-        while ($currentDate <= $endDate) {
-            $dateStr = $currentDate->format('Y-m-d');
-            $dayName = $daysIndonesia[$currentDate->format('l')];
-            
-            $dayVisit = $visits->firstWhere('date', $dateStr);
-            
-            $visitData[$dayName] = [
-                'count' => $dayVisit ? (int)$dayVisit->total : 0,
-                'date' => $dateStr
+            // Menyiapkan data hari dalam bahasa Indonesia
+            $daysIndonesia = [
+                'Monday' => 'Senin',
+                'Tuesday' => 'Selasa',
+                'Wednesday' => 'Rabu',
+                'Thursday' => 'Kamis',
+                'Friday' => 'Jumat',
+                'Saturday' => 'Sabtu',
+                'Sunday' => 'Minggu'
             ];
-            
-            $currentDate->addDay();
+
+
+
+            // Inisialisasi array untuk data kunjungan
+            $visitData = [];
+            $currentDate = $startDate->copy();
+
+            // Mengisi data untuk setiap hari
+            while ($currentDate <= $endDate) {
+                $dateStr = $currentDate->format('Y-m-d');
+                $dayName = $daysIndonesia[$currentDate->format('l')];
+
+                $dayVisit = $visits->firstWhere('date', $dateStr);
+
+                $visitData[$dayName] = [
+                    'count' => $dayVisit ? (int) $dayVisit->total : 0,
+                    'date' => $dateStr
+                ];
+
+                $currentDate->addDay();
+            }
+
+            // Debug log untuk memverifikasi data
+            Log::info('Visit data generated:', ['data' => $visitData]);
+
+            return view('admin.dashboard-main', compact(
+                'orders',
+                'totalUser',
+                'paymentTotal',
+                'stores',
+                'totalOrders',
+                'visitData',
+                'categories'
+            ));
+        } catch (\Exception $e) {
+            Log::error('Error in dashboard generation:', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return view('admin.dashboard-main')->with('error', 'Terjadi kesalahan saat memuat data.');
         }
-
-        // Debug log untuk memverifikasi data
-        Log::info('Visit data generated:', ['data' => $visitData]);
-
-        return view('admin.dashboard-main', compact(
-            'orders',
-            'totalUser',
-            'paymentTotal',
-            'stores',
-            'totalOrders',
-            'visitData'
-        ));
-    } catch (\Exception $e) {
-        Log::error('Error in dashboard generation:', [
-            'error' => $e->getMessage(),
-            'trace' => $e->getTraceAsString()
-        ]);
-        
-        return view('admin.dashboard-main')->with('error', 'Terjadi kesalahan saat memuat data.');
     }
-}
 
 
 

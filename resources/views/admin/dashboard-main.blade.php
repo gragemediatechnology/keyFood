@@ -40,7 +40,7 @@
                             Total Payment
                         </p>
                         <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                            Rp {{ $paymentTotal }}
+                            Rp {{ number_format($paymentTotal ?? 0, 0, ',', '.') }}
                         </p>
                     </div>
                 </div>
@@ -111,8 +111,9 @@
                                         <div class="flex items-center text-sm">
                                             <!-- Avatar with inset shadow -->
                                             <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                <img class="object-cover w-full h-full rounded-full" loading="lazy"
-                                                    src="https://teraskabeka.com/{{ $order->user?->img ? $order->user?->img : 'img/client-1.png'  }}" alt="user" loading="lazy" />
+                                                <img class="object-cover w-full h-full rounded-full"
+                                                    src="https://teraskabeka.com/{{ $order->user?->img ? $order->user?->img : 'img/client-1.png' }}"
+                                                    alt="user" loading="lazy" />
                                                 <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true">
                                                 </div>
                                             </div>
@@ -146,65 +147,124 @@
                 <div class="grid gap-6 mb-8 md:grid-cols-2 py-4">
                     <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                         <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                            Revenue
+                            Products
                         </h4>
                         <canvas id="pie"></canvas>
-                        <div class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
-                            <!-- Chart legend -->
-                            <div class="flex items-center">
-                                <span class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"></span>
-                                <span>Makanan Manis</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                                <span>Makanan Asin</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
-                                <span>Minuman</span>
-                            </div>
+                        <div id="chart-legend"
+                            class="flex flex-wrap justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
+                            <!-- Legend akan di-generate di sini -->
                         </div>
+
+
                     </div>
 
-                     <div class="relative flex flex-col rounded-xl bg-white dark:bg-gray-800 bg-clip-border text-gray-700 shadow-md">
-                         <div
-                            class="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 dark:text-gray-400 shadow-none md:flex-row md:items-center">
-                             <div class="w-max rounded-lg bg-gray-900 dark:bg-white p-5 text-white dark:text-gray-800">
+                    <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                        <div
+                            class="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none md:flex-row md:items-center">
+                            <div class="w-max rounded-lg bg-gray-900 p-5 text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-6 w-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3">
                                     </path>
                                 </svg>
-                                
+
                             </div>
-                             <div>
+                            <div>
                                 <h6
-                                    class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-gray-900 dark:text-white antialiased">
-                                    Grafik Pengunjung Web Teras KBK
+                                    class="block font-sans text-base font-semibold leading-relaxed tracking-normal text-blue-gray-900 antialiased">
+                                    Grafik Pengunjung Web Teras Kabeka
                                 </h6>
                                 <p
-                                    class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 dark:text-gray-400 antialiased">
-                                    Ini Adalah Visualisasi Data  Untuk Melihat Data Pengunjung Website
+                                    class="block max-w-sm font-sans text-sm font-normal leading-normal text-gray-700 antialiased">
+                                    Ini Adalah Visualisasi Data Untuk Melihat Data Pengunjung Website
                                 </p>
-                                
+
                             </div>
-                             <div class="pt-6 px-2 pb-0">
+                            <div class="pt-6 px-2 pb-0">
                                 <div id="grafik-batang"></div>
-                                
+
                             </div>
-                             </div>
                         </div>
+                    </div>
 
 
                 </div>
             </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
+            const categories = @json($categories); // Mengambil data kategori dari controller
+
+            // Fungsi untuk menghasilkan warna unik secara otomatis
+            function generateColors(count) {
+                const colors = [];
+                for (let i = 0; i < count; i++) {
+                    const red = Math.floor(Math.random() * 256);
+                    const green = Math.floor(Math.random() * 256);
+                    const blue = Math.floor(Math.random() * 256);
+                    colors.push(`rgb(${red}, ${green}, ${blue})`);
+                }
+                return colors;
+            }
+
+            // Generate warna untuk chart
+            const colors = generateColors(categories.length);
+
+            // Generate legend
+            const legendContainer = document.getElementById('chart-legend');
+            categories.forEach((category, index) => {
+                const legendItem = document.createElement('div');
+                legendItem.className =
+                'flex items-center space-x-2 mb-2'; // Menambahkan margin bawah agar tidak terlalu rapat
+
+                // Warna bulat
+                const colorBox = document.createElement('span');
+                colorBox.className = 'inline-block w-3 h-3 rounded-full';
+                colorBox.style.backgroundColor = colors[index]; // Warna sesuai dengan data chart
+
+                // Label kategori
+                const label = document.createElement('span');
+                label.textContent = category.name;
+                label.className = 'text-xs break-words'; // Membuat teks wrap jika terlalu panjang
+
+                // Tambahkan elemen ke legend
+                legendItem.appendChild(colorBox);
+                legendItem.appendChild(label);
+                legendContainer.appendChild(legendItem);
+            });
+
+            // Konfigurasi chart
+            const pieConfig = {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: categories.map(category => category.count), // Ganti ke category.count
+                        backgroundColor: colors, // Gunakan warna yang dihasilkan
+                        label: 'Dataset 1',
+                    }],
+                    labels: categories.map(category => category.name), // Label dari kolom `name`
+                },
+                options: {
+                    responsive: true,
+                    cutoutPercentage: 80,
+                    legend: {
+                        display: false, // Nonaktifkan default legend Chart.js
+                    },
+                },
+            }
+
+            // Inisialisasi chart
+            const pieCtx = document.getElementById('pie');
+            window.myPie = new Chart(pieCtx, pieConfig);
+
+
+
             const visitData = @json($visitData);
-            
+
             const configGrafik = {
                 series: [{
                     name: "Kunjungan",
@@ -284,17 +344,17 @@
                     x: {
                         formatter: function(val) {
                             const dayData = visitData[val];
-                            return dayData.date ? ${val} (${dayData.date}) : val;
+                            return dayData.date ? `${val} (${dayData.date})` : val;
                         }
                     }
                 }
             };
-        
+
             const chart = new ApexCharts(document.querySelector("#grafik-batang"), configGrafik);
             chart.render();
         });
-        </script>
-        
+    </script>
+
     <script>
         const visitData = @json($visitData);
         // Kemudian masukkan konfigurasi grafik yang baru
