@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\Toko;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\VisitHistory;
 use Carbon\Carbon;
