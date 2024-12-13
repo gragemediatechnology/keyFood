@@ -55,12 +55,15 @@ class ProductController extends Controller
     {
         $validate = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'photo' => ['required', 'image', 'mimes:png,jpg,jpeg'],
+            'photo' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:10240'],
             'slug' => ['required', 'string', 'max:65535'],
             'category_id' => ['required', 'integer'],
             'price' => ['required', 'integer', 'min:0'],
             'quantity' => ['required', 'integer'],
             'store_id' => ['required', 'integer', 'exists:toko,id_toko'], // Validasi store_id
+        ],
+        [
+            'photo.max' => 'Ukuran file maksimum adalah 10 MB.',
         ]);
 
         $store = Toko::find($validate['store_id']);
