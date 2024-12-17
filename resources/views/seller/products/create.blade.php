@@ -138,6 +138,30 @@
             </div>
         </form>
     </section>
+    <script>
+        document.getElementById('photo').addEventListener('change', function () {
+            const file = this.files[0];
+            const maxSizeMB = 10; // Ukuran maksimum 10MB
+            const maxSizeBytes = maxSizeMB * 1024 * 1024;
+    
+            if (file.size > maxSizeBytes) {
+                alert('Ukuran foto yang anda upload melebihi 10MB. Silakan pilih foto lain.');
+                this.value = ''; // Reset input file
+            }
+        });
+    
+        // Preview image
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const imgElement = document.getElementById('image-preview');
+                imgElement.src = reader.result;
+                imgElement.classList.remove('hidden');
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+    
 
     <script>
         function previewImage(event) {
