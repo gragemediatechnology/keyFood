@@ -154,21 +154,19 @@ class RoleRequestController extends Controller
     $user = Auth::user();
 
     // Periksa data pengguna
-    if ($user->email === 'default@example.com' || $user->phone === '0000000000' || empty($user->location)) {
+    if ($user->email === 'default@example.com' || $user->phone === '0000000000' || $user->location === 'Perumahan Keandra, Kec. Sumber, Kab. Cirebon, Jawa Barat, Indonesia') {
         $missingFields = [];
         
         if ($user->email === 'default@example.com') {
             $missingFields[] = 'email';
         }
-        if ($user->phone === '0000000000') {
-            $missingFields[] = 'nomor telepon';
+        if ($user->location === 'Perumahan Keandra, Kec. Sumber, Kab. Cirebon, Jawa Barat, Indonesia') {
+            $missingFields[] = 'alamat anda masih alamat bawaan, sialhkan ganti alamat anda';
         }
-        if (empty($user->location)) {
-            $missingFields[] = 'alamat';
-        }
+        
 
         $missingFieldsText = implode(', ', $missingFields);
-        return redirect()->back()->with('error', "Sebelum mengajukan menjadi penjual, lengkapi dulu data Anda: $missingFieldsText.");
+        return redirect()->back()->with('error', "Sebelum mengajukan menjadi penjual, lengkapi dulu data anda yang belum lengkap: $missingFieldsText.");
     }
 
     // Validasi input
