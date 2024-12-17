@@ -120,11 +120,12 @@
                                     class="relative cursor-pointer bg-hideung rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                     <span class="text-white">Upload an image here</span>
                                     <input id="photo" name="photo" type="file" class="sr-only"
-                                        onchange="previewImage(event)">
+                                        onchange="validateFile(event)">
                                     <p id="file-types" class="text-xs text-white">PNG, JPG, GIF up to 10MB</p>
                                 </label>
                             </div>
-                            <img id="image-preview" class="mt-2 hidden w-full h-48 object-cover rounded-md" loading="lazy"/>
+                            <img id="image-preview" class="mt-2 hidden w-full h-48 object-cover rounded-md"
+                                loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -138,6 +139,7 @@
             </div>
         </form>
     </section>
+
     <script>
         function previewImage(event) {
             const input = event.target;
