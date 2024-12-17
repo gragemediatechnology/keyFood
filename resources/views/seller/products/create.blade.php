@@ -138,7 +138,26 @@
             </div>
         </form>
     </section>
-    
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            const reader = new FileReader();
+            reader.onload = function() {
+                const dataURL = reader.result;
+                const imagePreview = document.getElementById('image-preview');
+                const defaultIcon = document.getElementById('default-icon');
+                const uploadText = document.getElementById('upload-text');
+                const fileTypes = document.getElementById('file-types');
+
+                imagePreview.src = dataURL;
+                imagePreview.classList.remove('hidden');
+                defaultIcon.classList.add('hidden');
+                uploadText.classList.add('hidden');
+                fileTypes.classList.add('hidden');
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
 
     <script>
         function validateFile(event) {
@@ -180,9 +199,9 @@
 
                 imagePreview.src = dataURL;
                 imagePreview.classList.remove('hidden');
-                defaultIcon.classList.add('hidden');
-                uploadText.classList.add('hidden');
-                fileTypes.classList.add('hidden');
+                if (defaultIcon) defaultIcon.classList.add('hidden');
+                if (uploadText) uploadText.classList.add('hidden');
+                if (fileTypes) fileTypes.classList.add('hidden');
             };
             reader.readAsDataURL(input.files[0]);
         }
