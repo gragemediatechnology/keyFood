@@ -138,42 +138,36 @@
             </div>
         </form>
     </section>
-    <script>
-
-
-        document.getElementById('photo').addEventListener('change', function (e) {
-        const file = e.target.files[0]; // Ambil file yang dipilih
-        const maxSizeMB = 10; // Ukuran maksimum file dalam MB
-        const maxSizeBytes = maxSizeMB * 1024 * 1024; // Konversi ke Bytes
-
-        if (file && file.size > maxSizeBytes) {
-            // Tampilkan Sweet Alert jika ukuran file terlalu besar
-            Swal.fire({
-                icon: 'error',
-                title: 'Ukuran File Terlalu Besar!',
-                text: `Ukuran file tidak boleh lebih dari ${maxSizeMB} MB.`,
-            });
-
-            // Kosongkan input file agar file tidak "ter-fetch"
-            e.target.value = '';
-        }
-        });
-
-    
-        // Preview image
-        function previewImage(event) {
-            const reader = new FileReader();
-            reader.onload = function () {
-                const imgElement = document.getElementById('image-preview');
-                imgElement.src = reader.result;
-                imgElement.classList.remove('hidden');
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    </script>
     
 
     <script>
+        function validateFile(event) {
+            const input = event.target;
+            const file = input.files[0];
+
+            // Jika tidak ada file, keluar dari fungsi
+            if (!file) return;
+
+            // Batas ukuran file 10MB
+            const maxSize = 10 * 1024 * 1024;
+
+            if (file.size > maxSize) {
+                // Tampilkan Swal jika file terlalu besar
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ukuran File Terlalu Besar!',
+                    text: 'Ukuran File Tidak Boleh Melebihi 10MB.',
+                    confirmButtonText: 'Okay'
+                });
+
+                // Reset input file
+                input.value = "";
+            } else {
+                // Panggil fungsi previewImage jika ukuran valid
+                previewImage(event);
+            }
+        }
+
         function previewImage(event) {
             const input = event.target;
             const reader = new FileReader();

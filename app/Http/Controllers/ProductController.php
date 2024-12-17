@@ -51,93 +51,49 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(Request $request)
-    // {
-    //     $validate = $request->validate([
-    //         'name' => ['required', 'string', 'max:255'],
-    //         'photo' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:10240'],
-    //         'slug' => ['required', 'string', 'max:65535'],
-    //         'category_id' => ['required', 'integer'],
-    //         'price' => ['required', 'integer', 'min:0'],
-    //         'quantity' => ['required', 'integer'],
-    //         'store_id' => ['required', 'integer', 'exists:toko,id_toko'], // Validasi store_id
-    //     ],
-    //     [
-    //         'photo.max' => 'Ukuran file maksimum adalah 10 MB.',
-    //     ]);
 
-    //     $store = Toko::find($validate['store_id']);
 
-    //     // Pastikan toko yang dipilih milik seller yang sedang login
-    //     if ($store->id_seller !== Auth::id()) {
-    //         return redirect()->back()->with('error', 'You can only add products to your own store.');
-    //     }
+     public function store(Request $request)
+    {
+        $validate = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'photo' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:10000'],
+            'slug' => ['required', 'string', 'max:65535'],
+            'category_id' => ['required', 'integer'],
+            'price' => ['required', 'integer', 'min:0'],
+            'quantity' => ['required', 'integer'],
+            'store_id' => ['required', 'integer', 'exists:toko,id_toko'], // Validasi store_id
+        ]);
 
-    //     DB::beginTransaction();
-    //     try {
-    //         if ($request->hasFile('photo')) {
-    //             $photoPath = $request->file('photo')->move(base_path('public/products_photo'), $request->file('photo')->getClientOriginalName());
-    //             $validate['photo'] = 'products_photo/' . $request->file('photo')->getClientOriginalName();
-    //         }
-    //         $validate['slug'] = Str::slug($request->name);
-    //         $validate['creator_id'] = Auth::id();
-    //         $newProduct = Product::create($validate);
-    //         DB::commit();
-    //         return redirect()->route('seller-edit')->with('success', 'Product created successfully');
-    //     } catch (\Exception $e) {
-    //         DB::rollBack();
+        $store = Toko::find($validate['store_id']);
 
-    //         $error = ValidationException::withMessages([
-    //             'system_error' => ['System error! ' . $e->getMessage()],
-    //         ]);
-
-    //         throw $error;
-    //     }
-    // }
-
-    public function store(Request $request)
-{
-    $validate = $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'photo' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:10240'], // 10MB
-        'slug' => ['required', 'string', 'max:65535'],
-        'category_id' => ['required', 'integer'],
-        'price' => ['required', 'integer', 'min:0'],
-        'quantity' => ['required', 'integer'],
-        'store_id' => ['required', 'integer', 'exists:toko,id_toko'],
-    ],
-    [
-        'photo.max' => 'Ukuran foto yang anda upload melebihi 10MB. Silakan pilih foto lain.', 
-    ]);
-
-    $store = Toko::find($validate['store_id']);
-
-    if ($store->id_seller !== Auth::id()) {
-        return redirect()->back()->with('error', 'You can only add products to your own store.');
-    }
-
-    DB::beginTransaction();
-    try {
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->move(base_path('public/products_photo'), $request->file('photo')->getClientOriginalName());
-            $validate['photo'] = 'products_photo/' . $request->file('photo')->getClientOriginalName();
+        // Pastikan toko yang dipilih milik seller yang sedang login
+        if ($store->id_seller !== Auth::id()) {
+            return redirect()->back()->with('error', 'You can only add products to your own store.');
         }
 
-        $validate['slug'] = Str::slug($request->name);
-        $validate['creator_id'] = Auth::id();
+        DB::beginTransaction();
+        try {
+            if ($request->hasFile('photo')) {
+                $photoPath = $request->file('photo')->move(public_path('products_photo'), $request->file('photo')->getClientOriginalName());
+                $validate['photo'] = 'products_photo/' . $request->file('photo')->getClientOriginalName();
+            }
+            $validate['slug'] = Str::slug($request->name);
+            $validate['creator_id'] = Auth::id();
+            $newProduct = Product::create($validate);
+            DB::commit();
+            return redirect()->route('seller-edit')->with('success', 'Product created successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
 
-        Product::create($validate);
+            $error = ValidationException::withMessages([
+                'system_error' => ['System error! ' . $e->getMessage()],
+            ]);
 
-        DB::commit();
-        return redirect()->route('seller-edit')->with('success', 'Product created successfully');
-    } catch (\Exception $e) {
-        DB::rollBack();
-
-        return redirect()->back()->withErrors([
-            'system_error' => 'System error! ' . $e->getMessage(),
-        ]);
+            throw $error;
+        }
     }
-}
+
 
 
     /**
