@@ -232,7 +232,7 @@
         document.getElementById('searchOrder').addEventListener('input', function() {
             let query = this.value;
     
-            fetch(`/orders/search?query=${query}`, {
+            fetch(`/admin/orders/search?query=${query}`, {
                 method: 'GET',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
