@@ -175,10 +175,10 @@ window.addEventListener('scroll', function() {
 
 function loadMoreStores() {
     loading = true;
-    // document.getElementById('loading').style.display = 'block';  // Show loading indicator
+    document.getElementById('loading').style.display = 'block';  // Show loading indicator
 
     // Perform an AJAX request to fetch the next page of stores
-    fetch(`stores?page=${++page}`)
+    fetch(`/stores?page=${++page}`)
         .then(response => response.json())
         .then(data => {
             console.log('fetch');
