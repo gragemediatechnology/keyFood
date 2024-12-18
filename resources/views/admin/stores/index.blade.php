@@ -193,38 +193,68 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        let page = 1; // Halaman awal
-        let loading = false;
-        let nextPageUrl = "{{ $stores->nextPageUrl() }}";
-        console.log(nextPageUrl);
+    document.addEventListener('DOMContentLoaded', function () {
+        let currentPage = 1;
+        const container = document.getElementById('stores-container');
+        const loader = document.getElementById('loader');
+        const url = '/admin/stores'; // Base URL for the API
 
-        $(window).scroll(function () {
-            if (!loading && $(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-                if (nextPageUrl) {
-                    loading = true;
-                    $('#loading').show();
+        async function loadStores(page) {
+            loader.classList.remove('hidden');
+            try {
+                const response = await fetch(`${url}?page=${page}`);
+                const data = await response.json();
+                loader.classList.add('hidden');
 
-                    $.ajax({
-                        url: nextPageUrl,
-                        type: 'GET',
-                        success: function (response) {
-                            $('#store-container').append(response); // Append new stores
-                            $('#loading').hide();
-                            loading = false;
+                // Append new store cards
+                data.data.forEach(store => {
+                    const storeCard = `
+                        <div class="card-profile">
+                            <p><strong>ID:</strong> ${store.id_toko}</p>
+                            <form action="/detailed-store" method="GET">
+                                <input type="hidden" value="${store.id_toko}" name="id">
+                                <img src="https://teraskabeka.com/store_image/${store.foto_profile_toko ?? 'markets.png'}" alt="Profile Picture" loading="lazy">
+                                <div class="flex items-center text-sm">
+                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <img class="object-cover w-full h-full rounded-full"
+                                            src="https://teraskabeka.com/store_image/${store.foto_profile_toko ?? 'markets.png'}"
+                                            alt="${store.nama_toko}" loading="lazy" />
+                                    </div>
+                                    <div>
+                                        <button type="submit">
+                                            <p class="font-semibold">${store.nama_toko}</p>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="info"><strong>Seller_id:</strong> ${store.id_seller}</div>
+                            <div class="info">${store.created_at}</div>
+                            <div class="info">${store.alamat_toko}</div>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', storeCard);
+                });
 
-                            // Update the next page URL
-                            const nextUrlMatch = response.match(/data-next-page-url="([^"]*)"/);
-                            nextPageUrl = nextUrlMatch ? nextUrlMatch[1] : null;
-                        },
-                        error: function () {
-                            $('#loading').hide();
-                            loading = false;
-                        }
-                    });
+                // Check if there are more pages
+                if (data.next_page_url) {
+                    currentPage++;
+                } else {
+                    window.removeEventListener('scroll', handleScroll);
                 }
+            } catch (error) {
+                console.error('Error fetching stores:', error);
+                loader.classList.add('hidden');
             }
-        });
+        }
+
+        function handleScroll() {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                loadStores(currentPage);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
     });
 </script>
+
 @endsection
