@@ -10,9 +10,15 @@ use Illuminate\Support\Facades\Storage;
 
 class TokoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $stores = Toko::all();
+        if ($request->ajax()) {
+            $stores = Toko::paginate(10); // You can adjust the number of Tokos per page
+            return response()->json($stores);
+        }
+    
+        // Your default page rendering logic here
+        $stores = Toko::paginate(10);
         return view('admin.stores.index', compact('stores'));
     }
 
