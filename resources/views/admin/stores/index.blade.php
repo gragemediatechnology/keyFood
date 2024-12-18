@@ -190,3 +190,80 @@
         </div>
 </main>
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+    let page = 1; // Initial page
+
+    // Load more stores when the page scrolls near the bottom
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+            loadMoreStores(page);
+        }
+    });
+
+    // Function to load more stores with Ajax
+    function loadMoreStores(page) {
+        $.ajax({
+            url: '/stores/load-more?page=' + page, // Your route to fetch stores
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#load-more-button').prop('disabled', true); // Disable button during loading
+            },
+            success: function(response) {
+                if (response.stores.length > 0) {
+                    page++; // Increment the page number
+                    let storesHtml = '';
+
+                    // Loop through the stores and append them to the container
+                    response.stores.forEach(function(store) {
+                        storesHtml += `
+                            <div class="card-profile">
+                                <p><strong>ID:</strong> ${store.id_toko}</p>
+                                <form action="/detailed-store" method="GET">
+                                    <input type="hidden" value="${store.id_toko}" name="id">
+                                    <img src="https://teraskabeka.com/store_image/${store.foto_profile_toko || 'markets.png'}" alt="Profile Picture" loading="lazy">
+                                    <div class="flex items-center text-sm">
+                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                            <img class="object-cover w-full h-full rounded-full" src="https://teraskabeka.com/store_image/${store.foto_profile_toko || 'markets.png'}" alt="${store.nama_toko}" loading="lazy" />
+                                        </div>
+                                        <div>
+                                            <button type="submit">
+                                                <p class="font-semibold">${store.nama_toko}</p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="info">
+                                    <strong>Seller_id:</strong> ${store.id_seller}
+                                </div>
+                                <div class="info">
+                                    ${new Date(store.created_at).toLocaleDateString()}
+                                </div>
+                                <div class="info">
+                                    ${store.alamat_toko}
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    // Append the new stores to the container
+                    $('#stores-container').append(storesHtml);
+
+                    // Re-enable the button
+                    $('#load-more-button').prop('disabled', false);
+                } else {
+                    $('#load-more').html('<p>No more stores available.</p>');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                $('#load-more-button').prop('disabled', false); // Re-enable the button if there's an error
+            }
+        });
+    }
+});
+
+</script>
