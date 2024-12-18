@@ -3,7 +3,7 @@
 <main class="h-screen pb-16 overflow-y-auto">
     <div class="container grid px-6 mx-auto py-4 mb-8">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Toko 123
+            Toko
         </h2>
 
         {{-- ini cards --}}
@@ -195,5 +195,74 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-   console.log('dds');
+    let page = 1; // Halaman awal
+    let isLoading = false; // Status loading
+
+
+    console.log(page);
+    // Fungsi untuk memuat data
+    function loadStores(page) {
+        isLoading = true; // Set loading status
+        $('#spinner').removeClass('hidden'); // Tampilkan spinner
+
+        $.ajax({
+            url: '/admin/stores?page=' + page, // Endpoint dengan parameter halaman
+            method: 'GET',
+            success: function (data) {
+                $('#spinner').addClass('hidden'); // Sembunyikan spinner
+
+                if (data.data.length === 0) {
+                    $(window).off('scroll'); // Hentikan scroll listener jika tidak ada data
+                    return;
+                }
+
+                data.data.forEach(store => {
+                    $('#store-container').append(`
+                        <div class="card-profile">
+                            <p><strong>ID:</strong> ${store.id_toko}</p>
+                            <form action="/detailed-store" method="GET">
+                                <input type="hidden" value="${store.id_toko}" name="id">
+                                <img src="https://teraskabeka.com/store_image/${store.foto_profile_toko || 'markets.png'}" 
+                                     alt="Profile Picture" loading="lazy">
+                                <div class="flex items-center text-sm">
+                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <img class="object-cover w-full h-full rounded-full"
+                                            src="https://teraskabeka.com/store_image/${store.foto_profile_toko || 'markets.png'}"
+                                            alt="${store.nama_toko}" loading="lazy" />
+                                    </div>
+                                    <div>
+                                        <button type="submit">
+                                            <p class="font-semibold">${store.nama_toko}</p>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="info"><strong>Seller_id:</strong> ${store.id_seller}</div>
+                            <div class="info">${store.created_at}</div>
+                            <div class="info">${store.alamat_toko}</div>
+                        </div>
+                    `);
+                });
+
+                isLoading = false; // Reset loading status
+            },
+            error: function () {
+                $('#spinner').addClass('hidden'); // Sembunyikan spinner
+                isLoading = false;
+            }
+        });
+    }
+
+    // Listener untuk memuat lebih banyak data saat scroll ke bawah
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+            if (!isLoading) {
+                page++;
+                loadStores(page);
+            }
+        }
+    });
+
+    // Memuat data awal
+    loadStores(page);
 </script>
