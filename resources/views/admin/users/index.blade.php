@@ -174,9 +174,8 @@
                                         </svg>
                                     </div>
                                 </div>
-                            </div>
-
-                        <table id="" class="w-full whitespace-no-wrap">
+                            </div>  
+                        <table class="w-full whitespace-no-wrap">
                             <thead>
                                 <tr
                                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -190,7 +189,7 @@
                             <tbody id="user-list" class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                 @forelse($users as $user)
                                     <tr class="text-gray-700 dark:text-gray-400 card-table"
-                                        data-roles="{{ $user->roles->pluck('name')->join(', ') }}">
+                                        data-role s="{{ $user->roles->pluck('name')->join(', ') }}">
                                         <td class="px-4 py-3">
                                             <div class="flex items-center text-sm">
                                                 <!-- Avatar with inset shadow -->
