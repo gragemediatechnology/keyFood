@@ -12,8 +12,14 @@ class TokoController extends Controller
 {
     public function index()
     {
-        $stores = Toko::all();
+        $stores = Toko::paginate(5);
+
+        if (request()->wantsJson()) {
+            return response()->json($stores);
+        }
+
         return view('admin.stores.index', compact('stores'));
+
     }
 
     public function create()
@@ -92,7 +98,7 @@ class TokoController extends Controller
         ], [
             'waktu_buka.date_format' => 'Mohon isi waktu buka dengan format jam:menit (contoh: 08:00).',
             'waktu_tutup.date_format' => 'Mohon isi waktu tutup dengan format jam:menit (contoh: 18:00).',
-        
+
             'foto_profile_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -111,14 +117,14 @@ class TokoController extends Controller
                     unlink($oldImagePath); // Hapus file jika ada
                 }
             }
-        
+
             // Simpan gambar baru di public/store_image
             $image = $request->file('foto_profile_toko');
             $imageName = time() . '_' . $image->getClientOriginalName(); // Buat nama file unik
             $image->move(base_path('public/store_image'), $imageName);
             $toko->foto_profile_toko = $imageName;
         }
-        
+
 
         // Simpan perubahan
         $toko->save();
@@ -168,20 +174,20 @@ class TokoController extends Controller
     //     return view('stores', compact('stores'));
     // }
     public function showStores(Request $request)
-{
-    $itemsPerPage = $request->input('itemsPerPage', 6); // Default 6 item per halaman
-    $page = $request->input('page', 1);
+    {
+        $itemsPerPage = $request->input('itemsPerPage', 6); // Default 6 item per halaman
+        $page = $request->input('page', 1);
 
-    // Jika ini permintaan AJAX
-    if ($request->ajax()) {
-        $stores = Toko::paginate($itemsPerPage, ['*'], 'page', $page);
-        return response()->json($stores);
+        // Jika ini permintaan AJAX
+        if ($request->ajax()) {
+            $stores = Toko::paginate($itemsPerPage, ['*'], 'page', $page);
+            return response()->json($stores);
+        }
+
+        // Untuk halaman pertama kali dimuat
+        $stores = Toko::paginate($itemsPerPage);
+        return view('stores', compact('stores'));
     }
-
-    // Untuk halaman pertama kali dimuat
-    $stores = Toko::paginate($itemsPerPage);
-    return view('stores', compact('stores'));
-}
 
 
     public function detailStore(Request $request)
