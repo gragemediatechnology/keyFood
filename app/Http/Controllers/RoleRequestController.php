@@ -160,8 +160,11 @@ class RoleRequestController extends Controller
         if ($user->email === 'default@example.com') {
             $missingFields[] = 'email';
         }
+        if ($user->phone === '0000000000') {
+            $missingFields[] = 'No HP anda masih alamat bawaan, sialhkan ganti alamat anda!';
+        }
         if ($user->location === 'Perumahan Keandra, Kec. Sumber, Kab. Cirebon, Jawa Barat, Indonesia') {
-            $missingFields[] = 'alamat anda masih alamat bawaan, sialhkan ganti alamat anda';
+            $missingFields[] = 'Alamat anda masih alamat bawaan, sialhkan ganti alamat anda!';
         }
         
 
