@@ -209,6 +209,8 @@
             url: '/admin/stores?page=' + page, // Endpoint dengan parameter halaman
             method: 'GET',
             success: function (data) {
+                console.log(data);
+                
                 $('#spinner').addClass('hidden'); // Sembunyikan spinner
 
                 if (data.data.length === 0) {
