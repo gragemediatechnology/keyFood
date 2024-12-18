@@ -157,7 +157,7 @@ Route::prefix('seller')->name('seller.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/main-admin', [PaymentController::class, 'index'])->name('dashboard-main')->middleware('permission:main-admin');
-    // Route::get('/orders/search', [PaymentController::class, 'search'])->name('admin.orders.search');
+    Route::get('/orders/search', [PaymentController::class, 'search'])->name('admin.orders.search');
 
 
 
