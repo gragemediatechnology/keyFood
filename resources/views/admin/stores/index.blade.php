@@ -198,6 +198,8 @@
     let page = 1; // Halaman awal
     let isLoading = false; // Status loading
 
+    console.log(page);
+
     // Fungsi untuk memuat data
     function loadStores(page) {
         isLoading = true; // Set loading status
