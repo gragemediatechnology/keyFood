@@ -172,7 +172,7 @@
             
             // Make an AJAX request to load the next page of stores
             $.ajax({
-                url: "{{ route('admin.stores.index') }}?page=" + nextPage + "&itemsPerPage=" + itemsPerPage,
+                url: "/stores?page=" + nextPage + "&itemsPerPage=" + itemsPerPage,
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
