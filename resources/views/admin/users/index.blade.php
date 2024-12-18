@@ -79,7 +79,7 @@
                {{-- SEARCH --}}
                 <div class="flex items-center md:hidden justify-center mb-4">
                     <div class="relative">
-                        <input type="text" id="searchOrder" placeholder="Search users..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
+                        <input type="text" id="searchUser" placeholder="Search users..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <!-- Icon Search -->
                             <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
@@ -90,7 +90,7 @@
                 </div>
 
             {{-- ini cards --}}
-            <div class="container-profile">
+            <div id="user-list" class="container-profile">
                 @forelse($users as $user)
                     <div class="card-profile card-table" data-roles="{{ $user->roles->pluck('name')->join(', ') }}">
                         <p><strong>ID:</strong> {{ $user->id }}</p>
@@ -166,7 +166,7 @@
                            {{-- SEARCH --}}
                             <div class="flex items-center max-sm:hidden justify-end mb-4">
                                 <div class="relative">
-                                    <input type="text" id="searchOrder" placeholder="Search Users..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
+                                    <input type="text" id="searchUser" placeholder="Search Users..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                         <!-- Icon Search -->
                                         <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
@@ -176,7 +176,7 @@
                                 </div>
                             </div>
 
-                        <table class="w-full whitespace-no-wrap">
+                        <table id="" class="w-full whitespace-no-wrap">
                             <thead>
                                 <tr
                                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -187,7 +187,7 @@
                                     <th class="px-4 py-3">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                            <tbody id="user-list" class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                 @forelse($users as $user)
                                     <tr class="text-gray-700 dark:text-gray-400 card-table"
                                         data-roles="{{ $user->roles->pluck('name')->join(', ') }}">
@@ -282,6 +282,52 @@
                     </div>
                 </div>
             </main>
+
+            
+    {{-- SEARCH --}}
+
+    <script>
+        document.getElementById('searchUser').addEventListener('input', function () {
+            let query = this.value;
+        
+            if (query.length > 0) {
+                $.ajax({
+                url: '/admin/users/search',
+                type: 'GET',
+                data: { query: query },
+                success: function (response) {
+                    let resultsContainer = $('#user-list');
+                    resultsContainer.empty();
+
+                    if (response.data.length > 0) {
+                        response.data.forEach(function (user) {
+                            resultsContainer.append(`
+                                <tr>
+                                    <td class="px-4 py-3">${user.name}</td>
+                                    <td class="px-4 py-3">${user.email}</td>
+                                    <td class="px-4 py-3">Rp. ${order.phone}</td>
+                                </tr>
+                            `);
+                        });
+                    } else {
+                        resultsContainer.append(`
+                            <tr>
+                                <td colspan="5" class="text-center p-4">Order tidak ditemukan</td>
+                            </tr>
+                        `);
+                    }
+                },
+                error: function (xhr) {
+                    console.error(xhr.responseText);
+                    $('#order-list').html('<tr><td colspan="5" class="text-center p-4">Terjadi kesalahan pada server</td></tr>');
+                }
+            });
+
+            } else {
+                location.reload(); // Refresh halaman jika input kosong
+            }
+        });
+    </script>
 
             <script>
                 function confirmDelete() {

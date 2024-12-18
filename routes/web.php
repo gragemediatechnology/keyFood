@@ -157,7 +157,7 @@ Route::prefix('seller')->name('seller.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/main-admin', [PaymentController::class, 'index'])->name('dashboard-main')->middleware('permission:main-admin');
-    Route::get('/orders/search', [PaymentController::class, 'search'])->name('admin.orders.search');
+    Route::get('/orders/search', [PaymentController::class, 'search'])->name('orders.search');
 
 
 
@@ -168,6 +168,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Route::resource('users', UserController::class)->middleware('permission:users');
     Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('permission:users');
+    Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
     Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit')->middleware('permission:users');
     Route::post('/users/update/{user}', [UserController::class, 'update'])->name('users.update')->middleware('permission:users');
     Route::delete('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('permission:users');
