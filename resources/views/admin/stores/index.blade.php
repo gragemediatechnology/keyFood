@@ -179,6 +179,8 @@ function loadMoreStores() {
 
     // Perform an AJAX request to fetch the next page of stores
     fetch(`admin/stores?page=${++page}`)
+    console.log('fetch');
+    
         .then(response => response.json())
         .then(data => {
             console.log(data);
