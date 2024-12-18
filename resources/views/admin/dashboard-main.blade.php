@@ -5,7 +5,6 @@
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 Dashboard Payments
             </h2>
-
             <!-- Cards -->
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                 <!-- Card -->
@@ -87,7 +86,7 @@
                 <div class="w-full overflow-x-auto">
 
                     {{-- SEARCH --}}
-                    <div class="flex items-center justify-end mb-4">
+                    {{-- <div class="flex items-center justify-end mb-4">
                         <div class="relative">
                             <input type="text" id="searchOrder" placeholder="Search orders..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -97,7 +96,7 @@
                                 </svg>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     
                     <table class="w-full whitespace-no-wrap">
                         <thead>
@@ -146,29 +145,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            {{-- @foreach ($orders as $order)
-                            <tr class="text-gray-700 dark:text-gray-400">
-                                <td class="px-4 py-3 text-sm">{{ $order->no_order }}</td>
-                                <td class="px-4 py-3 text-sm">{{ $order->toko_id }}</td>
-                                <td class="px-4 py-3">
-                                    <div class="flex items-center text-sm">
-                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                            <img class="object-cover w-full h-full rounded-full"
-                                                src="https://teraskabeka.com/{{ $order->user?->img ?? 'img/client-1.png' }}"
-                                                alt="user" loading="lazy" />
-                                        </div>
-                                        <div>
-                                            <p class="font-semibold">{{ $order->user?->name }}</p>
-                                            <p class="text-xs text-gray-600">{{ $order->id_user }}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-4 py-3 text-sm">Rp. {{ number_format($order->harga, 0, ',', '.') }}</td>
-                                <td class="px-4 py-3 text-sm">{{ $order->tanggal_order }}</td>
-                            </tr>
-                            @endforeach --}}
-
-
                         </tbody>
                     </table>
                 </div>
