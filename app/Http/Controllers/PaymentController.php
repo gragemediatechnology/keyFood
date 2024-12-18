@@ -124,6 +124,33 @@ class PaymentController extends Controller
             return view('admin.dashboard-main')->with('error', 'Terjadi kesalahan saat memuat data.');
         }
     }
+    public function search(Request $request)
+    {
+        try {
+            $query = $request->input('query');
+    
+            // Lakukan pencarian berdasarkan beberapa kolom
+            $orders = Orders::with('user') // Eager loading untuk relasi user
+                ->where('no_order', 'LIKE', "%{$query}%")
+                ->orWhere('toko_id', 'LIKE', "%{$query}%")
+                ->orWhereHas('user', function ($q) use ($query) {
+                    $q->where('name', 'LIKE', "%{$query}%"); // Cari berdasarkan nama user
+                })
+                ->orWhere('harga', 'LIKE', "%{$query}%")
+                ->orWhere('tanggal_order', 'LIKE', "%{$query}%")
+                ->get();
+    
+            return response()->json([
+                'data' => $orders
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error during order search:', [
+                'error' => $e->getMessage(),
+            ]);
+            return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
+        }
+    }
+    
 
 
 

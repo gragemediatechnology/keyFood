@@ -97,8 +97,6 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="clearSearch()"
-                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Semua Orders</button>
                     
                     <table class="w-full whitespace-no-wrap">
                         <thead>
@@ -206,23 +204,52 @@
                 </div>
             </div>
     </main>
+
+    {{-- SEARCH --}}
+
     <script>
-        document.getElementById('searchOrder').addEventListener('input', function() {
+        document.getElementById('searchOrder').addEventListener('input', function () {
             let query = this.value;
-    
-            fetch(`/admin/orders/search?query=${query}`, {
-                method: 'GET',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.querySelector('tbody').innerHTML = data.html;
-            })
-            .catch(error => console.error('Error fetching orders:', error));
+        
+            if (query.length > 0) {
+                $.ajax({
+                    url: '/admin/orders/search',
+                    type: 'GET',
+                    data: { query: query },
+                    success: function (response) {
+                        let resultsContainer = $('#order-list');
+                        resultsContainer.empty();
+        
+                        if (response.data.length > 0) {
+                            response.data.forEach(function (order) {
+                                resultsContainer.append(`
+                                    <tr>
+                                        <td class="px-4 py-3">${order.no_order}</td>
+                                        <td class="px-4 py-3">${order.toko_id}</td>
+                                        <td class="px-4 py-3">${order.user ? order.user.name : '-'}</td>
+                                        <td class="px-4 py-3">Rp. ${order.harga}</td>
+                                        <td class="px-4 py-3">${order.tanggal_order}</td>
+                                    </tr>
+                                `);
+                            });
+                        } else {
+                            resultsContainer.append(`
+                                <tr>
+                                    <td colspan="5" class="text-center p-4">Order tidak ditemukan</td>
+                                </tr>
+                            `);
+                        }
+                    },
+                    error: function () {
+                        $('#order-list').html('<tr><td colspan="5" class="text-center p-4">Terjadi kesalahan pada server</td></tr>');
+                    }
+                });
+            } else {
+                location.reload(); // Refresh halaman jika input kosong
+            }
         });
-    </script>
+        </script>
+        
     
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
