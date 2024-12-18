@@ -204,7 +204,7 @@
         $('#spinner').removeClass('hidden'); // Tampilkan spinner
 
         $.ajax({
-            url: '/fetch-stores?page=' + page, // Endpoint dengan parameter halaman
+            url: '/admin/stores?page=' + page, // Endpoint dengan parameter halaman
             method: 'GET',
             success: function (data) {
                 $('#spinner').addClass('hidden'); // Sembunyikan spinner
