@@ -77,9 +77,9 @@
 
            
                {{-- SEARCH --}}
-                <div class="flex items-center max-sm:justify-center md:justify-end mb-4">
+                <div class="flex items-center md:hidden justify-center mb-4">
                     <div class="relative">
-                        <input type="text" id="searchOrder" placeholder="Search Users..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
+                        <input type="text" id="searchOrder" placeholder="Search orders..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <!-- Icon Search -->
                             <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
@@ -164,7 +164,7 @@
                 <div class="user-table w-full overflow-hidden rounded-lg shadow-xs mb-8">
                     <div class="w-full overflow-x-auto">
                            {{-- SEARCH --}}
-                            {{-- <div class="flex items-center justify-end mb-4">
+                            <div class="flex items-center max-sm:hidden justify-end mb-4">
                                 <div class="relative">
                                     <input type="text" id="searchOrder" placeholder="Search orders..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -174,7 +174,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
 
                         <table class="w-full whitespace-no-wrap">
                             <thead>
