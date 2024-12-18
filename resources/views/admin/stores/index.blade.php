@@ -160,6 +160,9 @@
     let page = 1;
 let loading = false;
 
+console.log(page);
+
+
 window.addEventListener('scroll', function() {
     if (loading) return;
 
