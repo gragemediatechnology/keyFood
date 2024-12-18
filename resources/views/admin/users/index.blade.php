@@ -305,21 +305,21 @@
                                 <tr>
                                     <td class="px-4 py-3">${user.name}</td>
                                     <td class="px-4 py-3">${user.email}</td>
-                                    <td class="px-4 py-3">Rp. ${order.phone}</td>
+                                    <td class="px-4 py-3">Rp. ${user.phone}</td>
                                 </tr>
                             `);
                         });
                     } else {
                         resultsContainer.append(`
                             <tr>
-                                <td colspan="5" class="text-center p-4">Order tidak ditemukan</td>
+                                <td colspan="5" class="text-center p-4">User tidak ditemukan</td>
                             </tr>
                         `);
                     }
                 },
                 error: function (xhr) {
                     console.error(xhr.responseText);
-                    $('#order-list').html('<tr><td colspan="5" class="text-center p-4">Terjadi kesalahan pada server</td></tr>');
+                    $('#user-list').html('<tr><td colspan="5" class="text-center p-4">Terjadi kesalahan pada server</td></tr>');
                 }
             });
 
