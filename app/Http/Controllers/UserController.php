@@ -41,23 +41,31 @@ class UserController extends Controller
         try {
             $query = $request->input('query');
     
-            // Lakukan pencarian berdasarkan beberapa kolom
-            $users = User::with('user') // Eager loading untuk relasi user
-                ->where('name', 'LIKE', "%{$query}%")
-                ->orWhere('email', 'LIKE', "%{$query}%")
-                ->orWhere('phone', 'LIKE', "%{$query}%")
+            // Validasi jika query kosong
+            if (empty($query)) {
+                return response()->json(['data' => []]);
+            }
+    
+            // Query dengan group
+            $users = User::with('user') // Eager loading relasi
+                ->where(function ($q) use ($query) {
+                    $q->where('name', 'LIKE', "%{$query}%")
+                        ->orWhere('email', 'LIKE', "%{$query}%")
+                        ->orWhere('phone', 'LIKE', "%{$query}%");
+                })
                 ->get();
     
             return response()->json([
                 'data' => $users
             ]);
         } catch (\Exception $e) {
-            Log::error('Error during order search:', [
+            Log::error('Error during user search:', [
                 'error' => $e->getMessage(),
             ]);
             return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
         }
     }
+     
 
     public function create()
     {
