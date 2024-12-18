@@ -164,6 +164,10 @@
     var nextPage = {{ $stores->currentPage() }} + 1;  // Start with the next page after the initial load
     var itemsPerPage = 5;  // Adjust this based on your pagination settings
 
+    console.log(nextPage);
+    console.log(itemsPerPage);
+    
+
     // Scroll event listener
     $(window).on('scroll', function() {
         if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && !loading) {
