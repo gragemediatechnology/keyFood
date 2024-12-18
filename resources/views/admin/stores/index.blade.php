@@ -206,7 +206,7 @@
     // Function to load more stores with Ajax
     function loadMoreStores(page) {
         $.ajax({
-            url: '/stores/load-more?page=' + page, // Your route to fetch stores
+            url: 'admin/stores?page=' + page, // Your route to fetch stores
             type: 'GET',
             dataType: 'json',
             beforeSend: function() {
