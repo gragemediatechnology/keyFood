@@ -175,9 +175,11 @@ function loadMoreStores() {
     document.getElementById('loading').style.display = 'block';  // Show loading indicator
 
     // Perform an AJAX request to fetch the next page of stores
-    fetch(`/stores?page=${++page}`)
+    fetch(`admin/stores?page=${++page}`)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
+            
             if (data.data && data.data.length > 0) {
                 const storesContainer = document.getElementById('storesContainer');
                 data.data.forEach(store => {
