@@ -38,10 +38,11 @@
     @endforeach
 </div>
 
-<!-- Pagination Links -->
-<div class="pagination">
-    {{ $stores->links() }}
+<!-- Empty div to trigger scroll event -->
+<div id="loadingIndicator" class="text-center py-4" style="display: none;">
+    <span>Loading...</span>
 </div>
+
 
 
         <div class="user-table w-full overflow-hidden rounded-lg shadow-xs">
@@ -154,3 +155,78 @@
             </div>
     </main>
 @endsection
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+    var loading = false;  // Flag to prevent multiple AJAX calls
+    var nextPage = {{ $stores->currentPage() }} + 1;  // Start with the next page after the initial load
+    var itemsPerPage = 5;  // Adjust this based on your pagination settings
+
+    // Scroll event listener
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && !loading) {
+            loading = true;
+            $('#loadingIndicator').show();  // Show the loading indicator
+            
+            // Make an AJAX request to load the next page of stores
+            $.ajax({
+                url: "{{ route('admin.stores.index') }}?page=" + nextPage + "&itemsPerPage=" + itemsPerPage,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.stores.length > 0) {
+                        // Append the new stores to the container
+                        var storesContainer = $('#storesContainer');
+                        response.stores.forEach(function(store) {
+                            var storeHtml = `
+                                <div class="card-profile">
+                                    <p><strong>ID:</strong> ${store.id_toko}</p>
+                                    <form action="/detailed-store" method="GET">
+                                        <input type="hidden" value="${store.id_toko}" name="id">
+                                        <img src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'}" alt="Profile Picture" loading="lazy">
+                                        <div class="flex items-center text-sm">
+                                            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                                <img class="object-cover w-full h-full rounded-full" src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'}" alt="${store.nama_toko}" loading="lazy" />
+                                            </div>
+                                            <div>
+                                                <button type="submit">
+                                                    <p class="font-semibold">${store.nama_toko}</p>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="info">
+                                        <strong>Seller_id:</strong> ${store.id_seller}
+                                    </div>
+                                    <div class="info">
+                                        ${store.created_at}
+                                    </div>
+                                    <div class="info">
+                                        ${store.alamat_toko}
+                                    </div>
+                                </div>
+                            `;
+                            storesContainer.append(storeHtml);
+                        });
+
+                        // Update the next page number
+                        nextPage = response.current_page + 1;
+                    }
+
+                    // Hide the loading indicator
+                    $('#loadingIndicator').hide();
+                    loading = false;
+
+                    // If there are no more pages, hide the loading indicator permanently
+                    if (!response.next_page) {
+                        $(window).off('scroll');  // Stop the scroll event listener
+                    }
+                }
+            });
+        }
+    });
+});
+
+</script>
