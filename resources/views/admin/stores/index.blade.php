@@ -200,6 +200,7 @@
         const url = '/admin/stores'; // Base URL for the API
 
         async function loadStores(page) {
+            console.log(page);
             loader.classList.remove('hidden');
             try {
                 const response = await fetch(`${url}?page=${page}`);
