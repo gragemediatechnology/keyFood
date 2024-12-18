@@ -13,7 +13,7 @@ class TokoController extends Controller
     public function index(Request $request)
     {
         // Default jumlah item per halaman
-        $defaultItemsPerPage = 1;
+        $defaultItemsPerPage = 16;
     
         // Ambil parameter `itemsPerPage` dari request atau gunakan default
         $itemsPerPage = $request->input('itemsPerPage', $defaultItemsPerPage);
