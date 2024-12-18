@@ -99,7 +99,7 @@
                         <a>
                             <img src="https://teraskabeka.com/{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture" loading="lazy">
                         </a>
-                        <h2>{{ $user->name }}</h2>
+                        <h2>{{ $user->name }}456</h2>
                         <p><strong>Role:</strong>
                             @if ($user->roles->isEmpty())
                                 buyer
@@ -179,7 +179,7 @@
                             <thead>
                                 <tr
                                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                    <th class="px-4 py-3">Name</th>
+                                    <th class="px-4 py-3">Name123</th>
                                     <th class="px-4 py-3">Email</th>
                                     <th class="px-4 py-3">No. HP</th>
                                     <th class="px-4 py-3">Role</th>
