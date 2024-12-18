@@ -113,7 +113,7 @@
 
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                            {{-- @foreach ($orders as $order)
+                            @foreach ($orders as $order)
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     <td class="px-4 py-3 text-sm">
                                         {{ $order->no_order }}
@@ -145,8 +145,8 @@
                                         {{ $order->tanggal_order }}
                                     </td>
                                 </tr>
-                            @endforeach --}}
-                            @foreach ($orders as $order)
+                            @endforeach
+                            {{-- @foreach ($orders as $order)
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td class="px-4 py-3 text-sm">{{ $order->no_order }}</td>
                                 <td class="px-4 py-3 text-sm">{{ $order->toko_id }}</td>
@@ -166,7 +166,7 @@
                                 <td class="px-4 py-3 text-sm">Rp. {{ number_format($order->harga, 0, ',', '.') }}</td>
                                 <td class="px-4 py-3 text-sm">{{ $order->tanggal_order }}</td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
 
 
                         </tbody>
