@@ -162,10 +162,7 @@
     $(document).ready(function() {
     var loading = false;  // Flag to prevent multiple AJAX calls
     var nextPage = {{ $stores->currentPage() }} + 1;  // Start with the next page after the initial load
-    var itemsPerPage = 2;  // Adjust this based on your pagination settings
-
-    console.log(nextPage);
-    console.log(itemsPerPage);
+    var itemsPerPage = 5;  // Adjust this based on your pagination settings
     
 
     // Scroll event listener
