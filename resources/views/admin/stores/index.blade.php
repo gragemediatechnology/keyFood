@@ -161,7 +161,7 @@
 let loading = false;
 
 console.log(page);
-
+loadMoreStores();
 
 window.addEventListener('scroll', function() {
     if (loading) return;
