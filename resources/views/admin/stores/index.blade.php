@@ -6,9 +6,10 @@
                 Toko
             </h2>
 
+            {{-- ini cards --}}
             <div class="container-profile" id="storesContainer">
-    @forelse($stores as $store)
-        <div class="card-profile" data-id="{{ $store->id_toko }}">
+    @foreach($stores as $store)
+        <div class="card-profile">
             <p><strong>ID:</strong> {{ $store->id_toko }}</p>
             <form action="/detailed-store" method="GET">
                 <input type="hidden" value="{{ $store->id_toko }}" name="id">
@@ -24,7 +25,6 @@
                     </div>
                 </form>
             </div>
-
             <div class="info">
                 <strong>Seller_id:</strong> {{ $store->id_seller }}
             </div>
@@ -35,13 +35,13 @@
                 {{ $store->alamat_toko }}
             </div>
         </div>
-    @empty
-        <p>No stores found.</p>
-    @endforelse
+    @endforeach
 </div>
 
-<div id="loading" style="display:none;">Loading...</div>
-
+<!-- Pagination Links -->
+<div class="pagination">
+    {{ $stores->links() }}
+</div>
 
 
         <div class="user-table w-full overflow-hidden rounded-lg shadow-xs">
@@ -154,81 +154,3 @@
             </div>
     </main>
 @endsection
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    let page = 1;
-let loading = false;
-
-console.log(page);
-loadMoreStores();
-
-window.addEventListener('scroll', function() {
-    if (loading) return;
-
-    const nearBottom = document.documentElement.scrollHeight - window.innerHeight <= window.scrollY + 200;
-
-    if (nearBottom) {
-        loadMoreStores();
-    }
-});
-
-function loadMoreStores() {
-    loading = true;
-    console.log('sddsd');
-    
-    // document.getElementById('loading').style.display = 'block';  // Show loading indicator
-
-    // Perform an AJAX request to fetch the next page of stores
-    fetch(`/stores?page=${page + 1}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log('res');
-            console.log(data);
-            
-            if (data.data && data.data.length > 0) {
-                const storesContainer = document.getElementById('storesContainer');
-                data.data.forEach(store => {
-                    const storeElement = `
-                        <div class="card-profile" data-id="${store.id_toko}">
-                            <p><strong>ID:</strong> ${store.id_toko}</p>
-                            <form action="/detailed-store" method="GET">
-                                <input type="hidden" value="${store.id_toko}" name="id">
-                                <img src="https://teraskabeka.com/store_image/${store.foto_profile_toko || 'markets.png'}" alt="Profile Picture" loading="lazy">
-                                <div class="flex items-center text-sm">
-                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                        <img class="object-cover w-full h-full rounded-full" src="https://teraskabeka.com/store_image/${store.foto_profile_toko || 'markets.png'}" alt="${store.nama_toko}" loading="lazy" />
-                                    </div>
-                                    <div>
-                                        <button type="submit">
-                                            <p class="font-semibold">${store.nama_toko}</p>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="info">
-                                <strong>Seller_id:</strong> ${store.id_seller}
-                            </div>
-                            <div class="info">
-                                ${new Date(store.created_at).toLocaleDateString()}
-                            </div>
-                            <div class="info">
-                                ${store.alamat_toko}
-                            </div>
-                        </div>
-                    `;
-                    storesContainer.innerHTML += storeElement;
-                });
-
-                // Hide the loading indicator
-                document.getElementById('loading').style.display = 'none';
-                loading = false;
-            }
-        })
-        .catch(() => {
-            document.getElementById('loading').style.display = 'none';
-            loading = false;
-        });
-}
-
-</script>

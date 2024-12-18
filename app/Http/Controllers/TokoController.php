@@ -12,15 +12,24 @@ class TokoController extends Controller
 {
     public function index(Request $request)
     {
+        // Default jumlah item per halaman
+        $defaultItemsPerPage = 1;
+    
+        // Ambil parameter `itemsPerPage` dari request atau gunakan default
+        $itemsPerPage = $request->input('itemsPerPage', $defaultItemsPerPage);
+    
+        // Mengambil data toko dengan pagination dinamis
+        $stores = Toko::paginate($itemsPerPage);
+    
+        // Jika permintaan AJAX, kembalikan data toko dalam format JSON
         if ($request->ajax()) {
-            $stores = Toko::paginate(10); // You can adjust the number of Tokos per page
             return response()->json($stores);
         }
     
-        // Your default page rendering logic here
-        $stores = Toko::paginate(10);
-        return view('admin.stores.index', compact('stores'));
+        // Jika bukan AJAX, kembalikan tampilan lengkap
+        return view('admin.stores.index', compact('stores', 'itemsPerPage'));
     }
+    
 
     public function create()
     {
