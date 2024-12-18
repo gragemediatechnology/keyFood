@@ -175,6 +175,8 @@ window.addEventListener('scroll', function() {
 
 function loadMoreStores() {
     loading = true;
+    console.log('sddsd');
+    
     // document.getElementById('loading').style.display = 'block';  // Show loading indicator
 
     // Perform an AJAX request to fetch the next page of stores
