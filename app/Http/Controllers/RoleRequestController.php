@@ -121,34 +121,6 @@ class RoleRequestController extends Controller
         return redirect()->back()->with('info', 'Permintaan perubahan role dibatalkan.');
     }
 
-    // public function store(Request $request)
-    // {
-    //     // Validasi input jika diperlukan
-    //     $request->validate([
-    //         'user_id' => 'required|exists:users,id',
-    //         'requested_role' => 'required',
-    //     ]);
-
-    //     // Cek apakah user_id sudah ada di tabel role_change_requests
-    //     $existingRequest = DB::table('role_change_requests')
-    //         ->where('user_id', $request->user_id)
-    //         ->first();
-
-    //     if ($existingRequest) {
-    //         return redirect()->back()->with('error', 'Anda telah menggajukan permintaan sebagai penjual.');
-    //     }
-
-    //     // Simpan data ke database
-    //     DB::table('role_change_requests')->insert([
-    //         'user_id' => $request->user_id,
-    //         'requested_role' => $request->requested_role,
-    //         'created_at' => now(),
-    //         'updated_at' => now(),
-    //     ]);
-
-    //     return redirect()->back()->with('success', 'Permintaan pengajuan menjadi penjual telah di kirim.');
-    // }
-
     public function store(Request $request)
 {
     $user = Auth::user();
@@ -161,10 +133,10 @@ class RoleRequestController extends Controller
             $missingFields[] = 'email';
         }
         if ($user->phone === '0000000000') {
-            $missingFields[] = 'No HP anda masih alamat bawaan, sialhkan ganti alamat anda!';
+            $missingFields[] = 'No HP anda masih bawaan, silahkan ganti No HP anda!';
         }
         if ($user->location === 'Perumahan Keandra, Kec. Sumber, Kab. Cirebon, Jawa Barat, Indonesia') {
-            $missingFields[] = 'Alamat anda masih alamat bawaan, sialhkan ganti alamat anda!';
+            $missingFields[] = 'Alamat anda masih alamat bawaan, silahkan ganti alamat anda!';
         }
         
 
