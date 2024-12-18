@@ -86,7 +86,7 @@
                 <div class="w-full overflow-x-auto">
 
                     {{-- SEARCH --}}
-                    <div class="flex items-center justify-end mb-4">
+                    <div class="flex items-center max-sm:hidden justify-end mb-4">
                         <div class="relative">
                             <input type="text" id="searchOrder" placeholder="Search orders..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
