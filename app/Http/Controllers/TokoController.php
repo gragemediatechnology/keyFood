@@ -12,14 +12,13 @@ class TokoController extends Controller
 {
     public function index(Request $request)
     {
-        $stores = Toko::paginate(5); // Fetch 5 records per page
-    
+        $stores = Toko::paginate(4); // Limit to 10 per page
         if ($request->ajax()) {
-            return view('admin.stores.partials.store-list', compact('stores'))->render();
+            return response()->json($stores);
         }
-    
         return view('admin.stores.index', compact('stores'));
     }
+    
     
     public function create()
     {

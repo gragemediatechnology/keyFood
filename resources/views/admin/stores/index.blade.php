@@ -194,6 +194,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
+        let page = 1; // Halaman awal
         let loading = false;
         let nextPageUrl = "{{ $stores->nextPageUrl() }}";
         console.log(nextPageUrl);
