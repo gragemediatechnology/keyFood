@@ -232,7 +232,7 @@
         document.getElementById('searchOrder').addEventListener('input', function() {
             let query = this.value;
     
-            fetch(`{{ route('admin.orders.search') }}?query=${query}`, {
+            fetch(`/orders/search?query=${query}`, {
                 method: 'GET',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
