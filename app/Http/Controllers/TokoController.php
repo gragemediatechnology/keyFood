@@ -10,12 +10,17 @@ use Illuminate\Support\Facades\Storage;
 
 class TokoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $stores = Toko::all();
+        $stores = Toko::paginate(5); // Fetch 5 records per page
+    
+        if ($request->ajax()) {
+            return view('admin.stores.partials.store-list', compact('stores'))->render();
+        }
+    
         return view('admin.stores.index', compact('stores'));
     }
-
+    
     public function create()
     {
         return view('admin.stores.create');  // Pastikan view ini ada di resources/views/admin/stores/create.blade.php
