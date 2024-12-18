@@ -129,31 +129,27 @@ class PaymentController extends Controller
         try {
             $query = $request->input('query');
     
-            // Validasi jika query kosong
-            if (empty($query)) {
-                return response()->json(['data' => []]);
-            }
-    
-            // Query dengan group
-            $users = User::with('user') // Eager loading relasi
-                ->where(function ($q) use ($query) {
-                    $q->where('name', 'LIKE', "%{$query}%")
-                        ->orWhere('email', 'LIKE', "%{$query}%")
-                        ->orWhere('phone', 'LIKE', "%{$query}%");
+            // Lakukan pencarian berdasarkan beberapa kolom
+            $orders = Orders::with('user') // Eager loading untuk relasi user
+                ->where('no_order', 'LIKE', "%{$query}%")
+                ->orWhere('toko_id', 'LIKE', "%{$query}%")
+                ->orWhereHas('user', function ($q) use ($query) {
+                    $q->where('name', 'LIKE', "%{$query}%"); // Cari berdasarkan nama user
                 })
+                ->orWhere('harga', 'LIKE', "%{$query}%")
+                ->orWhere('tanggal_order', 'LIKE', "%{$query}%")
                 ->get();
     
             return response()->json([
-                'data' => $users
+                'data' => $orders
             ]);
         } catch (\Exception $e) {
-            Log::error('Error during user search:', [
+            Log::error('Error during order search:', [
                 'error' => $e->getMessage(),
             ]);
             return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
         }
     }
-    
     
 
 
