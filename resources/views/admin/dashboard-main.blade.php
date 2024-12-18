@@ -111,7 +111,7 @@
                             </tr>
 
                         </thead>
-                        <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                        <tbody id="order-list" class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                             @foreach ($orders as $order)
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     <td class="px-4 py-3 text-sm">
@@ -213,42 +213,44 @@
         
             if (query.length > 0) {
                 $.ajax({
-                    url: '/admin/orders/search',
-                    type: 'GET',
-                    data: { query: query },
-                    success: function (response) {
-                        let resultsContainer = $('#order-list');
-                        resultsContainer.empty();
-        
-                        if (response.data.length > 0) {
-                            response.data.forEach(function (order) {
-                                resultsContainer.append(`
-                                    <tr>
-                                        <td class="px-4 py-3">${order.no_order}</td>
-                                        <td class="px-4 py-3">${order.toko_id}</td>
-                                        <td class="px-4 py-3">${order.user ? order.user.name : '-'}</td>
-                                        <td class="px-4 py-3">Rp. ${order.harga}</td>
-                                        <td class="px-4 py-3">${order.tanggal_order}</td>
-                                    </tr>
-                                `);
-                            });
-                        } else {
+                url: '/admin/orders/search',
+                type: 'GET',
+                data: { query: query },
+                success: function (response) {
+                    let resultsContainer = $('#order-list');
+                    resultsContainer.empty();
+
+                    if (response.data.length > 0) {
+                        response.data.forEach(function (order) {
                             resultsContainer.append(`
                                 <tr>
-                                    <td colspan="5" class="text-center p-4">Order tidak ditemukan</td>
+                                    <td class="px-4 py-3">${order.no_order}</td>
+                                    <td class="px-4 py-3">${order.toko_id}</td>
+                                    <td class="px-4 py-3">${order.user ? order.user.name : '-'}</td>
+                                    <td class="px-4 py-3">Rp. ${order.harga}</td>
+                                    <td class="px-4 py-3">${order.tanggal_order}</td>
                                 </tr>
                             `);
-                        }
-                    },
-                    error: function () {
-                        $('#order-list').html('<tr><td colspan="5" class="text-center p-4">Terjadi kesalahan pada server</td></tr>');
+                        });
+                    } else {
+                        resultsContainer.append(`
+                            <tr>
+                                <td colspan="5" class="text-center p-4">Order tidak ditemukan</td>
+                            </tr>
+                        `);
                     }
-                });
+                },
+                error: function (xhr) {
+                    console.error(xhr.responseText);
+                    $('#order-list').html('<tr><td colspan="5" class="text-center p-4">Terjadi kesalahan pada server</td></tr>');
+                }
+            });
+
             } else {
                 location.reload(); // Refresh halaman jika input kosong
             }
         });
-        </script>
+    </script>
         
     
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
