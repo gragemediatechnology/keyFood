@@ -85,6 +85,8 @@
             <!-- New Table -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
                 <div class="w-full overflow-x-auto">
+
+                    {{-- SEARCH --}}
                     <div class="flex items-center justify-end mb-4">
                         <div class="relative">
                             <input type="text" id="searchOrder" placeholder="Search orders..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
@@ -111,7 +113,7 @@
 
                         </thead>
                         <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                            @foreach ($orders as $order)
+                            {{-- @foreach ($orders as $order)
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     <td class="px-4 py-3 text-sm">
                                         {{ $order->no_order }}
@@ -143,7 +145,29 @@
                                         {{ $order->tanggal_order }}
                                     </td>
                                 </tr>
+                            @endforeach --}}
+                            @foreach ($orders as $order)
+                            <tr class="text-gray-700 dark:text-gray-400">
+                                <td class="px-4 py-3 text-sm">{{ $order->no_order }}</td>
+                                <td class="px-4 py-3 text-sm">{{ $order->toko_id }}</td>
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center text-sm">
+                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                            <img class="object-cover w-full h-full rounded-full"
+                                                src="https://teraskabeka.com/{{ $order->user?->img ?? 'img/client-1.png' }}"
+                                                alt="user" loading="lazy" />
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">{{ $order->user?->name }}</p>
+                                            <p class="text-xs text-gray-600">{{ $order->id_user }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 text-sm">Rp. {{ number_format($order->harga, 0, ',', '.') }}</td>
+                                <td class="px-4 py-3 text-sm">{{ $order->tanggal_order }}</td>
+                            </tr>
                             @endforeach
+
 
                         </tbody>
                     </table>
@@ -204,6 +228,24 @@
                 </div>
             </div>
     </main>
+    <script>
+        document.getElementById('searchOrder').addEventListener('input', function() {
+            let query = this.value;
+    
+            fetch(`{{ route('admin.orders.search') }}?query=${query}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('tbody').innerHTML = data.html;
+            })
+            .catch(error => console.error('Error fetching orders:', error));
+        });
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <script>

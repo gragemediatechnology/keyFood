@@ -125,6 +125,26 @@ class PaymentController extends Controller
         }
     }
 
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+
+    // Query untuk mencari data order
+    $orders = Orders::where('no_order', 'LIKE', "%$query%")
+        ->orWhere('toko_id', 'LIKE', "%$query%")
+        ->orWhereHas('user', function ($q) use ($query) {
+            $q->where('name', 'LIKE', "%$query%");
+        })
+        ->orderBy('id', 'desc')
+        ->get();
+
+    // Return view partial sebagai hasil AJAX
+    return response()->json([
+        'html' => view('admin.dasboard-main', compact('orders'))->render()
+    ]);
+}
+
+
 
 
     /**
