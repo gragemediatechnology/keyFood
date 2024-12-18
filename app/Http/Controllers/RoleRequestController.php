@@ -13,14 +13,23 @@ use Illuminate\Support\Facades\File;
 
 class RoleRequestController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $roleRequests = DB::table('role_change_requests')
-            ->join('users', 'role_change_requests.user_id', '=', 'users.id')
-            ->select('role_change_requests.*', 'users.*')
-            ->get();
+         // Use paginate instead of get to paginate the results
+    $roleRequests = DB::table('role_change_requests')
+        ->join('users', 'role_change_requests.user_id', '=', 'users.id')
+        ->select('role_change_requests.*', 'users.*')
+        ->orderBy('role_change_requests.id', 'desc')  // Optional: Order by ID or other field
+        ->paginate(5);  // Adjust the number of items per page
 
-        return view('admin.role-requests.index', compact('roleRequests'));
+    if ($request->ajax()) {
+        return response()->json([
+            'html' => view('admin.role-requests.index', compact('roleRequests'))->render(),
+            'nextPage' => $roleRequests->nextPageUrl(),  // URL for the next page
+        ]);
+    }
+
+    return view('admin.role-requests.index', compact('roleRequests'));
     }
 
      /* public function approve($id)
