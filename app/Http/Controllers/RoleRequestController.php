@@ -20,7 +20,7 @@ class RoleRequestController extends Controller
         ->join('users', 'role_change_requests.user_id', '=', 'users.id')
         ->select('role_change_requests.*', 'users.*')
         ->orderBy('role_change_requests.id', 'desc')  // Optional: Order by ID or other field
-        ->paginate(5);  // Adjust the number of items per page
+        ->paginate(2);  // Adjust the number of items per page
 
     if ($request->ajax()) {
         return response()->json([
