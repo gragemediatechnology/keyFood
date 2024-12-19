@@ -45,5 +45,4 @@ class AdminHistoryController extends Controller
         return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
     }
 }
-
 }
