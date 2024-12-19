@@ -47,13 +47,15 @@ class UserController extends Controller
             }
     
             // Query dengan group
-            $users = User::with('user') // Eager loading relasi
+
+             $users = User::with('roles') // Eager loading relasi roles
                 ->where(function ($q) use ($query) {
                     $q->where('name', 'LIKE', "%{$query}%")
                         ->orWhere('email', 'LIKE', "%{$query}%")
                         ->orWhere('phone', 'LIKE', "%{$query}%");
                 })
                 ->get();
+            
     
             return response()->json([
                 'data' => $users
@@ -65,36 +67,6 @@ class UserController extends Controller
             return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
         }
     }
-
-    public function search(Request $request)
-{
-    try {
-        $query = $request->input('query');
-
-        // Validasi jika query kosong
-        if (empty($query)) {
-            return response()->json(['data' => []]);
-        }
-
-        // Query dengan group
-        $users = User::with('user') // Eager loading relasi
-            ->where(function ($q) use ($query) {
-                $q->where('name', 'LIKE', "%{$query}%")
-                    ->orWhere('email', 'LIKE', "%{$query}%")
-                    ->orWhere('phone', 'LIKE', "%{$query}%");
-            })
-            ->get();
-
-        return response()->json([
-            'data' => $users
-        ]);
-    } catch (\Exception $e) {
-        Log::error('Error during user search:', [
-            'error' => $e->getMessage(),
-        ]);
-        return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
-    }
-}
 
      
 

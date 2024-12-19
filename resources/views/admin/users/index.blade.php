@@ -156,9 +156,9 @@
                     </div>
                     @empty
                         <p>No users found.</p>
-                    @endforelse
+                @endforelse
 
-                </div>
+            </div>
 
                 <!-- Users Table -->
                 <div class="user-table w-full overflow-hidden rounded-lg shadow-xs mb-8">
@@ -285,7 +285,7 @@
             
     {{-- SEARCH --}}
 
-    <script>
+    {{-- <script>
         document.getElementById('searchUser').addEventListener('input', function () {
             let query = this.value;
         
@@ -326,6 +326,44 @@
                 location.reload(); // Refresh halaman jika input kosong
             }
         });
+    </script> --}}
+    <script>
+        $(document).ready(function () {
+    $('#searchUser').on('input', function () {
+        let query = $(this).val();
+
+        $.ajax({
+            url: '/admin/users/search',
+            type: 'GET',
+            data: { query: query },
+            success: function (response) {
+                let userList = $('#user-list');
+                userList.empty(); // Kosongkan daftar user sebelum menambahkan hasil baru
+
+                if (response.data.length > 0) {
+                    response.data.forEach(user => {
+                        // Tambahkan elemen user ke dalam userList
+                        userList.append(`
+                            <tr>
+                                <td>${user.name}</td>
+                                <td>${user.email}</td>
+                                <td>${user.phone}</td>
+                                <td>${user.roles.map(role => role.name).join(', ')}</td>
+                            </tr>
+                        `);
+                    });
+                } else {
+                location.reload(); // Refresh halaman jika input kosong
+                }else {
+                    userList.append('<p>No users found.</p>');
+                }
+            },
+            error: function (xhr) {
+                console.error('Error during search:', xhr.responseText);
+            }
+        });
+    });
+});
     </script>
 
             <script>
