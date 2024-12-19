@@ -22,21 +22,6 @@
                     </ul>
                 </div>
             @endif
-        {{-- SEARCH --}}
-        <div class="flex max-sm:items-center md:items-end max-sm:justify-center md:justify-end mb-4">
-            <div class="relative">
-                <input type="text" id="searchHistory" placeholder="Search History..."
-                    class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <!-- Icon Search -->
-                    <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M8 12a4 4 0 100-8 4 4 0 000 8zM2 8a6 6 0 1110.49 3.51l4.15 4.15a1 1 0 01-1.42 1.42l-4.15-4.15A6 6 0 012 8z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-            </div>
-        </div>
             <!-- New Table -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs mb-8">
                 <div class="w-full overflow-x-auto">
