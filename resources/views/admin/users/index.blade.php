@@ -75,19 +75,22 @@
                 </div>
             </div>
 
-           
-               {{-- SEARCH --}}
-                <div class="flex max-sm:items-center md:items-end max-sm:justify-center md:justify-end mb-4">
-                    <div class="relative">
-                        <input type="text" id="searchUser" placeholder="Search users..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <!-- Icon Search -->
-                            <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M8 12a4 4 0 100-8 4 4 0 000 8zM2 8a6 6 0 1110.49 3.51l4.15 4.15a1 1 0 01-1.42 1.42l-4.15-4.15A6 6 0 012 8z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
+
+            {{-- SEARCH --}}
+            <div class="flex max-sm:items-center md:items-end max-sm:justify-center md:justify-end mb-4">
+                <div class="relative">
+                    <input type="text" id="searchUser" placeholder="Search users..."
+                        class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <!-- Icon Search -->
+                        <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M8 12a4 4 0 100-8 4 4 0 000 8zM2 8a6 6 0 1110.49 3.51l4.15 4.15a1 1 0 01-1.42 1.42l-4.15-4.15A6 6 0 012 8z"
+                                clip-rule="evenodd"></path>
+                        </svg>
                     </div>
                 </div>
+            </div>
 
             {{-- ini cards --}}
             <div id="user-list" class="container-profile">
@@ -97,7 +100,8 @@
                         {{-- <a href="{{ route('live-chat', $user) }}"> --}}
                         {{-- <a href="/live-chat/{{ $user->id }}"> --}}
                         <a>
-                            <img src="https://teraskabeka.com/{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture" loading="lazy">
+                            <img src="https://teraskabeka.com/{{ $user->img ?? 'img/client-1.jpg' }}" alt="Profile Picture"
+                                loading="lazy">
                         </a>
                         <h2>{{ $user->name }}456</h2>
                         <p><strong>Role:</strong>
@@ -138,9 +142,9 @@
                         <div id="dropdown1" class="dropdown-menu">
                             <ul>
                                 {{-- <li>
-                                    <a href="/admin/users/edit/{{ $user->id }}"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                </li> --}}
+                                        <a href="/admin/users/edit/{{ $user->id }}"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                    </li> --}}
                                 <li>
                                     {{-- <form method="POST" action="{{ route('admin.users.destroy', $user) }}" --}}
                                     <form method="POST" action="/admin/users/destroy/{{ $user->id }}"
@@ -148,7 +152,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</button>
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</button>
                                     </form>
                                 </li>
                             </ul>
@@ -156,15 +160,14 @@
                     </div>
                     @empty
                         <p>No users found.</p>
-                @endforelse
-
-            </div>
+                    @endforelse
+                </div>
 
                 <!-- Users Table -->
                 <div class="user-table w-full overflow-hidden rounded-lg shadow-xs mb-8">
                     <div class="w-full overflow-x-auto">
-                           {{-- SEARCH --}}
-                            {{-- <div class="flex items-center max-sm:hidden justify-end mb-4">
+                        {{-- SEARCH --}}
+                        {{-- <div class="flex items-center max-sm:hidden justify-end mb-4">
                                 <div class="relative">
                                     <input type="text" id="searchUser" placeholder="Search Users..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -188,14 +191,15 @@
                             </thead>
                             <tbody id="user-list" class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                 @forelse($users as $user)
-                                    <tr class="text-gray-700 dark:text-gray-400 card-table"
-                                        data-role s="{{ $user->roles->pluck('name')->join(', ') }}">
+                                    <tr class="text-gray-700 dark:text-gray-400 card-table" data-role
+                                        s="{{ $user->roles->pluck('name')->join(', ') }}">
                                         <td class="px-4 py-3">
                                             <div class="flex items-center text-sm">
                                                 <!-- Avatar with inset shadow -->
                                                 <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
                                                     <img class="object-cover w-full h-full rounded-full"
-                                                        src="https://teraskabeka.com/{{ ($user->img ?? 'img/client-1.jpg') }}" alt="user" loading="lazy">
+                                                        src="https://teraskabeka.com/{{ $user->img ?? 'img/client-1.jpg' }}"
+                                                        alt="user" loading="lazy">
 
                                                 </div>
                                                 <div>
@@ -282,10 +286,10 @@
                 </div>
             </main>
 
-            
-    {{-- SEARCH --}}
 
-    {{-- <script>
+            {{-- SEARCH --}}
+
+            {{-- <script>
         document.getElementById('searchUser').addEventListener('input', function () {
             let query = this.value;
         
@@ -327,44 +331,66 @@
             }
         });
     </script> --}}
-    <script>
-        $(document).ready(function () {
-    $('#searchUser').on('input', function () {
-        let query = $(this).val();
+            <script>
+                $(document).ready(function() {
+                    $('#searchUser').on('input', function() {
+                        let query = $(this).val();
+                        let isMobile = window.matchMedia("(max-width: 768px)")
+                        .matches; // Cek apakah tampilan mobile
+                        let userList = isMobile ? $('#user-list').filter('.container-profile') : $('#user-list')
+                            .filter('table');
 
-        $.ajax({
-            url: '/admin/users/search',
-            type: 'GET',
-            data: { query: query },
-            success: function (response) {
-                let userList = $('#user-list');
-                userList.empty(); // Kosongkan daftar user sebelum menambahkan hasil baru
+                        $.ajax({
+                            url: '/admin/users/search',
+                            type: 'GET',
+                            data: {
+                                query: query,
+                            },
+                            success: function(response) {
+                                userList
+                            .empty(); // Kosongkan daftar user sebelum menambahkan hasil baru
 
-                if (response.data.length > 0) {
-                    response.data.forEach(user => {
-                        // Tambahkan elemen user ke dalam userList
-                        userList.append(`
-                            <tr>
-                                <td>${user.name}</td>
-                                <td>${user.email}</td>
-                                <td>${user.phone}</td>
-                                <td>${user.roles.map(role => role.name).join(', ')}</td>
-                            </tr>
-                        `);
+                                if (response.data.length > 0) {
+                                    response.data.forEach((user) => {
+                                        if (isMobile) {
+                                            // Tambahkan elemen user untuk tampilan mobile
+                                            userList.append(`
+                                <div class="card-profile card-table">
+                                    <p><strong>ID:</strong> ${user.id}</p>
+                                    <a>
+                                        <img src="${user.img ?? 'img/client-1.jpg'}" alt="Profile Picture" loading="lazy">
+                                    </a>
+                                    <h2>${user.name}</h2>
+                                    <p><strong>Role:</strong> ${user.roles.map(role => role.name).join(', ')}</p>
+                                    <div class="info text-sm text-gray-700 dark:text-gray-300 mt-2 break-words">
+                                        <p><strong>Email:</strong> ${user.email}</p>
+                                        <p><strong>Phone:</strong> ${user.phone}</p>
+                                    </div>
+                                </div>
+                            `);
+                                        } else {
+                                            // Tambahkan elemen user untuk tampilan desktop
+                                            userList.append(`
+                                <tr>
+                                    <td>${user.name}</td>
+                                    <td>${user.email}</td>
+                                    <td>${user.phone}</td>
+                                    <td>${user.roles.map(role => role.name).join(', ')}</td>
+                                </tr>
+                            `);
+                                        }
+                                    });
+                                } else {
+                                    userList.append('<p>No users found.</p>');
+                                }
+                            },
+                            error: function(xhr) {
+                                console.error('Error during search:', xhr.responseText);
+                            },
+                        });
                     });
-                } else {
-                location.reload(); // Refresh halaman jika input kosong
-                }else {
-                    userList.append('<p>No users found.</p>');
-                }
-            },
-            error: function (xhr) {
-                console.error('Error during search:', xhr.responseText);
-            }
-        });
-    });
-});
-    </script>
+                });
+            </script>
 
             <script>
                 function confirmDelete() {
