@@ -52,7 +52,7 @@
                                 <th class="px-4 py-3">Date</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800" id="history-list">
+                        <tbody id="history-list" class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800" >
                             @foreach ($histories as $history)
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     <td class="px-4 py-3 text-sm"> {{ $history->admin->name }}</td>
