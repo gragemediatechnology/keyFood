@@ -77,7 +77,7 @@
 
            
                {{-- SEARCH --}}
-                <div class="flex items-center sm:justify-center md:justify-end mb-4">
+                <div class="flex items-center max-sm:justify-center md:justify-end mb-4">
                     <div class="relative">
                         <input type="text" id="searchUser" placeholder="Search users..." class="border rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring focus:ring-blue-300" />
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
