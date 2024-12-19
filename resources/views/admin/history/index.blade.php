@@ -61,7 +61,7 @@
                                     <td class="px-4 py-3 text-sm"> {{ $history->admin->email }}</td>
                                     <td class="px-4 py-3 text-sm"> {{ $history->action }}</td>  
                                     <td class="px-4 py-3 text-sm"> {{ $history->affected_model }}</td>
-                                    {{-- <td class="px-4 py-3 text-sm">
+                                    <td class="px-4 py-3 text-sm">
                                         @if ($history->admin->hasRole('seller'))
                                             seller
                                         @elseif ($history->admin->hasRole('admin'))
@@ -69,7 +69,7 @@
                                         @else
                                             buyer
                                         @endif
-                                    </td> --}}
+                                    </td>
                                     <td class="px-4 py-3 text-sm"> {{ $history->created_at->format('Y-m-d H:i:s') }} </td>
                                 </tr>
                             @endforeach
