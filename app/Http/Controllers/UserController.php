@@ -47,8 +47,7 @@ class UserController extends Controller
             }
     
             // Query dengan group
-
-             $users = User::with('roles') // Eager loading relasi roles
+            $users = User::with('user') // Eager loading relasi
                 ->where(function ($q) use ($query) {
                     $q->where('name', 'LIKE', "%{$query}%")
                         ->orWhere('email', 'LIKE', "%{$query}%")
@@ -67,6 +66,7 @@ class UserController extends Controller
             return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
         }
     }
+
 
      
 

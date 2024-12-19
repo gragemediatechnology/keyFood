@@ -289,7 +289,7 @@
 
             {{-- SEARCH --}}
 
-            {{-- <script>
+            <script>
         document.getElementById('searchUser').addEventListener('input', function () {
             let query = this.value;
         
@@ -330,67 +330,8 @@
                 location.reload(); // Refresh halaman jika input kosong
             }
         });
-    </script> --}}
-            <script>
-                $(document).ready(function() {
-                    $('#searchUser').on('input', function() {
-                        let query = $(this).val();
-                        let isMobile = window.matchMedia("(max-width: 768px)")
-                        .matches; // Cek apakah tampilan mobile
-                        let userList = isMobile ? $('#user-list').filter('.container-profile') : $('#user-list')
-                            .filter('table');
-
-                        $.ajax({
-                            url: '/admin/users/search',
-                            type: 'GET',
-                            data: {
-                                query: query,
-                            },
-                            success: function(response) {
-                                userList
-                            .empty(); // Kosongkan daftar user sebelum menambahkan hasil baru
-
-                                if (response.data.length > 0) {
-                                    response.data.forEach((user) => {
-                                        if (isMobile) {
-                                            // Tambahkan elemen user untuk tampilan mobile
-                                            userList.append(`
-                                <div class="card-profile card-table">
-                                    <p><strong>ID:</strong> ${user.id}</p>
-                                    <a>
-                                        <img src="${user.img ?? 'img/client-1.jpg'}" alt="Profile Picture" loading="lazy">
-                                    </a>
-                                    <h2>${user.name}</h2>
-                                    <p><strong>Role:</strong> ${user.roles.map(role => role.name).join(', ')}</p>
-                                    <div class="info text-sm text-gray-700 dark:text-gray-300 mt-2 break-words">
-                                        <p><strong>Email:</strong> ${user.email}</p>
-                                        <p><strong>Phone:</strong> ${user.phone}</p>
-                                    </div>
-                                </div>
-                            `);
-                                        } else {
-                                            // Tambahkan elemen user untuk tampilan desktop
-                                            userList.append(`
-                                <tr>
-                                    <td>${user.name}</td>
-                                    <td>${user.email}</td>
-                                    <td>${user.phone}</td>
-                                    <td>${user.roles.map(role => role.name).join(', ')}</td>
-                                </tr>
-                            `);
-                                        }
-                                    });
-                                } else {
-                                    userList.append('<p>No users found.</p>');
-                                }
-                            },
-                            error: function(xhr) {
-                                console.error('Error during search:', xhr.responseText);
-                            },
-                        });
-                    });
-                });
-            </script>
+    </script>
+    
 
             <script>
                 function confirmDelete() {
