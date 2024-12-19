@@ -84,46 +84,46 @@
 
     <script>
         document.getElementById('searchHistory').addEventListener('input', function () {
-            let query = this.value;
-        
-            if (query.length > 0) {
-                $.ajax({
-                url: '/admin/history/search',
-                type: 'GET',
-                data: { query: query },
-                success: function (response) {
-                    let resultsContainer = $('#history-list');
-                    resultsContainer.empty();
+    let query = this.value;
 
-                    if (response.data.length > 0) {
-                        response.data.forEach(function (history) {
-                            resultsContainer.append(`
-                                <tr>
-                                    <td class="px-4 py-3">${history.admin.email}</td>
-                                    <td class="px-4 py-3">${history.admin ? history.admin.name : '-'}</td>
-                                    <td class="px-4 py-3">Rp. ${history.action}</td>
-                                    <td class="px-4 py-3">${history.affected_model}</td>
-                                    <td class="px-4 py-3">${history.created_at}</td>
-                                </tr>
-                            `);
-                        });
-                    } else {
+    if (query.length > 0) {
+        $.ajax({
+            url: '/admin/history/search',
+            type: 'GET',
+            data: { query: query },
+            success: function (response) {
+                let resultsContainer = $('#history-list');
+                resultsContainer.empty();
+
+                if (response.data.length > 0) {
+                    response.data.forEach(function (history) {
                         resultsContainer.append(`
                             <tr>
-                                <td colspan="5" class="text-center p-4">History tidak ditemukan</td>
+                                <td class="px-4 py-3">${history.admin ? history.admin.name : '-'}</td>
+                                <td class="px-4 py-3">${history.admin ? history.admin.email : '-'}</td>
+                                <td class="px-4 py-3">${history.action}</td>
+                                <td class="px-4 py-3">${history.affected_model}</td>
+                                <td class="px-4 py-3">${history.created_at}</td>
                             </tr>
                         `);
-                    }
-                },
-                error: function (xhr) {
-                    console.error(xhr.responseText);
-                    $('#history-list').html('<tr><td colspan="5" class="text-center p-4">Terjadi kesalahan pada server</td></tr>');
+                    });
+                } else {
+                    resultsContainer.append(`
+                        <tr>
+                            <td colspan="5" class="text-center p-4">History tidak ditemukan</td>
+                        </tr>
+                    `);
                 }
-            });
-
-            } else {
-                location.reload(); // Refresh halaman jika input kosong
+            },
+            error: function (xhr) {
+                console.error(xhr.responseText);
+                $('#history-list').html('<tr><td colspan="5" class="text-center p-4">Terjadi kesalahan pada server</td></tr>');
             }
         });
+    } else {
+        location.reload(); // Refresh halaman jika input kosong
+    }
+   });
+
     </script>
 @endsection
