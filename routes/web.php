@@ -25,7 +25,7 @@ use App\Http\Controllers\BackupController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\CmsController;
-
+use App\Models\AdminHistory;
 
 Route::fallback(function () {
     return response()->view('errors.404', [], 404);
@@ -191,6 +191,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Route::get('/admin/history', [AdminHistoryController::class, 'index'])->name('admin.history.index')->middleware('permission:histories');
 
     Route::resource('history', AdminHistoryController::class)->middleware('role:admin');
+    Route::get('/history/search', [AdminHistoryController::class, 'search'])->name('users.search');
+
 
     // Route::resource('faqs', FaqController::class)->middleware('permission:faqs');
     Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index')->middleware('permission:faqs');
