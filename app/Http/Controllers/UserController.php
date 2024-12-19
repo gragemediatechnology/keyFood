@@ -22,95 +22,50 @@ class UserController extends Controller
     }
 
 
-    // public function index()
-    // {
-
-    //     $users = User::all(); // Mengambil semua user tanpa soft delete
-
-    //     $users = User::with('roles')->get();
-
-    //     // Return view with users data
-    //     return view('admin.users.index', compact('users'));
-
-    //     $users = User::all();
-    //     return view('admin.users.index', compact('users'));
-    // }
-
-    // public function search(Request $request)
-    // {
-    //     try {
-    //         $query = $request->input('query');
-    
-    //         // Validasi jika query kosong
-    //         if (empty($query)) {
-    //             return response()->json(['data' => []]);
-    //         }
-    
-    //         // Query dengan group
-    //         $users = User::with('user') // Eager loading relasi
-    //             ->where(function ($q) use ($query) {
-    //                 $q->where('name', 'LIKE', "%{$query}%")
-    //                     ->orWhere('email', 'LIKE', "%{$query}%")
-    //                     ->orWhere('phone', 'LIKE', "%{$query}%");
-    //             })
-    //             ->get();
-            
-    
-    //         return response()->json([
-    //             'data' => $users
-    //         ]);
-    //     } catch (\Exception $e) {
-    //         Log::error('Error during user search:', [
-    //             'error' => $e->getMessage(),
-    //         ]);
-    //         return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
-    //     }
-    // }
-
     public function index()
-{
-    try {
-        // Mengambil semua user beserta relasi roles
+    {
+
+        $users = User::all(); // Mengambil semua user tanpa soft delete
+
         $users = User::with('roles')->get();
 
+        // Return view with users data
         return view('admin.users.index', compact('users'));
-    } catch (\Exception $e) {
-        Log::error('Error during fetching user data:', [
-            'error' => $e->getMessage(),
-        ]);
-        return redirect()->back()->with('error', 'Terjadi kesalahan saat memuat data pengguna.');
-    }
-}
 
-public function search(Request $request)
-{
-    try {
-        $query = $request->input('query');
-        
-        // Validasi jika query kosong
-        if (empty($query)) {
-            return response()->json(['data' => []]);
+        $users = User::all();
+        return view('admin.users.index', compact('users'));
+    }
+
+    public function search(Request $request)
+    {
+        try {
+            $query = $request->input('query');
+    
+            // Validasi jika query kosong
+            if (empty($query)) {
+                return response()->json(['data' => []]);
+            }
+    
+            // Query dengan group
+            $users = User::with('user') // Eager loading relasi
+                ->where(function ($q) use ($query) {
+                    $q->where('name', 'LIKE', "%{$query}%")
+                        ->orWhere('email', 'LIKE', "%{$query}%")
+                        ->orWhere('phone', 'LIKE', "%{$query}%");
+                })
+                ->get();
+            
+    
+            return response()->json([
+                'data' => $users
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error during user search:', [
+                'error' => $e->getMessage(),
+            ]);
+            return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
         }
-
-        // Query pengguna berdasarkan name, email, atau phone
-        $users = User::with('roles') // Ambil data dengan relasi roles
-            ->where(function ($q) use ($query) {
-                $q->where('name', 'LIKE', "%{$query}%")
-                  ->orWhere('email', 'LIKE', "%{$query}%")
-                  ->orWhere('phone', 'LIKE', "%{$query}%");
-            })
-            ->get();
-
-        return response()->json([
-            'data' => $users
-        ]);
-    } catch (\Exception $e) {
-        Log::error('Error during user search:', [
-            'error' => $e->getMessage(),
-        ]);
-        return response()->json(['message' => 'Terjadi kesalahan saat mencari data'], 500);
     }
-}
 
 
      
