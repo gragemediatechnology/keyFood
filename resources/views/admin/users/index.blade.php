@@ -289,47 +289,84 @@
 
             {{-- SEARCH --}}
 
-            <script>
-        document.getElementById('searchUser').addEventListener('input', function () {
-            let query = this.value;
-        
-            if (query.length > 0) {
-                $.ajax({
-                url: '/admin/users/search',
-                type: 'GET',
-                data: { query: query },
-                success: function (response) {
-                    let resultsContainer = $('#user-list');
-                    resultsContainer.empty();
+      <script>
+       document.getElementById('searchUser').addEventListener('input', function () {
+    let query = this.value;
+    let isMobile = window.innerWidth <= 768; // Kondisi untuk deteksi mobile
 
-                    if (response.data.length > 0) {
-                        response.data.forEach(function (user) {
+    if (query.length > 0) {
+        $.ajax({
+            url: '/admin/users/search',
+            type: 'GET',
+            data: { query: query },
+            success: function (response) {
+                let resultsContainer = $('#user-list');
+                resultsContainer.empty();
+
+                if (response.data.length > 0) {
+                    response.data.forEach(function (user) {
+                        if (isMobile) {
+                            // Tampilan untuk mobile
                             resultsContainer.append(`
-                                <tr>
-                                    <td class="px-4 py-3">${user.name}</td>
-                                    <td class="px-4 py-3">${user.email}</td>
-                                    <td class="px-4 py-3">Rp. ${user.phone}</td>
+                                <div class="card-profile card-table" data-roles="${user.roles}">
+                                    <p><strong>ID:</strong> ${user.id}</p>
+                                    <a>
+                                        <img src="https://teraskabeka.com/${user.img || 'img/client-1.jpg'}" alt="Profile Picture" loading="lazy">
+                                    </a>
+                                    <h2>${user.name}</h2>
+                                    <p><strong>Role:</strong> ${user.roles || 'buyer'}</p>
+                                    <div class="info text-sm text-gray-700 dark:text-gray-300 mt-2 break-words">
+                                        <p><strong>Email:</strong> ${user.email}</p>
+                                        <p><strong>Phone:</strong> ${user.phone}</p>
+                                    </div>
+                                    <span class="inline-flex items-center ${user.is_online ? 'bg-green-100 text-green-500' : 'bg-gray-100 text-gray-500'} text-xs font-medium ml-1 px-2 py-0.5 rounded-full">
+                                        • ${user.is_online ? 'Online' : 'Offline'}
+                                    </span>
+                                </div>
+                            `);
+                        } else {
+                            // Tampilan untuk desktop
+                            resultsContainer.append(`
+                                <tr class="text-gray-700 dark:text-gray-400 card-table" data-roles="${user.roles}">
+                                    <td class="px-4 py-3">
+                                        <div class="flex items-center text-sm">
+                                            <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                                <img class="object-cover w-full h-full rounded-full"
+                                                    src="https://teraskabeka.com/${user.img || 'img/client-1.jpg'}" alt="user" loading="lazy">
+                                            </div>
+                                            <div>
+                                                <a>
+                                                    <p class="font-semibold">${user.name}</p>
+                                                    <p class="text-xs text-gray-600 dark:text-gray-400">ID: ${user.id}</p>
+                                                    <span class="inline-flex items-center ${user.is_online ? 'bg-green-100 text-green-500' : 'bg-gray-100 text-gray-500'} text-xs font-medium ml-1 px-2 py-0.5 rounded-full">
+                                                        • ${user.is_online ? 'Online' : 'Offline'}
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">${user.email}</td>
+                                    <td class="px-4 py-3 text-sm">${user.phone}</td>
+                                    <td class="px-4 py-3 text-sm">${user.roles || 'buyer'}</td>
                                 </tr>
                             `);
-                        });
-                    } else {
-                        resultsContainer.append(`
-                            <tr>
-                                <td colspan="5" class="text-center p-4">User tidak ditemukan</td>
-                            </tr>
-                        `);
-                    }
-                },
-                error: function (xhr) {
-                    console.error(xhr.responseText);
-                    $('#user-list').html('<tr><td colspan="5" class="text-center p-4">Terjadi kesalahan pada server</td></tr>');
+                        }
+                    });
+                } else if() {
+                    resultsContainer.append(`
+                        <div class="text-center p-4">${isMobile ? 'User tidak ditemukan' : '<tr><td colspan="4" class="text-center p-4">User tidak ditemukan</td></tr>'}</div>
+                    `);
+                }else{
+                    location.reload();
                 }
-            });
-
-            } else {
-                location.reload(); // Refresh halaman jika input kosong
+            },
+            error: function () {
+                alert('Terjadi kesalahan saat memuat data.');
             }
         });
+    }
+});
+
     </script>
     
 
