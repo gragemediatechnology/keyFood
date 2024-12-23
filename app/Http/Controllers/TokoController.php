@@ -10,11 +10,26 @@ use Illuminate\Support\Facades\Storage;
 
 class TokoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $stores = Toko::all();
-        return view('admin.stores.index', compact('stores'));
+        // Default jumlah item per halaman
+        $defaultItemsPerPage = 16;
+    
+        // Ambil parameter `itemsPerPage` dari request atau gunakan default
+        $itemsPerPage = $request->input('itemsPerPage', $defaultItemsPerPage);
+    
+        // Mengambil data toko dengan pagination dinamis
+        $stores = Toko::paginate($itemsPerPage);
+    
+        // Jika permintaan AJAX, kembalikan data toko dalam format JSON
+        if ($request->ajax()) {
+            return response()->json($stores);
+        }
+    
+        // Jika bukan AJAX, kembalikan tampilan lengkap
+        return view('admin.stores.index', compact('stores', 'itemsPerPage'));
     }
+    
 
     public function create()
     {
@@ -89,13 +104,17 @@ class TokoController extends Controller
             'deskripsi_toko' => 'required|string|max:255',
             'waktu_buka' => 'nullable|date_format:H:i',
             'waktu_tutup' => 'nullable|date_format:H:i',
+        ], [
+            'waktu_buka.date_format' => 'Mohon isi waktu buka dengan format jam:menit (contoh: 08:00).',
+            'waktu_tutup.date_format' => 'Mohon isi waktu tutup dengan format jam:menit (contoh: 18:00).',
+        
             'foto_profile_toko' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Update informasi toko
         $toko->nama_toko = $request->input('nama_toko');
-        $toko->waktu_buka = $request->input('waktu_buka');
-        $toko->waktu_tutup = $request->input('waktu_tutup');
+        $toko->waktu_buka = $request->input('waktu_buka', '00:00');
+        $toko->waktu_tutup = $request->input('waktu_tutup', '00:00');
         $toko->alamat_toko = $request->input('alamat_toko');
         $toko->deskripsi_toko = $request->input('deskripsi_toko');
 

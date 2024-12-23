@@ -120,11 +120,12 @@
                                     class="relative cursor-pointer bg-hideung rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                     <span class="text-white">Upload an image here</span>
                                     <input id="photo" name="photo" type="file" class="sr-only"
-                                        onchange="previewImage(event)">
+                                        onchange="validateFile(event)">
                                     <p id="file-types" class="text-xs text-white">PNG, JPG, GIF up to 10MB</p>
                                 </label>
                             </div>
-                            <img id="image-preview" class="mt-2 hidden w-full h-48 object-cover rounded-md" loading="lazy"/>
+                            <img id="image-preview" class="mt-2 hidden w-full h-48 object-cover rounded-md"
+                                loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -155,6 +156,54 @@
                 defaultIcon.classList.add('hidden');
                 uploadText.classList.add('hidden');
                 fileTypes.classList.add('hidden');
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
+
+    <script>
+        function validateFile(event) {
+            const input = event.target;
+            const file = input.files[0];
+
+            // Jika tidak ada file, keluar dari fungsi
+            if (!file) return;
+
+            // Batas ukuran file 10MB
+            const maxSize = 10 * 1024 * 1024;
+
+            if (file.size > maxSize) {
+                // Tampilkan Swal jika file terlalu besar
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ukuran File Terlalu Besar!',
+                    text: 'Ukuran File Tidak Boleh Melebihi 10MB.',
+                    confirmButtonText: 'Okay'
+                });
+
+                // Reset input file
+                input.value = "";
+            } else {
+                // Panggil fungsi previewImage jika ukuran valid
+                previewImage(event);
+            }
+        }
+
+        function previewImage(event) {
+            const input = event.target;
+            const reader = new FileReader();
+            reader.onload = function() {
+                const dataURL = reader.result;
+                const imagePreview = document.getElementById('image-preview');
+                const defaultIcon = document.getElementById('default-icon');
+                const uploadText = document.getElementById('upload-text');
+                const fileTypes = document.getElementById('file-types');
+
+                imagePreview.src = dataURL;
+                imagePreview.classList.remove('hidden');
+                if (defaultIcon) defaultIcon.classList.add('hidden');
+                if (uploadText) uploadText.classList.add('hidden');
+                if (fileTypes) fileTypes.classList.add('hidden');
             };
             reader.readAsDataURL(input.files[0]);
         }

@@ -120,35 +120,35 @@
                         return;
                     }
         
-                    const container = document.getElementById('store-list');
+                    // const container = document.getElementById('store-list');
         
-                    // Tambahkan toko ke dalam container
-                    data.data.forEach(store => {
-                        const storeElement = `
-                        <form action="/detailed-store/" method="GET">
-                            <input type="hidden" value="${store.id_toko}" name="id">
-                            <button type="submit">
-                                <div class="container-s" id="visit">
-                                    <div class="user-s">
-                                        <img class="user-icon-s"
-                                            src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'} " loading="lazy"/>
-                                        <div class="user-info-s">
-                                            <div class="user-name-s">${store.nama_toko}</div>
-                                            <div class="user-description-s">Alamat : ${store.alamat_toko}</div>
-                                            <div class="user-description-s">Waktu Oprasional Toko : ${store.waktu_buka ? store.waktu_buka : ''} - ${store.waktu_tutup ? store.waktu_tutup : ''}</div>
-                                            ${store.is_online 
-                                                ? '<p class="text-green-500">Buka</p>' 
-                                                : '<p class="text-red-500">Tutup</p>'}
-                                        </div>
-                                    </div>
-                                </div>
-                            </button>
-                        </form>`;
+                    // // Tambahkan toko ke dalam container
+                    // data.data.forEach(store => {
+                    //     const storeElement = `
+                    //     <form action="/detailed-store/" method="GET">
+                    //         <input type="hidden" value="${store.id_toko}" name="id">
+                    //         <button type="submit">
+                    //             <div class="container-s" id="visit">
+                    //                 <div class="user-s">
+                    //                     <img class="user-icon-s"
+                    //                         src="https://teraskabeka.com/store_image/${store.foto_profile_toko ? store.foto_profile_toko : 'markets.png'} " loading="lazy"/>
+                    //                     <div class="user-info-s">
+                    //                         <div class="user-name-s">${store.nama_toko}</div>
+                    //                         <div class="user-description-s">Alamat : ${store.alamat_toko}</div>
+                    //                         <div class="user-description-s">Waktu Oprasional Toko : ${store.waktu_buka ? store.waktu_buka : ''} - ${store.waktu_tutup ? store.waktu_tutup : ''}</div>
+                    //                         ${store.is_online 
+                    //                             ? '<p class="text-green-500">Buka</p>' 
+                    //                             : '<p class="text-red-500">Tutup</p>'}
+                    //                     </div>
+                    //                 </div>
+                    //             </div>
+                    //         </button>
+                    //     </form>`;
         
-                        container.insertAdjacentHTML('beforeend', storeElement);
-                    });
+                    //     container.insertAdjacentHTML('beforeend', storeElement);
+                    // });
         
-                    page++; // Tingkatkan nomor halaman untuk permintaan berikutnya
+                    // page++; // Tingkatkan nomor halaman untuk permintaan berikutnya
                 })
                 .catch(error => {
                     console.error('Error loading stores:', error);

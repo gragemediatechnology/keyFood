@@ -25,7 +25,7 @@ use App\Http\Controllers\BackupController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\CmsController;
-
+use App\Models\AdminHistory;
 
 Route::fallback(function () {
     return response()->view('errors.404', [], 404);
@@ -157,6 +157,8 @@ Route::prefix('seller')->name('seller.')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/main-admin', [PaymentController::class, 'index'])->name('dashboard-main')->middleware('permission:main-admin');
+    Route::get('/orders/search', [PaymentController::class, 'search'])->name('orders.search');
+
 
 
     Route::get('/dashboard-cms', function () {
@@ -166,6 +168,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Route::resource('users', UserController::class)->middleware('permission:users');
     Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('permission:users');
+    Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
     Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit')->middleware('permission:users');
     Route::post('/users/update/{user}', [UserController::class, 'update'])->name('users.update')->middleware('permission:users');
     Route::delete('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('permission:users');
@@ -188,6 +191,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Route::get('/admin/history', [AdminHistoryController::class, 'index'])->name('admin.history.index')->middleware('permission:histories');
 
     Route::resource('history', AdminHistoryController::class)->middleware('role:admin');
+    Route::get('/history/search', [AdminHistoryController::class, 'search'])->name('history.search');
+
 
     // Route::resource('faqs', FaqController::class)->middleware('permission:faqs');
     Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index')->middleware('permission:faqs');
