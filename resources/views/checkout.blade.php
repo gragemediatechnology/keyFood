@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('link')
-    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/74094528fe5f3ca44c147b06f4c1039768fa9022/public/css/checkout.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/gragemediatechnology/keyFood/4ee6d6be17e17f77ca67e937ee937cda46ec26c8/public/css/checkout.css">
 @endsection
 
 @section('container')
